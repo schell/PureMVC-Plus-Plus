@@ -56,10 +56,10 @@ build: .build-post
 
 .build-pre:
 # Add your pre 'build' code here...
+	./cxxtestgen.pl --error-printer -o runner.cpp --gui=Qtgui pmvcarchTestSuite.h
 
 .build-post: .build-impl
 # Add your post 'build' code here...
-
 
 # clean
 clean: .clean-post

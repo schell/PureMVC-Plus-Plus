@@ -4,6 +4,9 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>../pmvcpparch/patterns.h</itemPath>
+      <itemPath>../pmvcpparch/pmvcppbase.h</itemPath>
+      <itemPath>../pmvcpparch/pmvcppexp.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -12,14 +15,19 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>main.cpp</itemPath>
+      <itemPath>../pmvcpparch/pmvcpparch.cpp</itemPath>
+      <itemPath>runner.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
                    projectFiles="false">
       <itemPath>Makefile</itemPath>
+      <itemPath>pmvcarchTestSuite.h</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="Debug" type="1">
@@ -29,9 +37,18 @@
         <platform>4</platform>
       </toolsSet>
       <compileType>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
         <linkerTool>
+          <linkerAddLib>
+            <pElem>/usr/X11R6/lib</pElem>
+          </linkerAddLib>
           <linkerLibItems>
           </linkerLibItems>
+          <commandLine>-lx11</commandLine>
         </linkerTool>
       </compileType>
     </conf>

@@ -31,7 +31,8 @@ OBJECTDIR=build/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/main.o
+	${OBJECTDIR}/_ext/_DOTDOT/pmvcpparch/pmvcpparch.o \
+	${OBJECTDIR}/runner.o
 
 # C Compiler Flags
 CFLAGS=
@@ -47,7 +48,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=
+LDLIBSOPTIONS=-L/usr/X11R6/lib
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -55,12 +56,17 @@ LDLIBSOPTIONS=
 
 dist/Debug/GNU-MacOSX/pmvctest: ${OBJECTFILES}
 	${MKDIR} -p dist/Debug/GNU-MacOSX
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pmvctest ${OBJECTFILES} ${LDLIBSOPTIONS} 
+	${LINK.cc} -lx11 -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pmvctest ${OBJECTFILES} ${LDLIBSOPTIONS} 
 
-${OBJECTDIR}/main.o: nbproject/Makefile-${CND_CONF}.mk main.cpp 
+${OBJECTDIR}/_ext/_DOTDOT/pmvcpparch/pmvcpparch.o: nbproject/Makefile-${CND_CONF}.mk ../pmvcpparch/pmvcpparch.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/_DOTDOT/pmvcpparch
+	${RM} $@.d
+	$(COMPILE.cc) -g -I. -MMD -MP -MF $@.d -o ${OBJECTDIR}/_ext/_DOTDOT/pmvcpparch/pmvcpparch.o ../pmvcpparch/pmvcpparch.cpp
+
+${OBJECTDIR}/runner.o: nbproject/Makefile-${CND_CONF}.mk runner.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -I. -MMD -MP -MF $@.d -o ${OBJECTDIR}/runner.o runner.cpp
 
 # Subprojects
 .build-subprojects:
