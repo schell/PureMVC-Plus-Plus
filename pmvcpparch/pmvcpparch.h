@@ -22,7 +22,7 @@
  *  Multiton key holding class.
  *  Inheritors of this class all hold multiton keys.
  */
-class MultitonKeyHeir : public IMultitonKeyHeir
+class MultitonKeyHeir : public virtual IMultitonKeyHeir
 {
 public:
     /**
@@ -37,7 +37,7 @@ public:
      *  @return The string key name
      */
     virtual std::string getMultitonKey();
-protected:
+private:
     std::string _multitonKey;
 };
 //--------------------------------------
@@ -54,10 +54,17 @@ class Facade : public MultitonKeyHeir, public IFacade
 {
 public:
     Facade();
+
 protected:
+    IModel* model;
     IController* controller;
-    
+    IView* view;
+
+    void initializeFacade(std::string key);
+    void initializeNotifier(std::string key);
+    void initializeModel();
     void initializeController();
+    void initializeView();
 };
 //--------------------------------------
 //  Notifier
@@ -154,7 +161,6 @@ public:
 class Model : public MultitonKeyHeir, public IModel
 {
 public:
-    Model(std::string key);
 };
 
 //--------------------------------------
@@ -195,6 +201,35 @@ public:
  */
 class Controller : public MultitonKeyHeir, public IController
 {
-
+protected:
+//    IView* view;
+//    vector<ICommand*> commandMap;
 };
-#endif	/* _PMVCPPARCH_H */
+
+//--------------------------------------
+//  View
+//--------------------------------------
+/**
+ * A Multiton <code>IView</code> implementation.
+ *
+ * <P>
+ * In PureMVC, the <code>View</code> class assumes these responsibilities:
+ * <UL>
+ * <LI>Maintain a cache of <code>IMediator</code> instances.</LI>
+ * <LI>Provide methods for registering, retrieving, and removing <code>IMediators</code>.</LI>
+ * <LI>Notifiying <code>IMediators</code> when they are registered or removed.</LI>
+ * <LI>Managing the observer lists for each <code>INotification</code> in the application.</LI>
+ * <LI>Providing a method for attaching <code>IObservers</code> to an <code>INotification</code>'s observer list.</LI>
+ * <LI>Providing a method for broadcasting an <code>INotification</code>.</LI>
+ * <LI>Notifying the <code>IObservers</code> of a given <code>INotification</code> when it broadcast.</LI>
+ * </UL>
+ *
+ *  @see Mediator
+ *  @see Observer
+ *  @see Notification
+ */
+class View : public MultitonKeyHeir, public IView
+{
+public:
+};
+#endif/* _PMVCPPARCH_H */

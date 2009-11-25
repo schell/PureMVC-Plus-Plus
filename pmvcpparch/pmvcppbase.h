@@ -55,13 +55,13 @@ public:
      *  Sets the multiton key.
      *  @param key The name of the key
      */
-    virtual void setMultitonKey(std::string key){};
+    virtual void setMultitonKey(std::string key) = 0;
     /**
      *  Get multiton key.
      *  Returns the multiton key.
      *  @return The string key name
      */
-    virtual std::string getMultitonKey(){};
+    virtual std::string getMultitonKey() = 0;
 };
 //--------------------------------------
 //  INotifier
@@ -117,7 +117,7 @@ public:
      *
      * @param key the multitonKey for this INotifier to use
      */
-    //virtual void initializeNotifier ( std::string key ) = 0;
+    virtual void initializeNotifier ( std::string key ) = 0;
     //virtual 	 ~INotifier         (){};
 };
 /**
@@ -222,7 +222,7 @@ public:
  * @see INotification
  * @see ICommand
  */
-class IController : public IMultitonKeyHeir
+class IController : public virtual IMultitonKeyHeir
 {
 public:
     IController(){}
@@ -393,7 +393,7 @@ public:
  * <LI>Provide methods for registering, retrieving, and removing <code>IProxy</code> instances</LI>
  * </UL>
  */
-class IModel
+class IModel : public virtual IMultitonKeyHeir
 {
 public:
         /**
@@ -532,7 +532,7 @@ public:
  * @see IObserver
  * @see INotification
  */
-class IView
+class IView : public virtual IMultitonKeyHeir
 {
 public:
         /**
