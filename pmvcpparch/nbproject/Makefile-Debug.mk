@@ -31,6 +31,7 @@ OBJECTDIR=build/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/pmvcpparch.o \
 	${OBJECTDIR}/main.o
 
 # C Compiler Flags
@@ -56,6 +57,11 @@ LDLIBSOPTIONS=
 dist/Debug/GNU-MacOSX/pmvcpparch: ${OBJECTFILES}
 	${MKDIR} -p dist/Debug/GNU-MacOSX
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pmvcpparch ${OBJECTFILES} ${LDLIBSOPTIONS} 
+
+${OBJECTDIR}/pmvcpparch.o: nbproject/Makefile-${CND_CONF}.mk pmvcpparch.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/pmvcpparch.o pmvcpparch.cpp
 
 ${OBJECTDIR}/main.o: nbproject/Makefile-${CND_CONF}.mk main.cpp 
 	${MKDIR} -p ${OBJECTDIR}

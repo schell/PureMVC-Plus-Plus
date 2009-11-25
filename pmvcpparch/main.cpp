@@ -7,18 +7,12 @@
 
 #include <stdlib.h>
 #include "pmvcppbase.h"
+#include "pmvcpparch.h"
+#include "pmvcppexp.h"
 
-class Note : public INotifier
+class ApplicationFacade : public Facade
 {
-public:
-    virtual void sendNotification   ( std::string notificationName, IBody* body, std::string type)
-    {
-        printf("name:%s type:%s", notificationName.c_str(), type.c_str());
-    }
-    virtual void sendNotification   ( std::string notificationName, std::string type ) {};
-    virtual void sendNotification   ( std::string notificationName, IBody* body ) {};
-    virtual void sendNotification   ( std::string notificationName ) {};
-    virtual void initializeNotifier ( std::string key ) {};
+    
 };
 
 int main(int argc, char** argv)
