@@ -5,6 +5,7 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>../pmvcpparch/patterns.h</itemPath>
+      <itemPath>../pmvcpparch/pmvcpparch.h</itemPath>
       <itemPath>../pmvcpparch/pmvcppbase.h</itemPath>
       <itemPath>../pmvcpparch/pmvcppexp.h</itemPath>
     </logicalFolder>

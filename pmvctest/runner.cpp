@@ -61,25 +61,42 @@ public:
  void runTest() { suite_IBodyTestSuite.testConstructor_Sets_type(); }
 } testDescription_IBodyTestSuite_testConstructor_Sets_type;
 
+static FacadeTestSuite suite_FacadeTestSuite;
+
+static CxxTest::List Tests_FacadeTestSuite = { 0, 0 };
+CxxTest::StaticSuiteDescription suiteDescription_FacadeTestSuite( "pmvcarchTestSuite.h", 122, "FacadeTestSuite", suite_FacadeTestSuite, Tests_FacadeTestSuite );
+
+static class TestDescription_FacadeTestSuite_testMultitonKeySet : public CxxTest::RealTestDescription {
+public:
+ TestDescription_FacadeTestSuite_testMultitonKeySet() : CxxTest::RealTestDescription( Tests_FacadeTestSuite, suiteDescription_FacadeTestSuite, 135, "testMultitonKeySet" ) {}
+ void runTest() { suite_FacadeTestSuite.testMultitonKeySet(); }
+} testDescription_FacadeTestSuite_testMultitonKeySet;
+
+static class TestDescription_FacadeTestSuite_testControllerInitialized : public CxxTest::RealTestDescription {
+public:
+ TestDescription_FacadeTestSuite_testControllerInitialized() : CxxTest::RealTestDescription( Tests_FacadeTestSuite, suiteDescription_FacadeTestSuite, 139, "testControllerInitialized" ) {}
+ void runTest() { suite_FacadeTestSuite.testControllerInitialized(); }
+} testDescription_FacadeTestSuite_testControllerInitialized;
+
 static NotifierTestSuite suite_NotifierTestSuite;
 
 static CxxTest::List Tests_NotifierTestSuite = { 0, 0 };
-CxxTest::StaticSuiteDescription suiteDescription_NotifierTestSuite( "pmvcarchTestSuite.h", 106, "NotifierTestSuite", suite_NotifierTestSuite, Tests_NotifierTestSuite );
+CxxTest::StaticSuiteDescription suiteDescription_NotifierTestSuite( "pmvcarchTestSuite.h", 154, "NotifierTestSuite", suite_NotifierTestSuite, Tests_NotifierTestSuite );
 
 static class TestDescription_NotifierTestSuite_testCanInitialize : public CxxTest::RealTestDescription {
 public:
- TestDescription_NotifierTestSuite_testCanInitialize() : CxxTest::RealTestDescription( Tests_NotifierTestSuite, suiteDescription_NotifierTestSuite, 115, "testCanInitialize" ) {}
+ TestDescription_NotifierTestSuite_testCanInitialize() : CxxTest::RealTestDescription( Tests_NotifierTestSuite, suiteDescription_NotifierTestSuite, 163, "testCanInitialize" ) {}
  void runTest() { suite_NotifierTestSuite.testCanInitialize(); }
 } testDescription_NotifierTestSuite_testCanInitialize;
 
 static testModel suite_testModel;
 
 static CxxTest::List Tests_testModel = { 0, 0 };
-CxxTest::StaticSuiteDescription suiteDescription_testModel( "pmvcarchTestSuite.h", 127, "testModel", suite_testModel, Tests_testModel );
+CxxTest::StaticSuiteDescription suiteDescription_testModel( "pmvcarchTestSuite.h", 175, "testModel", suite_testModel, Tests_testModel );
 
 static class TestDescription_testModel_testConstructor_Sets_multitonKey : public CxxTest::RealTestDescription {
 public:
- TestDescription_testModel_testConstructor_Sets_multitonKey() : CxxTest::RealTestDescription( Tests_testModel, suiteDescription_testModel, 135, "testConstructor_Sets_multitonKey" ) {}
+ TestDescription_testModel_testConstructor_Sets_multitonKey() : CxxTest::RealTestDescription( Tests_testModel, suiteDescription_testModel, 183, "testConstructor_Sets_multitonKey" ) {}
  void runTest() { suite_testModel.testConstructor_Sets_multitonKey(); }
 } testDescription_testModel_testConstructor_Sets_multitonKey;
 
