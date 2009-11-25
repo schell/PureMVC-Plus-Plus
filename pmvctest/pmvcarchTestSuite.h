@@ -21,6 +21,38 @@
 // Exception classes of pmvcpp
 #include <../pmvcpparch/pmvcppexp.h>
 
+/**
+ *  An application facade.
+ *  Application facade used for testing. Most our application logic
+ *  will be somewhere in here.
+ */
+class ApplicationFacade : public Facade
+{
+public:
+    static ApplicationFacade* instance(std::string key)
+    {
+        ApplicationFacade* inst = Multiton<ApplicationFacade>::instance(key);
+        inst->initializeFacade(key);
+        return inst;
+    }
+    IModel* getModel()
+    {
+        return this->model;
+    }
+    IController* getController()
+    {
+        return this->controller;
+    }
+    IView* getView()
+    {
+        return this->view;
+    }
+    void initializeFacade(std::string key)
+    {
+        Facade::initializeFacade(key);
+    }
+};
+
 //--------------------------------------
 //  ALL
 //--------------------------------------
@@ -95,30 +127,6 @@ public:
 //--------------------------------------
 //  Facade
 //--------------------------------------
-/**
- *  An application facade.
- *  Application facade used for testing the facade.
- */
-class ApplicationFacade : public Facade
-{
-public:
-    static ApplicationFacade* instance(std::string key)
-    {
-        ApplicationFacade* inst = Multiton<ApplicationFacade>::instance(key);
-        inst->setMultitonKey(key);
-        return inst;
-    }
-    IController* getController()
-    {
-        return this->controller;
-    }
-protected:
-    void initializeController()
-    {
-        // call super
-        Facade::initializeController();
-    }
-};
 class FacadeTestSuite : public CxxTest::TestSuite
 {
 public:
@@ -126,7 +134,7 @@ public:
     {
         this->appKey = "testAppFacadeKey";
         this->appFacade = ApplicationFacade::instance(this->appKey);
-        this->appFacade->setMultitonKey(this->appKey);
+        this->appFacade->initializeFacade(this->appKey);
     }
     void tearDown()
     {
@@ -136,15 +144,53 @@ public:
     {
         TS_ASSERT_EQUALS(this->appFacade->getMultitonKey(), this->appKey);
     }
+    void testModelInitialized()
+    {
+        // compare to null ptr
+//        TS_TRACE("appFacade model mem address:");
+//        TS_TRACE(&*this->appFacade->getModel());
+//        TS_TRACE("null IModel* mem address:");
+//        TS_TRACE( &*((IModel*) 0) );
+        TS_ASSERT_DIFFERS(this->appFacade->getModel(), (IModel*) 0);
+    }
     void testControllerInitialized()
     {
         // compare to null ptr
-        TS_TRACE("appFacade controller mem address:");
-        TS_TRACE(&*this->appFacade->getController());
-        TS_TRACE("null IController* mem address:");
-        TS_TRACE( &*((IController*) 0) );
+//        TS_TRACE("appFacade controller mem address:");
+//        TS_TRACE(&*this->appFacade->getController());
+//        TS_TRACE("null IController* mem address:");
+//        TS_TRACE( &*((IController*) 0) );
         TS_ASSERT_DIFFERS(this->appFacade->getController(), (IController*) 0);
     }
+    void testViewInitialized()
+    {
+        // compare to null ptr
+//        TS_TRACE("appFacade view mem address:");
+//        TS_TRACE(&*this->appFacade->getView());
+//        TS_TRACE("null IView* mem address:");
+//        TS_TRACE( &*((IView*) 0) );
+        TS_ASSERT_DIFFERS(this->appFacade->getView(), (IView*) 0);
+    }
+    std::string appKey;
+    ApplicationFacade* appFacade;
+};
+//--------------------------------------
+//  Controller
+//--------------------------------------
+class ControllerTestSuite : public CxxTest::TestSuite
+{
+public:
+    void setUp()
+    {
+        this->appKey = "testAppFacadeKey_Controller";
+        this->appFacade = ApplicationFacade::instance(this->appKey);
+        this->appFacade->initializeFacade(this->appKey);
+    }
+    void testControllerHasAccessToView()
+    {
+        TS_ASSERT_EQUALS(&*this->appFacade->getView(), &*this->appFacade->getController()->getView());
+    }
+
     std::string appKey;
     ApplicationFacade* appFacade;
 };
@@ -175,18 +221,18 @@ public:
 class testModel : public CxxTest::TestSuite
 {
 public:
-    void setUp()
-    {
-        this->key = "testModelMultitonKey";
-        this->model = new Model(this->key);
-    }
-    void testConstructor_Sets_multitonKey()
-    {
-        this->model = new Model(this->key);
-        TS_ASSERT_EQUALS(this->model->getMultitonKey(), this->key);
-    }
-
-    Model* model;
-    std::string key;
+//    void setUp()
+//    {
+//        this->key = "testModelMultitonKey";
+//        this->model = new Model(this->key);
+//    }
+//    void testConstructor_Sets_multitonKey()
+//    {
+//        this->model = new Model(this->key);
+//        TS_ASSERT_EQUALS(this->model->getMultitonKey(), this->key);
+//    }
+//
+//    Model* model;
+//    std::string key;
 };
 #endif	/* _PMVCARCHTESTSUITE_H */
