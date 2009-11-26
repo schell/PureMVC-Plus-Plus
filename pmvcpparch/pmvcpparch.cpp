@@ -30,6 +30,22 @@ Facade::Facade()
     this->controller = 0;
     this->view = 0;
 }
+void Facade::sendNotification( std::string notificationName, IBody* body, std::string type)
+{
+
+}
+void Facade::sendNotification( std::string notificationName, std::string type )
+{
+
+}
+void Facade::sendNotification( std::string notificationName, IBody* body )
+{
+
+}
+void Facade::sendNotification( std::string notificationName )
+{
+
+}
 void Facade::initializeFacade(std::string key)
 {
     this->initializeNotifier(key);
@@ -66,11 +82,70 @@ void Facade::initializeView()
     this->view->setMultitonKey(this->getMultitonKey());
 }
 //--------------------------------------
+//  Notification
+//--------------------------------------
+Notification::Notification(std::string name, IBody* body, std::string type)
+{
+    this->name = name;
+    this->setBody(body);
+    this->setType(type);
+}
+Notification::Notification(std::string name, IBody* body)
+{
+    this->name = name;
+    this->setBody(body);
+}
+Notification::Notification(std::string name, std::string type)
+{
+    this->name = name;
+    this->setType(type);
+}
+std::string Notification::getName()
+{
+    return this->name;
+}
+void Notification::setBody( IBody* body )
+{
+    this->body = body;
+}
+IBody* Notification::getBody()
+{
+    return this->body;
+}
+void Notification::setType( std::string type )
+{
+    this->type = type;
+}
+std::string Notification::getType()
+{
+    return this->type;
+}
+//--------------------------------------
 //  Notifier
 //--------------------------------------
+void Notifier::sendNotification( std::string notificationName, IBody* body, std::string type)
+{
+
+}
+void Notifier::sendNotification( std::string notificationName, std::string type )
+{
+
+}
+void Notifier::sendNotification( std::string notificationName, IBody* body )
+{
+
+}
+void Notifier::sendNotification( std::string notificationName )
+{
+
+}
 void Notifier::initializeNotifier(std::string key)
 {
     this->setMultitonKey(key);
+}
+IFacade* Notifier::getFacade()
+{
+    return Multiton<Facade>::instance(this->getMultitonKey());
 }
 //--------------------------------------
 //  SimpleCommand

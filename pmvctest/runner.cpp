@@ -61,54 +61,25 @@ public:
  void runTest() { suite_IBodyTestSuite.testConstructor_Sets_type(); }
 } testDescription_IBodyTestSuite_testConstructor_Sets_type;
 
-static FacadeTestSuite suite_FacadeTestSuite;
+static NotificationTestSuite suite_NotificationTestSuite;
 
-static CxxTest::List Tests_FacadeTestSuite = { 0, 0 };
-CxxTest::StaticSuiteDescription suiteDescription_FacadeTestSuite( "pmvcarchTestSuite.h", 130, "FacadeTestSuite", suite_FacadeTestSuite, Tests_FacadeTestSuite );
+static CxxTest::List Tests_NotificationTestSuite = { 0, 0 };
+CxxTest::StaticSuiteDescription suiteDescription_NotificationTestSuite( "pmvcarchTestSuite.h", 130, "NotificationTestSuite", suite_NotificationTestSuite, Tests_NotificationTestSuite );
 
-static class TestDescription_FacadeTestSuite_testMultitonKeySet : public CxxTest::RealTestDescription {
+static class TestDescription_NotificationTestSuite_testConstructorSets_name_type : public CxxTest::RealTestDescription {
 public:
- TestDescription_FacadeTestSuite_testMultitonKeySet() : CxxTest::RealTestDescription( Tests_FacadeTestSuite, suiteDescription_FacadeTestSuite, 143, "testMultitonKeySet" ) {}
- void runTest() { suite_FacadeTestSuite.testMultitonKeySet(); }
-} testDescription_FacadeTestSuite_testMultitonKeySet;
-
-static class TestDescription_FacadeTestSuite_testModelInitialized : public CxxTest::RealTestDescription {
-public:
- TestDescription_FacadeTestSuite_testModelInitialized() : CxxTest::RealTestDescription( Tests_FacadeTestSuite, suiteDescription_FacadeTestSuite, 147, "testModelInitialized" ) {}
- void runTest() { suite_FacadeTestSuite.testModelInitialized(); }
-} testDescription_FacadeTestSuite_testModelInitialized;
-
-static class TestDescription_FacadeTestSuite_testControllerInitialized : public CxxTest::RealTestDescription {
-public:
- TestDescription_FacadeTestSuite_testControllerInitialized() : CxxTest::RealTestDescription( Tests_FacadeTestSuite, suiteDescription_FacadeTestSuite, 156, "testControllerInitialized" ) {}
- void runTest() { suite_FacadeTestSuite.testControllerInitialized(); }
-} testDescription_FacadeTestSuite_testControllerInitialized;
-
-static class TestDescription_FacadeTestSuite_testViewInitialized : public CxxTest::RealTestDescription {
-public:
- TestDescription_FacadeTestSuite_testViewInitialized() : CxxTest::RealTestDescription( Tests_FacadeTestSuite, suiteDescription_FacadeTestSuite, 165, "testViewInitialized" ) {}
- void runTest() { suite_FacadeTestSuite.testViewInitialized(); }
-} testDescription_FacadeTestSuite_testViewInitialized;
-
-static ControllerTestSuite suite_ControllerTestSuite;
-
-static CxxTest::List Tests_ControllerTestSuite = { 0, 0 };
-CxxTest::StaticSuiteDescription suiteDescription_ControllerTestSuite( "pmvcarchTestSuite.h", 180, "ControllerTestSuite", suite_ControllerTestSuite, Tests_ControllerTestSuite );
-
-static class TestDescription_ControllerTestSuite_testControllerHasAccessToView : public CxxTest::RealTestDescription {
-public:
- TestDescription_ControllerTestSuite_testControllerHasAccessToView() : CxxTest::RealTestDescription( Tests_ControllerTestSuite, suiteDescription_ControllerTestSuite, 189, "testControllerHasAccessToView" ) {}
- void runTest() { suite_ControllerTestSuite.testControllerHasAccessToView(); }
-} testDescription_ControllerTestSuite_testControllerHasAccessToView;
+ TestDescription_NotificationTestSuite_testConstructorSets_name_type() : CxxTest::RealTestDescription( Tests_NotificationTestSuite, suiteDescription_NotificationTestSuite, 140, "testConstructorSets_name_type" ) {}
+ void runTest() { suite_NotificationTestSuite.testConstructorSets_name_type(); }
+} testDescription_NotificationTestSuite_testConstructorSets_name_type;
 
 static NotifierTestSuite suite_NotifierTestSuite;
 
 static CxxTest::List Tests_NotifierTestSuite = { 0, 0 };
-CxxTest::StaticSuiteDescription suiteDescription_NotifierTestSuite( "pmvcarchTestSuite.h", 200, "NotifierTestSuite", suite_NotifierTestSuite, Tests_NotifierTestSuite );
+CxxTest::StaticSuiteDescription suiteDescription_NotifierTestSuite( "pmvcarchTestSuite.h", 221, "NotifierTestSuite", suite_NotifierTestSuite, Tests_NotifierTestSuite );
 
 static class TestDescription_NotifierTestSuite_testCanInitialize : public CxxTest::RealTestDescription {
 public:
- TestDescription_NotifierTestSuite_testCanInitialize() : CxxTest::RealTestDescription( Tests_NotifierTestSuite, suiteDescription_NotifierTestSuite, 209, "testCanInitialize" ) {}
+ TestDescription_NotifierTestSuite_testCanInitialize() : CxxTest::RealTestDescription( Tests_NotifierTestSuite, suiteDescription_NotifierTestSuite, 230, "testCanInitialize" ) {}
  void runTest() { suite_NotifierTestSuite.testCanInitialize(); }
 } testDescription_NotifierTestSuite_testCanInitialize;
 

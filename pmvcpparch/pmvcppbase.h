@@ -103,10 +103,10 @@ public:
      * @param body the body of the notification (optional)
      * @param type the type of the notification (optional)
      */
-    //virtual void sendNotification   ( std::string notificationName, IBody* body, std::string type) = 0;
-    //virtual void sendNotification   ( std::string notificationName, std::string type ) = 0;
-    //virtual void sendNotification   ( std::string notificationName, IBody* body ) = 0;
-    //virtual void sendNotification   ( std::string notificationName ) = 0;
+    virtual void sendNotification   ( std::string notificationName, IBody* body, std::string type) = 0;
+    virtual void sendNotification   ( std::string notificationName, std::string type ) = 0;
+    virtual void sendNotification   ( std::string notificationName, IBody* body ) = 0;
+    virtual void sendNotification   ( std::string notificationName ) = 0;
     /**
      * Initialize this INotifier instance.
      * <p>
@@ -118,7 +118,7 @@ public:
      * @param key the multitonKey for this INotifier to use
      */
     virtual void initializeNotifier ( std::string key ) = 0;
-    //virtual 	 ~INotifier         (){};
+    virtual 	 ~INotifier         (){};
 };
 /**
  * The interface definition for a PureMVC Notification.
@@ -162,34 +162,34 @@ public:
          * Get the name of the <code>INotification</code> instance.
          * No setter, should be set by constructor only
          */
-	//virtual std::string getName         () = 0;
+	virtual std::string getName         () = 0;
         /**
          * Set the body of the <code>INotification</code> instance
          */
-	//virtual void        setBody         ( IBody* body ) = 0;
+	virtual void        setBody         ( IBody* body ) = 0;
         /**
          * Get the body of the <code>INotification</code> instance
          */
-	//virtual IBody*      getBody         () = 0;
+	virtual IBody*      getBody         () = 0;
         /**
          * Set the type of the <code>INotification</code> instance
          */
-	//virtual void        setType         ( std::string type ) = 0;
+	virtual void        setType         ( std::string type ) = 0;
         /**
          * Get the type of the <code>INotification</code> instance
          */
-	//virtual std::string getType         () = 0;
+	virtual std::string getType         () = 0;
         /**
          * Get the string representation of the <code>INotification</code> instance
          */
-	//virtual             ~INotification  (){};
+	virtual             ~INotification  (){};
 };
 /**
  * The interface definition for a PureMVC Command.
  *
  * @see INotification
  */
-class ICommand : public INotifier
+class ICommand : public virtual INotifier
 {
 public:
         /**

@@ -125,79 +125,100 @@ public:
     std::string type;
 };
 //--------------------------------------
+//  Notification
+//--------------------------------------
+class NotificationTestSuite : public CxxTest::TestSuite
+{
+public:
+    void setUp()
+    {
+        this->name = "notificationName";
+        this->body = new IBody();
+        this->type = "notificationType";
+        this->notification = new Notification(name, body, type);
+    }
+    void testConstructorSets_name_type()
+    {
+        TS_ASSERT_EQUALS(this->notification->getName(), this->name);
+        TS_ASSERT_EQUALS(this->notification->getType(), this->type);
+        //TS_ASSERT_EQUALS(this->notification->getBody(), this->body);
+    }
+private:
+    Notification* notification;
+    std::string name;
+    std::string type;
+    IBody* body;
+};
+//--------------------------------------
 //  Facade
 //--------------------------------------
 class FacadeTestSuite : public CxxTest::TestSuite
 {
-public:
-    void setUp()
-    {
-        this->appKey = "testAppFacadeKey";
-        this->appFacade = ApplicationFacade::instance(this->appKey);
-        this->appFacade->initializeFacade(this->appKey);
-    }
-    void tearDown()
-    {
-        Multiton<ApplicationFacade>::clear();
-    }
-    void testMultitonKeySet()
-    {
-        TS_ASSERT_EQUALS(this->appFacade->getMultitonKey(), this->appKey);
-    }
-    void testModelInitialized()
-    {
-        // compare to null ptr
-//        TS_TRACE("appFacade model mem address:");
-//        TS_TRACE(&*this->appFacade->getModel());
-//        TS_TRACE("null IModel* mem address:");
-//        TS_TRACE( &*((IModel*) 0) );
-        TS_ASSERT_DIFFERS(this->appFacade->getModel(), (IModel*) 0);
-    }
-    void testControllerInitialized()
-    {
-        // compare to null ptr
-//        TS_TRACE("appFacade controller mem address:");
-//        TS_TRACE(&*this->appFacade->getController());
-//        TS_TRACE("null IController* mem address:");
-//        TS_TRACE( &*((IController*) 0) );
-        TS_ASSERT_DIFFERS(this->appFacade->getController(), (IController*) 0);
-    }
-    void testViewInitialized()
-    {
-        // compare to null ptr
-//        TS_TRACE("appFacade view mem address:");
-//        TS_TRACE(&*this->appFacade->getView());
-//        TS_TRACE("null IView* mem address:");
-//        TS_TRACE( &*((IView*) 0) );
-        TS_ASSERT_DIFFERS(this->appFacade->getView(), (IView*) 0);
-    }
-    std::string appKey;
-    ApplicationFacade* appFacade;
+//public:
+//    void setUp()
+//    {
+//        this->appKey = "testAppFacadeKey";
+//        this->appFacade = ApplicationFacade::instance(this->appKey);
+//        this->appFacade->initializeFacade(this->appKey);
+//    }
+//    void tearDown()
+//    {
+//        Multiton<ApplicationFacade>::clear();
+//    }
+//    void testMultitonKeySet()
+//    {
+//        TS_ASSERT_EQUALS(this->appFacade->getMultitonKey(), this->appKey);
+//    }
+//    void testModelInitialized()
+//    {
+//        // compare to null ptr
+////        TS_TRACE("appFacade model mem address:");
+////        TS_TRACE(&*this->appFacade->getModel());
+////        TS_TRACE("null IModel* mem address:");
+////        TS_TRACE( &*((IModel*) 0) );
+//        TS_ASSERT_DIFFERS(this->appFacade->getModel(), (IModel*) 0);
+//    }
+//    void testControllerInitialized()
+//    {
+//        // compare to null ptr
+////        TS_TRACE("appFacade controller mem address:");
+////        TS_TRACE(&*this->appFacade->getController());
+////        TS_TRACE("null IController* mem address:");
+////        TS_TRACE( &*((IController*) 0) );
+//        TS_ASSERT_DIFFERS(this->appFacade->getController(), (IController*) 0);
+//    }
+//    void testViewInitialized()
+//    {
+//        // compare to null ptr
+////        TS_TRACE("appFacade view mem address:");
+////        TS_TRACE(&*this->appFacade->getView());
+////        TS_TRACE("null IView* mem address:");
+////        TS_TRACE( &*((IView*) 0) );
+//        TS_ASSERT_DIFFERS(this->appFacade->getView(), (IView*) 0);
+//    }
+//    std::string appKey;
+//    ApplicationFacade* appFacade;
 };
 //--------------------------------------
 //  Controller
 //--------------------------------------
-class ControllerTestSuite : public CxxTest::TestSuite
-{
-public:
-    void setUp()
-    {
-        this->appKey = "testAppFacadeKey_Controller";
-        this->appFacade = ApplicationFacade::instance(this->appKey);
-        this->appFacade->initializeFacade(this->appKey);
-    }
-    void testControllerHasAccessToView()
-    {
-        TS_ASSERT_EQUALS(&*this->appFacade->getView(), &*this->appFacade->getController()->getView());
-    }
-
-    std::string appKey;
-    ApplicationFacade* appFacade;
-};
+//class ControllerTestSuite : public CxxTest::TestSuite
+//{
+//public:
+//    void setUp()
+//    {
+//        this->appKey = "testAppFacadeKey_Controller";
+//        this->appFacade = ApplicationFacade::instance(this->appKey);
+//        this->appFacade->initializeFacade(this->appKey);
+//    }
+//
+//    std::string appKey;
+//    ApplicationFacade* appFacade;
+//};
 //--------------------------------------
 //  Notifier
 //--------------------------------------
-class NotifierTestSuite : public CxxTest::TestSuite
+class NotifierTestSuite : public CxxTest::TestSuite, public Facade
 {
 public:
     void setUp()
@@ -206,10 +227,15 @@ public:
         this->key = "testNotifierMultitonKey";
     }
 
-    void testCanInitialize()
+    void testCanInitializeNotifier()
     {
         this->notifier->initializeNotifier(this->key);
         TS_ASSERT_EQUALS(this->notifier->getMultitonKey(), this->key);
+    }
+
+    void canSendNotification()
+    {
+        TS_ASSERT_
     }
 
     Notifier* notifier;

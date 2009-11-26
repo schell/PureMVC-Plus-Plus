@@ -41,30 +41,48 @@ private:
     std::string _multitonKey;
 };
 //--------------------------------------
-//  Facade
+//  Notification
 //--------------------------------------
 /**
- * A base Multiton <code>IFacade</code> implementation.
+ * A base <code>INotification</code> implementation.
  *
- * @see Model::Model
- * @see View::View
- * @see Controller::Controller
+ * <P>
+ * The Observer Pattern as implemented within PureMVC exists
+ * to support event-driven communication between the
+ * application and the actors of the MVC triad.</P>
+ *
+ * <P>
+ * <code>IMediator</code> implementors
+ * place event listeners on their view components, which they
+ * handle in the usual way. This may lead to the broadcast of <code>Notification</code>s to
+ * trigger <code>ICommand</code>s or to communicate with other <code>IMediators</code>. <code>IProxy</code> and <code>ICommand</code>
+ * instances communicate with each other and <code>IMediator</code>s
+ * by broadcasting <code>INotification</code>s.</P>
+ *
+ * <P>
+ * PureMVC <code>Notification</code>s follow a 'Publish/Subscribe'
+ * pattern. PureMVC classes need not be related to each other in a
+ * parent/child relationship in order to communicate with one another
+ * using <code>Notification</code>s.
+ *
+ * @see Observer
+ *
  */
-class Facade : public MultitonKeyHeir, public IFacade
+class Notification : public INotification
 {
 public:
-    Facade();
-
-protected:
-    IModel* model;
-    IController* controller;
-    IView* view;
-
-    void initializeFacade(std::string key);
-    void initializeNotifier(std::string key);
-    void initializeModel();
-    void initializeController();
-    void initializeView();
+    std::string name;
+    std::string type;
+    IBody* body;
+    
+    Notification(std::string name, IBody* body, std::string type);
+    Notification(std::string name, IBody* body);
+    Notification(std::string name, std::string type);
+    std::string getName();
+    void setBody( IBody* body );
+    IBody* getBody();
+    void setType( std::string type );
+    std::string getType();
 };
 //--------------------------------------
 //  Notifier
@@ -104,10 +122,46 @@ protected:
  * @see MacroCommand::MacroCommand
  * @see SimpleCommand::SimpleCommand
  */
-class Notifier : public MultitonKeyHeir, public INotifier
+class Notifier : public MultitonKeyHeir, public virtual INotifier
 {
 public:
+    void sendNotification   ( std::string notificationName, IBody* body, std::string type);
+    void sendNotification   ( std::string notificationName, std::string type );
+    void sendNotification   ( std::string notificationName, IBody* body );
+    void sendNotification   ( std::string notificationName );
     void initializeNotifier(std::string key);
+protected:
+    IFacade* getFacade();
+};
+//--------------------------------------
+//  Facade
+//--------------------------------------
+/**
+ * A base Multiton <code>IFacade</code> implementation.
+ *
+ * @see Model::Model
+ * @see View::View
+ * @see Controller::Controller
+ */
+class Facade : public MultitonKeyHeir, public IFacade
+{
+public:
+    Facade();
+    void sendNotification( std::string notificationName, IBody* body, std::string type);
+    void sendNotification( std::string notificationName, std::string type );
+    void sendNotification( std::string notificationName, IBody* body );
+    void sendNotification( std::string notificationName );
+
+protected:
+    IModel* model;
+    IController* controller;
+    IView* view;
+
+    void initializeFacade(std::string key);
+    void initializeNotifier(std::string key);
+    void initializeModel();
+    void initializeController();
+    void initializeView();
 };
 //--------------------------------------
 //  SimpleCommand
