@@ -14,12 +14,12 @@
 int main() {
  return CxxTest::ErrorPrinter().run();
 }
-#include "pmvcarchTestSuite.h"
+#include "../test/pmvcarchTestSuite.h"
 
 static NotesTestSuite suite_NotesTestSuite;
 
 static CxxTest::List Tests_NotesTestSuite = { 0, 0 };
-CxxTest::StaticSuiteDescription suiteDescription_NotesTestSuite( "pmvcarchTestSuite.h", 59, "NotesTestSuite", suite_NotesTestSuite, Tests_NotesTestSuite );
+CxxTest::StaticSuiteDescription suiteDescription_NotesTestSuite( "../test/pmvcarchTestSuite.h", 59, "NotesTestSuite", suite_NotesTestSuite, Tests_NotesTestSuite );
 
 static class TestDescription_NotesTestSuite_testToDoList : public CxxTest::RealTestDescription {
 public:
@@ -30,7 +30,7 @@ public:
 static MultitonTestSuite suite_MultitonTestSuite;
 
 static CxxTest::List Tests_MultitonTestSuite = { 0, 0 };
-CxxTest::StaticSuiteDescription suiteDescription_MultitonTestSuite( "pmvcarchTestSuite.h", 73, "MultitonTestSuite", suite_MultitonTestSuite, Tests_MultitonTestSuite );
+CxxTest::StaticSuiteDescription suiteDescription_MultitonTestSuite( "../test/pmvcarchTestSuite.h", 73, "MultitonTestSuite", suite_MultitonTestSuite, Tests_MultitonTestSuite );
 
 static class TestDescription_MultitonTestSuite_testCreateInstances : public CxxTest::RealTestDescription {
 public:
@@ -47,7 +47,7 @@ public:
 static IBodyTestSuite suite_IBodyTestSuite;
 
 static CxxTest::List Tests_IBodyTestSuite = { 0, 0 };
-CxxTest::StaticSuiteDescription suiteDescription_IBodyTestSuite( "pmvcarchTestSuite.h", 105, "IBodyTestSuite", suite_IBodyTestSuite, Tests_IBodyTestSuite );
+CxxTest::StaticSuiteDescription suiteDescription_IBodyTestSuite( "../test/pmvcarchTestSuite.h", 105, "IBodyTestSuite", suite_IBodyTestSuite, Tests_IBodyTestSuite );
 
 static class TestDescription_IBodyTestSuite_testCanSetGet_type : public CxxTest::RealTestDescription {
 public:
@@ -64,7 +64,7 @@ public:
 static NotificationTestSuite suite_NotificationTestSuite;
 
 static CxxTest::List Tests_NotificationTestSuite = { 0, 0 };
-CxxTest::StaticSuiteDescription suiteDescription_NotificationTestSuite( "pmvcarchTestSuite.h", 130, "NotificationTestSuite", suite_NotificationTestSuite, Tests_NotificationTestSuite );
+CxxTest::StaticSuiteDescription suiteDescription_NotificationTestSuite( "../test/pmvcarchTestSuite.h", 130, "NotificationTestSuite", suite_NotificationTestSuite, Tests_NotificationTestSuite );
 
 static class TestDescription_NotificationTestSuite_testConstructorSets_name_type : public CxxTest::RealTestDescription {
 public:
@@ -75,12 +75,12 @@ public:
 static NotifierTestSuite suite_NotifierTestSuite;
 
 static CxxTest::List Tests_NotifierTestSuite = { 0, 0 };
-CxxTest::StaticSuiteDescription suiteDescription_NotifierTestSuite( "pmvcarchTestSuite.h", 221, "NotifierTestSuite", suite_NotifierTestSuite, Tests_NotifierTestSuite );
+CxxTest::StaticSuiteDescription suiteDescription_NotifierTestSuite( "../test/pmvcarchTestSuite.h", 221, "NotifierTestSuite", suite_NotifierTestSuite, Tests_NotifierTestSuite );
 
-static class TestDescription_NotifierTestSuite_testCanInitialize : public CxxTest::RealTestDescription {
+static class TestDescription_NotifierTestSuite_testCanInitializeNotifier : public CxxTest::RealTestDescription {
 public:
- TestDescription_NotifierTestSuite_testCanInitialize() : CxxTest::RealTestDescription( Tests_NotifierTestSuite, suiteDescription_NotifierTestSuite, 230, "testCanInitialize" ) {}
- void runTest() { suite_NotifierTestSuite.testCanInitialize(); }
-} testDescription_NotifierTestSuite_testCanInitialize;
+ TestDescription_NotifierTestSuite_testCanInitializeNotifier() : CxxTest::RealTestDescription( Tests_NotifierTestSuite, suiteDescription_NotifierTestSuite, 235, "testCanInitializeNotifier" ) {}
+ void runTest() { suite_NotifierTestSuite.testCanInitializeNotifier(); }
+} testDescription_NotifierTestSuite_testCanInitializeNotifier;
 
 #include <cxxtest/Root.cpp>

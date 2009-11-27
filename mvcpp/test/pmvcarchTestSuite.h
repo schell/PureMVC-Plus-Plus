@@ -13,13 +13,13 @@
 // cxxtest
 #include <cxxtest/TestSuite.h>
 // our basic fpatterns
-#include <../pmvcpparch/patterns.h>
+#include <patterns.h>
 // Base classes of pmvcpp
-#include <../pmvcpparch/pmvcppbase.h>
+#include <pmvcppbase.h>
 // Main classes of pmvcpp
-#include <../pmvcpparch/pmvcpparch.h>
+#include <pmvcpparch.h>
 // Exception classes of pmvcpp
-#include <../pmvcpparch/pmvcppexp.h>
+#include <pmvcppexp.h>
 
 /**
  *  An application facade.
@@ -228,7 +228,7 @@ public:
     }
     // here are some helper methods
     // override to intercept notification
-    public function sendNotification(std::string name, IBody* body, std::string type)
+    void sendNotification(std::string name, IBody* body, std::string type)
     {
         this->notification = new Notification(name, body, type);
     }
@@ -240,7 +240,7 @@ public:
 
     void canSendNotificationThroughFacade()
     {
-        TS_ASSERT_EQUALS()
+        //TS_ASSERT_EQUALS()
     }
 
     Notifier* notifier;
