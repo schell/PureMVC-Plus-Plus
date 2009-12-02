@@ -150,7 +150,29 @@ IFacade* Notifier::getFacade()
 //--------------------------------------
 //  SimpleCommand
 //--------------------------------------
-
+void SimpleCommand::execute(INotification* notification)
+{
+    
+}
+//--------------------------------------
+//  MacroCommand
+//--------------------------------------
+MacroCommand::MacroCommand()
+{
+    this->initializeMacroCommand();
+}
+void MacroCommand::initializeMacroCommand()
+{
+    std::cout <<"\nMacroCommand::initializeMacroCommand\n";
+}
+void MacroCommand::execute(INotification* notification)
+{
+    
+}
+void MacroCommand::addSubCommand(ICommand* command)
+{
+    this->subCommands.push_back(command);
+}
 //--------------------------------------
 //  Model
 //--------------------------------------

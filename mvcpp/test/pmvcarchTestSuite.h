@@ -9,6 +9,7 @@
 #define	_PMVCARCHTESTSUITE_H
 
 #include <iostream>
+#include <vector>
 
 // cxxtest
 #include <cxxtest/TestSuite.h>
@@ -56,6 +57,9 @@ public:
 //--------------------------------------
 //  ALL
 //--------------------------------------
+/**
+ *  TODO - Finish implementations
+ */
 class NotesTestSuite : public CxxTest::TestSuite
 {
 public:
@@ -63,7 +67,6 @@ public:
     {
         TS_WARN("Facade is not fully implemented.");
         TS_WARN("Notifier is not fully implemented.");
-        TS_WARN("SimpleCommand is not fully implemented.");
         TS_WARN("Model is not fully implemented.");
     }
 };
@@ -148,6 +151,36 @@ private:
     std::string name;
     std::string type;
     IBody* body;
+};
+//--------------------------------------
+//  MacroCommand
+//--------------------------------------
+class MacroTestClass : public MacroCommand
+{
+public:
+    int getSubCommandSize()
+    {
+        return (int) this->subCommands.size();
+    }
+protected:
+    void initializeMacroCommand()
+    {
+        std::cout << "\nMactoTestClass::initializeMacroCommand\n";
+        this->addSubCommand(new SimpleCommand());
+        this->addSubCommand(new SimpleCommand());
+        this->addSubCommand(new SimpleCommand());
+    }
+};
+class MacroCommandTestSuite : public CxxTest::TestSuite
+{
+public:
+    void testAdd_addSubCommand_IncrementsCommandVector()
+    {
+        this->macroTestClass = new MacroTestClass();
+        TS_ASSERT_EQUALS(this->macroTestClass->getSubCommandSize(), 3);
+    }
+private:
+    MacroTestClass* macroTestClass;
 };
 //--------------------------------------
 //  Facade

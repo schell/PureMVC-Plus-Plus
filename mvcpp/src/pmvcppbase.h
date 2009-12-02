@@ -197,8 +197,8 @@ public:
          *
          * @param note an <code>INotification</code> to handle.
          */
-	//virtual void execute	( INotification* notification ) = 0;
-	//virtual      ~ICommand	(){};
+	virtual void execute	( INotification* notification ) = 0;
+	virtual      ~ICommand	(){};
 };
 /**
  * The interface definition for a PureMVC Controller.
