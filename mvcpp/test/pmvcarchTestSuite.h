@@ -153,11 +153,28 @@ private:
     IBody* body;
 };
 //--------------------------------------
+//  SimpleCommand
+//--------------------------------------
+class SimpleTestClass : public SimpleCommand
+{
+public:
+    void execute(INotification* notification)
+    {
+        SimpleTestClass::executions++;
+    }
+    static int executions;
+};
+int SimpleTestClass::executions = 0;
+//--------------------------------------
 //  MacroCommand
 //--------------------------------------
 class MacroTestClass : public MacroCommand
 {
 public:
+    MacroTestClass()
+    {
+        this->initializeMacroCommand();
+    }
     int getSubCommandSize()
     {
         return (int) this->subCommands.size();
@@ -166,18 +183,26 @@ protected:
     void initializeMacroCommand()
     {
         std::cout << "\nMactoTestClass::initializeMacroCommand\n";
-        this->addSubCommand(new SimpleCommand());
-        this->addSubCommand(new SimpleCommand());
-        this->addSubCommand(new SimpleCommand());
+        this->addSubCommand(new SimpleTestClass());
+        this->addSubCommand(new SimpleTestClass());
+        this->addSubCommand(new SimpleTestClass());
     }
 };
 class MacroCommandTestSuite : public CxxTest::TestSuite
 {
 public:
-    void testAdd_addSubCommand_IncrementsCommandVector()
+    void setUp()
     {
         this->macroTestClass = new MacroTestClass();
+    }
+    void testAdd_addSubCommand_IncrementsCommandVector()
+    {
         TS_ASSERT_EQUALS(this->macroTestClass->getSubCommandSize(), 3);
+    }
+    void testExecuteShouldExecAllSubCommands()
+    {
+        this->macroTestClass->execute(new Notification("macroCommandTestClassNotificationName", new IBody(), "macroCommandTestClassNoteType"));
+        TS_ASSERT_EQUALS(SimpleTestClass::executions, 3);
     }
 private:
     MacroTestClass* macroTestClass;
