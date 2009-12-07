@@ -240,22 +240,39 @@ public:
          *
          * @param notification the <code>INotification</code> to execute the associated <code>ICommand</code> for
          */
-	//virtual void executeCommand ( INotification* notification ) = 0;
+	virtual void executeCommand ( INotification* notification ) = 0;
         /**
          * Remove a previously registered <code>ICommand</code> to <code>INotification</code> mapping.
          *
          * @param notificationName the name of the <code>INotification</code> to remove the <code>ICommand</code> mapping for
          */
-	//virtual void removeCommand  ( std::string notificationName ) = 0;
+	virtual void removeCommand  ( std::string notificationName ) = 0;
         /**
          * Check if a Command is registered for a given Notification
          *
          * @param notificationName
          * @return whether a Command is currently registered for the given <code>notificationName</code>.
          */
-	//virtual bool hasCommand     ( std::string notificationName ) = 0;
-	//virtual      ~IController   (){};
+	virtual bool hasCommand     ( std::string notificationName ) = 0;
+	virtual      ~IController   (){};
 };
+/**
+ *  An INotificationHandler base class.
+ *  An IObserver requires a context to call a notification method from,
+ *  and this class supports the IObserver by providing a contract
+ *  that the context will have said notification handling method.
+ */
+class INotificationHandler
+{
+public:
+    /**
+     * Handle an <code>INotification</code>.
+     *
+     * @param notification the <code>INotification</code> to be handled
+     */
+    virtual void handleNotification ( INotification* notification ) = 0;
+};
+
 /**
  * The interface definition for a PureMVC Observer.
  *
@@ -295,6 +312,8 @@ public:
  * @see IView
  * @see INotification
  */
+
+typedef void (*notifyMethod) (INotification* INotificationHandler::handleNotification);
 class IObserver
 {
 public:
@@ -306,27 +325,27 @@ public:
          *
          * @param notifyMethod the notification (callback) method of the interested object
          */
-	//virtual void setNotifyMethod        ( void (*notifyMethod) (INotification*) ) = 0;
+	virtual void setNotifyMethod        ( notifyMethod method ) = 0;
         /**
          * Set the notification context.
          *
          * @param notifyContext the notification context (this) of the interested object
          */
-	//virtual void setNotifyContext       ( IBody* notifyContext ) = 0;
+	virtual void setNotifyContext       ( INotificationHandler* notifyContext ) = 0;
         /**
          * Notify the interested object.
          *
          * @param notification the <code>INotification</code> to pass to the interested object's notification method
          */
-	//virtual void notifyObserver         ( INotification* notification ) = 0;
+	virtual void notifyObserver         ( INotification* notification ) = 0;
         /**
-         * Compare the given object to the notificaiton context object.
+         * Compare the given object to the notificaton context object.
          *
          * @param object the object to compare.
          * @return boolean indicating if the notification context and the object are the same.
          */
-	//virtual bool compareNotifyContext   ( IBody* obj ) = 0;
-	//virtual      ~IObserver             (){};
+	virtual bool compareNotifyContext   ( INotificationHandler* object ) = 0;
+	virtual      ~IObserver             (){};
 };
 /**
  * The interface definition for a PureMVC Proxy.
@@ -355,27 +374,27 @@ public:
          *
          * @return the Proxy instance name
          */
-	//virtual std::string getProxyName() = 0;
+	virtual std::string getProxyName() = 0;
         /**
          * Set the data object
          *
          * @param data the data object
          */
-	//virtual void        setData	( IBody* data ) = 0;
+	virtual void        setData	( IBody* data ) = 0;
         /**
          * Get the data object
          *
          * @return the data as type Object
          */
-	//virtual IBody*      getData	() = 0;
+	virtual IBody*      getData	() = 0;
         /**
          * Called by the Model when the Proxy is registered
          */
-	//virtual void        onRegister	() = 0;
+	virtual void        onRegister	() = 0;
         /**
          * Called by the Model when the Proxy is removed
          */
-	//virtual void        onRemove	() = 0;
+	virtual void        onRemove	() = 0;
 
 };
 /**
@@ -402,29 +421,29 @@ public:
          * @param proxyName the name to associate with this <code>IProxy</code> instance.
          * @param proxy an object reference to be held by the <code>Model</code>.
          */
-	//virtual void 	registerProxy	( IProxy* proxy ) = 0;
+	virtual void 	registerProxy	( IProxy* proxy ) = 0;
         /**
          * Retrieve an <code>IProxy</code> instance from the Model.
          *
          * @param proxyName
          * @return the <code>IProxy</code> instance previously registered with the given <code>proxyName</code>.
          */
-	//virtual IProxy* retrieveProxy	( std::string proxyName ) = 0;
+	virtual IProxy* retrieveProxy	( std::string proxyName ) = 0;
         /**
          * Remove an <code>IProxy</code> instance from the Model.
          *
          * @param proxyName name of the <code>IProxy</code> instance to be removed.
          * @return the <code>IProxy</code> that was removed from the <code>Model</code>
          */
-	//virtual IProxy* removeProxy	( std::string proxyName ) = 0;
+	virtual IProxy* removeProxy	( std::string proxyName ) = 0;
         /**
          * Check if a Proxy is registered
          *
          * @param proxyName
          * @return whether a Proxy is currently registered with the given <code>proxyName</code>.
          */
-	//virtual bool 	hasProxy	( std::string proxyName ) = 0;
-	//virtual 	~IModel		(){};
+	virtual bool 	hasProxy	( std::string proxyName ) = 0;
+	virtual 	~IModel		(){};
 };
 /**
  * The interface definition for a PureMVC Mediator.
@@ -467,7 +486,7 @@ public:
  *
  * @see INotification
  */
-class IMediator : public INotifier
+class IMediator : public INotifier, public INotificationHandler
 {
 public:
         /**
@@ -475,40 +494,34 @@ public:
          *
          * @return the <code>IMediator</code> instance name
          */
-	//virtual std::string              getMediatorName            () = 0;
+	virtual std::string              getMediatorName            () = 0;
         /**
          * Get the <code>IMediator</code>'s view component.
          *
          * @return Object the view component
          */
-	//virtual IBody*                   getViewComponent           () = 0;
+	virtual IBody*                   getViewComponent           () = 0;
         /**
          * Set the <code>IMediator</code>'s view component.
          *
          * @param Object the view component
          */
-	//virtual void                     setViewComponent           ( IBody* viewComponent ) = 0;
+	virtual void                     setViewComponent           ( IBody* viewComponent ) = 0;
         /**
          * List <code>INotification</code> interests.
          *
          * @return an <code>Array</code> of the <code>INotification</code> names this <code>IMediator</code> has an interest in.
          */
-	//virtual std::vector<std::string> listNotificationInterests  () = 0;
-        /**
-         * Handle an <code>INotification</code>.
-         *
-         * @param notification the <code>INotification</code> to be handled
-         */
-	//virtual void                     handleNotification         ( INotification* notification ) = 0;
+	virtual std::vector<std::string> listNotificationInterests  () = 0;
         /**
          * Called by the View when the Mediator is registered
          */
-	//virtual void 			 onRegister                 () = 0;
+	virtual void 			 onRegister                 () = 0;
         /**
          * Called by the View when the Mediator is removed
          */
-	//virtual void 			 onRemove                   () = 0;
-	//virtual 			 ~IMediator                 ();
+	virtual void 			 onRemove                   () = 0;
+	virtual 			 ~IMediator                 ();
 
 };
 /**
@@ -542,14 +555,14 @@ public:
          * @param notificationName the name of the <code>INotifications</code> to notify this <code>IObserver</code> of
          * @param observer the <code>IObserver</code> to register
          */
-	//virtual void 		registerObserver( std::string notificationName, IObserver* observer ) = 0;
+	virtual void registerObserver( std::string notificationName, IObserver* observer ) = 0;
         /**
          * Remove a group of observers from the observer list for a given Notification name.
          * <p>
          * @param notificationName which observer list to remove from
          * @param notifyContext removed the observers with this object as their notifyContext
          */
-	//virtual void 		removeObserver	( std::string notificationName, IBody* notifyContext ) = 0;
+	virtual void removeObserver( std::string notificationName, INotificationHandler* notifyContext ) = 0;
         /**
          * Notify the <code>IObservers</code> for a particular <code>INotification</code>.
          *
@@ -560,7 +573,7 @@ public:
          *
          * @param notification the <code>INotification</code> to notify <code>IObservers</code> of.
          */
-	//virtual void 		notifyObservers	( INotification* note ) = 0;
+	virtual void notifyObservers( INotification* note ) = 0;
         /**
          * Register an <code>IMediator</code> instance with the <code>View</code>.
          *
@@ -578,29 +591,29 @@ public:
          * @param mediatorName the name to associate with this <code>IMediator</code> instance
          * @param mediator a reference to the <code>IMediator</code> instance
          */
-	//virtual void 		registerMediator( IMediator* mediator ) = 0;
+	virtual void registerMediator( IMediator* mediator ) = 0;
         /**
          * Retrieve an <code>IMediator</code> from the <code>View</code>.
          *
          * @param mediatorName the name of the <code>IMediator</code> instance to retrieve.
          * @return the <code>IMediator</code> instance previously registered with the given <code>mediatorName</code>.
          */
-	//virtual IMediator* 	retrieveMediator( std::string mediatorName ) = 0;
+	virtual IMediator* retrieveMediator( std::string mediatorName ) = 0;
         /**
          * Remove an <code>IMediator</code> from the <code>View</code>.
          *
          * @param mediatorName name of the <code>IMediator</code> instance to be removed.
          * @return the <code>IMediator</code> that was removed from the <code>View</code>
          */
-	//virtual IMediator* 	removeMediator	( std::string mediatorName ) = 0;
+	virtual IMediator* removeMediator( std::string mediatorName ) = 0;
         /**
          * Check if a Mediator is registered or not
          *
          * @param mediatorName
          * @return whether a Mediator is registered with the given <code>mediatorName</code>.
          */
-	//virtual bool 		hasMediator	( std::string mediatorName ) = 0;
-	//virtual 		~IView();
+	virtual bool hasMediator( std::string mediatorName ) = 0;
+	virtual ~IView(){};
 };
 /**
  * The interface definition for a PureMVC Facade.
@@ -629,28 +642,28 @@ public:
          *
          * @param proxy the <code>IProxy</code> to be registered with the <code>Model</code>.
          */
-	//virtual void 		registerProxy	( IProxy* proxy ) = 0;
+	virtual void 		registerProxy	( IProxy* proxy ) = 0;
         /**
          * Retrieve a <code>IProxy</code> from the <code>Model</code> by name.
          *
          * @param proxyName the name of the <code>IProxy</code> instance to be retrieved.
          * @return the <code>IProxy</code> previously regisetered by <code>proxyName</code> with the <code>Model</code>.
          */
-	//virtual IProxy* 	retrieveProxy	( std::string proxyName ) = 0;
+	virtual IProxy* 	retrieveProxy	( std::string proxyName ) = 0;
         /**
          * Remove an <code>IProxy</code> instance from the <code>Model</code> by name.
          *
          * @param proxyName the <code>IProxy</code> to remove from the <code>Model</code>.
          * @return the <code>IProxy</code> that was removed from the <code>Model</code>
          */
-	//virtual IProxy* 	removeProxy	( std::string proxyName ) = 0;
+	virtual IProxy* 	removeProxy	( std::string proxyName ) = 0;
         /**
          * Check if a Proxy is registered
          *
          * @param proxyName
          * @return whether a Proxy is currently registered with the given <code>proxyName</code>.
          */
-	//virtual bool 		hasProxy	( std::string proxyName ) = 0;
+	virtual bool 		hasProxy	( std::string proxyName ) = 0;
         /**
          * Register an <code>ICommand</code> with the <code>Controller</code>.
          *
@@ -663,41 +676,41 @@ public:
          *
          * @param notificationName the name of the <code>INotification</code> to remove the <code>ICommand</code> mapping for
          */
-	//virtual void 		removeCommand	( std::string notificationName ) = 0;
+	virtual void 		removeCommand	( std::string notificationName ) = 0;
         /**
          * Check if a Command is registered for a given Notification
          *
          * @param notificationName
          * @return whether a Command is currently registered for the given <code>notificationName</code>.
          */
-	//virtual bool 		hasCommand	( std::string notificationName ) = 0;
+	virtual bool 		hasCommand	( std::string notificationName ) = 0;
         /**
          * Register an <code>IMediator</code> instance with the <code>View</code>.
          *
          * @param mediator a reference to the <code>IMediator</code> instance
          */
-	//virtual void 		registerMediator( IMediator* mediator ) = 0;
+	virtual void 		registerMediator( IMediator* mediator ) = 0;
         /**
          * Retrieve an <code>IMediator</code> instance from the <code>View</code>.
          *
          * @param mediatorName the name of the <code>IMediator</code> instance to retrievve
          * @return the <code>IMediator</code> previously registered with the given <code>mediatorName</code>.
          */
-	//virtual IMediator* 	retrieveMediator( std::string mediatorName ) = 0;
+	virtual IMediator* 	retrieveMediator( std::string mediatorName ) = 0;
         /**
          * Remove a <code>IMediator</code> instance from the <code>View</code>.
          *
          * @param mediatorName name of the <code>IMediator</code> instance to be removed.
          * @return the <code>IMediator</code> instance previously registered with the given <code>mediatorName</code>.
          */
-	//virtual IMediator* 	removeMediator	( std::string mediatorName ) = 0;
+	virtual IMediator* 	removeMediator	( std::string mediatorName ) = 0;
         /**
          * Check if a Mediator is registered or not
          *
          * @param mediatorName
          * @return whether a Mediator is registered with the given <code>mediatorName</code>.
          */
-	//virtual bool 		hasMediator	( std::string mediatorName ) = 0;
+	virtual bool 		hasMediator	( std::string mediatorName ) = 0;
         /**
          * Notify <code>Observer</code>s.
          * <p>
@@ -711,7 +724,7 @@ public:
          *
          * @param notification the <code>INotification</code> to have the <code>View</code> notify <code>Observers</code> of.
          */
-	//virtual void 		notifyObservers	( INotification* notification ) = 0;
+	virtual void 		notifyObservers	( INotification* notification ) = 0;
 };
 
 #endif	/* _PMVCPPBASE_H */

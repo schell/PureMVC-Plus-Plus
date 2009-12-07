@@ -95,4 +95,3 @@ private:
 template <class T>
 std::map<std::string, T*> Multiton<T>::instanceMap;
 #endif	/* _PATTERNS_H */
-

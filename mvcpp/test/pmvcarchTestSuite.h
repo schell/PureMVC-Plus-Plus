@@ -182,7 +182,6 @@ public:
 protected:
     void initializeMacroCommand()
     {
-        std::cout << "\nMactoTestClass::initializeMacroCommand\n";
         this->addSubCommand(new SimpleTestClass());
         this->addSubCommand(new SimpleTestClass());
         this->addSubCommand(new SimpleTestClass());
@@ -206,6 +205,58 @@ public:
     }
 private:
     MacroTestClass* macroTestClass;
+};
+//--------------------------------------
+//  Observer
+//--------------------------------------
+class NotificationHandlerClassOne : public INotificationHandler
+{
+public:
+    NotificationHandlerClassOne() : timesHandled(0)
+    {
+        std::cout << "NotificationHandlerClassOne\n";
+    }
+    void handleNotification(INotification* notification)
+    {
+        std::cout << "NotificationHandlerClassOne\n";
+        this->note = notification;
+    }
+
+    INotification* note;
+    int timesHandled;
+};
+class NotificationHandlerClassTwo : public INotificationHandler
+{
+public:
+    NotificationHandlerClassTwo() : timesHandled(0)
+    {
+        std::cout << "NotificationHandlerClassTwo\n";
+    }
+    void handleNotification(INotification* notification)
+    {
+        std::cout << "NotificationHandlerClassTwo\n";
+        this->note = notification;
+    }
+
+    INotification* note;
+    int timesHandled;
+};
+
+class ObserverTestSuite : public CxxTest::TestSuite
+{
+public:
+    void setUp()
+    {
+        this->noteOne = new NotificationHandlerClassOne();
+        this->noteTwo = new NotificationHandlerClassTwo();
+        this->observerOne = new Observer(&INotificationHandler::handleNotification, (INotificationHandler*) this->noteOne);
+        this->observerTwo = new Observer(&INotificationHandler::handleNotification, (INotificationHandler*) this->noteTwo);
+    }
+private:
+    NotificationHandlerClassOne* noteOne;
+    NotificationHandlerClassTwo* noteTwo;
+    IObserver* observerOne;
+    IObserver* observerTwo;
 };
 //--------------------------------------
 //  Facade

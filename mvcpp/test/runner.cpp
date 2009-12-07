@@ -14,12 +14,12 @@
 int main() {
  return CxxTest::ErrorPrinter().run();
 }
-#include "../test/pmvcarchTestSuite.h"
+#include "/home/clcks/Code/MVC++/trunk/mvcpp/test/pmvcarchTestSuite.h"
 
 static NotesTestSuite suite_NotesTestSuite;
 
 static CxxTest::List Tests_NotesTestSuite = { 0, 0 };
-CxxTest::StaticSuiteDescription suiteDescription_NotesTestSuite( "../test/pmvcarchTestSuite.h", 63, "NotesTestSuite", suite_NotesTestSuite, Tests_NotesTestSuite );
+CxxTest::StaticSuiteDescription suiteDescription_NotesTestSuite( "/home/clcks/Code/MVC++/trunk/mvcpp/test/pmvcarchTestSuite.h", 63, "NotesTestSuite", suite_NotesTestSuite, Tests_NotesTestSuite );
 
 static class TestDescription_NotesTestSuite_testToDoList : public CxxTest::RealTestDescription {
 public:
@@ -30,7 +30,7 @@ public:
 static MultitonTestSuite suite_MultitonTestSuite;
 
 static CxxTest::List Tests_MultitonTestSuite = { 0, 0 };
-CxxTest::StaticSuiteDescription suiteDescription_MultitonTestSuite( "../test/pmvcarchTestSuite.h", 76, "MultitonTestSuite", suite_MultitonTestSuite, Tests_MultitonTestSuite );
+CxxTest::StaticSuiteDescription suiteDescription_MultitonTestSuite( "/home/clcks/Code/MVC++/trunk/mvcpp/test/pmvcarchTestSuite.h", 76, "MultitonTestSuite", suite_MultitonTestSuite, Tests_MultitonTestSuite );
 
 static class TestDescription_MultitonTestSuite_testCreateInstances : public CxxTest::RealTestDescription {
 public:
@@ -47,7 +47,7 @@ public:
 static IBodyTestSuite suite_IBodyTestSuite;
 
 static CxxTest::List Tests_IBodyTestSuite = { 0, 0 };
-CxxTest::StaticSuiteDescription suiteDescription_IBodyTestSuite( "../test/pmvcarchTestSuite.h", 108, "IBodyTestSuite", suite_IBodyTestSuite, Tests_IBodyTestSuite );
+CxxTest::StaticSuiteDescription suiteDescription_IBodyTestSuite( "/home/clcks/Code/MVC++/trunk/mvcpp/test/pmvcarchTestSuite.h", 108, "IBodyTestSuite", suite_IBodyTestSuite, Tests_IBodyTestSuite );
 
 static class TestDescription_IBodyTestSuite_testCanSetGet_type : public CxxTest::RealTestDescription {
 public:
@@ -64,7 +64,7 @@ public:
 static NotificationTestSuite suite_NotificationTestSuite;
 
 static CxxTest::List Tests_NotificationTestSuite = { 0, 0 };
-CxxTest::StaticSuiteDescription suiteDescription_NotificationTestSuite( "../test/pmvcarchTestSuite.h", 133, "NotificationTestSuite", suite_NotificationTestSuite, Tests_NotificationTestSuite );
+CxxTest::StaticSuiteDescription suiteDescription_NotificationTestSuite( "/home/clcks/Code/MVC++/trunk/mvcpp/test/pmvcarchTestSuite.h", 133, "NotificationTestSuite", suite_NotificationTestSuite, Tests_NotificationTestSuite );
 
 static class TestDescription_NotificationTestSuite_testConstructorSets_name_type : public CxxTest::RealTestDescription {
 public:
@@ -75,28 +75,28 @@ public:
 static MacroCommandTestSuite suite_MacroCommandTestSuite;
 
 static CxxTest::List Tests_MacroCommandTestSuite = { 0, 0 };
-CxxTest::StaticSuiteDescription suiteDescription_MacroCommandTestSuite( "../test/pmvcarchTestSuite.h", 191, "MacroCommandTestSuite", suite_MacroCommandTestSuite, Tests_MacroCommandTestSuite );
+CxxTest::StaticSuiteDescription suiteDescription_MacroCommandTestSuite( "/home/clcks/Code/MVC++/trunk/mvcpp/test/pmvcarchTestSuite.h", 190, "MacroCommandTestSuite", suite_MacroCommandTestSuite, Tests_MacroCommandTestSuite );
 
 static class TestDescription_MacroCommandTestSuite_testAdd_addSubCommand_IncrementsCommandVector : public CxxTest::RealTestDescription {
 public:
- TestDescription_MacroCommandTestSuite_testAdd_addSubCommand_IncrementsCommandVector() : CxxTest::RealTestDescription( Tests_MacroCommandTestSuite, suiteDescription_MacroCommandTestSuite, 198, "testAdd_addSubCommand_IncrementsCommandVector" ) {}
+ TestDescription_MacroCommandTestSuite_testAdd_addSubCommand_IncrementsCommandVector() : CxxTest::RealTestDescription( Tests_MacroCommandTestSuite, suiteDescription_MacroCommandTestSuite, 197, "testAdd_addSubCommand_IncrementsCommandVector" ) {}
  void runTest() { suite_MacroCommandTestSuite.testAdd_addSubCommand_IncrementsCommandVector(); }
 } testDescription_MacroCommandTestSuite_testAdd_addSubCommand_IncrementsCommandVector;
 
 static class TestDescription_MacroCommandTestSuite_testExecuteShouldExecAllSubCommands : public CxxTest::RealTestDescription {
 public:
- TestDescription_MacroCommandTestSuite_testExecuteShouldExecAllSubCommands() : CxxTest::RealTestDescription( Tests_MacroCommandTestSuite, suiteDescription_MacroCommandTestSuite, 202, "testExecuteShouldExecAllSubCommands" ) {}
+ TestDescription_MacroCommandTestSuite_testExecuteShouldExecAllSubCommands() : CxxTest::RealTestDescription( Tests_MacroCommandTestSuite, suiteDescription_MacroCommandTestSuite, 201, "testExecuteShouldExecAllSubCommands" ) {}
  void runTest() { suite_MacroCommandTestSuite.testExecuteShouldExecAllSubCommands(); }
 } testDescription_MacroCommandTestSuite_testExecuteShouldExecAllSubCommands;
 
 static NotifierTestSuite suite_NotifierTestSuite;
 
 static CxxTest::List Tests_NotifierTestSuite = { 0, 0 };
-CxxTest::StaticSuiteDescription suiteDescription_NotifierTestSuite( "../test/pmvcarchTestSuite.h", 279, "NotifierTestSuite", suite_NotifierTestSuite, Tests_NotifierTestSuite );
+CxxTest::StaticSuiteDescription suiteDescription_NotifierTestSuite( "/home/clcks/Code/MVC++/trunk/mvcpp/test/pmvcarchTestSuite.h", 330, "NotifierTestSuite", suite_NotifierTestSuite, Tests_NotifierTestSuite );
 
 static class TestDescription_NotifierTestSuite_testCanInitializeNotifier : public CxxTest::RealTestDescription {
 public:
- TestDescription_NotifierTestSuite_testCanInitializeNotifier() : CxxTest::RealTestDescription( Tests_NotifierTestSuite, suiteDescription_NotifierTestSuite, 293, "testCanInitializeNotifier" ) {}
+ TestDescription_NotifierTestSuite_testCanInitializeNotifier() : CxxTest::RealTestDescription( Tests_NotifierTestSuite, suiteDescription_NotifierTestSuite, 344, "testCanInitializeNotifier" ) {}
  void runTest() { suite_NotifierTestSuite.testCanInitializeNotifier(); }
 } testDescription_NotifierTestSuite_testCanInitializeNotifier;
 
