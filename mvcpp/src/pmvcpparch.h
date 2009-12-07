@@ -276,8 +276,14 @@ protected:
  * @see View
  * @see Notification
  */
-class Observer : public IObserver
+template<class T>
+class Observer : public IObserver<T>
 {
+private:
+    typedef void(T::*NotifyMethod)(INotification*);
+    typedef T* NotifyContext;
+    NotifyMethod notifyMethod;
+    NotifyContext notifyContext;
 public:
     /**
      * Constructor.
@@ -286,60 +292,72 @@ public:
      * The notification method on the interested object should take
      * one parameter of type <code>INotification</code></P>
      *
-     * @param notifyMethod the notification method of the interested object
-     * @param notifyContext the notification context of the interested object
+     * @param method the notification method of the interested object
+     * @param context the notification context of the interested object
      */
-    Observer( notifyMethod method, INotificationHandler* notifyContext );
-
+    Observer( NotifyMethod method, NotifyContext context )
+    {
+        this->setNotifyMethod(method);
+        this->setNotifyContext(context);
+    }
     /**
      * Set the notification method.
      *
      * <P>
      * The notification method should take one parameter of type <code>INotification</code>.</P>
      *
-     * @param notifyMethod the notification (callback) method of the interested object.
+     * @param method the notification (callback) method of the interested object.
      */
-    void setNotifyMethod( notifyMethod method );
-
+    void setNotifyMethod( NotifyMethod method )
+    {
+        this->notifyMethod = method;
+    }
     /**
      * Set the notification context.
      *
-     * @param notifyContext the notification context (this) of the interested object.
+     * @param context the notification context (this) of the interested object.
      */
-    void setNotifyContext( INotificationHandler* notifyContext );
-
+    void setNotifyContext( NotifyContext context )
+    {
+        this->notifyContext = context;
+    }
     /**
      * Get the notification method.
      *
      * @return the notification (callback) method of the interested object.
      */
-    notifyMethod getNotifyMethod();
-
+    NotifyMethod getNotifyMethod()
+    {
+        return this->notifyMethod;
+    }
     /**
      * Get the notification context.
      *
      * @return the notification context (<code>this</code>) of the interested object.
      */
-    INotificationHandler* getNotifyContext();
-
+    NotifyContext getNotifyContext()
+    {
+        return this->notifyContext;
+    }
     /**
      * Notify the interested object.
      *
      * @param notification the <code>INotification</code> to pass to the interested object's notification method.
      */
-    void notifyObserver( INotification* notification );
-
+    void notifyObserver( INotification* notification )
+    {
+        (this->notifyContext->*notifyMethod)(notification);
+    }
     /**
      * Compare an object to the notification context.
      *
-     * @param object the object to compare
+     * @param compareContext the object to compare
      * @return boolean indicating if the object and the notification context are the same
      */
-     bool compareNotifyContext( INotificationHandler* object );
-
-private:
-    notifyMethod* notify;
-    INotificationHandler* notifyContext;
+    bool compareNotifyContext( NotifyContext compareContext )
+    {
+        return &*compareContext == &*this->notifyContext;
+    }
 };
 
 //--------------------------------------
@@ -612,13 +630,13 @@ public:
     View( );
 
     /**
-     * Register an <code>IObserver</code> to be notified
+     * Register an <code>IObserverFunctor</code> to be notified
      * of <code>INotifications</code> with a given name.
      *
      * @param notificationName the name of the <code>INotifications</code> to notify this <code>IObserver</code> of
-     * @param observer the <code>IObserver</code> to register
+     * @param observer the <code>IObserverFunctor</code> to register
      */
-    void registerObserver ( std::string notificationName, IObserver* observer );
+    void registerObserver ( std::string notificationName, IObserverFunctor* observer );
 
 
     /**
@@ -714,7 +732,7 @@ protected:
     std::map<std::string, IMediator*> mediatorMap;
 
     // Mapping of Notification names to Observer lists
-    std::map<std::string, IObserver*> observerMap;
+    std::map<std::string, IObserverFunctor*> observerMap;
 };
 //--------------------------------------
 //  Facade

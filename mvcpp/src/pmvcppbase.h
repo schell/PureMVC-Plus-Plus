@@ -240,21 +240,21 @@ public:
          *
          * @param notification the <code>INotification</code> to execute the associated <code>ICommand</code> for
          */
-	virtual void executeCommand ( INotification* notification ) = 0;
+	virtual void executeCommand( INotification* notification ) = 0;
         /**
          * Remove a previously registered <code>ICommand</code> to <code>INotification</code> mapping.
          *
          * @param notificationName the name of the <code>INotification</code> to remove the <code>ICommand</code> mapping for
          */
-	virtual void removeCommand  ( std::string notificationName ) = 0;
+	virtual void removeCommand( std::string notificationName ) = 0;
         /**
          * Check if a Command is registered for a given Notification
          *
          * @param notificationName
          * @return whether a Command is currently registered for the given <code>notificationName</code>.
          */
-	virtual bool hasCommand     ( std::string notificationName ) = 0;
-	virtual      ~IController   (){};
+	virtual bool hasCommand( std::string notificationName ) = 0;
+	virtual ~IController(){};
 };
 /**
  *  An INotificationHandler base class.
@@ -272,7 +272,22 @@ public:
      */
     virtual void handleNotification ( INotification* notification ) = 0;
 };
-
+/**
+ *  An Observer functor interface.
+ *  A functor to be used to call Obsever notification handlers.
+ * 
+ */
+class IObserverFunctor
+{
+public:
+    /**
+     *  A callback.
+     *  Call the Observer's callback function in the context of
+     *  the Observer.
+     *
+     */
+    virtual void notifyObserver(INotification* notification) = 0;
+};
 /**
  * The interface definition for a PureMVC Observer.
  *
@@ -312,9 +327,8 @@ public:
  * @see IView
  * @see INotification
  */
-
-typedef void (*notifyMethod) (INotification* INotificationHandler::handleNotification);
-class IObserver
+template<class T>
+class IObserver : public IObserverFunctor
 {
 public:
         /**
@@ -325,27 +339,32 @@ public:
          *
          * @param notifyMethod the notification (callback) method of the interested object
          */
-	virtual void setNotifyMethod        ( notifyMethod method ) = 0;
+	virtual void setNotifyMethod( void(T::*fptr)(INotification*) ) = 0;
         /**
          * Set the notification context.
          *
          * @param notifyContext the notification context (this) of the interested object
          */
-	virtual void setNotifyContext       ( INotificationHandler* notifyContext ) = 0;
+	virtual void setNotifyContext( T* notifyContext ) = 0;
+
+        
+        //TODO - take out this function if the IObserverFunctor works
         /**
          * Notify the interested object.
          *
          * @param notification the <code>INotification</code> to pass to the interested object's notification method
          */
-	virtual void notifyObserver         ( INotification* notification ) = 0;
+	//virtual void notifyObserver( INotification* notification ) = 0;
+
+
         /**
          * Compare the given object to the notificaton context object.
          *
-         * @param object the object to compare.
+         * @param compareContext the object to compare.
          * @return boolean indicating if the notification context and the object are the same.
          */
-	virtual bool compareNotifyContext   ( INotificationHandler* object ) = 0;
-	virtual      ~IObserver             (){};
+	virtual bool compareNotifyContext( T* compareContext ) = 0;
+	virtual ~IObserver(){};
 };
 /**
  * The interface definition for a PureMVC Proxy.
@@ -555,7 +574,7 @@ public:
          * @param notificationName the name of the <code>INotifications</code> to notify this <code>IObserver</code> of
          * @param observer the <code>IObserver</code> to register
          */
-	virtual void registerObserver( std::string notificationName, IObserver* observer ) = 0;
+	virtual void registerObserver( std::string notificationName, IObserverFunctor* observer ) = 0;
         /**
          * Remove a group of observers from the observer list for a given Notification name.
          * <p>

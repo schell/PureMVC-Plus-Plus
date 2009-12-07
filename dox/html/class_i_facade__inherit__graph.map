@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node5" href="$class_facade.html" title="A base Multiton IFacade implementation." alt="" coords="37,166,101,197"/>
+<area shape="rect" id="node2" href="$class_i_notifier.html" title="The interface definition for a PureMVC Notifier." alt="" coords="36,6,103,37"/>
+<area shape="rect" id="node7" href="$class_application_facade.html" title="ApplicationFacade" alt="" coords="5,246,133,277"/>
+</map>

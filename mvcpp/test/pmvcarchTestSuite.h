@@ -53,23 +53,6 @@ public:
         Facade::initializeFacade(key);
     }
 };
-
-//--------------------------------------
-//  ALL
-//--------------------------------------
-/**
- *  TODO - Finish implementations
- */
-class NotesTestSuite : public CxxTest::TestSuite
-{
-public:
-    void testToDoList()
-    {
-        TS_WARN("Facade is not fully implemented.");
-        TS_WARN("Notifier is not fully implemented.");
-        TS_WARN("Model is not fully implemented.");
-    }
-};
 //--------------------------------------
 //  Patterns
 //--------------------------------------
@@ -209,54 +192,48 @@ private:
 //--------------------------------------
 //  Observer
 //--------------------------------------
-class NotificationHandlerClassOne : public INotificationHandler
+class InterestedObject
 {
 public:
-    NotificationHandlerClassOne() : timesHandled(0)
+    void callbackMethod(INotification* notification)
     {
-        std::cout << "NotificationHandlerClassOne\n";
+        this->memberNotification = notification;
     }
-    void handleNotification(INotification* notification)
-    {
-        std::cout << "NotificationHandlerClassOne\n";
-        this->note = notification;
-    }
-
-    INotification* note;
-    int timesHandled;
+    INotification* memberNotification;
 };
-class NotificationHandlerClassTwo : public INotificationHandler
-{
-public:
-    NotificationHandlerClassTwo() : timesHandled(0)
-    {
-        std::cout << "NotificationHandlerClassTwo\n";
-    }
-    void handleNotification(INotification* notification)
-    {
-        std::cout << "NotificationHandlerClassTwo\n";
-        this->note = notification;
-    }
-
-    INotification* note;
-    int timesHandled;
-};
-
 class ObserverTestSuite : public CxxTest::TestSuite
 {
 public:
     void setUp()
     {
-        this->noteOne = new NotificationHandlerClassOne();
-        this->noteTwo = new NotificationHandlerClassTwo();
-        this->observerOne = new Observer(&INotificationHandler::handleNotification, (INotificationHandler*) this->noteOne);
-        this->observerTwo = new Observer(&INotificationHandler::handleNotification, (INotificationHandler*) this->noteTwo);
+        this->noteName = "notificationName";
+        this->noteType = "notificationType";
+        this->notification = new Notification(this->noteName, new IBody(), this->noteType);
+        this->contextObject = new InterestedObject();
+        this->observer = new Observer<InterestedObject>(&InterestedObject::callbackMethod, this->contextObject);
+    }
+    void testObserverConstructorShouldSetNotifyMethodAndNotifyContext()
+    {
+        TS_ASSERT_EQUALS(&*this->observer->getNotifyContext(), &*this->contextObject);
+        TS_ASSERT_EQUALS(&InterestedObject::callbackMethod, this->observer->getNotifyMethod());
+    }
+    void testCanNotifyInterestedObject()
+    {
+        this->observer->notifyObserver(this->notification);
+        TS_ASSERT_EQUALS(this->contextObject->memberNotification->getName(), this->noteName);
+    }
+    void testCanCompareContexts()
+    {
+        InterestedObject* newInterestedObject = new InterestedObject();
+        TS_ASSERT(! this->observer->compareNotifyContext(newInterestedObject));
+        TS_ASSERT(this->observer->compareNotifyContext(this->contextObject));
     }
 private:
-    NotificationHandlerClassOne* noteOne;
-    NotificationHandlerClassTwo* noteTwo;
-    IObserver* observerOne;
-    IObserver* observerTwo;
+    std::string noteName;
+    std::string noteType;
+    INotification* notification;
+    InterestedObject* contextObject;
+    Observer<InterestedObject>* observer;
 };
 //--------------------------------------
 //  Facade

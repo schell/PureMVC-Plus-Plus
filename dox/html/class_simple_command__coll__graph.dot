@@ -1,0 +1,17 @@
+digraph G
+{
+  edge [fontname="FreeSans",fontsize="10",labelfontname="FreeSans",labelfontsize="10"];
+  node [fontname="FreeSans",fontsize="10",shape=record];
+  Node1 [label="SimpleCommand",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node2 [label="Notifier",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_notifier.html",tooltip="A Base INotifier implementation."];
+  Node3 -> Node2 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node3 [label="MultitonKeyHeir",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_multiton_key_heir.html",tooltip="Multiton key holding class."];
+  Node4 -> Node3 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node4 [label="IMultitonKeyHeir",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_i_multiton_key_heir.html",tooltip="Contains a multiton key."];
+  Node5 -> Node2 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node5 [label="INotifier",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_i_notifier.html",tooltip="The interface definition for a PureMVC Notifier."];
+  Node6 -> Node1 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node6 [label="ICommand",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_i_command.html",tooltip="The interface definition for a PureMVC Command."];
+  Node5 -> Node6 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+}

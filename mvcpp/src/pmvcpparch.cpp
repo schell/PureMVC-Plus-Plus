@@ -113,20 +113,7 @@ void MacroCommand::execute(INotification* notification)
 //--------------------------------------
 //  Observer
 //--------------------------------------
-Observer::Observer( notifyMethod method, INotificationHandler* notifyContext )
-{}
-void Observer::setNotifyMethod( notifyMethod method )
-{}
-void Observer::setNotifyContext( INotificationHandler* notifyContext )
-{}
-notifyMethod Observer::getNotifyMethod()
-{}
-INotificationHandler* Observer::getNotifyContext()
-{}
-void Observer::notifyObserver( INotification* notification )
-{}
-bool Observer::compareNotifyContext( INotificationHandler* object )
-{}
+// defined in header
 //--------------------------------------
 //  Model
 //--------------------------------------
@@ -149,7 +136,7 @@ void Model::initializeModel(  )
 //--------------------------------------
 View::View( )
 {}
-void View::registerObserver ( std::string notificationName, IObserver* observer )
+void View::registerObserver ( std::string notificationName, IObserverFunctor* observer )
 {}
 void View::notifyObservers( INotification* notification )
 {}
