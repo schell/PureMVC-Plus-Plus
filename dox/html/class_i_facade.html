@@ -46,14 +46,14 @@ Collaboration diagram for IFacade:</div>
 <p><a href="class_i_facade-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#a0c95933ec3eecf0050c9b5aa81056283">registerProxy</a> (<a class="el" href="class_i_proxy.html">IProxy</a> *proxy)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Register an <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> with the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> by name.  <a href="#a0c95933ec3eecf0050c9b5aa81056283"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_i_proxy.html">IProxy</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#a627584647ec86a7084e839e6b5d77d7e">retrieveProxy</a> (std::string proxyName)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieve a <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> by name.  <a href="#a627584647ec86a7084e839e6b5d77d7e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_i_proxy.html">IProxy</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#a0035604f8e3879055de4284e27129549">removeProxy</a> (std::string proxyName)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove an <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> instance from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> by name.  <a href="#a0035604f8e3879055de4284e27129549"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#a4b109aac2f114b6d0dca8ddcb468a8f0">registerProxy</a> (<a class="el" href="class_i_registerable.html">IRegisterable</a> *proxy)=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Register an <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> with the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> by name.  <a href="#a4b109aac2f114b6d0dca8ddcb468a8f0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_i_registerable.html">IRegisterable</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#aa0bce96ed315060ebbb41eb5a68873db">retrieveProxy</a> (std::string proxyName)=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieve a <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> by name.  <a href="#aa0bce96ed315060ebbb41eb5a68873db"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_i_registerable.html">IRegisterable</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#aeb3f0239818d22f71550ac99597c8cb8">removeProxy</a> (std::string proxyName)=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove an <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> instance from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> by name.  <a href="#aeb3f0239818d22f71550ac99597c8cb8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#a0e2050dc7963a5afbecc76fb8f003467">hasProxy</a> (std::string proxyName)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Check if a Proxy is registered.  <a href="#a0e2050dc7963a5afbecc76fb8f003467"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Check if a <a class="el" href="class_proxy.html">Proxy</a> is registered.  <a href="#a0e2050dc7963a5afbecc76fb8f003467"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#a7eb0ea44ebfde6a4598563f88efb0491">removeCommand</a> (std::string notificationName)=0</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Register an <code><a class="el" href="class_i_command.html" title="The interface definition for a PureMVC Command.">ICommand</a></code> with the <code><a class="el" href="class_controller.html" title="A Multiton IController implementation.">Controller</a></code>.  <a href="#a7eb0ea44ebfde6a4598563f88efb0491"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#a5ab474d5222ea4f9626607ed3fe56563">hasCommand</a> (std::string notificationName)=0</td></tr>
@@ -157,14 +157,14 @@ Collaboration diagram for IFacade:</div>
 </div>
 <div class="memdoc">
 
-<p>Check if a Proxy is registered. </p>
+<p>Check if a <a class="el" href="class_proxy.html">Proxy</a> is registered. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>proxyName</em>&nbsp;</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>whether a Proxy is currently registered with the given <code>proxyName</code>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>whether a <a class="el" href="class_proxy.html">Proxy</a> is currently registered with the given <code>proxyName</code>. </dd></dl>
 
 <p>Implemented in <a class="el" href="class_facade.html#aaeac78a5ffe3d7da658761287bdccb1e">Facade</a>.</p>
 
@@ -228,14 +228,14 @@ Collaboration diagram for IFacade:</div>
 
 </div>
 </div>
-<a class="anchor" id="a0c95933ec3eecf0050c9b5aa81056283"></a><!-- doxytag: member="IFacade::registerProxy" ref="a0c95933ec3eecf0050c9b5aa81056283" args="(IProxy *proxy)=0" -->
+<a class="anchor" id="a4b109aac2f114b6d0dca8ddcb468a8f0"></a><!-- doxytag: member="IFacade::registerProxy" ref="a4b109aac2f114b6d0dca8ddcb468a8f0" args="(IRegisterable *proxy)=0" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">virtual void IFacade::registerProxy </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_i_proxy.html">IProxy</a> *&nbsp;</td>
+          <td class="paramtype"><a class="el" href="class_i_registerable.html">IRegisterable</a> *&nbsp;</td>
           <td class="paramname"> <em>proxy</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td><code> [pure virtual]</code></td>
@@ -252,7 +252,7 @@ Collaboration diagram for IFacade:</div>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="class_facade.html#a2bf81ccae2798be9b340b1830154afea">Facade</a>.</p>
+<p>Implemented in <a class="el" href="class_facade.html#a34178a1508adec460365d066b007315e">Facade</a>.</p>
 
 </div>
 </div>
@@ -315,12 +315,12 @@ Collaboration diagram for IFacade:</div>
 
 </div>
 </div>
-<a class="anchor" id="a0035604f8e3879055de4284e27129549"></a><!-- doxytag: member="IFacade::removeProxy" ref="a0035604f8e3879055de4284e27129549" args="(std::string proxyName)=0" -->
+<a class="anchor" id="aeb3f0239818d22f71550ac99597c8cb8"></a><!-- doxytag: member="IFacade::removeProxy" ref="aeb3f0239818d22f71550ac99597c8cb8" args="(std::string proxyName)=0" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="class_i_proxy.html">IProxy</a>* IFacade::removeProxy </td>
+          <td class="memname">virtual <a class="el" href="class_i_registerable.html">IRegisterable</a>* IFacade::removeProxy </td>
           <td>(</td>
           <td class="paramtype">std::string&nbsp;</td>
           <td class="paramname"> <em>proxyName</em></td>
@@ -340,7 +340,7 @@ Collaboration diagram for IFacade:</div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>the <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> that was removed from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> </dd></dl>
 
-<p>Implemented in <a class="el" href="class_facade.html#adad4b7fbf26a508ade119e83de3938e1">Facade</a>.</p>
+<p>Implemented in <a class="el" href="class_facade.html#a280aacb5b8be8d8ed84dfcaa7e04dab9">Facade</a>.</p>
 
 </div>
 </div>
@@ -373,12 +373,12 @@ Collaboration diagram for IFacade:</div>
 
 </div>
 </div>
-<a class="anchor" id="a627584647ec86a7084e839e6b5d77d7e"></a><!-- doxytag: member="IFacade::retrieveProxy" ref="a627584647ec86a7084e839e6b5d77d7e" args="(std::string proxyName)=0" -->
+<a class="anchor" id="aa0bce96ed315060ebbb41eb5a68873db"></a><!-- doxytag: member="IFacade::retrieveProxy" ref="aa0bce96ed315060ebbb41eb5a68873db" args="(std::string proxyName)=0" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="class_i_proxy.html">IProxy</a>* IFacade::retrieveProxy </td>
+          <td class="memname">virtual <a class="el" href="class_i_registerable.html">IRegisterable</a>* IFacade::retrieveProxy </td>
           <td>(</td>
           <td class="paramtype">std::string&nbsp;</td>
           <td class="paramname"> <em>proxyName</em></td>
@@ -398,7 +398,7 @@ Collaboration diagram for IFacade:</div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>the <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> previously regisetered by <code>proxyName</code> with the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code>. </dd></dl>
 
-<p>Implemented in <a class="el" href="class_facade.html#abde6af71e13f9d406989df202cb53eaa">Facade</a>.</p>
+<p>Implemented in <a class="el" href="class_facade.html#a6c0d3884e0c987401cc11ca7ee95cbf8">Facade</a>.</p>
 
 </div>
 </div>
@@ -406,7 +406,7 @@ Collaboration diagram for IFacade:</div>
 <li>/home/clcks/Code/MVC++/trunk/mvcpp/src/<a class="el" href="pmvcppbase_8h_source.html">pmvcppbase.h</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Mon Dec 7 15:40:14 2009 for MVC++ by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Mon Dec 7 21:56:02 2009 for MVC++ by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

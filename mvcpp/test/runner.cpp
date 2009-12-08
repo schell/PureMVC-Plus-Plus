@@ -101,14 +101,31 @@ public:
  void runTest() { suite_ObserverTestSuite.testCanCompareContexts(); }
 } testDescription_ObserverTestSuite_testCanCompareContexts;
 
+static ProxyTestSuite suite_ProxyTestSuite;
+
+static CxxTest::List Tests_ProxyTestSuite = { 0, 0 };
+CxxTest::StaticSuiteDescription suiteDescription_ProxyTestSuite( "/home/clcks/Code/MVC++/trunk/mvcpp/test/pmvcarchTestSuite.h", 254, "ProxyTestSuite", suite_ProxyTestSuite, Tests_ProxyTestSuite );
+
+static class TestDescription_ProxyTestSuite_testConstructorCanInitializeTemplatedData : public CxxTest::RealTestDescription {
+public:
+ TestDescription_ProxyTestSuite_testConstructorCanInitializeTemplatedData() : CxxTest::RealTestDescription( Tests_ProxyTestSuite, suiteDescription_ProxyTestSuite, 257, "testConstructorCanInitializeTemplatedData" ) {}
+ void runTest() { suite_ProxyTestSuite.testConstructorCanInitializeTemplatedData(); }
+} testDescription_ProxyTestSuite_testConstructorCanInitializeTemplatedData;
+
+static class TestDescription_ProxyTestSuite_testRegisterCallsDerivedClassMember : public CxxTest::RealTestDescription {
+public:
+ TestDescription_ProxyTestSuite_testRegisterCallsDerivedClassMember() : CxxTest::RealTestDescription( Tests_ProxyTestSuite, suiteDescription_ProxyTestSuite, 262, "testRegisterCallsDerivedClassMember" ) {}
+ void runTest() { suite_ProxyTestSuite.testRegisterCallsDerivedClassMember(); }
+} testDescription_ProxyTestSuite_testRegisterCallsDerivedClassMember;
+
 static NotifierTestSuite suite_NotifierTestSuite;
 
 static CxxTest::List Tests_NotifierTestSuite = { 0, 0 };
-CxxTest::StaticSuiteDescription suiteDescription_NotifierTestSuite( "/home/clcks/Code/MVC++/trunk/mvcpp/test/pmvcarchTestSuite.h", 307, "NotifierTestSuite", suite_NotifierTestSuite, Tests_NotifierTestSuite );
+CxxTest::StaticSuiteDescription suiteDescription_NotifierTestSuite( "/home/clcks/Code/MVC++/trunk/mvcpp/test/pmvcarchTestSuite.h", 341, "NotifierTestSuite", suite_NotifierTestSuite, Tests_NotifierTestSuite );
 
 static class TestDescription_NotifierTestSuite_testCanInitializeNotifier : public CxxTest::RealTestDescription {
 public:
- TestDescription_NotifierTestSuite_testCanInitializeNotifier() : CxxTest::RealTestDescription( Tests_NotifierTestSuite, suiteDescription_NotifierTestSuite, 321, "testCanInitializeNotifier" ) {}
+ TestDescription_NotifierTestSuite_testCanInitializeNotifier() : CxxTest::RealTestDescription( Tests_NotifierTestSuite, suiteDescription_NotifierTestSuite, 355, "testCanInitializeNotifier" ) {}
  void runTest() { suite_NotifierTestSuite.testCanInitializeNotifier(); }
 } testDescription_NotifierTestSuite_testCanInitializeNotifier;
 

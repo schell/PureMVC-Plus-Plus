@@ -41,6 +41,20 @@ private:
     std::string _type;
 };
 //--------------------------------------
+//  IRegisterable
+//--------------------------------------
+/**
+ *  A registerable object.
+ *  This interface makes sure an object can be registered
+ *  by name. 
+ */
+class IRegisterable
+{
+public:
+    virtual std::string getName() = 0;
+};
+
+//--------------------------------------
 //  IMultitonKeyHeir
 //--------------------------------------
 /**
@@ -385,7 +399,8 @@ public:
  * <LI>Encapsulate interaction with local or remote services used to fetch and persist model data.</LI>
  * </UL>
  */
-class IProxy : public INotifier
+template<class T>
+class IProxy : public virtual INotifier
 {
 public:
         /**
@@ -399,21 +414,21 @@ public:
          *
          * @param data the data object
          */
-	virtual void        setData	( IBody* data ) = 0;
+	virtual void setData( T data ) = 0;
         /**
          * Get the data object
          *
          * @return the data as type Object
          */
-	virtual IBody*      getData	() = 0;
+	virtual T getData() = 0;
         /**
          * Called by the Model when the Proxy is registered
          */
-	virtual void        onRegister	() = 0;
+	virtual void onRegister() = 0;
         /**
          * Called by the Model when the Proxy is removed
          */
-	virtual void        onRemove	() = 0;
+	virtual void onRemove() = 0;
 
 };
 /**
@@ -440,29 +455,29 @@ public:
          * @param proxyName the name to associate with this <code>IProxy</code> instance.
          * @param proxy an object reference to be held by the <code>Model</code>.
          */
-	virtual void 	registerProxy	( IProxy* proxy ) = 0;
+	virtual void registerProxy( IRegisterable* proxy ) = 0;
         /**
          * Retrieve an <code>IProxy</code> instance from the Model.
          *
          * @param proxyName
          * @return the <code>IProxy</code> instance previously registered with the given <code>proxyName</code>.
          */
-	virtual IProxy* retrieveProxy	( std::string proxyName ) = 0;
+	virtual IRegisterable* retrieveProxy( std::string proxyName ) = 0;
         /**
          * Remove an <code>IProxy</code> instance from the Model.
          *
          * @param proxyName name of the <code>IProxy</code> instance to be removed.
          * @return the <code>IProxy</code> that was removed from the <code>Model</code>
          */
-	virtual IProxy* removeProxy	( std::string proxyName ) = 0;
+	virtual IRegisterable* removeProxy( std::string proxyName ) = 0;
         /**
          * Check if a Proxy is registered
          *
          * @param proxyName
          * @return whether a Proxy is currently registered with the given <code>proxyName</code>.
          */
-	virtual bool 	hasProxy	( std::string proxyName ) = 0;
-	virtual 	~IModel		(){};
+	virtual bool hasProxy( std::string proxyName ) = 0;
+	virtual ~IModel(){};
 };
 /**
  * The interface definition for a PureMVC Mediator.
@@ -661,28 +676,28 @@ public:
          *
          * @param proxy the <code>IProxy</code> to be registered with the <code>Model</code>.
          */
-	virtual void 		registerProxy	( IProxy* proxy ) = 0;
+	virtual void registerProxy( IRegisterable* proxy ) = 0;
         /**
          * Retrieve a <code>IProxy</code> from the <code>Model</code> by name.
          *
          * @param proxyName the name of the <code>IProxy</code> instance to be retrieved.
          * @return the <code>IProxy</code> previously regisetered by <code>proxyName</code> with the <code>Model</code>.
          */
-	virtual IProxy* 	retrieveProxy	( std::string proxyName ) = 0;
+	virtual IRegisterable* retrieveProxy( std::string proxyName ) = 0;
         /**
          * Remove an <code>IProxy</code> instance from the <code>Model</code> by name.
          *
          * @param proxyName the <code>IProxy</code> to remove from the <code>Model</code>.
          * @return the <code>IProxy</code> that was removed from the <code>Model</code>
          */
-	virtual IProxy* 	removeProxy	( std::string proxyName ) = 0;
+	virtual IRegisterable* removeProxy( std::string proxyName ) = 0;
         /**
          * Check if a Proxy is registered
          *
          * @param proxyName
          * @return whether a Proxy is currently registered with the given <code>proxyName</code>.
          */
-	virtual bool 		hasProxy	( std::string proxyName ) = 0;
+	virtual bool hasProxy( std::string proxyName ) = 0;
         /**
          * Register an <code>ICommand</code> with the <code>Controller</code>.
          *
@@ -695,41 +710,41 @@ public:
          *
          * @param notificationName the name of the <code>INotification</code> to remove the <code>ICommand</code> mapping for
          */
-	virtual void 		removeCommand	( std::string notificationName ) = 0;
+	virtual void removeCommand( std::string notificationName ) = 0;
         /**
          * Check if a Command is registered for a given Notification
          *
          * @param notificationName
          * @return whether a Command is currently registered for the given <code>notificationName</code>.
          */
-	virtual bool 		hasCommand	( std::string notificationName ) = 0;
+	virtual bool hasCommand( std::string notificationName ) = 0;
         /**
          * Register an <code>IMediator</code> instance with the <code>View</code>.
          *
          * @param mediator a reference to the <code>IMediator</code> instance
          */
-	virtual void 		registerMediator( IMediator* mediator ) = 0;
+	virtual void registerMediator( IMediator* mediator ) = 0;
         /**
          * Retrieve an <code>IMediator</code> instance from the <code>View</code>.
          *
          * @param mediatorName the name of the <code>IMediator</code> instance to retrievve
          * @return the <code>IMediator</code> previously registered with the given <code>mediatorName</code>.
          */
-	virtual IMediator* 	retrieveMediator( std::string mediatorName ) = 0;
+	virtual IMediator* retrieveMediator( std::string mediatorName ) = 0;
         /**
          * Remove a <code>IMediator</code> instance from the <code>View</code>.
          *
          * @param mediatorName name of the <code>IMediator</code> instance to be removed.
          * @return the <code>IMediator</code> instance previously registered with the given <code>mediatorName</code>.
          */
-	virtual IMediator* 	removeMediator	( std::string mediatorName ) = 0;
+	virtual IMediator* removeMediator( std::string mediatorName ) = 0;
         /**
          * Check if a Mediator is registered or not
          *
          * @param mediatorName
          * @return whether a Mediator is registered with the given <code>mediatorName</code>.
          */
-	virtual bool 		hasMediator	( std::string mediatorName ) = 0;
+	virtual bool hasMediator( std::string mediatorName ) = 0;
         /**
          * Notify <code>Observer</code>s.
          * <p>
@@ -743,7 +758,7 @@ public:
          *
          * @param notification the <code>INotification</code> to have the <code>View</code> notify <code>Observers</code> of.
          */
-	virtual void 		notifyObservers	( INotification* notification ) = 0;
+	virtual void notifyObservers( INotification* notification ) = 0;
 };
 
 #endif	/* _PMVCPPBASE_H */

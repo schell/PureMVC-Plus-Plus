@@ -115,17 +115,21 @@ void MacroCommand::execute(INotification* notification)
 //--------------------------------------
 // defined in header
 //--------------------------------------
+//  Proxy
+//--------------------------------------
+// defined in header
+//--------------------------------------
 //  Model
 //--------------------------------------
 Model::Model()
 {}
-void Model::registerProxy( IProxy* proxy )
+void Model::registerProxy( IRegisterable* proxy )
 {}
-IProxy* Model::retrieveProxy( std::string proxyName )
+IRegisterable* Model::retrieveProxy( std::string proxyName )
 {return 0;}
 bool Model::hasProxy( std::string proxyName )
 {return true;}
-IProxy* Model::removeProxy( std::string proxyName )
+IRegisterable* Model::removeProxy( std::string proxyName )
 {return 0;}
 void Model::removeModel( std::string key )
 {}
@@ -188,11 +192,11 @@ void Facade::removeCommand( std::string notificationName )
 {}
 bool Facade::hasCommand( std::string notificationName )
 {return true;}
-void Facade::registerProxy ( IProxy* proxy )
+void Facade::registerProxy ( IRegisterable* proxy )
 {}
-IProxy* Facade::retrieveProxy ( std::string proxyName )
+IRegisterable* Facade::retrieveProxy ( std::string proxyName )
 {return 0;}
-IProxy* Facade::removeProxy ( std::string proxyName )
+IRegisterable* Facade::removeProxy ( std::string proxyName )
 {return 0;}
 bool Facade::hasProxy( std::string proxyName )
 {return true;}

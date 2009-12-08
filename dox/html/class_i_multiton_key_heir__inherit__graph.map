@@ -8,7 +8,8 @@
 <area shape="rect" id="node13" href="$class_view.html" title="A Multiton IView implementation." alt="" coords="363,166,411,197"/>
 <area shape="rect" id="node18" href="$class_facade.html" title="A base Multiton IFacade implementation." alt="" coords="275,166,339,197"/>
 <area shape="rect" id="node23" href="$class_notifier.html" title="A Base INotifier implementation." alt="" coords="189,166,251,197"/>
-<area shape="rect" id="node20" href="$class_application_facade.html" title="ApplicationFacade" alt="" coords="273,246,401,277"/>
-<area shape="rect" id="node25" href="$class_simple_command.html" title="A base ICommand implementation." alt="" coords="129,246,249,277"/>
-<area shape="rect" id="node27" href="$class_macro_command.html" title="A base ICommand implementation that executes other ICommands." alt="" coords="132,326,247,357"/>
+<area shape="rect" id="node20" href="$class_application_facade.html" title="ApplicationFacade" alt="" coords="288,246,416,277"/>
+<area shape="rect" id="node25" href="$class_proxy.html" title="Proxy\&lt; T \&gt;" alt="" coords="176,246,264,277"/>
+<area shape="rect" id="node27" href="$class_simple_command.html" title="A base ICommand implementation." alt="" coords="32,246,152,277"/>
+<area shape="rect" id="node29" href="$class_macro_command.html" title="A base ICommand implementation that executes other ICommands." alt="" coords="35,326,149,357"/>
 </map>

@@ -236,6 +236,40 @@ private:
     Observer<InterestedObject>* observer;
 };
 //--------------------------------------
+//  Proxy
+//--------------------------------------
+class ProxyTestClass : public Proxy<bool>
+{
+public:
+    ProxyTestClass(bool data) : Proxy<bool>(data)
+    {
+    }
+    void onRegister()
+    {
+        this->setData(true);
+    }
+private:
+    bool calledRegister;
+};
+class ProxyTestSuite : public CxxTest::TestSuite
+{
+public:
+    void testConstructorCanInitializeTemplatedData()
+    {
+        this->proxy = new ProxyTestClass(true);
+        TS_ASSERT(this->proxy->getData());
+    }
+    void testRegisterCallsDerivedClassMember()
+    {
+        this->proxy = new ProxyTestClass(false);
+        TS_ASSERT(! this->proxy->getData());
+        this->proxy->onRegister();
+        TS_ASSERT(this->proxy->getData());
+    }
+private:
+    Proxy<bool>* proxy;
+};
+//--------------------------------------
 //  Facade
 //--------------------------------------
 class FacadeTestSuite : public CxxTest::TestSuite

@@ -359,7 +359,94 @@ public:
         return &*compareContext == &*this->notifyContext;
     }
 };
+//--------------------------------------
+//  Proxy
+//--------------------------------------
+template<class T>
+class Proxy : public IProxy<T>, public Notifier
+{
+public:
+    /**
+     * A base <code>IProxy</code> implementation.
+     *
+     * <P>
+     * In PureMVC, <code>Proxy</code> classes are used to manage parts of the
+     * application's data model. </P>
+     *
+     * <P>
+     * A <code>Proxy</code> might simply manage a reference to a local data object,
+     * in which case interacting with it might involve setting and
+     * getting of its data in synchronous fashion.</P>
+     *
+     * <P>
+     * <code>Proxy</code> classes are also used to encapsulate the application's
+     * interaction with remote services to save or retrieve data, in which case,
+     * we adopt an asyncronous idiom; setting data (or calling a method) on the
+     * <code>Proxy</code> and listening for a <code>Notification</code> to be sent
+     * when the <code>Proxy</code> has retrieved the data from the service. </P>
+     *
+     * @see org.puremvc.as3.multicore.core.Model Model
+     */
 
+    /**
+     * Constructor
+     */
+    Proxy()
+    {
+    }
+    Proxy(std::string proxyName, T data)
+    {
+        this->data = data;
+    }
+    Proxy(std::string proxyName)
+    {
+    }
+    Proxy(T data)
+    {
+        this->data = data;
+    }
+    /**
+     * Get the proxy name
+     */
+    std::string getProxyName()
+    {
+    }
+
+    /**
+     * Set the data object
+     */
+    void setData( T data )
+    {
+        this->data = data;
+    }
+
+    /**
+     * Get the data object
+     */
+    T getData()
+    {
+        return this->data;
+    }
+
+    /**
+     * Called by the Model when the Proxy is registered
+     */
+    virtual void onRegister(){}
+
+    /**
+     * Called by the Model when the Proxy is removed
+     */
+    virtual void onRemove(){}
+
+    static std::string NAME;
+
+protected:
+    // the proxy name
+    std::string proxyName;
+
+    // the data object
+    T data;
+};
 //--------------------------------------
 //  Model
 //--------------------------------------
@@ -411,14 +498,14 @@ public:
      *
      * @param proxy an <code>IProxy</code> to be held by the <code>Model</code>.
      */
-    void registerProxy( IProxy* proxy );
+    void registerProxy( IRegisterable* proxy );
     /**
      * Retrieve an <code>IProxy</code> from the <code>Model</code>.
      *
      * @param proxyName
      * @return the <code>IProxy</code> instance previously registered with the given <code>proxyName</code>.
      */
-    IProxy* retrieveProxy( std::string proxyName );
+    IRegisterable* retrieveProxy( std::string proxyName );
 
     /**
      * Check if a Proxy is registered
@@ -434,7 +521,7 @@ public:
      * @param proxyName name of the <code>IProxy</code> instance to be removed.
      * @return the <code>IProxy</code> that was removed from the <code>Model</code>
      */
-    IProxy* removeProxy( std::string proxyName );
+    IRegisterable* removeProxy( std::string proxyName );
 
     /**
      * Remove an IModel instance
@@ -458,7 +545,7 @@ protected:
     void initializeModel(  );
 
     // Mapping of proxyNames to IProxy instances
-    std::map <std::string, IProxy*> proxyMap;
+    std::map <std::string, IRegisterable*> proxyMap;
 };
 
 //--------------------------------------
@@ -791,14 +878,14 @@ public:
      * @param proxyName the name of the <code>IProxy</code>.
      * @param proxy the <code>IProxy</code> instance to be registered with the <code>Model</code>.
      */
-    void registerProxy ( IProxy* proxy );
+    void registerProxy ( IRegisterable* proxy );
     /**
      * Retrieve an <code>IProxy</code> from the <code>Model</code> by name.
      *
      * @param proxyName the name of the proxy to be retrieved.
      * @return the <code>IProxy</code> instance previously registered with the given <code>proxyName</code>.
      */
-    IProxy* retrieveProxy ( std::string proxyName );
+    IRegisterable* retrieveProxy ( std::string proxyName );
 
     /**
      * Remove an <code>IProxy</code> from the <code>Model</code> by name.
@@ -806,7 +893,7 @@ public:
      * @param proxyName the <code>IProxy</code> to remove from the <code>Model</code>.
      * @return the <code>IProxy</code> that was removed from the <code>Model</code>
      */
-    IProxy* removeProxy ( std::string proxyName );
+    IRegisterable* removeProxy ( std::string proxyName );
 
     /**
      * Check if a Proxy is registered

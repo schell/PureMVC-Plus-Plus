@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>MVC++: IProxy Class Reference</title>
+<title>MVC++: IProxy&lt; T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,44 +25,51 @@
   </div>
 </div>
 <div class="contents">
-<h1>IProxy Class Reference</h1><!-- doxytag: class="IProxy" --><!-- doxytag: inherits="INotifier" -->
-<p>The interface definition for a PureMVC Proxy.  
+<h1>IProxy&lt; T &gt; Class Template Reference</h1><!-- doxytag: class="IProxy" --><!-- doxytag: inherits="INotifier" -->
+<p>The interface definition for a PureMVC <a class="el" href="class_proxy.html">Proxy</a>.  
 <a href="#_details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="pmvcppbase_8h_source.html">pmvcppbase.h</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for IProxy:</div>
+Inheritance diagram for IProxy&lt; T &gt;:</div>
 <div class="dynsection">
-<div class="center"><img src="class_i_proxy__inherit__graph.png" border="0" usemap="#_i_proxy_inherit__map" alt="Inheritance graph"/></div>
+<div class="center"><img src="class_i_proxy__inherit__graph.png" border="0" usemap="#_i_proxy_3_01_t_01_4_inherit__map" alt="Inheritance graph"/></div>
+<map name="_i_proxy_3_01_t_01_4_inherit__map" id="_i_proxy_3_01_t_01_4_inherit__map">
+<area shape="rect" id="node5" href="class_proxy.html" title="Proxy\&lt; T \&gt;" alt="" coords="7,166,95,197"/><area shape="rect" id="node2" href="class_i_notifier.html" title="The interface definition for a PureMVC Notifier." alt="" coords="17,6,84,37"/></map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
-Collaboration diagram for IProxy:</div>
+Collaboration diagram for IProxy&lt; T &gt;:</div>
 <div class="dynsection">
-<div class="center"><img src="class_i_proxy__coll__graph.png" border="0" usemap="#_i_proxy_coll__map" alt="Collaboration graph"/></div>
+<div class="center"><img src="class_i_proxy__coll__graph.png" border="0" usemap="#_i_proxy_3_01_t_01_4_coll__map" alt="Collaboration graph"/></div>
+<map name="_i_proxy_3_01_t_01_4_coll__map" id="_i_proxy_3_01_t_01_4_coll__map">
+<area shape="rect" id="node2" href="class_i_notifier.html" title="The interface definition for a PureMVC Notifier." alt="" coords="17,6,84,37"/></map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 
 <p><a href="class_i_proxy-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual std::string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_proxy.html#a2c283404922768b4cf4c8c1305e48b35">getProxyName</a> ()=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the Proxy name.  <a href="#a2c283404922768b4cf4c8c1305e48b35"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_proxy.html#a4ff8062b07b170260fe96fb5338157ec">setData</a> (<a class="el" href="class_i_body.html">IBody</a> *data)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set the data object.  <a href="#a4ff8062b07b170260fe96fb5338157ec"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_i_body.html">IBody</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_proxy.html#af006c2cbb6f46900ad50477add0663a0">getData</a> ()=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the data object.  <a href="#af006c2cbb6f46900ad50477add0663a0"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac692d69ddbc30cece09b38a75f1e4416"></a><!-- doxytag: member="IProxy::onRegister" ref="ac692d69ddbc30cece09b38a75f1e4416" args="()=0" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_proxy.html#ac692d69ddbc30cece09b38a75f1e4416">onRegister</a> ()=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Called by the <a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a> when the Proxy is registered. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9754055b7c227334a207d7155e152cc4"></a><!-- doxytag: member="IProxy::onRemove" ref="a9754055b7c227334a207d7155e152cc4" args="()=0" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_proxy.html#a9754055b7c227334a207d7155e152cc4">onRemove</a> ()=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Called by the <a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a> when the Proxy is removed. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual std::string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_proxy.html#a6fcb1c8b7a919db2d41d884021d341a8">getProxyName</a> ()=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the <a class="el" href="class_proxy.html">Proxy</a> name.  <a href="#a6fcb1c8b7a919db2d41d884021d341a8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_proxy.html#a8c538c99dc30316b2858ec28ec0cd94e">setData</a> (T data)=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set the data object.  <a href="#a8c538c99dc30316b2858ec28ec0cd94e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual T&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_proxy.html#a72cc26aa1c8cc6d79d1e0a3515084ae5">getData</a> ()=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the data object.  <a href="#a72cc26aa1c8cc6d79d1e0a3515084ae5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd4805ae6f4cd4024dcdfa194faa56ee"></a><!-- doxytag: member="IProxy::onRegister" ref="afd4805ae6f4cd4024dcdfa194faa56ee" args="()=0" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_proxy.html#afd4805ae6f4cd4024dcdfa194faa56ee">onRegister</a> ()=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Called by the <a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a> when the <a class="el" href="class_proxy.html">Proxy</a> is registered. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0fe6eaa5b7c35a04b0dd442796074e94"></a><!-- doxytag: member="IProxy::onRemove" ref="a0fe6eaa5b7c35a04b0dd442796074e94" args="()=0" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_proxy.html#a0fe6eaa5b7c35a04b0dd442796074e94">onRemove</a> ()=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Called by the <a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a> when the <a class="el" href="class_proxy.html">Proxy</a> is removed. <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p>The interface definition for a PureMVC Proxy. </p>
+<h3>template&lt;class T&gt;<br/>
+ class IProxy&lt; T &gt;</h3>
+
+<p>The interface definition for a PureMVC <a class="el" href="class_proxy.html">Proxy</a>. </p>
 <p>In PureMVC, <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> implementors assume these responsibilities: </p>
 <ul>
 <li>
-Implement a common method which returns the name of the Proxy. </li>
+Implement a common method which returns the name of the <a class="el" href="class_proxy.html">Proxy</a>. </li>
 <li>
 Provide methods for setting and getting the data object. </li>
 </ul>
@@ -80,12 +87,14 @@ Expose their name as a <code>public static const</code> called <code>NAME</code>
 Encapsulate interaction with local or remote services used to fetch and persist model data. </li>
 </ul>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="af006c2cbb6f46900ad50477add0663a0"></a><!-- doxytag: member="IProxy::getData" ref="af006c2cbb6f46900ad50477add0663a0" args="()=0" -->
+<a class="anchor" id="a72cc26aa1c8cc6d79d1e0a3515084ae5"></a><!-- doxytag: member="IProxy::getData" ref="a72cc26aa1c8cc6d79d1e0a3515084ae5" args="()=0" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="class_i_body.html">IBody</a>* IProxy::getData </td>
+          <td class="memname">virtual T <a class="el" href="class_i_proxy.html">IProxy</a>&lt; T &gt;::getData </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -98,14 +107,18 @@ Encapsulate interaction with local or remote services used to fetch and persist 
 <p>Get the data object. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>the data as type <a class="el" href="class_object.html" title="A generic object class.">Object</a> </dd></dl>
 
+<p>Implemented in <a class="el" href="class_proxy.html#a80c2917d2b562b23edbbea008c6d5535">Proxy&lt; T &gt;</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="a2c283404922768b4cf4c8c1305e48b35"></a><!-- doxytag: member="IProxy::getProxyName" ref="a2c283404922768b4cf4c8c1305e48b35" args="()=0" -->
+<a class="anchor" id="a6fcb1c8b7a919db2d41d884021d341a8"></a><!-- doxytag: member="IProxy::getProxyName" ref="a6fcb1c8b7a919db2d41d884021d341a8" args="()=0" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::string IProxy::getProxyName </td>
+          <td class="memname">virtual std::string <a class="el" href="class_i_proxy.html">IProxy</a>&lt; T &gt;::getProxyName </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -115,19 +128,23 @@ Encapsulate interaction with local or remote services used to fetch and persist 
 </div>
 <div class="memdoc">
 
-<p>Get the Proxy name. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>the Proxy instance name </dd></dl>
+<p>Get the <a class="el" href="class_proxy.html">Proxy</a> name. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>the <a class="el" href="class_proxy.html">Proxy</a> instance name </dd></dl>
+
+<p>Implemented in <a class="el" href="class_proxy.html#a77da5726b329f4d44a5b209eda87e761">Proxy&lt; T &gt;</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a4ff8062b07b170260fe96fb5338157ec"></a><!-- doxytag: member="IProxy::setData" ref="a4ff8062b07b170260fe96fb5338157ec" args="(IBody *data)=0" -->
+<a class="anchor" id="a8c538c99dc30316b2858ec28ec0cd94e"></a><!-- doxytag: member="IProxy::setData" ref="a8c538c99dc30316b2858ec28ec0cd94e" args="(T data)=0" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">virtual void IProxy::setData </td>
+          <td class="memname">virtual void <a class="el" href="class_i_proxy.html">IProxy</a>&lt; T &gt;::setData </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_i_body.html">IBody</a> *&nbsp;</td>
+          <td class="paramtype">T&nbsp;</td>
           <td class="paramname"> <em>data</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td><code> [pure virtual]</code></td>
@@ -144,13 +161,15 @@ Encapsulate interaction with local or remote services used to fetch and persist 
   </dd>
 </dl>
 
+<p>Implemented in <a class="el" href="class_proxy.html#a77a01fafb18cc32053a8ca1134da5c0e">Proxy&lt; T &gt;</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>/home/clcks/Code/MVC++/trunk/mvcpp/src/<a class="el" href="pmvcppbase_8h_source.html">pmvcppbase.h</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Mon Dec 7 15:40:15 2009 for MVC++ by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Mon Dec 7 21:56:02 2009 for MVC++ by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>
