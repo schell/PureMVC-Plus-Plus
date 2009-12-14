@@ -66,8 +66,9 @@
 : <a class="el" href="class_multiton.html#afa6b2cf1bd128c1d06848e15c58222de">Multiton&lt; T &gt;</a>
 </li>
 <li>compareNotifyContext()
-: <a class="el" href="class_observer.html#a5a41ba1599de91b07c045ad057a104b3">Observer&lt; T &gt;</a>
+: <a class="el" href="class_observer.html#a942819ca5f5642e1d681a604780a6a62">Observer&lt; T &gt;</a>
 , <a class="el" href="class_i_observer.html#aa75244eda20ee630d0b5464e488d0a34">IObserver&lt; T &gt;</a>
+, <a class="el" href="class_i_observer_functor.html#ad8eb505731c165e12bb5dfd3bfa091db">IObserverFunctor</a>
 </li>
 <li>Controller()
 : <a class="el" href="class_controller.html#a95c56822d667e94b031451729ce069a9">Controller</a>
@@ -107,8 +108,13 @@
 : <a class="el" href="class_i_proxy.html#a72cc26aa1c8cc6d79d1e0a3515084ae5">IProxy&lt; T &gt;</a>
 , <a class="el" href="class_proxy.html#a80c2917d2b562b23edbbea008c6d5535">Proxy&lt; T &gt;</a>
 </li>
+<li>getInstance()
+: <a class="el" href="class_controller.html#aa36b55f117c5aa573c6e1894f0d98195">Controller</a>
+, <a class="el" href="class_view.html#ad1e9acdfeba49c16cc725352b08d4ea3">View</a>
+</li>
 <li>getMediatorName()
-: <a class="el" href="class_i_mediator.html#a2b4464ecaff62ecc110f3f01c0451991">IMediator</a>
+: <a class="el" href="class_i_mediator.html#ada8a55aba66083dd875f792ebee58f79">IMediator&lt; T &gt;</a>
+, <a class="el" href="class_mediator.html#a7f94a20d69825ee911af2b7fdfaf3f7f">Mediator&lt; T &gt;</a>
 </li>
 <li>getMultitonKey()
 : <a class="el" href="class_multiton_key_heir.html#aa5622459d33380deb08dc3cab8b991c7">MultitonKeyHeir</a>
@@ -116,6 +122,7 @@
 </li>
 <li>getName()
 : <a class="el" href="class_notification.html#a26573d3ee155e4700b250e61177ecc69">Notification</a>
+, <a class="el" href="class_mediator.html#a353aced3afaf1e65c1c6bb208f67517b">Mediator&lt; T &gt;</a>
 , <a class="el" href="class_i_notification.html#a36b495890a14dd57afd99ad8bffca8e3">INotification</a>
 </li>
 <li>getNotifyContext()
@@ -125,37 +132,39 @@
 : <a class="el" href="class_observer.html#a652dbd4369f1a7292b0bed67e5f4e3f0">Observer&lt; T &gt;</a>
 </li>
 <li>getProxyName()
-: <a class="el" href="class_i_proxy.html#a6fcb1c8b7a919db2d41d884021d341a8">IProxy&lt; T &gt;</a>
-, <a class="el" href="class_proxy.html#a77da5726b329f4d44a5b209eda87e761">Proxy&lt; T &gt;</a>
+: <a class="el" href="class_proxy.html#a77da5726b329f4d44a5b209eda87e761">Proxy&lt; T &gt;</a>
+, <a class="el" href="class_i_proxy.html#a6fcb1c8b7a919db2d41d884021d341a8">IProxy&lt; T &gt;</a>
 </li>
 <li>getType()
-: <a class="el" href="class_notification.html#aa78621a66c9ef5e681c9a3119701b6c1">Notification</a>
-, <a class="el" href="class_i_notification.html#a9b4e5395a027b1222b1def86320ccba1">INotification</a>
+: <a class="el" href="class_i_notification.html#a9b4e5395a027b1222b1def86320ccba1">INotification</a>
+, <a class="el" href="class_notification.html#aa78621a66c9ef5e681c9a3119701b6c1">Notification</a>
 </li>
 <li>getViewComponent()
-: <a class="el" href="class_i_mediator.html#aee58d9c45f983ac3c6d13d382edc0147">IMediator</a>
+: <a class="el" href="class_i_mediator.html#a759e6ee4eb584e02a1e9fbd50f002801">IMediator&lt; T &gt;</a>
+, <a class="el" href="class_mediator.html#a708685006ac20bd16ff0f8ddf12e7ef9">Mediator&lt; T &gt;</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_h">- h -</a></h3><ul>
 <li>handleNotification()
-: <a class="el" href="class_i_notification_handler.html#a124d9762838bc999f1c76abe09f1049b">INotificationHandler</a>
+: <a class="el" href="class_mediator.html#ae05bd5b986caeff7cb6c833ecd9500c3">Mediator&lt; T &gt;</a>
+, <a class="el" href="class_i_notification_handler.html#a124d9762838bc999f1c76abe09f1049b">INotificationHandler</a>
 </li>
 <li>hasCommand()
-: <a class="el" href="class_controller.html#af4ed82ca2900de2c24d646bad223470e">Controller</a>
+: <a class="el" href="class_facade.html#a023f6f785586009cb1371dfa0a330e41">Facade</a>
 , <a class="el" href="class_i_controller.html#aeb82ff982a3eb8f9aa54aac8b85ec143">IController</a>
+, <a class="el" href="class_controller.html#af4ed82ca2900de2c24d646bad223470e">Controller</a>
 , <a class="el" href="class_i_facade.html#a5ab474d5222ea4f9626607ed3fe56563">IFacade</a>
-, <a class="el" href="class_facade.html#a023f6f785586009cb1371dfa0a330e41">Facade</a>
 </li>
 <li>hasCore()
 : <a class="el" href="class_facade.html#a9e8587984b47e2b252365a95dbaeffde">Facade</a>
 </li>
 <li>hasMediator()
-: <a class="el" href="class_facade.html#a214c067f65fabe53634541f531b41609">Facade</a>
+: <a class="el" href="class_view.html#a5af9aeea286647436cf595d0a946711f">View</a>
+, <a class="el" href="class_facade.html#a214c067f65fabe53634541f531b41609">Facade</a>
 , <a class="el" href="class_i_view.html#a56f69eacab78dc4ee1e5c5779872e24e">IView</a>
 , <a class="el" href="class_i_facade.html#a0380365d0ff46821104e72a24126be24">IFacade</a>
-, <a class="el" href="class_view.html#a5af9aeea286647436cf595d0a946711f">View</a>
 </li>
 <li>hasProxy()
 : <a class="el" href="class_i_facade.html#a0e2050dc7963a5afbecc76fb8f003467">IFacade</a>
@@ -195,7 +204,8 @@
 
 <h3><a class="anchor" id="index_l">- l -</a></h3><ul>
 <li>listNotificationInterests()
-: <a class="el" href="class_i_mediator.html#a388990235982e991c9965104de9c0a07">IMediator</a>
+: <a class="el" href="class_mediator.html#ac4d14a91470b76c0dcdfc95362eb30ef">Mediator&lt; T &gt;</a>
+, <a class="el" href="class_i_mediator.html#abca906e1b5b751615ec97b2da20796c1">IMediator&lt; T &gt;</a>
 </li>
 </ul>
 
@@ -204,6 +214,9 @@
 <li>MacroCommand()
 : <a class="el" href="class_macro_command.html#abf91c7c1114f20b006cf95bf8c4614e7">MacroCommand</a>
 </li>
+<li>Mediator()
+: <a class="el" href="class_mediator.html#a30f9163d01d452cd408ecdceadc9666b">Mediator&lt; T &gt;</a>
+</li>
 <li>Model()
 : <a class="el" href="class_model.html#ae3b375de5f6df4faf74a95d64748e048">Model</a>
 </li>
@@ -211,14 +224,17 @@
 
 
 <h3><a class="anchor" id="index_n">- n -</a></h3><ul>
+<li>Notification()
+: <a class="el" href="class_notification.html#a72eba53a7c617919efd979823bcf2b8f">Notification</a>
+</li>
 <li>notifyObserver()
 : <a class="el" href="class_observer.html#ab8ece82c03fd9acd1e4cb5e3cd25dc82">Observer&lt; T &gt;</a>
 , <a class="el" href="class_i_observer_functor.html#a908eec31e040d6afc7e4422527036504">IObserverFunctor</a>
 </li>
 <li>notifyObservers()
-: <a class="el" href="class_i_view.html#ad58538b848218fb604493147805f464d">IView</a>
-, <a class="el" href="class_facade.html#a605e0e774d8d4d9b31fcb040a14fec77">Facade</a>
+: <a class="el" href="class_facade.html#a605e0e774d8d4d9b31fcb040a14fec77">Facade</a>
 , <a class="el" href="class_view.html#a515953a4f2e9c6b7a29ae0591657b9f3">View</a>
+, <a class="el" href="class_i_view.html#ad58538b848218fb604493147805f464d">IView</a>
 , <a class="el" href="class_i_facade.html#a050257cc2e87bce1063a48b688da9f92">IFacade</a>
 </li>
 </ul>
@@ -232,14 +248,16 @@
 : <a class="el" href="class_observer.html#a271891666fc87d51a425681832f416dd">Observer&lt; T &gt;</a>
 </li>
 <li>onRegister()
-: <a class="el" href="class_i_proxy.html#afd4805ae6f4cd4024dcdfa194faa56ee">IProxy&lt; T &gt;</a>
-, <a class="el" href="class_i_mediator.html#a45a65c61fa6adc77df940c368df700e7">IMediator</a>
+: <a class="el" href="class_mediator.html#a9a7ff43ec74f5fd04ccc51f949169fd0">Mediator&lt; T &gt;</a>
+, <a class="el" href="class_i_proxy.html#afd4805ae6f4cd4024dcdfa194faa56ee">IProxy&lt; T &gt;</a>
 , <a class="el" href="class_proxy.html#a845eea1acf0e914fdfaa992ebc9daab5">Proxy&lt; T &gt;</a>
+, <a class="el" href="class_i_mediator.html#abc3c3fe4267803ae71b8c7c99d6ea295">IMediator&lt; T &gt;</a>
 </li>
 <li>onRemove()
-: <a class="el" href="class_i_mediator.html#ac78a6e92d393a4f6f58d0680d7f402d8">IMediator</a>
-, <a class="el" href="class_i_proxy.html#a0fe6eaa5b7c35a04b0dd442796074e94">IProxy&lt; T &gt;</a>
+: <a class="el" href="class_i_proxy.html#a0fe6eaa5b7c35a04b0dd442796074e94">IProxy&lt; T &gt;</a>
+, <a class="el" href="class_i_mediator.html#ad827823a79dedbe0ad773a510c4bfb5b">IMediator&lt; T &gt;</a>
 , <a class="el" href="class_proxy.html#a9954fab4ec58c84fc41b1af9c2256b79">Proxy&lt; T &gt;</a>
+, <a class="el" href="class_mediator.html#ac423e050dcddb87e7a674d62c261666d">Mediator&lt; T &gt;</a>
 </li>
 </ul>
 
@@ -257,10 +275,10 @@
 , <a class="el" href="class_facade.html#a5b6905204f7f92cea96d5344ee6f89b1">Facade</a>
 </li>
 <li>registerMediator()
-: <a class="el" href="class_facade.html#ad24afbfcaac900c413ae3577af7d944c">Facade</a>
-, <a class="el" href="class_i_view.html#a71b212267905bcd1ed928f0f12d30725">IView</a>
-, <a class="el" href="class_view.html#a22f8c731bcc03625693494f98e370364">View</a>
-, <a class="el" href="class_i_facade.html#a56e69fb44dfe19fbd0066885e5ea1021">IFacade</a>
+: <a class="el" href="class_facade.html#a18be96afde2f3643abe76bd8197161e8">Facade</a>
+, <a class="el" href="class_i_view.html#a1a1ef98afab294771ce749a4abcfc402">IView</a>
+, <a class="el" href="class_view.html#a83d251521779660be975734eff28bbcf">View</a>
+, <a class="el" href="class_i_facade.html#ae0ea46f5c8965a214398ce4bfffdcaf5">IFacade</a>
 </li>
 <li>registerObserver()
 : <a class="el" href="class_i_view.html#a520b90da38d5f8fb4475cbefac579e3c">IView</a>
@@ -285,17 +303,17 @@
 : <a class="el" href="class_facade.html#a78c803c55d417e9c8dd690f91543fc8c">Facade</a>
 </li>
 <li>removeMediator()
-: <a class="el" href="class_view.html#a40b1aeb82ae68abce2273ceeb41f86bf">View</a>
-, <a class="el" href="class_facade.html#a2fb1da3dcc50fba45f8a046fb2c7befc">Facade</a>
-, <a class="el" href="class_i_view.html#acd6fc63c98a130b2d820ce3717ff0d6b">IView</a>
-, <a class="el" href="class_i_facade.html#afa44f5a4a4eb1a6a3ef3983751566b92">IFacade</a>
+: <a class="el" href="class_view.html#ad76a9a22b7db131efc97b74d12f80b40">View</a>
+, <a class="el" href="class_facade.html#a5503a43e0677fc740e06afd6e0cfd8df">Facade</a>
+, <a class="el" href="class_i_view.html#ac907d16e61c272d2faf15834ee69a2b6">IView</a>
+, <a class="el" href="class_i_facade.html#add33fc987882bd922ca52468eead85f8">IFacade</a>
 </li>
 <li>removeModel()
 : <a class="el" href="class_model.html#af815e60f9acb32c0be2a2d5377f39bb7">Model</a>
 </li>
 <li>removeObserver()
-: <a class="el" href="class_view.html#a20264112904cc5e3a7b30ad655e35cff">View</a>
-, <a class="el" href="class_i_view.html#a956c0bb58717ca978b87b17d222ffeb5">IView</a>
+: <a class="el" href="class_view.html#a4f6d60997fc983e6d1224e0a59f8be4e">View</a>
+, <a class="el" href="class_i_view.html#a62ff7ba24a3b2e2442ef9ce9d727d3c4">IView</a>
 </li>
 <li>removeProxy()
 : <a class="el" href="class_i_facade.html#aeb3f0239818d22f71550ac99597c8cb8">IFacade</a>
@@ -307,10 +325,10 @@
 : <a class="el" href="class_view.html#aac1d2aea65c021664a89319d9e3159b3">View</a>
 </li>
 <li>retrieveMediator()
-: <a class="el" href="class_i_view.html#a54c2859e763861306b5baeebad987f86">IView</a>
-, <a class="el" href="class_i_facade.html#ad779137e0ab6c427d2505a235b5ec0fd">IFacade</a>
-, <a class="el" href="class_facade.html#a336aecd64ea3fa2abc09a02e8be07c61">Facade</a>
-, <a class="el" href="class_view.html#a791823d9d6168efeb98eddfe839ec12b">View</a>
+: <a class="el" href="class_i_view.html#a2481a33776564d11afc08df6b0aeb645">IView</a>
+, <a class="el" href="class_i_facade.html#a4ca38f684670675afedb487fdcbc8b1e">IFacade</a>
+, <a class="el" href="class_facade.html#a3bf2f37bd89a28cf7feb9d3b4625028e">Facade</a>
+, <a class="el" href="class_view.html#ab7750a470477ebc1a87d3f55ad5c9d13">View</a>
 </li>
 <li>retrieveProxy()
 : <a class="el" href="class_model.html#a37e66ae2b95f6051db75c265fa0a5681">Model</a>
@@ -348,11 +366,12 @@
 , <a class="el" href="class_observer.html#a50ca2e03fcc39c79e77d024c24131407">Observer&lt; T &gt;</a>
 </li>
 <li>setType()
-: <a class="el" href="class_notification.html#a428d162e550725c0efab0d16e23c3ec1">Notification</a>
-, <a class="el" href="class_i_notification.html#ab8420d000557da45b0d23a3b56bb5672">INotification</a>
+: <a class="el" href="class_i_notification.html#ab8420d000557da45b0d23a3b56bb5672">INotification</a>
+, <a class="el" href="class_notification.html#a428d162e550725c0efab0d16e23c3ec1">Notification</a>
 </li>
 <li>setViewComponent()
-: <a class="el" href="class_i_mediator.html#aaa2c601f2926bc766c423b003f21f1a7">IMediator</a>
+: <a class="el" href="class_i_mediator.html#ab3078144dba2997d27f56036c031205b">IMediator&lt; T &gt;</a>
+, <a class="el" href="class_mediator.html#a92643dbbaa3136f73a2f669d79d64e04">Mediator&lt; T &gt;</a>
 </li>
 <li>size()
 : <a class="el" href="class_multiton.html#a9b0d5015ce51442ed15dcab7ef3305f0">Multiton&lt; T &gt;</a>
@@ -373,7 +392,7 @@
 </li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Mon Dec 7 21:56:02 2009 for MVC++ by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Dec 13 17:47:39 2009 for MVC++ by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

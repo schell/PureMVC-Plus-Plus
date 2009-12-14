@@ -74,14 +74,41 @@ public:
     std::string name;
     std::string type;
     IBody* body;
-    
+    /**
+     * Constructor.
+     *
+     * @param name name of the <code>Notification</code> instance. (required)
+     * @param body the <code>Notification</code> body. (optional)
+     * @param type the type of the <code>Notification</code> (optional)
+     */
     Notification(std::string name, IBody* body, std::string type);
     Notification(std::string name, IBody* body);
     Notification(std::string name, std::string type);
+    /**
+     * Get the name of the <code>Notification</code> instance.
+     *
+     * @return the name of the <code>Notification</code> instance.
+     */
     std::string getName();
+    /**
+     * Set the body of the <code>Notification</code> instance.
+     */
     void setBody( IBody* body );
+    /**
+     * Get the body of the <code>Notification</code> instance.
+     *
+     * @return the body object.
+     */
     IBody* getBody();
+    /**
+     * Set the type of the <code>Notification</code> instance.
+     */
     void setType( std::string type );
+    /**
+     * Get the type of the <code>Notification</code> instance.
+     *
+     * @return the type
+     */
     std::string getType();
 };
 //--------------------------------------
@@ -125,11 +152,40 @@ public:
 class Notifier : public MultitonKeyHeir, public virtual INotifier
 {
 public:
+    /**
+     * Create and send an <code>INotification</code>.
+     *
+     * <P>
+     * Keeps us from having to construct new INotification
+     * instances in our implementation code.
+     * @param notificationName the name of the notiification to send
+     * @param body the body of the notification (optional)
+     * @param type the type of the notification (optional)
+     */
     void sendNotification   ( std::string notificationName, IBody* body, std::string type);
     void sendNotification   ( std::string notificationName, std::string type );
     void sendNotification   ( std::string notificationName, IBody* body );
     void sendNotification   ( std::string notificationName );
+    /**
+     * Initialize this INotifier instance.
+     * <P>
+     * This is how a Notifier gets its multitonKey.
+     * Calls to sendNotification or to access the
+     * facade will fail until after this method
+     * has been called.</P>
+     *
+     * <P>
+     * Mediators, Commands or Proxies may override
+     * this method in order to send notifications
+     * or access the Multiton Facade instance as
+     * soon as possible. They CANNOT access the facade
+     * in their constructors, since this method will not
+     * yet have been called.</P>
+     *
+     * @param key the multitonKey for this INotifier to use
+     */
     void initializeNotifier(std::string key);
+
 protected:
     IFacade* getFacade();
 };
@@ -349,12 +405,17 @@ public:
         (this->notifyContext->*notifyMethod)(notification);
     }
     /**
-     * Compare an object to the notification context.
+     * In this case, the view is comparing observers. It may be that this is just for testing.
      *
      * @param compareContext the object to compare
      * @return boolean indicating if the object and the notification context are the same
      */
-    bool compareNotifyContext( NotifyContext compareContext )
+    bool compareNotifyContext( IObserverFunctor* compareContext )
+    {
+        std::cout << "compareNotifyContext " << &*compareContext << " : " << &*this << std::endl;
+        return &*compareContext == &*this;
+    }
+    bool compareNotifyContext( T* compareContext )
     {
         return &*compareContext == &*this->notifyContext;
     }
@@ -447,6 +508,139 @@ protected:
     // the data object
     T data;
 };
+//--------------------------------------
+//  Mediator
+//--------------------------------------
+template<class T>
+class Mediator : public IMediator<T>, public Notifier
+{
+public:
+    /**
+     * Constructor.
+     */
+    Mediator( std::string mediatorName, T viewComponent )
+    {
+        this->mediatorName = mediatorName;
+        this->setViewComponent(viewComponent);
+    }
+    Mediator( std::string mediatorName )
+    {
+        this->mediatorName = mediatorName;
+    }
+    Mediator( T viewComponent )
+    {
+        this->setViewComponent(viewComponent);
+    }
+    /**
+     * Get the name of the <code>Mediator</code>.
+     * @return the Mediator name
+     */
+    std::string getMediatorName()
+    {
+        return this->mediatorName;
+    }
+
+    /**
+     * Set the <code>IMediator</code>'s view component.
+     *
+     * @param Object the view component
+     */
+    void setViewComponent( T viewComponent )
+    {
+        this->viewComponent = viewComponent;
+    }
+
+    /**
+     * Get the <code>Mediator</code>'s view component.
+     *
+     * <P>
+     * Additionally, an implicit getter will usually
+     * be defined in the subclass that casts the view
+     * object to a type, like this:</P>
+     *
+     * <listing>
+     *        private function get comboBox : mx.controls.ComboBox
+     *        {
+     *            return viewComponent as mx.controls.ComboBox;
+     *        }
+     * </listing>
+     *
+     * @return the view component
+     */
+    T getViewComponent()
+    {
+        return this->viewComponent;
+    }
+
+    /**
+     * List the <code>INotification</code> names this
+     * <code>Mediator</code> is interested in being notified of.
+     *
+     * @return Array the list of <code>INotification</code> names
+     */
+    virtual std::vector<std::string> listNotificationInterests()
+    {
+
+    }
+
+    /**
+     * Handle <code>INotification</code>s.
+     *
+     * <P>
+     * Typically this will be handled in a switch statement,
+     * with one 'case' entry per <code>INotification</code>
+     * the <code>Mediator</code> is interested in.
+     */
+    virtual void handleNotification( INotification* notification )
+    {
+
+    }
+
+    /**
+     * Called by the View when the Mediator is registered
+     */
+    virtual void onRegister()
+    {
+
+    }
+
+    /**
+     * Called by the View when the Mediator is removed
+     */
+    virtual void onRemove()
+    {
+
+    }
+
+    /**
+     *  Returns the name of the Mediator.
+     *
+     *  @return string the name
+     */
+    std::string getName()
+    {
+        return this->mediatorName;
+    }
+
+    /**
+     * The name of the <code>Mediator</code>.
+     *
+     * <P>
+     * Typically, a <code>Mediator</code> will be written to serve
+     * one specific control or group controls and so,
+     * will not have a need to be dynamically named.</P>
+     */
+    static const std::string NAME;
+
+protected:
+    // the mediator name
+    std::string mediatorName;
+
+    // The view component
+    T viewComponent;
+};
+template<class T>
+const typename std::string Mediator<T>::NAME = "Mediator";
 //--------------------------------------
 //  Model
 //--------------------------------------
@@ -601,7 +795,12 @@ public:
      *
      */
     Controller();
-
+    /**
+     * <code>Controller</code> Multiton Factory method.
+     *
+     * @return the Multiton instance of <code>Controller</code>
+     */
+    static IController* getInstance( std::string key );
     /**
      * If an <code>ICommand</code> has previously been registered
      * to handle a the given <code>INotification</code>, then it is executed.
@@ -647,29 +846,17 @@ public:
      * @param multitonKey of IController instance to remove
      */
     static void removeController( std::string key );
-
+    
 protected:
-        /**
+    /**
      * Initialize the Multiton <code>Controller</code> instance.
      *
-     * <P>Called automatically by the constructor.</P>
-     *
-     * <P>Note that if you are using a subclass of <code>View</code>
-     * in your application, you should <i>also</i> subclass <code>Controller</code>
-     * and override the <code>initializeController</code> method in the
-     * following way:</P>
-     *
-     * <listing>
-     *        // ensure that the Controller is talking to my IView implementation
-     *        override public function initializeController(  ) : void
-     *        {
-     *            view = MyView.getInstance();
-     *        }
-     * </listing>
+     * <P>Called automatically by the getInstance</P>
      *
      * @return void
      */
-    void initializeController(  );
+    void initializeController();
+    
     // Local reference to View
     IView* view;
 
@@ -715,7 +902,12 @@ public:
      *
      */
     View( );
-
+    /**
+     * View Singleton Factory method.
+     *
+     * @return the Singleton instance of <code>View</code>
+     */
+    static IView* getInstance( std::string key );
     /**
      * Register an <code>IObserverFunctor</code> to be notified
      * of <code>INotifications</code> with a given name.
@@ -744,7 +936,7 @@ public:
      * @param notificationName which observer list to remove from
      * @param notifyContext remove the observer with this object as its notifyContext
      */
-    void removeObserver( std::string notificationName, INotificationHandler* notifyContext );
+    void removeObserver( std::string notificationName, IObserverFunctor* notifyContext );
 
     /**
      * Register an <code>IMediator</code> instance with the <code>View</code>.
@@ -763,7 +955,7 @@ public:
      * @param mediatorName the name to associate with this <code>IMediator</code> instance
      * @param mediator a reference to the <code>IMediator</code> instance
      */
-    void registerMediator( IMediator* mediator );
+    void registerMediator( IRegisterable* mediator );
 
     /**
      * Retrieve an <code>IMediator</code> from the <code>View</code>.
@@ -771,7 +963,7 @@ public:
      * @param mediatorName the name of the <code>IMediator</code> instance to retrieve.
      * @return the <code>IMediator</code> instance previously registered with the given <code>mediatorName</code>.
      */
-    IMediator* retrieveMediator( std::string mediatorName );
+    IRegisterable* retrieveMediator( std::string mediatorName );
 
     /**
      * Remove an <code>IMediator</code> from the <code>View</code>.
@@ -785,7 +977,7 @@ public:
      * @param mediatorName name of the <code>IMediator</code> instance to be removed.
      * @return the <code>IMediator</code> that was removed from the <code>View</code>
      */
-    IMediator* removeMediator( std::string mediatorName );
+    IRegisterable* removeMediator( std::string mediatorName );
 
     /**
      * Check if a Mediator is registered or not
@@ -816,10 +1008,13 @@ protected:
      */
     void initializeView();
     // Mapping of Mediator names to Mediator instances
-    std::map<std::string, IMediator*> mediatorMap;
+    std::map<std::string, IRegisterable*> mediatorMap;
 
     // Mapping of Notification names to Observer lists
-    std::map<std::string, IObserverFunctor*> observerMap;
+    std::map<std::string, std::vector<IObserverFunctor*> > observerMap;
+
+private:
+    bool existsObserversInterestedIn(std::string notificationName);
 };
 //--------------------------------------
 //  Facade
@@ -909,7 +1104,7 @@ public:
      * @param mediatorName the name to associate with this <code>IMediator</code>
      * @param mediator a reference to the <code>IMediator</code>
      */
-    void registerMediator( IMediator* mediator );
+    void registerMediator( IRegisterable* mediator );
 
     /**
      * Retrieve an <code>IMediator</code> from the <code>View</code>.
@@ -917,7 +1112,7 @@ public:
      * @param mediatorName
      * @return the <code>IMediator</code> previously registered with the given <code>mediatorName</code>.
      */
-    IMediator* retrieveMediator( std::string mediatorName );
+    IRegisterable* retrieveMediator( std::string mediatorName );
 
     /**
      * Remove an <code>IMediator</code> from the <code>View</code>.
@@ -925,7 +1120,7 @@ public:
      * @param mediatorName name of the <code>IMediator</code> to be removed.
      * @return the <code>IMediator</code> that was removed from the <code>View</code>
      */
-    IMediator* removeMediator( std::string mediatorName );
+    IRegisterable* removeMediator( std::string mediatorName );
 
     /**
      * Check if a Mediator is registered or not

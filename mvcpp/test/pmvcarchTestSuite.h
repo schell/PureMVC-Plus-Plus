@@ -22,37 +22,6 @@
 // Exception classes of pmvcpp
 #include <pmvcppexp.h>
 
-/**
- *  An application facade.
- *  Application facade used for testing. Most our application logic
- *  will be somewhere in here.
- */
-class ApplicationFacade : public Facade
-{
-public:
-    static ApplicationFacade* instance(std::string key)
-    {
-        ApplicationFacade* inst = Multiton<ApplicationFacade>::instance(key);
-        inst->initializeFacade(key);
-        return inst;
-    }
-    IModel* getModel()
-    {
-        return this->model;
-    }
-    IController* getController()
-    {
-        return this->controller;
-    }
-    IView* getView()
-    {
-        return this->view;
-    }
-    void initializeFacade(std::string key)
-    {
-        Facade::initializeFacade(key);
-    }
-};
 //--------------------------------------
 //  Patterns
 //--------------------------------------
@@ -190,13 +159,51 @@ private:
     MacroTestClass* macroTestClass;
 };
 //--------------------------------------
+//  Notifier
+//--------------------------------------
+class NotifierTestSuite : public CxxTest::TestSuite, public Facade
+{
+public:
+    void setUp()
+    {
+        this->notifier = new Notifier();
+        this->key = "testNotifierMultitonKey";
+    }
+    // here are some helper methods
+    // override to intercept notification
+    void sendNotification(std::string name, IBody* body, std::string type)
+    {
+        this->notification = new Notification(name, body, type);
+    }
+    void testCanInitializeNotifier()
+    {
+        this->notifier->initializeNotifier(this->key);
+        TS_ASSERT_EQUALS(this->notifier->getMultitonKey(), this->key);
+    }
+
+    void canSendNotificationThroughFacade()
+    {
+        //TS_ASSERT_EQUALS()
+    }
+
+    Notifier* notifier;
+    Notification* notification;
+    std::string key;
+};
+//--------------------------------------
 //  Observer
 //--------------------------------------
+// TODO - figure out compare notify contexts, IObserverFunctors and whatever the hell else...
 class InterestedObject
 {
 public:
+    InterestedObject()
+    {
+        this->memberNotification = new Notification("","");
+    }
     void callbackMethod(INotification* notification)
     {
+        std::cout << "InterestedObject::callbackMethod()\n";
         this->memberNotification = notification;
     }
     INotification* memberNotification;
@@ -270,121 +277,106 @@ private:
     Proxy<bool>* proxy;
 };
 //--------------------------------------
-//  Facade
+//  Mediator
 //--------------------------------------
-class FacadeTestSuite : public CxxTest::TestSuite
-{
-//public:
-//    void setUp()
-//    {
-//        this->appKey = "testAppFacadeKey";
-//        this->appFacade = ApplicationFacade::instance(this->appKey);
-//        this->appFacade->initializeFacade(this->appKey);
-//    }
-//    void tearDown()
-//    {
-//        Multiton<ApplicationFacade>::clear();
-//    }
-//    void testMultitonKeySet()
-//    {
-//        TS_ASSERT_EQUALS(this->appFacade->getMultitonKey(), this->appKey);
-//    }
-//    void testModelInitialized()
-//    {
-//        // compare to null ptr
-////        TS_TRACE("appFacade model mem address:");
-////        TS_TRACE(&*this->appFacade->getModel());
-////        TS_TRACE("null IModel* mem address:");
-////        TS_TRACE( &*((IModel*) 0) );
-//        TS_ASSERT_DIFFERS(this->appFacade->getModel(), (IModel*) 0);
-//    }
-//    void testControllerInitialized()
-//    {
-//        // compare to null ptr
-////        TS_TRACE("appFacade controller mem address:");
-////        TS_TRACE(&*this->appFacade->getController());
-////        TS_TRACE("null IController* mem address:");
-////        TS_TRACE( &*((IController*) 0) );
-//        TS_ASSERT_DIFFERS(this->appFacade->getController(), (IController*) 0);
-//    }
-//    void testViewInitialized()
-//    {
-//        // compare to null ptr
-////        TS_TRACE("appFacade view mem address:");
-////        TS_TRACE(&*this->appFacade->getView());
-////        TS_TRACE("null IView* mem address:");
-////        TS_TRACE( &*((IView*) 0) );
-//        TS_ASSERT_DIFFERS(this->appFacade->getView(), (IView*) 0);
-//    }
-//    std::string appKey;
-//    ApplicationFacade* appFacade;
-};
-//--------------------------------------
-//  Controller
-//--------------------------------------
-//class ControllerTestSuite : public CxxTest::TestSuite
-//{
-//public:
-//    void setUp()
-//    {
-//        this->appKey = "testAppFacadeKey_Controller";
-//        this->appFacade = ApplicationFacade::instance(this->appKey);
-//        this->appFacade->initializeFacade(this->appKey);
-//    }
-//
-//    std::string appKey;
-//    ApplicationFacade* appFacade;
-//};
-//--------------------------------------
-//  Notifier
-//--------------------------------------
-class NotifierTestSuite : public CxxTest::TestSuite, public Facade
+class MediatorTestSuite : public CxxTest::TestSuite
 {
 public:
     void setUp()
     {
-        this->notifier = new Notifier();
-        this->key = "testNotifierMultitonKey";
+        this->name = "IBodyMediator";
+        this->number = 5;
     }
-    // here are some helper methods
-    // override to intercept notification
-    void sendNotification(std::string name, IBody* body, std::string type)
+    void testConstructorSetsNameAndViewComponent()
     {
-        this->notification = new Notification(name, body, type);
+        this->mediator = new Mediator<int>(this->name, this->number);
+        TS_ASSERT_EQUALS(this->mediator->getName(), this->name);
+        TS_ASSERT_EQUALS(this->mediator->getViewComponent(), this->number);
     }
-    void testCanInitializeNotifier()
-    {
-        this->notifier->initializeNotifier(this->key);
-        TS_ASSERT_EQUALS(this->notifier->getMultitonKey(), this->key);
-    }
-
-    void canSendNotificationThroughFacade()
-    {
-        //TS_ASSERT_EQUALS()
-    }
-
-    Notifier* notifier;
-    Notification* notification;
-    std::string key;
+private:
+    std::string name;
+    int number;
+    Mediator<int>* mediator;
 };
 //--------------------------------------
-//  Model
+//  View
 //--------------------------------------
-class testModel : public CxxTest::TestSuite
+class ViewTestSuite : public CxxTest::TestSuite
 {
 public:
-//    void setUp()
-//    {
-//        this->key = "testModelMultitonKey";
-//        this->model = new Model(this->key);
-//    }
-//    void testConstructor_Sets_multitonKey()
-//    {
-//        this->model = new Model(this->key);
-//        TS_ASSERT_EQUALS(this->model->getMultitonKey(), this->key);
-//    }
-//
-//    Model* model;
-//    std::string key;
+    void setUp()
+    {
+        // setup view
+        this->key = "ViewTestSuiteKey";
+        this->view = View::getInstance(this->key);
+        // setup observer
+        this->noteName = this->key + "_notificationName";
+        this->noteType = this->key + "_notificationType";
+        this->notification = new Notification(this->noteName, new IBody(), this->noteType);
+        this->contextObject = new InterestedObject();
+        this->observer = new Observer<InterestedObject>(&InterestedObject::callbackMethod, this->contextObject);
+    }
+    void testMultitonKeyIsSet()
+    {
+        TS_ASSERT_EQUALS(this->getView()->getMultitonKey(), this->key);
+    }
+    void testCanRegisterAndNotifyAndRemoveObserver()
+    {
+        this->getView()->registerObserver(this->noteName, this->observer);
+        this->getView()->notifyObservers(this->notification);
+        TS_ASSERT_EQUALS(this->contextObject->memberNotification->getName(), this->noteName);
+        this->getView()->removeObserver(this->noteName, this->observer);
+        this->contextObject->memberNotification = new Notification("not_" + this->noteName, "not_" + this->noteType);
+        // calling notifyObservers should not reset the name of the contextObject's memberNotification
+        this->getView()->notifyObservers(this->notification);
+        TS_ASSERT_DIFFERS(this->contextObject->memberNotification->getName(), this->noteName);
+    }
+private:
+    std::string key;
+    IView* view;
+
+    std::string noteName;
+    std::string noteType;
+    INotification* notification;
+    InterestedObject* contextObject;
+    IObserverFunctor* observer;
+
+    View* getView()
+    {
+        return dynamic_cast<View*>(this->view);
+    }
+};
+//--------------------------------------
+//  Controller
+//--------------------------------------
+class ControllerTestSuite : public CxxTest::TestSuite
+{
+public:
+    void setUp()
+    {
+        this->key = "ControllerTestSuiteKey";
+        this->controller = Controller::getInstance(this->key);
+    }
+    void testCanGetControllerInstance()
+    {
+        Controller* contPtr = this->getController();
+        TS_ASSERT_EQUALS(&*contPtr, &*this->controller);
+        TS_ASSERT_EQUALS(contPtr->getMultitonKey(), this->key);
+    }
+
+private:
+    Controller* getController()
+    {
+        return dynamic_cast<Controller*>( Controller::getInstance(this->key) );
+    }
+    std::string key;
+    IController* controller;
+};
+//--------------------------------------
+//  Facade
+//--------------------------------------
+class FacadeTestSuite : public CxxTest::TestSuite
+{
+
 };
 #endif	/* _PMVCARCHTESTSUITE_H */

@@ -55,6 +55,8 @@ Collaboration diagram for Controller:</div>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller.html#a60c78860c632ad29cb3618e2a3faca74">removeCommand</a> (std::string notificationName)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove a previously registered <code><a class="el" href="class_i_command.html" title="The interface definition for a PureMVC Command.">ICommand</a></code> to <code><a class="el" href="class_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code> mapping.  <a href="#a60c78860c632ad29cb3618e2a3faca74"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_i_controller.html">IController</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller.html#aa36b55f117c5aa573c6e1894f0d98195">getInstance</a> (std::string key)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><code><a class="el" href="class_controller.html" title="A Multiton IController implementation.">Controller</a></code> <a class="el" href="class_multiton.html" title="A templated Multiton class.">Multiton</a> Factory method.  <a href="#aa36b55f117c5aa573c6e1894f0d98195"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller.html#a802f04dc749c8ddc8f0af2ed8db2e257">removeController</a> (std::string key)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove an <a class="el" href="class_i_controller.html" title="The interface definition for a PureMVC Controller.">IController</a> instance.  <a href="#a802f04dc749c8ddc8f0af2ed8db2e257"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
@@ -146,6 +148,27 @@ Calling the <code><a class="el" href="class_i_command.html" title="The interface
 
 </div>
 </div>
+<a class="anchor" id="aa36b55f117c5aa573c6e1894f0d98195"></a><!-- doxytag: member="Controller::getInstance" ref="aa36b55f117c5aa573c6e1894f0d98195" args="(std::string key)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_i_controller.html">IController</a> * Controller::getInstance </td>
+          <td>(</td>
+          <td class="paramtype">std::string&nbsp;</td>
+          <td class="paramname"> <em>key</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p><code><a class="el" href="class_controller.html" title="A Multiton IController implementation.">Controller</a></code> <a class="el" href="class_multiton.html" title="A templated Multiton class.">Multiton</a> Factory method. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>the <a class="el" href="class_multiton.html" title="A templated Multiton class.">Multiton</a> instance of <code><a class="el" href="class_controller.html" title="A Multiton IController implementation.">Controller</a></code> </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="af4ed82ca2900de2c24d646bad223470e"></a><!-- doxytag: member="Controller::hasCommand" ref="af4ed82ca2900de2c24d646bad223470e" args="(std::string notificationName)" -->
 <div class="memitem">
 <div class="memproto">
@@ -191,9 +214,7 @@ Calling the <code><a class="el" href="class_i_command.html" title="The interface
 <div class="memdoc">
 
 <p>Initialize the <a class="el" href="class_multiton.html" title="A templated Multiton class.">Multiton</a> <code><a class="el" href="class_controller.html" title="A Multiton IController implementation.">Controller</a></code> instance. </p>
-<p>Called automatically by the constructor.</p>
-<p>Note that if you are using a subclass of <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code> in your application, you should <em>also</em> subclass <code><a class="el" href="class_controller.html" title="A Multiton IController implementation.">Controller</a></code> and override the <code>initializeController</code> method in the following way:</p>
-<p>&lt;listing&gt; // ensure that the <a class="el" href="class_controller.html" title="A Multiton IController implementation.">Controller</a> is talking to my <a class="el" href="class_i_view.html" title="The interface definition for a PureMVC View.">IView</a> implementation override public function <a class="el" href="class_controller.html#a071c576f4a0cee162f8f7355767dc247" title="Initialize the Multiton Controller instance.">initializeController(  )</a> : void { view = MyView.getInstance(); } &lt;/listing&gt;</p>
+<p>Called automatically by the getInstance</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>void </dd></dl>
 
 </div>
@@ -295,7 +316,7 @@ Calling the <code><a class="el" href="class_i_command.html" title="The interface
 <li>/home/clcks/Code/MVC++/trunk/mvcpp/src/pmvcpparch.cpp</li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Mon Dec 7 21:56:02 2009 for MVC++ by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Dec 13 17:47:39 2009 for MVC++ by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

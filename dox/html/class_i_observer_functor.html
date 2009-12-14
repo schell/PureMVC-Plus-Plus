@@ -43,11 +43,40 @@ Inheritance diagram for IObserverFunctor:</div>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_observer_functor.html#a908eec31e040d6afc7e4422527036504">notifyObserver</a> (<a class="el" href="class_i_notification.html">INotification</a> *notification)=0</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A callback.  <a href="#a908eec31e040d6afc7e4422527036504"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_observer_functor.html#ad8eb505731c165e12bb5dfd3bfa091db">compareNotifyContext</a> (<a class="el" href="class_i_observer_functor.html">IObserverFunctor</a> *compareContext)=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Compare an object to the notification context.  <a href="#ad8eb505731c165e12bb5dfd3bfa091db"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>An <a class="el" href="class_observer.html" title="A base IObserver implementation.">Observer</a> functor interface. </p>
 <p>A functor to be used to call Obsever notification handlers. </p>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="ad8eb505731c165e12bb5dfd3bfa091db"></a><!-- doxytag: member="IObserverFunctor::compareNotifyContext" ref="ad8eb505731c165e12bb5dfd3bfa091db" args="(IObserverFunctor *compareContext)=0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool IObserverFunctor::compareNotifyContext </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_i_observer_functor.html">IObserverFunctor</a> *&nbsp;</td>
+          <td class="paramname"> <em>compareContext</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Compare an object to the notification context. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>compareContext</em>&nbsp;</td><td>the object to compare </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>boolean indicating if the object and the notification context are the same </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a908eec31e040d6afc7e4422527036504"></a><!-- doxytag: member="IObserverFunctor::notifyObserver" ref="a908eec31e040d6afc7e4422527036504" args="(INotification *notification)=0" -->
 <div class="memitem">
 <div class="memproto">
@@ -75,7 +104,7 @@ Inheritance diagram for IObserverFunctor:</div>
 <li>/home/clcks/Code/MVC++/trunk/mvcpp/src/<a class="el" href="pmvcppbase_8h_source.html">pmvcppbase.h</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Mon Dec 7 21:56:02 2009 for MVC++ by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Dec 13 17:47:40 2009 for MVC++ by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

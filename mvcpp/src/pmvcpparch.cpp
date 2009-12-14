@@ -139,18 +139,77 @@ void Model::initializeModel(  )
 //  View
 //--------------------------------------
 View::View( )
-{}
+{
+}
+IView* View::getInstance(std::string key)
+{
+    // if the instance already exists, simply return it
+    if(Multiton<View>::exists(key))
+        return Multiton<View>::instance(key);
+    // if the instance needs to be created, do so and take
+    // care of some initialization
+    View* viewPtr = Multiton<View>::instance(key);
+    viewPtr->setMultitonKey(key);
+    viewPtr->initializeView();
+    return viewPtr;
+}
 void View::registerObserver ( std::string notificationName, IObserverFunctor* observer )
-{}
+{
+    if(! this->existsObserversInterestedIn(notificationName))
+    {
+        std::vector<IObserverFunctor*> observerVector;
+        observerVector.push_back(observer);
+        this->observerMap[notificationName] = observerVector;
+    }
+    else
+    {
+        this->observerMap[notificationName].push_back(observer);
+    }
+}
 void View::notifyObservers( INotification* notification )
+{
+    std::string noteName = notification->getName();
+    if(this->existsObserversInterestedIn(noteName))
+    {
+        // there was some stuff about the reference array changing while
+        // running this loop, although i don't see how that could happen
+        // until we add threads to this architecture - so i'm keeping
+        // it simple here
+        std::vector<IObserverFunctor*> observers = this->observerMap[noteName];
+        std::vector<IObserverFunctor*>::iterator it;
+        for(it = observers.begin(); it != observers.end(); it++)
+        {
+            (*it)->notifyObserver(notification);
+        }
+    }
+}
+void View::removeObserver( std::string notificationName, IObserverFunctor* notifyContext )
+{
+    std::cout << "removeObserver\n";
+    if(this->existsObserversInterestedIn(notificationName))
+    {
+        std::vector<IObserverFunctor*> observers = this->observerMap[notificationName];
+        std::vector<IObserverFunctor*>::iterator it;
+
+        std::cout << " found observer list for " << notificationName << " of size " << observers.size() << std::endl;
+        for(it = observers.begin(); it != observers.end(); it++)
+        {
+            if((*it)->compareNotifyContext(notifyContext) == true)
+            {
+                observers.erase(it);
+                break;
+            }
+        }
+
+        if(observers.size() == (size_t) 0)
+           this->observerMap.erase(notificationName);
+    }
+}
+void View::registerMediator( IRegisterable* mediator )
 {}
-void View::removeObserver( std::string notificationName, INotificationHandler* notifyContext )
-{}
-void View::registerMediator( IMediator* mediator )
-{}
-IMediator* View::retrieveMediator( std::string mediatorName )
+IRegisterable* View::retrieveMediator( std::string mediatorName )
 {return 0;}
-IMediator* View::removeMediator( std::string mediatorName )
+IRegisterable* View::removeMediator( std::string mediatorName )
 {return 0;}
 bool View::hasMediator( std::string mediatorName )
 {return true;}
@@ -158,11 +217,28 @@ void View::removeView( std::string key )
 {}
 void View::initializeView()
 {}
+bool View::existsObserversInterestedIn(std::string notificationName)
+{
+    return this->observerMap.find(notificationName) != this->observerMap.end();
+}
 //--------------------------------------
 //  Controller
 //--------------------------------------
 Controller::Controller()
-{}
+{
+}
+IController* Controller::getInstance(std::string key)
+{
+    // if the instance already exists, simply return it
+    if(Multiton<Controller>::exists(key))
+        return Multiton<Controller>::instance(key);
+    // if the instance needs to be created, do so and take
+    // care of some initialization
+    Controller* contPtr = Multiton<Controller>::instance(key);
+    contPtr->setMultitonKey(key);
+    contPtr->initializeController();
+    return contPtr;
+}
 void Controller::executeCommand( INotification* note )
 {}
 void Controller::registerCommand( std::string notificationName, ICommand* commandClassRef )
@@ -174,7 +250,9 @@ void Controller::removeCommand( std::string notificationName )
 void Controller::removeController( std::string key )
 {}
 void Controller::initializeController( )
-{}
+{
+    this->view = View::getInstance(this->getMultitonKey());
+}
 //--------------------------------------
 //  FACADE
 //--------------------------------------
@@ -200,11 +278,11 @@ IRegisterable* Facade::removeProxy ( std::string proxyName )
 {return 0;}
 bool Facade::hasProxy( std::string proxyName )
 {return true;}
-void Facade::registerMediator( IMediator* mediator )
+void Facade::registerMediator( IRegisterable* mediator )
 {}
-IMediator* Facade::retrieveMediator( std::string mediatorName )
+IRegisterable* Facade::retrieveMediator( std::string mediatorName )
 {return 0;}
-IMediator* Facade::removeMediator( std::string mediatorName )
+IRegisterable* Facade::removeMediator( std::string mediatorName )
 {return 0;}
 bool Facade::hasMediator( std::string mediatorName )
 {return true;}
