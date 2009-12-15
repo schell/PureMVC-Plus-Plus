@@ -211,14 +211,62 @@ void View::removeObserver( std::string notificationName, unsigned int contextAdd
 }
 void View::registerMediator( IMediatorRestricted* mediator )
 {
+    // if this mediator has already been registered, abort
+    if(this->hasMediator(mediator->getMediatorName()))
+        return;
 
+    mediator->initializeNotifier(this->getMultitonKey());
+    // register the mediator by name
+    this->mediatorMap[mediator->getMediatorName()] = mediator;
+    // get the mediator's notification interests
+    std::vector<std::string> interests = mediator->listNotificationInterests();
+    if(interests.size() > (size_t) 0)
+    {
+        // create an observer functor for the mediator
+        Observer<IMediatorRestricted>* observer = new Observer<IMediatorRestricted>(&IMediatorRestricted::handleNotification, mediator);
+        // register this observer for every notification the mediator is interested in
+        std::vector<std::string>::iterator it;
+        for(it = interests.begin(); it != interests.end(); it++)
+        {
+            this->registerObserver((*it), observer);
+        }
+    }
+    // alert the mediator that it has been registered
+    mediator->onRegister();
 }
 IMediatorRestricted* View::retrieveMediator( std::string mediatorName )
-{return 0;}
+{
+    return this->mediatorMap[mediatorName];
+}
 IMediatorRestricted* View::removeMediator( std::string mediatorName )
-{return 0;}
+{
+    // if the requested mediator has not been registered, return a null pointer
+    if(! this->hasMediator(mediatorName))
+        return (IMediatorRestricted*) 0;
+    // get the mediator
+    IMediatorRestricted* mediator = this->mediatorMap[mediatorName];
+    // get the mediators interests
+    std::vector<std::string> interests = mediator->listNotificationInterests();
+    if(interests.size() > (size_t) 0)
+    {
+        std::vector<std::string>::iterator it;
+        for (it = interests.begin(); it != interests.end(); it++) 
+        {
+            // remove the mediator's observer functor listed for this notification
+            this->removeObserver((*it), (unsigned int) &*mediator);
+        }
+    }
+    // remove the mediator from the map
+    this->mediatorMap.erase(mediatorName);
+    // alert the mediator that it has been removed
+    mediator->onRemove();
+
+    return mediator;
+}
 bool View::hasMediator( std::string mediatorName )
-{return true;}
+{
+    return this->mediatorMap.find(mediatorName) != this->mediatorMap.end();
+}
 void View::removeView( std::string key )
 {}
 void View::initializeView()
@@ -284,11 +332,11 @@ IProxyRestricted* Facade::removeProxy ( std::string proxyName )
 {return 0;}
 bool Facade::hasProxy( std::string proxyName )
 {return true;}
-void Facade::registerMediator( IProxyRestricted* mediator )
+void Facade::registerMediator( IMediatorRestricted* mediator )
 {}
-IProxyRestricted* Facade::retrieveMediator( std::string mediatorName )
+IMediatorRestricted* Facade::retrieveMediator( std::string mediatorName )
 {return 0;}
-IProxyRestricted* Facade::removeMediator( std::string mediatorName )
+IMediatorRestricted* Facade::removeMediator( std::string mediatorName )
 {return 0;}
 bool Facade::hasMediator( std::string mediatorName )
 {return true;}

@@ -283,7 +283,9 @@ class MediatorTestClass : public Mediator<int>
 {
 public:
     MediatorTestClass(std::string name, int number) : Mediator<int>(name, number)
-    {}
+    {
+        this->notifiedLastBy = 0;
+    }
     void onRegister()
     {}
     void onRemove()
@@ -298,7 +300,32 @@ public:
         return interests;
     }
     void handleNotification(INotification* notification)
-    {}
+    {
+        std::string name = notification->getName();
+        std::string type = notification->getType();
+        
+        switch(name)
+        {
+            case "interest1":
+                this->notifiedLastBy = 1;
+                break;
+                
+            case "interest2":
+                this->notifiedLastBy = 2;
+                break;
+            case "interest3":
+                this->notifiedLastBy = 3;
+                break;
+            case "interest4":
+                this->notifiedLastBy = 4;
+                break;
+                
+            default:
+                this->notifiedLastBy = 0;
+                
+        }
+    }
+    int notifiedLastBy;
 };
 class MediatorTestSuite : public CxxTest::TestSuite
 {
@@ -316,7 +343,7 @@ public:
     }
     void testCanGetNotificationInterests()
     {
-        IMediator<int>* medPtr = this->mediator;
+        IMediatorRestricted* medPtr = this->mediator;
         std::vector<std::string> interests = medPtr->listNotificationInterests();
         TS_ASSERT_EQUALS(interests.size(), (size_t) 4);
     }
@@ -343,7 +370,8 @@ public:
         this->contextObject = new InterestedObject();
         this->observer = new Observer<InterestedObject>(&InterestedObject::callbackMethod, this->contextObject);
         this->viewComponent = 666;
-        this->mediator = new MediatorTestClass(this->key + "_mediator", this->viewComponent);
+        this->mediatorName = this->key + "_mediator";
+        this->mediator = new MediatorTestClass(this->mediatorName, this->viewComponent);
     }
     void testMultitonKeyIsSet()
     {
@@ -363,8 +391,16 @@ public:
     void testCanRegisterAndRetrieveMediator()
     {
         this->view->registerMediator(this->mediator);
-        IMediator<int>* mediatorRet = dynamic_cast<IMediator<int>*>(this->view->retrieveMediator(this->key + "_mediator"));
+        TS_ASSERT(this->view->hasMediator(this->mediatorName));
+        IMediatorRestricted* mediatorRet = this->view->retrieveMediator(this->mediatorName);
         TS_ASSERT_EQUALS(&*this->mediator, &*mediatorRet);
+        this->view->removeMediator(this->mediatorName);
+        TS_ASSERT(this->view->hasMediator(this->mediatorName) == false);
+    }
+    void testRegisteredMediatorRecievesNotification()
+    {
+        this->view->registerMediator(this->mediator);
+        this->view->notifyObservers()
     }
 private:
     std::string key;
@@ -376,7 +412,8 @@ private:
     InterestedObject* contextObject;
     IObserverRestricted* observer;
     int viewComponent;
-    IMediator<int>* mediator;
+    std::string mediatorName;
+    IMediatorRestricted* mediator;
 
     View* getView()
     {

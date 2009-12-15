@@ -510,7 +510,6 @@ public:
  *
  * @see INotification
  */
-template<class T>
 class IMediatorRestricted : public virtual INotifier, public INotificationHandler
 {
 public:

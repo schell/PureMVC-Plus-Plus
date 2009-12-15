@@ -507,7 +507,7 @@ protected:
 //  Mediator
 //--------------------------------------
 template<class T>
-class Mediator : public IMediator<T>, public Notifier
+class Mediator : public IMediatorTemplated<T>, public Notifier
 {
 public:
     /**
@@ -1085,7 +1085,7 @@ public:
      * @param mediatorName the name to associate with this <code>IMediator</code>
      * @param mediator a reference to the <code>IMediator</code>
      */
-    void registerMediator( IProxyRestricted* mediator );
+    void registerMediator( IMediatorRestricted* mediator );
 
     /**
      * Retrieve an <code>IMediator</code> from the <code>View</code>.
@@ -1093,7 +1093,7 @@ public:
      * @param mediatorName
      * @return the <code>IMediator</code> previously registered with the given <code>mediatorName</code>.
      */
-    IProxyRestricted* retrieveMediator( std::string mediatorName );
+    IMediatorRestricted* retrieveMediator( std::string mediatorName );
 
     /**
      * Remove an <code>IMediator</code> from the <code>View</code>.
@@ -1101,7 +1101,7 @@ public:
      * @param mediatorName name of the <code>IMediator</code> to be removed.
      * @return the <code>IMediator</code> that was removed from the <code>View</code>
      */
-    IProxyRestricted* removeMediator( std::string mediatorName );
+    IMediatorRestricted* removeMediator( std::string mediatorName );
 
     /**
      * Check if a Mediator is registered or not
