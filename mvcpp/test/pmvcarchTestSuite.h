@@ -203,7 +203,7 @@ public:
     }
     void callbackMethod(INotification* notification)
     {
-        std::cout << "InterestedObject::callbackMethod()\n";
+        //std::cout << "InterestedObject::callbackMethod()\n";
         this->memberNotification = notification;
     }
     INotification* memberNotification;
@@ -232,8 +232,8 @@ public:
     void testCanCompareContexts()
     {
         InterestedObject* newInterestedObject = new InterestedObject();
-        TS_ASSERT(! this->observer->compareNotifyContext(newInterestedObject));
-        TS_ASSERT(this->observer->compareNotifyContext(this->contextObject));
+        TS_ASSERT(! this->observer->compareNotifyContext((unsigned int) &*newInterestedObject));
+        TS_ASSERT(this->observer->compareNotifyContext((unsigned int) &*this->contextObject));
     }
 private:
     std::string noteName;
@@ -279,6 +279,27 @@ private:
 //--------------------------------------
 //  Mediator
 //--------------------------------------
+class MediatorTestClass : public Mediator<int>
+{
+public:
+    MediatorTestClass(std::string name, int number) : Mediator<int>(name, number)
+    {}
+    void onRegister()
+    {}
+    void onRemove()
+    {}
+    std::vector<std::string> listNotificationInterests()
+    {
+        std::vector<std::string> interests;
+        interests.push_back("interest1");
+        interests.push_back("interest2");
+        interests.push_back("interest3");
+        interests.push_back("interest4");
+        return interests;
+    }
+    void handleNotification(INotification* notification)
+    {}
+};
 class MediatorTestSuite : public CxxTest::TestSuite
 {
 public:
@@ -289,14 +310,20 @@ public:
     }
     void testConstructorSetsNameAndViewComponent()
     {
-        this->mediator = new Mediator<int>(this->name, this->number);
+        this->mediator = new MediatorTestClass(this->name, this->number);
         TS_ASSERT_EQUALS(this->mediator->getName(), this->name);
         TS_ASSERT_EQUALS(this->mediator->getViewComponent(), this->number);
+    }
+    void testCanGetNotificationInterests()
+    {
+        IMediator<int>* medPtr = this->mediator;
+        std::vector<std::string> interests = medPtr->listNotificationInterests();
+        TS_ASSERT_EQUALS(interests.size(), (size_t) 4);
     }
 private:
     std::string name;
     int number;
-    Mediator<int>* mediator;
+    MediatorTestClass* mediator;
 };
 //--------------------------------------
 //  View
@@ -315,6 +342,8 @@ public:
         this->notification = new Notification(this->noteName, new IBody(), this->noteType);
         this->contextObject = new InterestedObject();
         this->observer = new Observer<InterestedObject>(&InterestedObject::callbackMethod, this->contextObject);
+        this->viewComponent = 666;
+        this->mediator = new MediatorTestClass(this->key + "_mediator", this->viewComponent);
     }
     void testMultitonKeyIsSet()
     {
@@ -325,11 +354,17 @@ public:
         this->getView()->registerObserver(this->noteName, this->observer);
         this->getView()->notifyObservers(this->notification);
         TS_ASSERT_EQUALS(this->contextObject->memberNotification->getName(), this->noteName);
-        this->getView()->removeObserver(this->noteName, this->observer);
+        this->getView()->removeObserver(this->noteName, (unsigned int) &*this->contextObject);
         this->contextObject->memberNotification = new Notification("not_" + this->noteName, "not_" + this->noteType);
         // calling notifyObservers should not reset the name of the contextObject's memberNotification
         this->getView()->notifyObservers(this->notification);
         TS_ASSERT_DIFFERS(this->contextObject->memberNotification->getName(), this->noteName);
+    }
+    void testCanRegisterAndRetrieveMediator()
+    {
+        this->view->registerMediator(this->mediator);
+        IMediator<int>* mediatorRet = dynamic_cast<IMediator<int>*>(this->view->retrieveMediator(this->key + "_mediator"));
+        TS_ASSERT_EQUALS(&*this->mediator, &*mediatorRet);
     }
 private:
     std::string key;
@@ -340,6 +375,8 @@ private:
     INotification* notification;
     InterestedObject* contextObject;
     IObserverFunctor* observer;
+    int viewComponent;
+    IMediator<int>* mediator;
 
     View* getView()
     {

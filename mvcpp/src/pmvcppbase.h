@@ -41,20 +41,6 @@ private:
     std::string _type;
 };
 //--------------------------------------
-//  IRegisterable
-//--------------------------------------
-/**
- *  A registerable object.
- *  This interface makes sure an object can be registered
- *  by name. 
- */
-class IRegisterable
-{
-public:
-    virtual std::string getName() = 0;
-};
-
-//--------------------------------------
 //  IMultitonKeyHeir
 //--------------------------------------
 /**
@@ -288,7 +274,9 @@ public:
 };
 /**
  *  An Observer functor interface.
- *  A functor to be used to call Obsever notification handlers.
+ *  A functor to be used to call Obsever notification handlers. IObserver
+ *  has been split into two classes, one base untemplated class and one
+ *  derived templated class.
  * 
  */
 class IObserverFunctor
@@ -302,12 +290,12 @@ public:
      */
     virtual void notifyObserver(INotification* notification) = 0;
     /**
-     * Compare an object to the notification context.
+     * Compare an object's memory address to the notification context's memory address.
      *
-     * @param compareContext the object to compare
+     * @param memoryAddress the object to compare
      * @return boolean indicating if the object and the notification context are the same
      */
-    virtual bool compareNotifyContext( IObserverFunctor* compareContext ) = 0;
+    virtual bool compareNotifyContext( unsigned int memoryAddress ) = 0;
 };
 /**
  * The interface definition for a PureMVC Observer.
@@ -367,15 +355,6 @@ public:
          * @param notifyContext the notification context (this) of the interested object
          */
 	virtual void setNotifyContext( T* notifyContext ) = 0;
-
-        
-        //TODO - take out this function if the IObserverFunctor works
-        /**
-         * Notify the interested object.
-         *
-         * @param notification the <code>INotification</code> to pass to the interested object's notification method
-         */
-	//virtual void notifyObserver( INotification* notification ) = 0;
 
 	virtual ~IObserver(){};
 };
@@ -478,9 +457,11 @@ public:
 	virtual bool hasProxy( std::string proxyName ) = 0;
 	virtual ~IModel(){};
 };
+
 /**
- * The interface definition for a PureMVC Mediator.
+ * The untemplated portion of the interface definition for a PureMVC Mediator.
  *
+ * IMediator has been split into two pieces to deal with C++'s template system.
  * <p>
  * In PureMVC, <code>IMediator</code> implementors assume these responsibilities:</p>
  * <UL>
@@ -520,7 +501,7 @@ public:
  * @see INotification
  */
 template<class T>
-class IMediator : public virtual INotifier, public INotificationHandler, public IRegisterable
+class IMediatorRestricted : public virtual INotifier, public INotificationHandler
 {
 public:
         /**
@@ -529,18 +510,6 @@ public:
          * @return the <code>IMediator</code> instance name
          */
 	virtual std::string getMediatorName() = 0;
-        /**
-         * Get the <code>IMediator</code>'s view component.
-         *
-         * @return Object the view component
-         */
-	virtual T getViewComponent() = 0;
-        /**
-         * Set the <code>IMediator</code>'s view component.
-         *
-         * @param Object the view component
-         */
-	virtual void setViewComponent( T viewComponent ) = 0;
         /**
          * List <code>INotification</code> interests.
          *
@@ -555,7 +524,34 @@ public:
          * Called by the View when the Mediator is removed
          */
 	virtual void onRemove() = 0;
-	virtual ~IMediator(){};
+
+        virtual ~IMediatorRestricted(){};
+};
+/**
+ *  The templated portion of IMediator.
+ *
+ *  IMediatorTemplated inherits from IMediatorRestricted and adds some
+ *  required template functions.
+ *
+ */
+template<class T>
+class IMediatorTemplated : public IMediatorRestricted
+{
+public:
+        /**
+         * Get the <code>IMediator</code>'s view component.
+         *
+         * @return Object the view component
+         */
+	virtual T getViewComponent() = 0;
+        /**
+         * Set the <code>IMediator</code>'s view component.
+         *
+         * @param Object the view component
+         */
+	virtual void setViewComponent( T viewComponent ) = 0;
+        
+	virtual ~IMediatorTemplated(){};
 
 };
 /**
@@ -591,12 +587,13 @@ public:
          */
 	virtual void registerObserver( std::string notificationName, IObserverFunctor* observer ) = 0;
         /**
-         * Remove a group of observers from the observer list for a given Notification name.
+         * Remove an observer from the observer list for a given Notification name that has a context
+         * object stored at <code>contextAddress</code>.
          * <p>
          * @param notificationName which observer list to remove from
-         * @param notifyContext removed the observers with this object as their notifyContext
+         * @param contextAddress remove the observer with this address as the address of their notifyContext
          */
-	virtual void removeObserver( std::string notificationName, IObserverFunctor* notifyContext ) = 0;
+	virtual void removeObserver( std::string notificationName, unsigned int contextAddress ) = 0;
         /**
          * Notify the <code>IObservers</code> for a particular <code>INotification</code>.
          *
@@ -625,21 +622,21 @@ public:
          * @param mediatorName the name to associate with this <code>IMediator</code> instance
          * @param mediator a reference to the <code>IMediator</code> instance
          */
-	virtual void registerMediator( IRegisterable* mediator ) = 0;
+	virtual void registerMediator( IMediatorRestricted* mediator ) = 0;
         /**
          * Retrieve an <code>IMediator</code> from the <code>View</code>.
          *
          * @param mediatorName the name of the <code>IMediator</code> instance to retrieve.
          * @return the <code>IMediator</code> instance previously registered with the given <code>mediatorName</code>.
          */
-	virtual IRegisterable* retrieveMediator( std::string mediatorName ) = 0;
+	virtual IMediatorRestricted* retrieveMediator( std::string mediatorName ) = 0;
         /**
          * Remove an <code>IMediator</code> from the <code>View</code>.
          *
          * @param mediatorName name of the <code>IMediator</code> instance to be removed.
          * @return the <code>IMediator</code> that was removed from the <code>View</code>
          */
-	virtual IRegisterable* removeMediator( std::string mediatorName ) = 0;
+	virtual IMediatorRestricted* removeMediator( std::string mediatorName ) = 0;
         /**
          * Check if a Mediator is registered or not
          *
@@ -723,21 +720,21 @@ public:
          *
          * @param mediator a reference to the <code>IMediator</code> instance
          */
-	virtual void registerMediator( IRegisterable* mediator ) = 0;
+	virtual void registerMediator( IMediatorRestricted* mediator ) = 0;
         /**
          * Retrieve an <code>IMediator</code> instance from the <code>View</code>.
          *
          * @param mediatorName the name of the <code>IMediator</code> instance to retrievve
          * @return the <code>IMediator</code> previously registered with the given <code>mediatorName</code>.
          */
-	virtual IRegisterable* retrieveMediator( std::string mediatorName ) = 0;
+	virtual IMediatorRestricted* retrieveMediator( std::string mediatorName ) = 0;
         /**
          * Remove a <code>IMediator</code> instance from the <code>View</code>.
          *
          * @param mediatorName name of the <code>IMediator</code> instance to be removed.
          * @return the <code>IMediator</code> instance previously registered with the given <code>mediatorName</code>.
          */
-	virtual IRegisterable* removeMediator( std::string mediatorName ) = 0;
+	virtual IMediatorRestricted* removeMediator( std::string mediatorName ) = 0;
         /**
          * Check if a Mediator is registered or not
          *

@@ -405,19 +405,14 @@ public:
         (this->notifyContext->*notifyMethod)(notification);
     }
     /**
-     * In this case, the view is comparing observers. It may be that this is just for testing.
+     * Compare the given memory address with the stored context's address.
      *
-     * @param compareContext the object to compare
+     * @param compareContextMemoryAddress the object to compare's memory address
      * @return boolean indicating if the object and the notification context are the same
      */
-    bool compareNotifyContext( IObserverFunctor* compareContext )
+    bool compareNotifyContext( unsigned int compareContextMemoryAddress )
     {
-        std::cout << "compareNotifyContext " << &*compareContext << " : " << &*this << std::endl;
-        return &*compareContext == &*this;
-    }
-    bool compareNotifyContext( T* compareContext )
-    {
-        return &*compareContext == &*this->notifyContext;
+        return compareContextMemoryAddress == (unsigned int) &*this->getNotifyContext();
     }
 };
 //--------------------------------------
@@ -578,10 +573,7 @@ public:
      *
      * @return Array the list of <code>INotification</code> names
      */
-    virtual std::vector<std::string> listNotificationInterests()
-    {
-
-    }
+    virtual std::vector<std::string> listNotificationInterests() = 0;
 
     /**
      * Handle <code>INotification</code>s.
@@ -591,26 +583,17 @@ public:
      * with one 'case' entry per <code>INotification</code>
      * the <code>Mediator</code> is interested in.
      */
-    virtual void handleNotification( INotification* notification )
-    {
-
-    }
+    virtual void handleNotification( INotification* notification ) = 0;
 
     /**
      * Called by the View when the Mediator is registered
      */
-    virtual void onRegister()
-    {
-
-    }
+    virtual void onRegister() = 0;
 
     /**
      * Called by the View when the Mediator is removed
      */
-    virtual void onRemove()
-    {
-
-    }
+    virtual void onRemove() = 0;
 
     /**
      *  Returns the name of the Mediator.
@@ -916,8 +899,6 @@ public:
      * @param observer the <code>IObserverFunctor</code> to register
      */
     void registerObserver ( std::string notificationName, IObserverFunctor* observer );
-
-
     /**
      * Notify the <code>IObservers</code> for a particular <code>INotification</code>.
      *
@@ -934,9 +915,9 @@ public:
      * Remove the observer for a given notifyContext from an observer list for a given Notification name.
      * <P>
      * @param notificationName which observer list to remove from
-     * @param notifyContext remove the observer with this object as its notifyContext
+     * @param contextAddress remove the observer with this memory address as its notifyContext's address
      */
-    void removeObserver( std::string notificationName, IObserverFunctor* notifyContext );
+    void removeObserver( std::string notificationName, unsigned int contextAddress );
 
     /**
      * Register an <code>IMediator</code> instance with the <code>View</code>.

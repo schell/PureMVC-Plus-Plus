@@ -183,18 +183,22 @@ void View::notifyObservers( INotification* notification )
         }
     }
 }
-void View::removeObserver( std::string notificationName, IObserverFunctor* notifyContext )
+void View::removeObserver( std::string notificationName, unsigned int contextAddress )
 {
-    std::cout << "removeObserver\n";
     if(this->existsObserversInterestedIn(notificationName))
     {
         std::vector<IObserverFunctor*> observers = this->observerMap[notificationName];
         std::vector<IObserverFunctor*>::iterator it;
 
-        std::cout << " found observer list for " << notificationName << " of size " << observers.size() << std::endl;
         for(it = observers.begin(); it != observers.end(); it++)
         {
-            if((*it)->compareNotifyContext(notifyContext) == true)
+            // this is tricky because in c++ we can't compare arbitrary types
+            // we have to downcast the IObserverFunctors to their derived classes
+            // in order to properly compare them. someone may object to this -
+            // i know it's programming taboo - so by all means figure out a
+            // better way to do this, however i'm sure  it will
+            // involve refactoring the base classes
+            if((*it)->compareNotifyContext(contextAddress) == true)
             {
                 observers.erase(it);
                 break;
@@ -206,7 +210,9 @@ void View::removeObserver( std::string notificationName, IObserverFunctor* notif
     }
 }
 void View::registerMediator( IRegisterable* mediator )
-{}
+{
+
+}
 IRegisterable* View::retrieveMediator( std::string mediatorName )
 {return 0;}
 IRegisterable* View::removeMediator( std::string mediatorName )
