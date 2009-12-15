@@ -303,27 +303,18 @@ public:
     {
         std::string name = notification->getName();
         std::string type = notification->getType();
-        
-        switch(name)
-        {
-            case "interest1":
-                this->notifiedLastBy = 1;
-                break;
-                
-            case "interest2":
-                this->notifiedLastBy = 2;
-                break;
-            case "interest3":
-                this->notifiedLastBy = 3;
-                break;
-            case "interest4":
-                this->notifiedLastBy = 4;
-                break;
-                
-            default:
-                this->notifiedLastBy = 0;
-                
-        }
+        // unfortunately a switch statement only works
+        // on ints in c++, wtf? - Schell
+        if(name == "interest1")
+            this->notifiedLastBy = 1;
+        else if(name == "interest2")
+            this->notifiedLastBy = 2;
+        else if(name == "interest3")
+            this->notifiedLastBy = 3;
+        else if(name == "interest4")
+            this->notifiedLastBy = 4;
+        else
+            this->notifiedLastBy = 0;
     }
     int notifiedLastBy;
 };
@@ -397,10 +388,14 @@ public:
         this->view->removeMediator(this->mediatorName);
         TS_ASSERT(this->view->hasMediator(this->mediatorName) == false);
     }
-    void testRegisteredMediatorRecievesNotification()
+    void testRegisteredMediatorRecievesNotificationAndRemovingMediatorRemovesObservers()
     {
         this->view->registerMediator(this->mediator);
-        this->view->notifyObservers()
+        this->view->notifyObservers(new Notification("interest4", this->noteType));
+        TS_ASSERT_EQUALS(this->getMediator()->notifiedLastBy, 4);
+        this->view->removeMediator(this->mediatorName);
+        this->view->notifyObservers(new Notification("interest3", this->noteType));
+        TS_ASSERT_EQUALS(this->getMediator()->notifiedLastBy, 4);
     }
 private:
     std::string key;
@@ -418,6 +413,10 @@ private:
     View* getView()
     {
         return dynamic_cast<View*>(this->view);
+    }
+    MediatorTestClass* getMediator()
+    {
+        return dynamic_cast<MediatorTestClass*>(this->mediator);
     }
 };
 //--------------------------------------
