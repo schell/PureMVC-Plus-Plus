@@ -162,27 +162,27 @@ public:
          * Get the name of the <code>INotification</code> instance.
          * No setter, should be set by constructor only
          */
-	virtual std::string getName         () = 0;
+	virtual std::string getName () = 0;
         /**
          * Set the body of the <code>INotification</code> instance
          */
-	virtual void        setBody         ( IBody* body ) = 0;
+	virtual void setBody( IBody* body ) = 0;
         /**
          * Get the body of the <code>INotification</code> instance
          */
-	virtual IBody*      getBody         () = 0;
+	virtual IBody* getBody() = 0;
         /**
          * Set the type of the <code>INotification</code> instance
          */
-	virtual void        setType         ( std::string type ) = 0;
+	virtual void setType( std::string type ) = 0;
         /**
          * Get the type of the <code>INotification</code> instance
          */
-	virtual std::string getType         () = 0;
+	virtual std::string getType() = 0;
         /**
          * Get the string representation of the <code>INotification</code> instance
          */
-	virtual             ~INotification  (){};
+	virtual ~INotification(){};
 };
 /**
  * The interface definition for a PureMVC Command.
@@ -197,7 +197,7 @@ public:
          *
          * @param note an <code>INotification</code> to handle.
          */
-	virtual void execute	( INotification* notification ) = 0;
+	virtual void execute( INotification* notification ) = 0;
 	virtual      ~ICommand	(){};
 };
 /**
@@ -279,7 +279,7 @@ public:
  *  derived templated class.
  * 
  */
-class IObserverFunctor
+class IObserverRestricted
 {
 public:
     /**
@@ -337,7 +337,7 @@ public:
  * @see INotification
  */
 template<class T>
-class IObserver : public IObserverFunctor
+class IObserverTemplated : public IObserverRestricted
 {
 public:
         /**
@@ -356,12 +356,15 @@ public:
          */
 	virtual void setNotifyContext( T* notifyContext ) = 0;
 
-	virtual ~IObserver(){};
+	virtual ~IObserverTemplated(){};
 };
 /**
- * The interface definition for a PureMVC Proxy.
+ * The untemplated portion of the interface definition for a PureMVC Proxy. 
  *
  * <p>
+ * Like IObserver and IMediator, IProxy has been split into two sections, the 
+ * untemplated base and the templated derived class.
+ *
  * In PureMVC, <code>IProxy</code> implementors assume these responsibilities:</p>
  * <UL>
  * <LI>Implement a common method which returns the name of the Proxy.</LI>
@@ -377,37 +380,44 @@ public:
  * <LI>Encapsulate interaction with local or remote services used to fetch and persist model data.</LI>
  * </UL>
  */
-template<class T>
-class IProxy : public virtual INotifier
+class IProxyRestricted : public virtual INotifier
 {
 public:
-        /**
-         * Get the Proxy name
-         *
-         * @return the Proxy instance name
-         */
+	/**
+	 * Get the Proxy name
+	 *
+	 * @return the Proxy instance name
+	 */
 	virtual std::string getProxyName() = 0;
-        /**
-         * Set the data object
-         *
-         * @param data the data object
-         */
-	virtual void setData( T data ) = 0;
-        /**
-         * Get the data object
-         *
-         * @return the data as type Object
-         */
-	virtual T getData() = 0;
-        /**
-         * Called by the Model when the Proxy is registered
-         */
+	/**
+	 * Called by the Model when the Proxy is registered
+	 */
 	virtual void onRegister() = 0;
-        /**
-         * Called by the Model when the Proxy is removed
-         */
+	/**
+	 * Called by the Model when the Proxy is removed
+	 */
 	virtual void onRemove() = 0;
-
+};
+/**
+ *	The templated half of the <code>IProxy</code> interface definition.
+ *
+ */
+template<class T>
+class IProxyTemplated : public IProxyRestricted
+{
+public:
+	/**
+	 * Set the data object
+	 *
+	 * @param data the data object
+	 */
+	virtual void setData( T data ) = 0;
+	/**
+	 * Get the data object
+	 *
+	 * @return the data as type Object
+	 */
+	virtual T getData() = 0;
 };
 /**
  * The interface definition for a PureMVC Model.
@@ -433,21 +443,21 @@ public:
          * @param proxyName the name to associate with this <code>IProxy</code> instance.
          * @param proxy an object reference to be held by the <code>Model</code>.
          */
-	virtual void registerProxy( IRegisterable* proxy ) = 0;
+	virtual void registerProxy( IProxyRestricted* proxy ) = 0;
         /**
          * Retrieve an <code>IProxy</code> instance from the Model.
          *
          * @param proxyName
          * @return the <code>IProxy</code> instance previously registered with the given <code>proxyName</code>.
          */
-	virtual IRegisterable* retrieveProxy( std::string proxyName ) = 0;
+	virtual IProxyRestricted* retrieveProxy( std::string proxyName ) = 0;
         /**
          * Remove an <code>IProxy</code> instance from the Model.
          *
          * @param proxyName name of the <code>IProxy</code> instance to be removed.
          * @return the <code>IProxy</code> that was removed from the <code>Model</code>
          */
-	virtual IRegisterable* removeProxy( std::string proxyName ) = 0;
+	virtual IProxyRestricted* removeProxy( std::string proxyName ) = 0;
         /**
          * Check if a Proxy is registered
          *
@@ -585,7 +595,7 @@ public:
          * @param notificationName the name of the <code>INotifications</code> to notify this <code>IObserver</code> of
          * @param observer the <code>IObserver</code> to register
          */
-	virtual void registerObserver( std::string notificationName, IObserverFunctor* observer ) = 0;
+	virtual void registerObserver( std::string notificationName, IObserverRestricted* observer ) = 0;
         /**
          * Remove an observer from the observer list for a given Notification name that has a context
          * object stored at <code>contextAddress</code>.
@@ -673,21 +683,21 @@ public:
          *
          * @param proxy the <code>IProxy</code> to be registered with the <code>Model</code>.
          */
-	virtual void registerProxy( IRegisterable* proxy ) = 0;
+	virtual void registerProxy( IProxyRestricted* proxy ) = 0;
         /**
          * Retrieve a <code>IProxy</code> from the <code>Model</code> by name.
          *
          * @param proxyName the name of the <code>IProxy</code> instance to be retrieved.
          * @return the <code>IProxy</code> previously regisetered by <code>proxyName</code> with the <code>Model</code>.
          */
-	virtual IRegisterable* retrieveProxy( std::string proxyName ) = 0;
+	virtual IProxyRestricted* retrieveProxy( std::string proxyName ) = 0;
         /**
          * Remove an <code>IProxy</code> instance from the <code>Model</code> by name.
          *
          * @param proxyName the <code>IProxy</code> to remove from the <code>Model</code>.
          * @return the <code>IProxy</code> that was removed from the <code>Model</code>
          */
-	virtual IRegisterable* removeProxy( std::string proxyName ) = 0;
+	virtual IProxyRestricted* removeProxy( std::string proxyName ) = 0;
         /**
          * Check if a Proxy is registered
          *

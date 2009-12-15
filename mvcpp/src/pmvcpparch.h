@@ -333,7 +333,7 @@ protected:
  * @see Notification
  */
 template<class T>
-class Observer : public IObserver<T>
+class Observer : public IObserverTemplated<T>
 {
 private:
     typedef void(T::*NotifyMethod)(INotification*);
@@ -419,7 +419,7 @@ public:
 //  Proxy
 //--------------------------------------
 template<class T>
-class Proxy : public IProxy<T>, public Notifier
+class Proxy : public IProxyTemplated<T>, public Notifier
 {
 public:
     /**
@@ -675,14 +675,14 @@ public:
      *
      * @param proxy an <code>IProxy</code> to be held by the <code>Model</code>.
      */
-    void registerProxy( IRegisterable* proxy );
+    void registerProxy( IProxyRestricted* proxy );
     /**
      * Retrieve an <code>IProxy</code> from the <code>Model</code>.
      *
      * @param proxyName
      * @return the <code>IProxy</code> instance previously registered with the given <code>proxyName</code>.
      */
-    IRegisterable* retrieveProxy( std::string proxyName );
+    IProxyRestricted* retrieveProxy( std::string proxyName );
 
     /**
      * Check if a Proxy is registered
@@ -698,7 +698,7 @@ public:
      * @param proxyName name of the <code>IProxy</code> instance to be removed.
      * @return the <code>IProxy</code> that was removed from the <code>Model</code>
      */
-    IRegisterable* removeProxy( std::string proxyName );
+    IProxyRestricted* removeProxy( std::string proxyName );
 
     /**
      * Remove an IModel instance
@@ -722,7 +722,7 @@ protected:
     void initializeModel(  );
 
     // Mapping of proxyNames to IProxy instances
-    std::map <std::string, IRegisterable*> proxyMap;
+    std::map <std::string, IProxyRestricted*> proxyMap;
 };
 
 //--------------------------------------
@@ -892,13 +892,13 @@ public:
      */
     static IView* getInstance( std::string key );
     /**
-     * Register an <code>IObserverFunctor</code> to be notified
+     * Register an <code>IObserverRestricted</code> to be notified
      * of <code>INotifications</code> with a given name.
      *
      * @param notificationName the name of the <code>INotifications</code> to notify this <code>IObserver</code> of
-     * @param observer the <code>IObserverFunctor</code> to register
+     * @param observer the <code>IObserverRestricted</code> to register
      */
-    void registerObserver ( std::string notificationName, IObserverFunctor* observer );
+    void registerObserver ( std::string notificationName, IObserverRestricted* observer );
     /**
      * Notify the <code>IObservers</code> for a particular <code>INotification</code>.
      *
@@ -936,7 +936,7 @@ public:
      * @param mediatorName the name to associate with this <code>IMediator</code> instance
      * @param mediator a reference to the <code>IMediator</code> instance
      */
-    void registerMediator( IRegisterable* mediator );
+    void registerMediator( IMediatorRestricted* mediator );
 
     /**
      * Retrieve an <code>IMediator</code> from the <code>View</code>.
@@ -944,7 +944,7 @@ public:
      * @param mediatorName the name of the <code>IMediator</code> instance to retrieve.
      * @return the <code>IMediator</code> instance previously registered with the given <code>mediatorName</code>.
      */
-    IRegisterable* retrieveMediator( std::string mediatorName );
+    IMediatorRestricted* retrieveMediator( std::string mediatorName );
 
     /**
      * Remove an <code>IMediator</code> from the <code>View</code>.
@@ -958,7 +958,7 @@ public:
      * @param mediatorName name of the <code>IMediator</code> instance to be removed.
      * @return the <code>IMediator</code> that was removed from the <code>View</code>
      */
-    IRegisterable* removeMediator( std::string mediatorName );
+    IMediatorRestricted* removeMediator( std::string mediatorName );
 
     /**
      * Check if a Mediator is registered or not
@@ -989,10 +989,10 @@ protected:
      */
     void initializeView();
     // Mapping of Mediator names to Mediator instances
-    std::map<std::string, IRegisterable*> mediatorMap;
+    std::map<std::string, IMediatorRestricted*> mediatorMap;
 
     // Mapping of Notification names to Observer lists
-    std::map<std::string, std::vector<IObserverFunctor*> > observerMap;
+    std::map<std::string, std::vector<IObserverRestricted*> > observerMap;
 
 private:
     bool existsObserversInterestedIn(std::string notificationName);
@@ -1054,14 +1054,14 @@ public:
      * @param proxyName the name of the <code>IProxy</code>.
      * @param proxy the <code>IProxy</code> instance to be registered with the <code>Model</code>.
      */
-    void registerProxy ( IRegisterable* proxy );
+    void registerProxy ( IProxyRestricted* proxy );
     /**
      * Retrieve an <code>IProxy</code> from the <code>Model</code> by name.
      *
      * @param proxyName the name of the proxy to be retrieved.
      * @return the <code>IProxy</code> instance previously registered with the given <code>proxyName</code>.
      */
-    IRegisterable* retrieveProxy ( std::string proxyName );
+    IProxyRestricted* retrieveProxy ( std::string proxyName );
 
     /**
      * Remove an <code>IProxy</code> from the <code>Model</code> by name.
@@ -1069,7 +1069,7 @@ public:
      * @param proxyName the <code>IProxy</code> to remove from the <code>Model</code>.
      * @return the <code>IProxy</code> that was removed from the <code>Model</code>
      */
-    IRegisterable* removeProxy ( std::string proxyName );
+    IProxyRestricted* removeProxy ( std::string proxyName );
 
     /**
      * Check if a Proxy is registered
@@ -1085,7 +1085,7 @@ public:
      * @param mediatorName the name to associate with this <code>IMediator</code>
      * @param mediator a reference to the <code>IMediator</code>
      */
-    void registerMediator( IRegisterable* mediator );
+    void registerMediator( IProxyRestricted* mediator );
 
     /**
      * Retrieve an <code>IMediator</code> from the <code>View</code>.
@@ -1093,7 +1093,7 @@ public:
      * @param mediatorName
      * @return the <code>IMediator</code> previously registered with the given <code>mediatorName</code>.
      */
-    IRegisterable* retrieveMediator( std::string mediatorName );
+    IProxyRestricted* retrieveMediator( std::string mediatorName );
 
     /**
      * Remove an <code>IMediator</code> from the <code>View</code>.
@@ -1101,7 +1101,7 @@ public:
      * @param mediatorName name of the <code>IMediator</code> to be removed.
      * @return the <code>IMediator</code> that was removed from the <code>View</code>
      */
-    IRegisterable* removeMediator( std::string mediatorName );
+    IProxyRestricted* removeMediator( std::string mediatorName );
 
     /**
      * Check if a Mediator is registered or not

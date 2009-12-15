@@ -193,7 +193,7 @@ public:
 //--------------------------------------
 //  Observer
 //--------------------------------------
-// TODO - figure out compare notify contexts, IObserverFunctors and whatever the hell else...
+// TODO - figure out compare notify contexts, IObserverRestricteds and whatever the hell else...
 class InterestedObject
 {
 public:
@@ -374,7 +374,7 @@ private:
     std::string noteType;
     INotification* notification;
     InterestedObject* contextObject;
-    IObserverFunctor* observer;
+    IObserverRestricted* observer;
     int viewComponent;
     IMediator<int>* mediator;
 
