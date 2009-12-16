@@ -25,7 +25,7 @@
   </div>
 </div>
 <div class="contents">
-<h1>IFacade Class Reference</h1><!-- doxytag: class="IFacade" --><!-- doxytag: inherits="INotifier" -->
+<h1>IFacade Class Reference</h1><!-- doxytag: class="IFacade" --><!-- doxytag: inherits="INotifier,IMultitonKeyHeir" -->
 <p>The interface definition for a PureMVC <a class="el" href="class_facade.html" title="A base Multiton IFacade implementation.">Facade</a>.  
 <a href="#_details">More...</a></p>
 
@@ -35,35 +35,37 @@ Inheritance diagram for IFacade:</div>
 <div class="dynsection">
 <div class="center"><img src="class_i_facade__inherit__graph.png" border="0" usemap="#_i_facade_inherit__map" alt="Inheritance graph"/></div>
 <map name="_i_facade_inherit__map" id="_i_facade_inherit__map">
-<area shape="rect" id="node5" href="class_facade.html" title="A base Multiton IFacade implementation." alt="" coords="37,166,101,197"/><area shape="rect" id="node2" href="class_i_notifier.html" title="The interface definition for a PureMVC Notifier." alt="" coords="36,6,103,37"/><area shape="rect" id="node7" href="class_application_facade.html" title="ApplicationFacade" alt="" coords="5,246,133,277"/></map>
+<area shape="rect" id="node7" href="class_facade.html" title="A base Multiton IFacade implementation." alt="" coords="64,166,128,197"/><area shape="rect" id="node2" href="class_i_notifier.html" title="The interface definition for a PureMVC Notifier." alt="" coords="5,6,72,37"/><area shape="rect" id="node4" href="class_i_multiton_key_heir.html" title="Contains a multiton key." alt="" coords="96,6,211,37"/><area shape="rect" id="node9" href="class_application_facade.html" title="ApplicationFacade" alt="" coords="32,246,160,277"/></map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for IFacade:</div>
 <div class="dynsection">
 <div class="center"><img src="class_i_facade__coll__graph.png" border="0" usemap="#_i_facade_coll__map" alt="Collaboration graph"/></div>
+<map name="_i_facade_coll__map" id="_i_facade_coll__map">
+<area shape="rect" id="node2" href="class_i_notifier.html" title="The interface definition for a PureMVC Notifier." alt="" coords="5,6,72,37"/><area shape="rect" id="node4" href="class_i_multiton_key_heir.html" title="Contains a multiton key." alt="" coords="96,6,211,37"/></map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 
 <p><a href="class_i_facade-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#a4b109aac2f114b6d0dca8ddcb468a8f0">registerProxy</a> (<a class="el" href="class_i_registerable.html">IRegisterable</a> *proxy)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Register an <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> with the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> by name.  <a href="#a4b109aac2f114b6d0dca8ddcb468a8f0"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_i_registerable.html">IRegisterable</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#aa0bce96ed315060ebbb41eb5a68873db">retrieveProxy</a> (std::string proxyName)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieve a <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> by name.  <a href="#aa0bce96ed315060ebbb41eb5a68873db"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_i_registerable.html">IRegisterable</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#aeb3f0239818d22f71550ac99597c8cb8">removeProxy</a> (std::string proxyName)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove an <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> instance from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> by name.  <a href="#aeb3f0239818d22f71550ac99597c8cb8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#ac75f3908e6f4da1eb88675e6fa25247f">registerProxy</a> (<a class="el" href="class_i_proxy_restricted.html">IProxyRestricted</a> *proxy)=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Register an <code>IProxy</code> with the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> by name.  <a href="#ac75f3908e6f4da1eb88675e6fa25247f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_i_proxy_restricted.html">IProxyRestricted</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#ae81147526315be14601d4b161d5fc6f5">retrieveProxy</a> (std::string proxyName)=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieve a <code>IProxy</code> from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> by name.  <a href="#ae81147526315be14601d4b161d5fc6f5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_i_proxy_restricted.html">IProxyRestricted</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#a30bf5abb6cd8eea84bf95c969f285aee">removeProxy</a> (std::string proxyName)=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove an <code>IProxy</code> instance from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> by name.  <a href="#a30bf5abb6cd8eea84bf95c969f285aee"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#a0e2050dc7963a5afbecc76fb8f003467">hasProxy</a> (std::string proxyName)=0</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Check if a <a class="el" href="class_proxy.html">Proxy</a> is registered.  <a href="#a0e2050dc7963a5afbecc76fb8f003467"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#a7eb0ea44ebfde6a4598563f88efb0491">removeCommand</a> (std::string notificationName)=0</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Register an <code><a class="el" href="class_i_command.html" title="The interface definition for a PureMVC Command.">ICommand</a></code> with the <code><a class="el" href="class_controller.html" title="A Multiton IController implementation.">Controller</a></code>.  <a href="#a7eb0ea44ebfde6a4598563f88efb0491"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#a5ab474d5222ea4f9626607ed3fe56563">hasCommand</a> (std::string notificationName)=0</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Check if a Command is registered for a given <a class="el" href="class_notification.html" title="A base INotification implementation.">Notification</a>.  <a href="#a5ab474d5222ea4f9626607ed3fe56563"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#ae0ea46f5c8965a214398ce4bfffdcaf5">registerMediator</a> (<a class="el" href="class_i_registerable.html">IRegisterable</a> *mediator)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Register an <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> instance with the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>.  <a href="#ae0ea46f5c8965a214398ce4bfffdcaf5"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_i_registerable.html">IRegisterable</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#a4ca38f684670675afedb487fdcbc8b1e">retrieveMediator</a> (std::string mediatorName)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieve an <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> instance from the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>.  <a href="#a4ca38f684670675afedb487fdcbc8b1e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_i_registerable.html">IRegisterable</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#add33fc987882bd922ca52468eead85f8">removeMediator</a> (std::string mediatorName)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove a <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> instance from the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>.  <a href="#add33fc987882bd922ca52468eead85f8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#af7ae89afc50684e417d4b6ea280b9bcc">registerMediator</a> (<a class="el" href="class_i_mediator_restricted.html">IMediatorRestricted</a> *mediator)=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Register an <code>IMediator</code> instance with the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>.  <a href="#af7ae89afc50684e417d4b6ea280b9bcc"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_i_mediator_restricted.html">IMediatorRestricted</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#a7420dbda3a46550262c9666478274ffa">retrieveMediator</a> (std::string mediatorName)=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieve an <code>IMediator</code> instance from the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>.  <a href="#a7420dbda3a46550262c9666478274ffa"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_i_mediator_restricted.html">IMediatorRestricted</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#a9ea7761c82b6c5cec9e9f2d4c914e717">removeMediator</a> (std::string mediatorName)=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove a <code>IMediator</code> instance from the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>.  <a href="#a9ea7761c82b6c5cec9e9f2d4c914e717"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#a0380365d0ff46821104e72a24126be24">hasMediator</a> (std::string mediatorName)=0</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Check if a <a class="el" href="class_mediator.html">Mediator</a> is registered or not.  <a href="#a0380365d0ff46821104e72a24126be24"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_facade.html#a050257cc2e87bce1063a48b688da9f92">notifyObservers</a> (<a class="el" href="class_i_notification.html">INotification</a> *notification)=0</td></tr>
@@ -200,14 +202,14 @@ Collaboration diagram for IFacade:</div>
 
 </div>
 </div>
-<a class="anchor" id="ae0ea46f5c8965a214398ce4bfffdcaf5"></a><!-- doxytag: member="IFacade::registerMediator" ref="ae0ea46f5c8965a214398ce4bfffdcaf5" args="(IRegisterable *mediator)=0" -->
+<a class="anchor" id="af7ae89afc50684e417d4b6ea280b9bcc"></a><!-- doxytag: member="IFacade::registerMediator" ref="af7ae89afc50684e417d4b6ea280b9bcc" args="(IMediatorRestricted *mediator)=0" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">virtual void IFacade::registerMediator </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_i_registerable.html">IRegisterable</a> *&nbsp;</td>
+          <td class="paramtype"><a class="el" href="class_i_mediator_restricted.html">IMediatorRestricted</a> *&nbsp;</td>
           <td class="paramname"> <em>mediator</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td><code> [pure virtual]</code></td>
@@ -216,26 +218,26 @@ Collaboration diagram for IFacade:</div>
 </div>
 <div class="memdoc">
 
-<p>Register an <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> instance with the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>. </p>
+<p>Register an <code>IMediator</code> instance with the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>mediator</em>&nbsp;</td><td>a reference to the <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> instance </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>mediator</em>&nbsp;</td><td>a reference to the <code>IMediator</code> instance </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="class_facade.html#a18be96afde2f3643abe76bd8197161e8">Facade</a>.</p>
+<p>Implemented in <a class="el" href="class_facade.html#a3c0ead374ba222146a7fe5a59eb0fcb4">Facade</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a4b109aac2f114b6d0dca8ddcb468a8f0"></a><!-- doxytag: member="IFacade::registerProxy" ref="a4b109aac2f114b6d0dca8ddcb468a8f0" args="(IRegisterable *proxy)=0" -->
+<a class="anchor" id="ac75f3908e6f4da1eb88675e6fa25247f"></a><!-- doxytag: member="IFacade::registerProxy" ref="ac75f3908e6f4da1eb88675e6fa25247f" args="(IProxyRestricted *proxy)=0" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">virtual void IFacade::registerProxy </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_i_registerable.html">IRegisterable</a> *&nbsp;</td>
+          <td class="paramtype"><a class="el" href="class_i_proxy_restricted.html">IProxyRestricted</a> *&nbsp;</td>
           <td class="paramname"> <em>proxy</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td><code> [pure virtual]</code></td>
@@ -244,15 +246,15 @@ Collaboration diagram for IFacade:</div>
 </div>
 <div class="memdoc">
 
-<p>Register an <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> with the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> by name. </p>
+<p>Register an <code>IProxy</code> with the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> by name. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>proxy</em>&nbsp;</td><td>the <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> to be registered with the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code>. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>proxy</em>&nbsp;</td><td>the <code>IProxy</code> to be registered with the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code>. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="class_facade.html#a34178a1508adec460365d066b007315e">Facade</a>.</p>
+<p>Implemented in <a class="el" href="class_facade.html#ab075d59d3da686f0262900f4e19f22cd">Facade</a>.</p>
 
 </div>
 </div>
@@ -286,12 +288,12 @@ Collaboration diagram for IFacade:</div>
 
 </div>
 </div>
-<a class="anchor" id="add33fc987882bd922ca52468eead85f8"></a><!-- doxytag: member="IFacade::removeMediator" ref="add33fc987882bd922ca52468eead85f8" args="(std::string mediatorName)=0" -->
+<a class="anchor" id="a9ea7761c82b6c5cec9e9f2d4c914e717"></a><!-- doxytag: member="IFacade::removeMediator" ref="a9ea7761c82b6c5cec9e9f2d4c914e717" args="(std::string mediatorName)=0" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="class_i_registerable.html">IRegisterable</a>* IFacade::removeMediator </td>
+          <td class="memname">virtual <a class="el" href="class_i_mediator_restricted.html">IMediatorRestricted</a>* IFacade::removeMediator </td>
           <td>(</td>
           <td class="paramtype">std::string&nbsp;</td>
           <td class="paramname"> <em>mediatorName</em></td>
@@ -302,25 +304,25 @@ Collaboration diagram for IFacade:</div>
 </div>
 <div class="memdoc">
 
-<p>Remove a <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> instance from the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>. </p>
+<p>Remove a <code>IMediator</code> instance from the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>mediatorName</em>&nbsp;</td><td>name of the <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> instance to be removed. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>mediatorName</em>&nbsp;</td><td>name of the <code>IMediator</code> instance to be removed. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>the <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> instance previously registered with the given <code>mediatorName</code>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>the <code>IMediator</code> instance previously registered with the given <code>mediatorName</code>. </dd></dl>
 
-<p>Implemented in <a class="el" href="class_facade.html#a5503a43e0677fc740e06afd6e0cfd8df">Facade</a>.</p>
+<p>Implemented in <a class="el" href="class_facade.html#a0ddae3c399fc7cb393596f8b13792790">Facade</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aeb3f0239818d22f71550ac99597c8cb8"></a><!-- doxytag: member="IFacade::removeProxy" ref="aeb3f0239818d22f71550ac99597c8cb8" args="(std::string proxyName)=0" -->
+<a class="anchor" id="a30bf5abb6cd8eea84bf95c969f285aee"></a><!-- doxytag: member="IFacade::removeProxy" ref="a30bf5abb6cd8eea84bf95c969f285aee" args="(std::string proxyName)=0" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="class_i_registerable.html">IRegisterable</a>* IFacade::removeProxy </td>
+          <td class="memname">virtual <a class="el" href="class_i_proxy_restricted.html">IProxyRestricted</a>* IFacade::removeProxy </td>
           <td>(</td>
           <td class="paramtype">std::string&nbsp;</td>
           <td class="paramname"> <em>proxyName</em></td>
@@ -331,25 +333,25 @@ Collaboration diagram for IFacade:</div>
 </div>
 <div class="memdoc">
 
-<p>Remove an <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> instance from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> by name. </p>
+<p>Remove an <code>IProxy</code> instance from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> by name. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>proxyName</em>&nbsp;</td><td>the <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> to remove from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code>. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>proxyName</em>&nbsp;</td><td>the <code>IProxy</code> to remove from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code>. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>the <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> that was removed from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>the <code>IProxy</code> that was removed from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> </dd></dl>
 
-<p>Implemented in <a class="el" href="class_facade.html#a280aacb5b8be8d8ed84dfcaa7e04dab9">Facade</a>.</p>
+<p>Implemented in <a class="el" href="class_facade.html#a2cca0e7a4b11e905c2d4f5d7e0a545c1">Facade</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a4ca38f684670675afedb487fdcbc8b1e"></a><!-- doxytag: member="IFacade::retrieveMediator" ref="a4ca38f684670675afedb487fdcbc8b1e" args="(std::string mediatorName)=0" -->
+<a class="anchor" id="a7420dbda3a46550262c9666478274ffa"></a><!-- doxytag: member="IFacade::retrieveMediator" ref="a7420dbda3a46550262c9666478274ffa" args="(std::string mediatorName)=0" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="class_i_registerable.html">IRegisterable</a>* IFacade::retrieveMediator </td>
+          <td class="memname">virtual <a class="el" href="class_i_mediator_restricted.html">IMediatorRestricted</a>* IFacade::retrieveMediator </td>
           <td>(</td>
           <td class="paramtype">std::string&nbsp;</td>
           <td class="paramname"> <em>mediatorName</em></td>
@@ -360,25 +362,25 @@ Collaboration diagram for IFacade:</div>
 </div>
 <div class="memdoc">
 
-<p>Retrieve an <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> instance from the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>. </p>
+<p>Retrieve an <code>IMediator</code> instance from the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>mediatorName</em>&nbsp;</td><td>the name of the <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> instance to retrievve </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>mediatorName</em>&nbsp;</td><td>the name of the <code>IMediator</code> instance to retrievve </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>the <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> previously registered with the given <code>mediatorName</code>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>the <code>IMediator</code> previously registered with the given <code>mediatorName</code>. </dd></dl>
 
-<p>Implemented in <a class="el" href="class_facade.html#a3bf2f37bd89a28cf7feb9d3b4625028e">Facade</a>.</p>
+<p>Implemented in <a class="el" href="class_facade.html#a4e821a5fcc6c2fa509742e88ca43dd2d">Facade</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aa0bce96ed315060ebbb41eb5a68873db"></a><!-- doxytag: member="IFacade::retrieveProxy" ref="aa0bce96ed315060ebbb41eb5a68873db" args="(std::string proxyName)=0" -->
+<a class="anchor" id="ae81147526315be14601d4b161d5fc6f5"></a><!-- doxytag: member="IFacade::retrieveProxy" ref="ae81147526315be14601d4b161d5fc6f5" args="(std::string proxyName)=0" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="class_i_registerable.html">IRegisterable</a>* IFacade::retrieveProxy </td>
+          <td class="memname">virtual <a class="el" href="class_i_proxy_restricted.html">IProxyRestricted</a>* IFacade::retrieveProxy </td>
           <td>(</td>
           <td class="paramtype">std::string&nbsp;</td>
           <td class="paramname"> <em>proxyName</em></td>
@@ -389,16 +391,16 @@ Collaboration diagram for IFacade:</div>
 </div>
 <div class="memdoc">
 
-<p>Retrieve a <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> by name. </p>
+<p>Retrieve a <code>IProxy</code> from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> by name. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>proxyName</em>&nbsp;</td><td>the name of the <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> instance to be retrieved. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>proxyName</em>&nbsp;</td><td>the name of the <code>IProxy</code> instance to be retrieved. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>the <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> previously regisetered by <code>proxyName</code> with the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>the <code>IProxy</code> previously regisetered by <code>proxyName</code> with the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code>. </dd></dl>
 
-<p>Implemented in <a class="el" href="class_facade.html#a6c0d3884e0c987401cc11ca7ee95cbf8">Facade</a>.</p>
+<p>Implemented in <a class="el" href="class_facade.html#a6cba094fce77dac303714372a8bb3fc5">Facade</a>.</p>
 
 </div>
 </div>
@@ -406,7 +408,7 @@ Collaboration diagram for IFacade:</div>
 <li>/home/clcks/Code/MVC++/trunk/mvcpp/src/<a class="el" href="pmvcppbase_8h_source.html">pmvcppbase.h</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Dec 13 17:47:40 2009 for MVC++ by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Dec 15 19:06:31 2009 for MVC++ by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

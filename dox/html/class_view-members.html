@@ -29,21 +29,20 @@
   <tr class="memlist"><td><a class="el" href="class_view.html#ad1e9acdfeba49c16cc725352b08d4ea3">getInstance</a>(std::string key)</td><td><a class="el" href="class_view.html">View</a></td><td><code> [static]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_multiton_key_heir.html#aa5622459d33380deb08dc3cab8b991c7">getMultitonKey</a>()</td><td><a class="el" href="class_multiton_key_heir.html">MultitonKeyHeir</a></td><td><code> [virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_view.html#a5af9aeea286647436cf595d0a946711f">hasMediator</a>(std::string mediatorName)</td><td><a class="el" href="class_view.html">View</a></td><td><code> [virtual]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_view.html#a1010b119ba6422a725f932feba4cc57c">initializeView</a>()</td><td><a class="el" href="class_view.html">View</a></td><td><code> [protected]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>mediatorMap</b> (defined in <a class="el" href="class_view.html">View</a>)</td><td><a class="el" href="class_view.html">View</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_view.html#a515953a4f2e9c6b7a29ae0591657b9f3">notifyObservers</a>(INotification *notification)</td><td><a class="el" href="class_view.html">View</a></td><td><code> [virtual]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>observerMap</b> (defined in <a class="el" href="class_view.html">View</a>)</td><td><a class="el" href="class_view.html">View</a></td><td><code> [protected]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_view.html#a83d251521779660be975734eff28bbcf">registerMediator</a>(IRegisterable *mediator)</td><td><a class="el" href="class_view.html">View</a></td><td><code> [virtual]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_view.html#aa7bdcf481d14924585b4c2581a8c076a">registerObserver</a>(std::string notificationName, IObserverFunctor *observer)</td><td><a class="el" href="class_view.html">View</a></td><td><code> [virtual]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_view.html#ad76a9a22b7db131efc97b74d12f80b40">removeMediator</a>(std::string mediatorName)</td><td><a class="el" href="class_view.html">View</a></td><td><code> [virtual]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_view.html#a4f6d60997fc983e6d1224e0a59f8be4e">removeObserver</a>(std::string notificationName, IObserverFunctor *notifyContext)</td><td><a class="el" href="class_view.html">View</a></td><td><code> [virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_view.html#a6980c6deed6fff89a94c8cb09df7a644">registerMediator</a>(IMediatorRestricted *mediator)</td><td><a class="el" href="class_view.html">View</a></td><td><code> [virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_view.html#a003536ad9e3cc4be39cdc5343ff891cb">registerObserver</a>(std::string notificationName, IObserverRestricted *observer)</td><td><a class="el" href="class_view.html">View</a></td><td><code> [virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_view.html#a015fe15ee362685fdb72584019417b5d">removeMediator</a>(std::string mediatorName)</td><td><a class="el" href="class_view.html">View</a></td><td><code> [virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_view.html#a3220b001d12e42afec34f9758145738c">removeObserver</a>(std::string notificationName, unsigned int contextAddress)</td><td><a class="el" href="class_view.html">View</a></td><td><code> [virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_view.html#aac1d2aea65c021664a89319d9e3159b3">removeView</a>(std::string key)</td><td><a class="el" href="class_view.html">View</a></td><td><code> [static]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_view.html#ab7750a470477ebc1a87d3f55ad5c9d13">retrieveMediator</a>(std::string mediatorName)</td><td><a class="el" href="class_view.html">View</a></td><td><code> [virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_view.html#a108934f0fe48f40f715a0f310d40a26e">retrieveMediator</a>(std::string mediatorName)</td><td><a class="el" href="class_view.html">View</a></td><td><code> [virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_multiton_key_heir.html#abc70ef7c066bc8d7bf0196ec727599bb">setMultitonKey</a>(std::string key)</td><td><a class="el" href="class_multiton_key_heir.html">MultitonKeyHeir</a></td><td><code> [virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_view.html#a44ad60a768422d3fa8fbd7576950080a">View</a>()</td><td><a class="el" href="class_view.html">View</a></td><td></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>~IView</b>() (defined in <a class="el" href="class_i_view.html">IView</a>)</td><td><a class="el" href="class_i_view.html">IView</a></td><td><code> [inline, virtual]</code></td></tr>
 </table></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Dec 13 17:47:40 2009 for MVC++ by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Dec 15 19:06:32 2009 for MVC++ by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

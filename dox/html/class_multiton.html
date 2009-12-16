@@ -29,7 +29,7 @@
 <p>A templated <a class="el" href="class_multiton.html" title="A templated Multiton class.">Multiton</a> class.  
 <a href="#_details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="patterns_8h_source.html">patterns.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="pmvcppbase_8h_source.html">pmvcppbase.h</a>&gt;</code></p>
 
 <p><a href="class_multiton-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
@@ -42,6 +42,8 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Check existance.  <a href="#a7a770fb0b489a0d54485c06b70d02495"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static size_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_multiton.html#a9b0d5015ce51442ed15dcab7ef3305f0">size</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Total instances.  <a href="#a9b0d5015ce51442ed15dcab7ef3305f0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_multiton.html#a10e0b9c9ff30df0b6294cb1703d4b954">erase</a> (std::string key)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Deletes an instance.  <a href="#a10e0b9c9ff30df0b6294cb1703d4b954"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_multiton.html#afa6b2cf1bd128c1d06848e15c58222de">clear</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Deletes instances.  <a href="#afa6b2cf1bd128c1d06848e15c58222de"></a><br/></td></tr>
 </table>
@@ -71,6 +73,29 @@ template&lt;class T &gt; </div>
 
 <p>Deletes instances. </p>
 <p>Deletes all instances, calls destructors. </p>
+
+</div>
+</div>
+<a class="anchor" id="a10e0b9c9ff30df0b6294cb1703d4b954"></a><!-- doxytag: member="Multiton::erase" ref="a10e0b9c9ff30df0b6294cb1703d4b954" args="(std::string key)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static void <a class="el" href="class_multiton.html">Multiton</a>&lt; T &gt;::erase </td>
+          <td>(</td>
+          <td class="paramtype">std::string&nbsp;</td>
+          <td class="paramname"> <em>key</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Deletes an instance. </p>
+<p>Deletes one instance of key <code>key</code>. </p>
 
 </div>
 </div>
@@ -178,10 +203,10 @@ template&lt;class T &gt; </div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/clcks/Code/MVC++/trunk/mvcpp/src/<a class="el" href="patterns_8h_source.html">patterns.h</a></li>
+<li>/home/clcks/Code/MVC++/trunk/mvcpp/src/<a class="el" href="pmvcppbase_8h_source.html">pmvcppbase.h</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Dec 13 17:47:40 2009 for MVC++ by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Dec 15 19:06:32 2009 for MVC++ by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

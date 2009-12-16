@@ -46,23 +46,23 @@ Collaboration diagram for Model:</div>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#ae3b375de5f6df4faf74a95d64748e048">Model</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#ae3b375de5f6df4faf74a95d64748e048"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#ad2b86f6758eae0a9f2d5e41c8bb17e77">registerProxy</a> (<a class="el" href="class_i_registerable.html">IRegisterable</a> *proxy)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Register an <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> with the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code>.  <a href="#ad2b86f6758eae0a9f2d5e41c8bb17e77"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_i_registerable.html">IRegisterable</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a37e66ae2b95f6051db75c265fa0a5681">retrieveProxy</a> (std::string proxyName)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieve an <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code>.  <a href="#a37e66ae2b95f6051db75c265fa0a5681"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a12d22c0faf6aa8c69d7b0e3d3cfdd13b">registerProxy</a> (<a class="el" href="class_i_proxy_restricted.html">IProxyRestricted</a> *proxy)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Register an <code>IProxy</code> with the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code>.  <a href="#a12d22c0faf6aa8c69d7b0e3d3cfdd13b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_i_proxy_restricted.html">IProxyRestricted</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#acba552053974de59cf6bdac940265634">retrieveProxy</a> (std::string proxyName)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieve an <code>IProxy</code> from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code>.  <a href="#acba552053974de59cf6bdac940265634"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#ae25df8e28fb2d4be29b8217211c7d965">hasProxy</a> (std::string proxyName)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Check if a <a class="el" href="class_proxy.html">Proxy</a> is registered.  <a href="#ae25df8e28fb2d4be29b8217211c7d965"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_i_registerable.html">IRegisterable</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a2e160b389fc218f0590e60f0bf8b4a4e">removeProxy</a> (std::string proxyName)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove an <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code>.  <a href="#a2e160b389fc218f0590e60f0bf8b4a4e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#af815e60f9acb32c0be2a2d5377f39bb7">removeModel</a> (std::string key)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_i_proxy_restricted.html">IProxyRestricted</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a453947b6a8f925304515ac58078f5e57">removeProxy</a> (std::string proxyName)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove an <code>IProxy</code> from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code>.  <a href="#a453947b6a8f925304515ac58078f5e57"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_i_model.html">IModel</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a3de2966f67f3328abff9a2fc6c96b3e1">getInstance</a> (std::string key)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> <a class="el" href="class_multiton.html" title="A templated Multiton class.">Multiton</a> Factory method.  <a href="#a3de2966f67f3328abff9a2fc6c96b3e1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#af815e60f9acb32c0be2a2d5377f39bb7">removeModel</a> (std::string key)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove an <a class="el" href="class_i_model.html" title="The interface definition for a PureMVC Model.">IModel</a> instance.  <a href="#af815e60f9acb32c0be2a2d5377f39bb7"></a><br/></td></tr>
-<tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a8cdfc34b0a6535fe5472444e41ae7e58">initializeModel</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialize the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> instance.  <a href="#a8cdfc34b0a6535fe5472444e41ae7e58"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac69e141ef27d7a9e9510988281345f42"></a><!-- doxytag: member="Model::proxyMap" ref="ac69e141ef27d7a9e9510988281345f42" args="" -->
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a424c652f19ae653b86a8b540e8b6bcb0"></a><!-- doxytag: member="Model::proxyMap" ref="a424c652f19ae653b86a8b540e8b6bcb0" args="" -->
 std::map&lt; std::string, <br class="typebreak"/>
-<a class="el" href="class_i_registerable.html">IRegisterable</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>proxyMap</b></td></tr>
+<a class="el" href="class_i_proxy_restricted.html">IProxyRestricted</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>proxyMap</b></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>A <a class="el" href="class_multiton.html" title="A templated Multiton class.">Multiton</a> <code><a class="el" href="class_i_model.html" title="The interface definition for a PureMVC Model.">IModel</a></code> implementation. </p>
@@ -70,11 +70,11 @@ std::map&lt; std::string, <br class="typebreak"/>
 <p>The <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> assumes these responsibilities:</p>
 <ul>
 <li>
-Maintain a cache of <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> instances. </li>
+Maintain a cache of <code>IProxy</code> instances. </li>
 <li>
-Provide methods for registering, retrieving, and removing <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> instances. </li>
+Provide methods for registering, retrieving, and removing <code>IProxy</code> instances. </li>
 </ul>
-<p>Your application must register <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> instances with the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code>. Typically, you use an <code><a class="el" href="class_i_command.html" title="The interface definition for a PureMVC Command.">ICommand</a></code> to create and register <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> instances once the <code><a class="el" href="class_facade.html" title="A base Multiton IFacade implementation.">Facade</a></code> has initialized the Core actors.</p>
+<p>Your application must register <code>IProxy</code> instances with the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code>. Typically, you use an <code><a class="el" href="class_i_command.html" title="The interface definition for a PureMVC Command.">ICommand</a></code> to create and register <code>IProxy</code> instances once the <code><a class="el" href="class_facade.html" title="A base Multiton IFacade implementation.">Facade</a></code> has initialized the Core actors.</p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_proxy.html#a5b4cd640a999da5ca8efb9225f7bc1ea" title="A base IProxy implementation.">Proxy::Proxy</a> </dd>
 <dd>
 IProxy::IProxy </dd></dl>
@@ -95,17 +95,32 @@ IProxy::IProxy </dd></dl>
 <div class="memdoc">
 
 <p>Constructor. </p>
-<p>This <code><a class="el" href="class_i_model.html" title="The interface definition for a PureMVC Model.">IModel</a></code> implementation is a <a class="el" href="class_multiton.html" title="A templated Multiton class.">Multiton</a>, so you should not call the constructor directly, but instead call the static <a class="el" href="class_multiton.html" title="A templated Multiton class.">Multiton</a> Factory method <code>Model.getInstance( multitonKey )</code></p>
-<dl><dt><b>Exceptions:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>Error</em>&nbsp;</td><td>Error if instance for this <a class="el" href="class_multiton.html" title="A templated Multiton class.">Multiton</a> key instance has already been constructed </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>This <code><a class="el" href="class_i_model.html" title="The interface definition for a PureMVC Model.">IModel</a></code> implementation is a <a class="el" href="class_multiton.html" title="A templated Multiton class.">Multiton</a>, so you should not call the constructor directly, but instead call the static <a class="el" href="class_multiton.html" title="A templated Multiton class.">Multiton</a> Factory method <code>Model.getInstance( multitonKey )</code> Unlike the AS3 version of PMVC, if you are going to subclass <a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a>, you should stick your initialization code in your subclass constructor. Keep in mind though, that the MultitonKey for this instance does not get set until after the constructor is called from <code>getInstance</code>. </p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a3de2966f67f3328abff9a2fc6c96b3e1"></a><!-- doxytag: member="Model::getInstance" ref="a3de2966f67f3328abff9a2fc6c96b3e1" args="(std::string key)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_i_model.html">IModel</a> * Model::getInstance </td>
+          <td>(</td>
+          <td class="paramtype">std::string&nbsp;</td>
+          <td class="paramname"> <em>key</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p><code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> <a class="el" href="class_multiton.html" title="A templated Multiton class.">Multiton</a> Factory method. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>the instance for this <a class="el" href="class_multiton.html" title="A templated Multiton class.">Multiton</a> key </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ae25df8e28fb2d4be29b8217211c7d965"></a><!-- doxytag: member="Model::hasProxy" ref="ae25df8e28fb2d4be29b8217211c7d965" args="(std::string proxyName)" -->
 <div class="memitem">
 <div class="memproto">
@@ -135,35 +150,14 @@ IProxy::IProxy </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a8cdfc34b0a6535fe5472444e41ae7e58"></a><!-- doxytag: member="Model::initializeModel" ref="a8cdfc34b0a6535fe5472444e41ae7e58" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Model::initializeModel </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Initialize the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> instance. </p>
-<p>Called automatically by the constructor, this is your opportunity to initialize the Singleton instance in your subclass without overriding the constructor.</p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>void </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ad2b86f6758eae0a9f2d5e41c8bb17e77"></a><!-- doxytag: member="Model::registerProxy" ref="ad2b86f6758eae0a9f2d5e41c8bb17e77" args="(IRegisterable *proxy)" -->
+<a class="anchor" id="a12d22c0faf6aa8c69d7b0e3d3cfdd13b"></a><!-- doxytag: member="Model::registerProxy" ref="a12d22c0faf6aa8c69d7b0e3d3cfdd13b" args="(IProxyRestricted *proxy)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Model::registerProxy </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_i_registerable.html">IRegisterable</a> *&nbsp;</td>
+          <td class="paramtype"><a class="el" href="class_i_proxy_restricted.html">IProxyRestricted</a> *&nbsp;</td>
           <td class="paramname"> <em>proxy</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td><code> [virtual]</code></td>
@@ -172,15 +166,15 @@ IProxy::IProxy </dd></dl>
 </div>
 <div class="memdoc">
 
-<p>Register an <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> with the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code>. </p>
+<p>Register an <code>IProxy</code> with the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code>. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>proxy</em>&nbsp;</td><td>an <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> to be held by the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code>. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>proxy</em>&nbsp;</td><td>an <code>IProxy</code> to be held by the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code>. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="class_i_model.html#a33e5e9dc9f55aefa956b6f9caaa909f9">IModel</a>.</p>
+<p>Implements <a class="el" href="class_i_model.html#a1e45bcff4bb8ae259bba24253f1bad99">IModel</a>.</p>
 
 </div>
 </div>
@@ -194,7 +188,7 @@ IProxy::IProxy </dd></dl>
           <td class="paramtype">std::string&nbsp;</td>
           <td class="paramname"> <em>key</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -210,12 +204,12 @@ IProxy::IProxy </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a2e160b389fc218f0590e60f0bf8b4a4e"></a><!-- doxytag: member="Model::removeProxy" ref="a2e160b389fc218f0590e60f0bf8b4a4e" args="(std::string proxyName)" -->
+<a class="anchor" id="a453947b6a8f925304515ac58078f5e57"></a><!-- doxytag: member="Model::removeProxy" ref="a453947b6a8f925304515ac58078f5e57" args="(std::string proxyName)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_i_registerable.html">IRegisterable</a> * Model::removeProxy </td>
+          <td class="memname"><a class="el" href="class_i_proxy_restricted.html">IProxyRestricted</a> * Model::removeProxy </td>
           <td>(</td>
           <td class="paramtype">std::string&nbsp;</td>
           <td class="paramname"> <em>proxyName</em></td>
@@ -226,25 +220,25 @@ IProxy::IProxy </dd></dl>
 </div>
 <div class="memdoc">
 
-<p>Remove an <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code>. </p>
+<p>Remove an <code>IProxy</code> from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code>. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>proxyName</em>&nbsp;</td><td>name of the <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> instance to be removed. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>proxyName</em>&nbsp;</td><td>name of the <code>IProxy</code> instance to be removed. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>the <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> that was removed from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>the <code>IProxy</code> that was removed from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code> </dd></dl>
 
-<p>Implements <a class="el" href="class_i_model.html#a9ddb6f6fb85a97c47f190ae8f9066cc3">IModel</a>.</p>
+<p>Implements <a class="el" href="class_i_model.html#aae5ab75fb4c18a5c6112c9dc7820ab5b">IModel</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a37e66ae2b95f6051db75c265fa0a5681"></a><!-- doxytag: member="Model::retrieveProxy" ref="a37e66ae2b95f6051db75c265fa0a5681" args="(std::string proxyName)" -->
+<a class="anchor" id="acba552053974de59cf6bdac940265634"></a><!-- doxytag: member="Model::retrieveProxy" ref="acba552053974de59cf6bdac940265634" args="(std::string proxyName)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_i_registerable.html">IRegisterable</a> * Model::retrieveProxy </td>
+          <td class="memname"><a class="el" href="class_i_proxy_restricted.html">IProxyRestricted</a> * Model::retrieveProxy </td>
           <td>(</td>
           <td class="paramtype">std::string&nbsp;</td>
           <td class="paramname"> <em>proxyName</em></td>
@@ -255,16 +249,16 @@ IProxy::IProxy </dd></dl>
 </div>
 <div class="memdoc">
 
-<p>Retrieve an <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code>. </p>
+<p>Retrieve an <code>IProxy</code> from the <code><a class="el" href="class_model.html" title="A Multiton IModel implementation.">Model</a></code>. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>proxyName</em>&nbsp;</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>the <code><a class="el" href="class_i_proxy.html" title="The interface definition for a PureMVC Proxy.">IProxy</a></code> instance previously registered with the given <code>proxyName</code>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>the <code>IProxy</code> instance previously registered with the given <code>proxyName</code>. </dd></dl>
 
-<p>Implements <a class="el" href="class_i_model.html#aa4dfec4ab5bad973f9ad0c10b98054c3">IModel</a>.</p>
+<p>Implements <a class="el" href="class_i_model.html#a23cc58b62d1767be28b90d016957159b">IModel</a>.</p>
 
 </div>
 </div>
@@ -273,7 +267,7 @@ IProxy::IProxy </dd></dl>
 <li>/home/clcks/Code/MVC++/trunk/mvcpp/src/pmvcpparch.cpp</li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Dec 13 17:47:40 2009 for MVC++ by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Dec 15 19:06:32 2009 for MVC++ by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

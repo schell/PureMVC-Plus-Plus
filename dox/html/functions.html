@@ -66,9 +66,8 @@ Here is a list of all documented class members with links to the class documenta
 : <a class="el" href="class_multiton.html#afa6b2cf1bd128c1d06848e15c58222de">Multiton&lt; T &gt;</a>
 </li>
 <li>compareNotifyContext()
-: <a class="el" href="class_observer.html#a942819ca5f5642e1d681a604780a6a62">Observer&lt; T &gt;</a>
-, <a class="el" href="class_i_observer.html#aa75244eda20ee630d0b5464e488d0a34">IObserver&lt; T &gt;</a>
-, <a class="el" href="class_i_observer_functor.html#ad8eb505731c165e12bb5dfd3bfa091db">IObserverFunctor</a>
+: <a class="el" href="class_observer.html#aae361da264e6144e31e97b1462880dc5">Observer&lt; T &gt;</a>
+, <a class="el" href="class_i_observer_restricted.html#ae5b95837b4ee60f9d078c2f034b3564f">IObserverRestricted</a>
 </li>
 <li>Controller()
 : <a class="el" href="class_controller.html#a95c56822d667e94b031451729ce069a9">Controller</a>
@@ -77,14 +76,16 @@ Here is a list of all documented class members with links to the class documenta
 
 
 <h3><a class="anchor" id="index_e">- e -</a></h3><ul>
+<li>erase()
+: <a class="el" href="class_multiton.html#a10e0b9c9ff30df0b6294cb1703d4b954">Multiton&lt; T &gt;</a>
+</li>
 <li>execute()
 : <a class="el" href="class_simple_command.html#a6ce707f639a4a416790993b3ac9af481">SimpleCommand</a>
-, <a class="el" href="class_macro_command.html#a23d3bdc5519b108646e1b169e5eaa219">MacroCommand</a>
 , <a class="el" href="class_i_command.html#a53dd40a91b57ffdde11916dba7bdd346">ICommand</a>
+, <a class="el" href="class_macro_command.html#a23d3bdc5519b108646e1b169e5eaa219">MacroCommand</a>
 </li>
 <li>executeCommand()
 : <a class="el" href="class_controller.html#ab0074433dd9707bd5a88c09e4b152fa8">Controller</a>
-, <a class="el" href="class_i_controller.html#ae617c3dbca80635be5f4e28f5a8a2f59">IController</a>
 </li>
 <li>exists()
 : <a class="el" href="class_multiton.html#a7a770fb0b489a0d54485c06b70d02495">Multiton&lt; T &gt;</a>
@@ -105,25 +106,27 @@ Here is a list of all documented class members with links to the class documenta
 , <a class="el" href="class_i_notification.html#a1de6b4a5e2800b6750751273d7548dee">INotification</a>
 </li>
 <li>getData()
-: <a class="el" href="class_i_proxy.html#a72cc26aa1c8cc6d79d1e0a3515084ae5">IProxy&lt; T &gt;</a>
+: <a class="el" href="class_i_proxy_templated.html#ad5b0ad82353b55ebcaafca990563fadd">IProxyTemplated&lt; T &gt;</a>
 , <a class="el" href="class_proxy.html#a80c2917d2b562b23edbbea008c6d5535">Proxy&lt; T &gt;</a>
 </li>
 <li>getInstance()
-: <a class="el" href="class_controller.html#aa36b55f117c5aa573c6e1894f0d98195">Controller</a>
+: <a class="el" href="class_facade.html#a450ff5d68c7ec6be58c4246c090b71c3">Facade</a>
+, <a class="el" href="class_model.html#a3de2966f67f3328abff9a2fc6c96b3e1">Model</a>
 , <a class="el" href="class_view.html#ad1e9acdfeba49c16cc725352b08d4ea3">View</a>
+, <a class="el" href="class_controller.html#aa36b55f117c5aa573c6e1894f0d98195">Controller</a>
 </li>
 <li>getMediatorName()
-: <a class="el" href="class_i_mediator.html#ada8a55aba66083dd875f792ebee58f79">IMediator&lt; T &gt;</a>
-, <a class="el" href="class_mediator.html#a7f94a20d69825ee911af2b7fdfaf3f7f">Mediator&lt; T &gt;</a>
+: <a class="el" href="class_mediator.html#a7f94a20d69825ee911af2b7fdfaf3f7f">Mediator&lt; T &gt;</a>
+, <a class="el" href="class_i_mediator_restricted.html#a9df2cc3ee761813d086fafcfd9cbc014">IMediatorRestricted</a>
 </li>
 <li>getMultitonKey()
 : <a class="el" href="class_multiton_key_heir.html#aa5622459d33380deb08dc3cab8b991c7">MultitonKeyHeir</a>
 , <a class="el" href="class_i_multiton_key_heir.html#aa4cfae466ddbdf6110edb9c92905f606">IMultitonKeyHeir</a>
 </li>
 <li>getName()
-: <a class="el" href="class_notification.html#a26573d3ee155e4700b250e61177ecc69">Notification</a>
+: <a class="el" href="class_i_notification.html#a36b495890a14dd57afd99ad8bffca8e3">INotification</a>
+, <a class="el" href="class_notification.html#a26573d3ee155e4700b250e61177ecc69">Notification</a>
 , <a class="el" href="class_mediator.html#a353aced3afaf1e65c1c6bb208f67517b">Mediator&lt; T &gt;</a>
-, <a class="el" href="class_i_notification.html#a36b495890a14dd57afd99ad8bffca8e3">INotification</a>
 </li>
 <li>getNotifyContext()
 : <a class="el" href="class_observer.html#abb1968755df4cf8f750b85bba2f5d703">Observer&lt; T &gt;</a>
@@ -133,22 +136,22 @@ Here is a list of all documented class members with links to the class documenta
 </li>
 <li>getProxyName()
 : <a class="el" href="class_proxy.html#a77da5726b329f4d44a5b209eda87e761">Proxy&lt; T &gt;</a>
-, <a class="el" href="class_i_proxy.html#a6fcb1c8b7a919db2d41d884021d341a8">IProxy&lt; T &gt;</a>
+, <a class="el" href="class_i_proxy_restricted.html#a55b538617f40208173eb175cb198d4df">IProxyRestricted</a>
 </li>
 <li>getType()
-: <a class="el" href="class_i_notification.html#a9b4e5395a027b1222b1def86320ccba1">INotification</a>
-, <a class="el" href="class_notification.html#aa78621a66c9ef5e681c9a3119701b6c1">Notification</a>
+: <a class="el" href="class_notification.html#aa78621a66c9ef5e681c9a3119701b6c1">Notification</a>
+, <a class="el" href="class_i_notification.html#a9b4e5395a027b1222b1def86320ccba1">INotification</a>
 </li>
 <li>getViewComponent()
-: <a class="el" href="class_i_mediator.html#a759e6ee4eb584e02a1e9fbd50f002801">IMediator&lt; T &gt;</a>
-, <a class="el" href="class_mediator.html#a708685006ac20bd16ff0f8ddf12e7ef9">Mediator&lt; T &gt;</a>
+: <a class="el" href="class_mediator.html#a708685006ac20bd16ff0f8ddf12e7ef9">Mediator&lt; T &gt;</a>
+, <a class="el" href="class_i_mediator_templated.html#a8a610ccead9ea13f8f94f979a4cc96d8">IMediatorTemplated&lt; T &gt;</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_h">- h -</a></h3><ul>
 <li>handleNotification()
-: <a class="el" href="class_mediator.html#ae05bd5b986caeff7cb6c833ecd9500c3">Mediator&lt; T &gt;</a>
+: <a class="el" href="class_mediator.html#ac83463401ef83b1eca41ef3985edd50f">Mediator&lt; T &gt;</a>
 , <a class="el" href="class_i_notification_handler.html#a124d9762838bc999f1c76abe09f1049b">INotificationHandler</a>
 </li>
 <li>hasCommand()
@@ -184,28 +187,26 @@ Here is a list of all documented class members with links to the class documenta
 : <a class="el" href="class_facade.html#a89996a993b599de8a64c7a69b88b1ff4">Facade</a>
 </li>
 <li>initializeModel()
-: <a class="el" href="class_model.html#a8cdfc34b0a6535fe5472444e41ae7e58">Model</a>
-, <a class="el" href="class_facade.html#aa9d0e1781ad74fd5fb7fd19f473514fb">Facade</a>
+: <a class="el" href="class_facade.html#aa9d0e1781ad74fd5fb7fd19f473514fb">Facade</a>
 </li>
 <li>initializeNotifier()
 : <a class="el" href="class_i_notifier.html#a5b4289a4d32de9bca79d5d040150dcbc">INotifier</a>
-, <a class="el" href="class_facade.html#a94c72ff29f9f42ff084f247b180fb4ad">Facade</a>
 , <a class="el" href="class_notifier.html#a6910365c70415ba7973401215f57e4af">Notifier</a>
+, <a class="el" href="class_facade.html#a94c72ff29f9f42ff084f247b180fb4ad">Facade</a>
 </li>
 <li>initializeView()
 : <a class="el" href="class_facade.html#a62c7ff60891c00e2271a9ab5ab3640ab">Facade</a>
-, <a class="el" href="class_view.html#a1010b119ba6422a725f932feba4cc57c">View</a>
 </li>
 <li>instance()
-: <a class="el" href="class_multiton.html#a5c373f2d58eda725ce7e6bbdf36e92fc">Multiton&lt; T &gt;</a>
+: <a class="el" href="class_multiton.html#a07dca55034c648a944509fe48fa649b9">Multiton&lt; T &gt;</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_l">- l -</a></h3><ul>
 <li>listNotificationInterests()
-: <a class="el" href="class_mediator.html#ac4d14a91470b76c0dcdfc95362eb30ef">Mediator&lt; T &gt;</a>
-, <a class="el" href="class_i_mediator.html#abca906e1b5b751615ec97b2da20796c1">IMediator&lt; T &gt;</a>
+: <a class="el" href="class_mediator.html#ad7075af541d05f44a8515bcb7bd90ac6">Mediator&lt; T &gt;</a>
+, <a class="el" href="class_i_mediator_restricted.html#abcd1f82abbe5294192fb1859e27208d2">IMediatorRestricted</a>
 </li>
 </ul>
 
@@ -231,7 +232,7 @@ Here is a list of all documented class members with links to the class documenta
 : <a class="el" href="class_notification.html#a72eba53a7c617919efd979823bcf2b8f">Notification</a>
 </li>
 <li>notifyObserver()
-: <a class="el" href="class_i_observer_functor.html#a908eec31e040d6afc7e4422527036504">IObserverFunctor</a>
+: <a class="el" href="class_i_observer_restricted.html#a764d37630a901415ad130bb43c0b2f05">IObserverRestricted</a>
 , <a class="el" href="class_observer.html#ab8ece82c03fd9acd1e4cb5e3cd25dc82">Observer&lt; T &gt;</a>
 </li>
 <li>notifyObservers()
@@ -251,16 +252,14 @@ Here is a list of all documented class members with links to the class documenta
 : <a class="el" href="class_observer.html#a271891666fc87d51a425681832f416dd">Observer&lt; T &gt;</a>
 </li>
 <li>onRegister()
-: <a class="el" href="class_mediator.html#a9a7ff43ec74f5fd04ccc51f949169fd0">Mediator&lt; T &gt;</a>
-, <a class="el" href="class_i_proxy.html#afd4805ae6f4cd4024dcdfa194faa56ee">IProxy&lt; T &gt;</a>
-, <a class="el" href="class_proxy.html#a845eea1acf0e914fdfaa992ebc9daab5">Proxy&lt; T &gt;</a>
-, <a class="el" href="class_i_mediator.html#abc3c3fe4267803ae71b8c7c99d6ea295">IMediator&lt; T &gt;</a>
+: <a class="el" href="class_i_proxy_restricted.html#a6784b6890c365c1190009d82870bc398">IProxyRestricted</a>
+, <a class="el" href="class_i_mediator_restricted.html#a2a34f97b396c93810310faf32e33953e">IMediatorRestricted</a>
+, <a class="el" href="class_mediator.html#a93644d2e7704e80e9e73581d007b9fa4">Mediator&lt; T &gt;</a>
 </li>
 <li>onRemove()
-: <a class="el" href="class_i_proxy.html#a0fe6eaa5b7c35a04b0dd442796074e94">IProxy&lt; T &gt;</a>
-, <a class="el" href="class_i_mediator.html#ad827823a79dedbe0ad773a510c4bfb5b">IMediator&lt; T &gt;</a>
-, <a class="el" href="class_proxy.html#a9954fab4ec58c84fc41b1af9c2256b79">Proxy&lt; T &gt;</a>
-, <a class="el" href="class_mediator.html#ac423e050dcddb87e7a674d62c261666d">Mediator&lt; T &gt;</a>
+: <a class="el" href="class_i_mediator_restricted.html#af83fa827db834401ec656024f472e0eb">IMediatorRestricted</a>
+, <a class="el" href="class_i_proxy_restricted.html#a38e9909f20c0fa97fad129375bb45818">IProxyRestricted</a>
+, <a class="el" href="class_mediator.html#aa9f48ba8846486c51d0195f5a7a67167">Mediator&lt; T &gt;</a>
 </li>
 </ul>
 
@@ -274,24 +273,24 @@ Here is a list of all documented class members with links to the class documenta
 
 <h3><a class="anchor" id="index_r">- r -</a></h3><ul>
 <li>registerCommand()
-: <a class="el" href="class_controller.html#ab6ba43f616df98a7ee43f3de5a126f67">Controller</a>
+: <a class="el" href="class_controller.html#a00a8ac03daa6df0933a426f076faf514">Controller</a>
 , <a class="el" href="class_facade.html#a5b6905204f7f92cea96d5344ee6f89b1">Facade</a>
 </li>
 <li>registerMediator()
-: <a class="el" href="class_facade.html#a18be96afde2f3643abe76bd8197161e8">Facade</a>
-, <a class="el" href="class_i_view.html#a1a1ef98afab294771ce749a4abcfc402">IView</a>
-, <a class="el" href="class_view.html#a83d251521779660be975734eff28bbcf">View</a>
-, <a class="el" href="class_i_facade.html#ae0ea46f5c8965a214398ce4bfffdcaf5">IFacade</a>
+: <a class="el" href="class_facade.html#a3c0ead374ba222146a7fe5a59eb0fcb4">Facade</a>
+, <a class="el" href="class_i_view.html#a858a276fe001c5fe6596939da0431cc3">IView</a>
+, <a class="el" href="class_view.html#a6980c6deed6fff89a94c8cb09df7a644">View</a>
+, <a class="el" href="class_i_facade.html#af7ae89afc50684e417d4b6ea280b9bcc">IFacade</a>
 </li>
 <li>registerObserver()
-: <a class="el" href="class_i_view.html#a520b90da38d5f8fb4475cbefac579e3c">IView</a>
-, <a class="el" href="class_view.html#aa7bdcf481d14924585b4c2581a8c076a">View</a>
+: <a class="el" href="class_i_view.html#a27fa0d398ebb5ba085c98ac64b9e3487">IView</a>
+, <a class="el" href="class_view.html#a003536ad9e3cc4be39cdc5343ff891cb">View</a>
 </li>
 <li>registerProxy()
-: <a class="el" href="class_model.html#ad2b86f6758eae0a9f2d5e41c8bb17e77">Model</a>
-, <a class="el" href="class_facade.html#a34178a1508adec460365d066b007315e">Facade</a>
-, <a class="el" href="class_i_model.html#a33e5e9dc9f55aefa956b6f9caaa909f9">IModel</a>
-, <a class="el" href="class_i_facade.html#a4b109aac2f114b6d0dca8ddcb468a8f0">IFacade</a>
+: <a class="el" href="class_model.html#a12d22c0faf6aa8c69d7b0e3d3cfdd13b">Model</a>
+, <a class="el" href="class_facade.html#ab075d59d3da686f0262900f4e19f22cd">Facade</a>
+, <a class="el" href="class_i_model.html#a1e45bcff4bb8ae259bba24253f1bad99">IModel</a>
+, <a class="el" href="class_i_facade.html#ac75f3908e6f4da1eb88675e6fa25247f">IFacade</a>
 </li>
 <li>removeCommand()
 : <a class="el" href="class_i_facade.html#a7eb0ea44ebfde6a4598563f88efb0491">IFacade</a>
@@ -306,38 +305,38 @@ Here is a list of all documented class members with links to the class documenta
 : <a class="el" href="class_facade.html#a78c803c55d417e9c8dd690f91543fc8c">Facade</a>
 </li>
 <li>removeMediator()
-: <a class="el" href="class_view.html#ad76a9a22b7db131efc97b74d12f80b40">View</a>
-, <a class="el" href="class_facade.html#a5503a43e0677fc740e06afd6e0cfd8df">Facade</a>
-, <a class="el" href="class_i_view.html#ac907d16e61c272d2faf15834ee69a2b6">IView</a>
-, <a class="el" href="class_i_facade.html#add33fc987882bd922ca52468eead85f8">IFacade</a>
+: <a class="el" href="class_view.html#a015fe15ee362685fdb72584019417b5d">View</a>
+, <a class="el" href="class_facade.html#a0ddae3c399fc7cb393596f8b13792790">Facade</a>
+, <a class="el" href="class_i_view.html#a242c8341b8bed7132bb95fa0ba2d7688">IView</a>
+, <a class="el" href="class_i_facade.html#a9ea7761c82b6c5cec9e9f2d4c914e717">IFacade</a>
 </li>
 <li>removeModel()
 : <a class="el" href="class_model.html#af815e60f9acb32c0be2a2d5377f39bb7">Model</a>
 </li>
 <li>removeObserver()
-: <a class="el" href="class_view.html#a4f6d60997fc983e6d1224e0a59f8be4e">View</a>
-, <a class="el" href="class_i_view.html#a62ff7ba24a3b2e2442ef9ce9d727d3c4">IView</a>
+: <a class="el" href="class_view.html#a3220b001d12e42afec34f9758145738c">View</a>
+, <a class="el" href="class_i_view.html#a5ce7df64893779b898ff937f970d6338">IView</a>
 </li>
 <li>removeProxy()
-: <a class="el" href="class_i_facade.html#aeb3f0239818d22f71550ac99597c8cb8">IFacade</a>
-, <a class="el" href="class_facade.html#a280aacb5b8be8d8ed84dfcaa7e04dab9">Facade</a>
-, <a class="el" href="class_model.html#a2e160b389fc218f0590e60f0bf8b4a4e">Model</a>
-, <a class="el" href="class_i_model.html#a9ddb6f6fb85a97c47f190ae8f9066cc3">IModel</a>
+: <a class="el" href="class_i_facade.html#a30bf5abb6cd8eea84bf95c969f285aee">IFacade</a>
+, <a class="el" href="class_facade.html#a2cca0e7a4b11e905c2d4f5d7e0a545c1">Facade</a>
+, <a class="el" href="class_model.html#a453947b6a8f925304515ac58078f5e57">Model</a>
+, <a class="el" href="class_i_model.html#aae5ab75fb4c18a5c6112c9dc7820ab5b">IModel</a>
 </li>
 <li>removeView()
 : <a class="el" href="class_view.html#aac1d2aea65c021664a89319d9e3159b3">View</a>
 </li>
 <li>retrieveMediator()
-: <a class="el" href="class_i_view.html#a2481a33776564d11afc08df6b0aeb645">IView</a>
-, <a class="el" href="class_i_facade.html#a4ca38f684670675afedb487fdcbc8b1e">IFacade</a>
-, <a class="el" href="class_facade.html#a3bf2f37bd89a28cf7feb9d3b4625028e">Facade</a>
-, <a class="el" href="class_view.html#ab7750a470477ebc1a87d3f55ad5c9d13">View</a>
+: <a class="el" href="class_i_view.html#ac288749c1993b3ac5d08ec4f0a8c62a3">IView</a>
+, <a class="el" href="class_i_facade.html#a7420dbda3a46550262c9666478274ffa">IFacade</a>
+, <a class="el" href="class_facade.html#a4e821a5fcc6c2fa509742e88ca43dd2d">Facade</a>
+, <a class="el" href="class_view.html#a108934f0fe48f40f715a0f310d40a26e">View</a>
 </li>
 <li>retrieveProxy()
-: <a class="el" href="class_model.html#a37e66ae2b95f6051db75c265fa0a5681">Model</a>
-, <a class="el" href="class_facade.html#a6c0d3884e0c987401cc11ca7ee95cbf8">Facade</a>
-, <a class="el" href="class_i_model.html#aa4dfec4ab5bad973f9ad0c10b98054c3">IModel</a>
-, <a class="el" href="class_i_facade.html#aa0bce96ed315060ebbb41eb5a68873db">IFacade</a>
+: <a class="el" href="class_model.html#acba552053974de59cf6bdac940265634">Model</a>
+, <a class="el" href="class_facade.html#a6cba094fce77dac303714372a8bb3fc5">Facade</a>
+, <a class="el" href="class_i_model.html#a23cc58b62d1767be28b90d016957159b">IModel</a>
+, <a class="el" href="class_i_facade.html#ae81147526315be14601d4b161d5fc6f5">IFacade</a>
 </li>
 </ul>
 
@@ -354,7 +353,7 @@ Here is a list of all documented class members with links to the class documenta
 </li>
 <li>setData()
 : <a class="el" href="class_proxy.html#a77a01fafb18cc32053a8ca1134da5c0e">Proxy&lt; T &gt;</a>
-, <a class="el" href="class_i_proxy.html#a8c538c99dc30316b2858ec28ec0cd94e">IProxy&lt; T &gt;</a>
+, <a class="el" href="class_i_proxy_templated.html#adf1dbadc3eac749e24e5b91720d781c1">IProxyTemplated&lt; T &gt;</a>
 </li>
 <li>setMultitonKey()
 : <a class="el" href="class_multiton_key_heir.html#abc70ef7c066bc8d7bf0196ec727599bb">MultitonKeyHeir</a>
@@ -362,18 +361,18 @@ Here is a list of all documented class members with links to the class documenta
 </li>
 <li>setNotifyContext()
 : <a class="el" href="class_observer.html#a4d17ff5e30f3b0550f1881b1c2076a22">Observer&lt; T &gt;</a>
-, <a class="el" href="class_i_observer.html#abaeb1789251ce51bb81dd217c7682bae">IObserver&lt; T &gt;</a>
+, <a class="el" href="class_i_observer_templated.html#aca4d385bd5cb8fd58e61e46f22e39e21">IObserverTemplated&lt; T &gt;</a>
 </li>
 <li>setNotifyMethod()
 : <a class="el" href="class_observer.html#a50ca2e03fcc39c79e77d024c24131407">Observer&lt; T &gt;</a>
-, <a class="el" href="class_i_observer.html#aff8b04cf2dd134813ec1b884bd25a368">IObserver&lt; T &gt;</a>
+, <a class="el" href="class_i_observer_templated.html#a1a3ed0f520fb382793c6908e50a553fe">IObserverTemplated&lt; T &gt;</a>
 </li>
 <li>setType()
 : <a class="el" href="class_notification.html#a428d162e550725c0efab0d16e23c3ec1">Notification</a>
 , <a class="el" href="class_i_notification.html#ab8420d000557da45b0d23a3b56bb5672">INotification</a>
 </li>
 <li>setViewComponent()
-: <a class="el" href="class_i_mediator.html#ab3078144dba2997d27f56036c031205b">IMediator&lt; T &gt;</a>
+: <a class="el" href="class_i_mediator_templated.html#a723f5d0c262f53d1d079b83a623cde57">IMediatorTemplated&lt; T &gt;</a>
 , <a class="el" href="class_mediator.html#a92643dbbaa3136f73a2f669d79d64e04">Mediator&lt; T &gt;</a>
 </li>
 <li>size()
@@ -398,7 +397,7 @@ Here is a list of all documented class members with links to the class documenta
 </li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Dec 13 17:47:39 2009 for MVC++ by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Dec 15 19:06:30 2009 for MVC++ by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

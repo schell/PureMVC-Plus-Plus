@@ -46,10 +46,12 @@ Collaboration diagram for Controller:</div>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller.html#a95c56822d667e94b031451729ce069a9">Controller</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a95c56822d667e94b031451729ce069a9"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller.html#ab0074433dd9707bd5a88c09e4b152fa8">executeCommand</a> (<a class="el" href="class_i_notification.html">INotification</a> *note)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_controller.html#ab0074433dd9707bd5a88c09e4b152fa8">executeCommand</a> (<a class="el" href="class_i_notification.html">INotification</a> *note)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">If an <code><a class="el" href="class_i_command.html" title="The interface definition for a PureMVC Command.">ICommand</a></code> has previously been registered to handle a the given <code><a class="el" href="class_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code>, then it is executed.  <a href="#ab0074433dd9707bd5a88c09e4b152fa8"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller.html#ab6ba43f616df98a7ee43f3de5a126f67">registerCommand</a> (std::string notificationName, <a class="el" href="class_i_command.html">ICommand</a> *commandClassRef)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Register a particular <code><a class="el" href="class_i_command.html" title="The interface definition for a PureMVC Command.">ICommand</a></code> class as the handler for a particular <code><a class="el" href="class_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code>.  <a href="#ab6ba43f616df98a7ee43f3de5a126f67"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_controller.html#a00a8ac03daa6df0933a426f076faf514">registerCommand</a> (std::string notificationName)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Register a particular <code><a class="el" href="class_i_command.html" title="The interface definition for a PureMVC Command.">ICommand</a></code> class as the handler for a particular <code><a class="el" href="class_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code>.  <a href="#a00a8ac03daa6df0933a426f076faf514"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller.html#af4ed82ca2900de2c24d646bad223470e">hasCommand</a> (std::string notificationName)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Check if a Command is registered for a given <a class="el" href="class_notification.html" title="A base INotification implementation.">Notification</a>.  <a href="#af4ed82ca2900de2c24d646bad223470e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller.html#a60c78860c632ad29cb3618e2a3faca74">removeCommand</a> (std::string notificationName)</td></tr>
@@ -75,7 +77,7 @@ std::map&lt; std::string, <a class="el" href="class_i_command.html">ICommand</a>
 <li>
 Remembering which <code><a class="el" href="class_i_command.html" title="The interface definition for a PureMVC Command.">ICommand</a></code>s are intended to handle which <code>INotifications</code>. </li>
 <li>
-Registering itself as an <code><a class="el" href="class_i_observer.html" title="The interface definition for a PureMVC Observer.">IObserver</a></code> with the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code> for each <code><a class="el" href="class_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code> that it has an <code><a class="el" href="class_i_command.html" title="The interface definition for a PureMVC Command.">ICommand</a></code> mapping for. </li>
+Registering itself as an <code>IObserver</code> with the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code> for each <code><a class="el" href="class_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code> that it has an <code><a class="el" href="class_i_command.html" title="The interface definition for a PureMVC Command.">ICommand</a></code> mapping for. </li>
 <li>
 Creating a new instance of the proper <code><a class="el" href="class_i_command.html" title="The interface definition for a PureMVC Command.">ICommand</a></code> to handle a given <code><a class="el" href="class_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code> when notified by the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>. </li>
 <li>
@@ -123,6 +125,8 @@ Calling the <code><a class="el" href="class_i_command.html" title="The interface
 <a class="anchor" id="ab0074433dd9707bd5a88c09e4b152fa8"></a><!-- doxytag: member="Controller::executeCommand" ref="ab0074433dd9707bd5a88c09e4b152fa8" args="(INotification *note)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void Controller::executeCommand </td>
@@ -130,7 +134,7 @@ Calling the <code><a class="el" href="class_i_command.html" title="The interface
           <td class="paramtype"><a class="el" href="class_i_notification.html">INotification</a> *&nbsp;</td>
           <td class="paramname"> <em>note</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [virtual]</code></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
@@ -143,8 +147,6 @@ Calling the <code><a class="el" href="class_i_command.html" title="The interface
   </table>
   </dd>
 </dl>
-
-<p>Implements <a class="el" href="class_i_controller.html#ae617c3dbca80635be5f4e28f5a8a2f59">IController</a>.</p>
 
 </div>
 </div>
@@ -219,26 +221,19 @@ Calling the <code><a class="el" href="class_i_command.html" title="The interface
 
 </div>
 </div>
-<a class="anchor" id="ab6ba43f616df98a7ee43f3de5a126f67"></a><!-- doxytag: member="Controller::registerCommand" ref="ab6ba43f616df98a7ee43f3de5a126f67" args="(std::string notificationName, ICommand *commandClassRef)" -->
+<a class="anchor" id="a00a8ac03daa6df0933a426f076faf514"></a><!-- doxytag: member="Controller::registerCommand" ref="a00a8ac03daa6df0933a426f076faf514" args="(std::string notificationName)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void Controller::registerCommand </td>
           <td>(</td>
           <td class="paramtype">std::string&nbsp;</td>
-          <td class="paramname"> <em>notificationName</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_i_command.html">ICommand</a> *&nbsp;</td>
-          <td class="paramname"> <em>commandClassRef</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td></td>
+          <td class="paramname"> <em>notificationName</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
@@ -247,10 +242,10 @@ Calling the <code><a class="el" href="class_i_command.html" title="The interface
 <p>Register a particular <code><a class="el" href="class_i_command.html" title="The interface definition for a PureMVC Command.">ICommand</a></code> class as the handler for a particular <code><a class="el" href="class_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code>. </p>
 <p>If an <code><a class="el" href="class_i_command.html" title="The interface definition for a PureMVC Command.">ICommand</a></code> has already been registered to handle <code><a class="el" href="class_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code>s with this name, it is no longer used, the new <code><a class="el" href="class_i_command.html" title="The interface definition for a PureMVC Command.">ICommand</a></code> is used instead.</p>
 <p>The <a class="el" href="class_observer.html" title="A base IObserver implementation.">Observer</a> for the new <a class="el" href="class_i_command.html" title="The interface definition for a PureMVC Command.">ICommand</a> is only created if this the first time an <a class="el" href="class_i_command.html" title="The interface definition for a PureMVC Command.">ICommand</a> has been regisered for this <a class="el" href="class_notification.html" title="A base INotification implementation.">Notification</a> name.</p>
+<p>commandClassRef the <code>Class</code> of the <code><a class="el" href="class_i_command.html" title="The interface definition for a PureMVC Command.">ICommand</a></code> </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>notificationName</em>&nbsp;</td><td>the name of the <code><a class="el" href="class_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code> </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>commandClassRef</em>&nbsp;</td><td>the <code>Class</code> of the <code><a class="el" href="class_i_command.html" title="The interface definition for a PureMVC Command.">ICommand</a></code> </td></tr>
   </table>
   </dd>
 </dl>
@@ -316,7 +311,7 @@ Calling the <code><a class="el" href="class_i_command.html" title="The interface
 <li>/home/clcks/Code/MVC++/trunk/mvcpp/src/pmvcpparch.cpp</li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Dec 13 17:47:39 2009 for MVC++ by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Dec 15 19:06:30 2009 for MVC++ by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

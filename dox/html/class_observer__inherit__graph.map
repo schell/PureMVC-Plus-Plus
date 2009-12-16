@@ -1,4 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node2" href="$class_i_observer.html" title="The interface definition for a PureMVC Observer." alt="" coords="11,86,120,117"/>
-<area shape="rect" id="node4" href="$class_i_observer_functor.html" title="An Observer functor interface." alt="" coords="5,6,125,37"/>
+<area shape="rect" id="node2" href="$class_i_observer_templated.html" title="The interface definition for a PureMVC Observer." alt="" coords="5,86,176,117"/>
+<area shape="rect" id="node4" href="$class_i_observer_restricted.html" title="An Observer functor interface." alt="" coords="23,6,159,37"/>
 </map>

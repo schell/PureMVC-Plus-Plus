@@ -46,18 +46,18 @@ Collaboration diagram for View:</div>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view.html#a44ad60a768422d3fa8fbd7576950080a">View</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a44ad60a768422d3fa8fbd7576950080a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view.html#aa7bdcf481d14924585b4c2581a8c076a">registerObserver</a> (std::string notificationName, <a class="el" href="class_i_observer_functor.html">IObserverFunctor</a> *observer)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Register an <code><a class="el" href="class_i_observer_functor.html" title="An Observer functor interface.">IObserverFunctor</a></code> to be notified of <code>INotifications</code> with a given name.  <a href="#aa7bdcf481d14924585b4c2581a8c076a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view.html#a003536ad9e3cc4be39cdc5343ff891cb">registerObserver</a> (std::string notificationName, <a class="el" href="class_i_observer_restricted.html">IObserverRestricted</a> *observer)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Register an <code><a class="el" href="class_i_observer_restricted.html" title="An Observer functor interface.">IObserverRestricted</a></code> to be notified of <code>INotifications</code> with a given name.  <a href="#a003536ad9e3cc4be39cdc5343ff891cb"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view.html#a515953a4f2e9c6b7a29ae0591657b9f3">notifyObservers</a> (<a class="el" href="class_i_notification.html">INotification</a> *notification)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Notify the <code>IObservers</code> for a particular <code><a class="el" href="class_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code>.  <a href="#a515953a4f2e9c6b7a29ae0591657b9f3"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view.html#a4f6d60997fc983e6d1224e0a59f8be4e">removeObserver</a> (std::string notificationName, <a class="el" href="class_i_observer_functor.html">IObserverFunctor</a> *notifyContext)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove the observer for a given notifyContext from an observer list for a given <a class="el" href="class_notification.html" title="A base INotification implementation.">Notification</a> name.  <a href="#a4f6d60997fc983e6d1224e0a59f8be4e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view.html#a83d251521779660be975734eff28bbcf">registerMediator</a> (<a class="el" href="class_i_registerable.html">IRegisterable</a> *mediator)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Register an <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> instance with the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>.  <a href="#a83d251521779660be975734eff28bbcf"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_i_registerable.html">IRegisterable</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view.html#ab7750a470477ebc1a87d3f55ad5c9d13">retrieveMediator</a> (std::string mediatorName)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieve an <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> from the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>.  <a href="#ab7750a470477ebc1a87d3f55ad5c9d13"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_i_registerable.html">IRegisterable</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view.html#ad76a9a22b7db131efc97b74d12f80b40">removeMediator</a> (std::string mediatorName)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove an <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> from the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>.  <a href="#ad76a9a22b7db131efc97b74d12f80b40"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view.html#a3220b001d12e42afec34f9758145738c">removeObserver</a> (std::string notificationName, unsigned int contextAddress)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove the observer for a given notifyContext from an observer list for a given <a class="el" href="class_notification.html" title="A base INotification implementation.">Notification</a> name.  <a href="#a3220b001d12e42afec34f9758145738c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view.html#a6980c6deed6fff89a94c8cb09df7a644">registerMediator</a> (<a class="el" href="class_i_mediator_restricted.html">IMediatorRestricted</a> *mediator)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Register an <code>IMediator</code> instance with the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>.  <a href="#a6980c6deed6fff89a94c8cb09df7a644"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_i_mediator_restricted.html">IMediatorRestricted</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view.html#a108934f0fe48f40f715a0f310d40a26e">retrieveMediator</a> (std::string mediatorName)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieve an <code>IMediator</code> from the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>.  <a href="#a108934f0fe48f40f715a0f310d40a26e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_i_mediator_restricted.html">IMediatorRestricted</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view.html#a015fe15ee362685fdb72584019417b5d">removeMediator</a> (std::string mediatorName)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove an <code>IMediator</code> from the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>.  <a href="#a015fe15ee362685fdb72584019417b5d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view.html#a5af9aeea286647436cf595d0a946711f">hasMediator</a> (std::string mediatorName)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Check if a <a class="el" href="class_mediator.html">Mediator</a> is registered or not.  <a href="#a5af9aeea286647436cf595d0a946711f"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
@@ -65,23 +65,21 @@ Collaboration diagram for View:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a> Singleton Factory method.  <a href="#ad1e9acdfeba49c16cc725352b08d4ea3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view.html#aac1d2aea65c021664a89319d9e3159b3">removeView</a> (std::string key)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove an <a class="el" href="class_i_view.html" title="The interface definition for a PureMVC View.">IView</a> instance.  <a href="#aac1d2aea65c021664a89319d9e3159b3"></a><br/></td></tr>
-<tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view.html#a1010b119ba6422a725f932feba4cc57c">initializeView</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialize the Singleton <a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a> instance.  <a href="#a1010b119ba6422a725f932feba4cc57c"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a34ef2113d2a154b47a26b78ada83c0b7"></a><!-- doxytag: member="View::mediatorMap" ref="a34ef2113d2a154b47a26b78ada83c0b7" args="" -->
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a475c268c40c7062149219f3fe290b219"></a><!-- doxytag: member="View::mediatorMap" ref="a475c268c40c7062149219f3fe290b219" args="" -->
 std::map&lt; std::string, <br class="typebreak"/>
-<a class="el" href="class_i_registerable.html">IRegisterable</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>mediatorMap</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adbcb28380ad116d4a5e841abc6db5457"></a><!-- doxytag: member="View::observerMap" ref="adbcb28380ad116d4a5e841abc6db5457" args="" -->
+<a class="el" href="class_i_mediator_restricted.html">IMediatorRestricted</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>mediatorMap</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a376b26cbd1fd2023a5acd6a34d16c830"></a><!-- doxytag: member="View::observerMap" ref="a376b26cbd1fd2023a5acd6a34d16c830" args="" -->
 std::map&lt; std::string, <br class="typebreak"/>
-std::vector&lt; <a class="el" href="class_i_observer_functor.html">IObserverFunctor</a> * &gt; &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>observerMap</b></td></tr>
+std::vector<br class="typebreak"/>
+&lt; <a class="el" href="class_i_observer_restricted.html">IObserverRestricted</a> * &gt; &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>observerMap</b></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>A <a class="el" href="class_multiton.html" title="A templated Multiton class.">Multiton</a> <code><a class="el" href="class_i_view.html" title="The interface definition for a PureMVC View.">IView</a></code> implementation. </p>
 <p>In PureMVC, the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code> class assumes these responsibilities: </p>
 <ul>
 <li>
-Maintain a cache of <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> instances. </li>
+Maintain a cache of <code>IMediator</code> instances. </li>
 <li>
 Provide methods for registering, retrieving, and removing <code>IMediators</code>. </li>
 <li>
@@ -117,13 +115,7 @@ Notifying the <code>IObservers</code> of a given <code><a class="el" href="class
 <div class="memdoc">
 
 <p>Constructor. </p>
-<p>This <code><a class="el" href="class_i_view.html" title="The interface definition for a PureMVC View.">IView</a></code> implementation is a <a class="el" href="class_multiton.html" title="A templated Multiton class.">Multiton</a>, so you should not call the constructor directly, but instead call the static <a class="el" href="class_multiton.html" title="A templated Multiton class.">Multiton</a> Factory method <code>View.getInstance( multitonKey )</code></p>
-<dl><dt><b>Exceptions:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>Error</em>&nbsp;</td><td>Error if instance for this <a class="el" href="class_multiton.html" title="A templated Multiton class.">Multiton</a> key has already been constructed </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>This <code><a class="el" href="class_i_view.html" title="The interface definition for a PureMVC View.">IView</a></code> implementation is a <a class="el" href="class_multiton.html" title="A templated Multiton class.">Multiton</a>, so you should not call the constructor directly, but instead call the static <a class="el" href="class_multiton.html" title="A templated Multiton class.">Multiton</a> Factory method <code>View.getInstance( multitonKey )</code>. Unlike the AS3 version of PMVC, if you are going to subclass <a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a>, you should stick your initialization code in your subclass constructor. Keep in mind though, that the MultitonKey for this instance does not get set until after the constructor is called from <code>getInstance</code>. </p>
 
 </div>
 </div>
@@ -178,27 +170,6 @@ Notifying the <code>IObservers</code> of a given <code><a class="el" href="class
 
 </div>
 </div>
-<a class="anchor" id="a1010b119ba6422a725f932feba4cc57c"></a><!-- doxytag: member="View::initializeView" ref="a1010b119ba6422a725f932feba4cc57c" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void View::initializeView </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Initialize the Singleton <a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a> instance. </p>
-<p>Called automatically by the constructor, this is your opportunity to initialize the Singleton instance in your subclass without overriding the constructor.</p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>void </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="a515953a4f2e9c6b7a29ae0591657b9f3"></a><!-- doxytag: member="View::notifyObservers" ref="a515953a4f2e9c6b7a29ae0591657b9f3" args="(INotification *notification)" -->
 <div class="memitem">
 <div class="memproto">
@@ -228,14 +199,14 @@ Notifying the <code>IObservers</code> of a given <code><a class="el" href="class
 
 </div>
 </div>
-<a class="anchor" id="a83d251521779660be975734eff28bbcf"></a><!-- doxytag: member="View::registerMediator" ref="a83d251521779660be975734eff28bbcf" args="(IRegisterable *mediator)" -->
+<a class="anchor" id="a6980c6deed6fff89a94c8cb09df7a644"></a><!-- doxytag: member="View::registerMediator" ref="a6980c6deed6fff89a94c8cb09df7a644" args="(IMediatorRestricted *mediator)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void View::registerMediator </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_i_registerable.html">IRegisterable</a> *&nbsp;</td>
+          <td class="paramtype"><a class="el" href="class_i_mediator_restricted.html">IMediatorRestricted</a> *&nbsp;</td>
           <td class="paramname"> <em>mediator</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td><code> [virtual]</code></td>
@@ -244,22 +215,22 @@ Notifying the <code>IObservers</code> of a given <code><a class="el" href="class
 </div>
 <div class="memdoc">
 
-<p>Register an <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> instance with the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>. </p>
-<p>Registers the <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> so that it can be retrieved by name, and further interrogates the <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> for its <code><a class="el" href="class_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code> interests. </p>
-<p>If the <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> returns any <code><a class="el" href="class_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code> names to be notified about, an <code><a class="el" href="class_observer.html" title="A base IObserver implementation.">Observer</a></code> is created encapsulating the <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> instance's <code>handleNotification</code> method and registering it as an <code><a class="el" href="class_observer.html" title="A base IObserver implementation.">Observer</a></code> for all <code>INotifications</code> the <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> is interested in.</p>
+<p>Register an <code>IMediator</code> instance with the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>. </p>
+<p>Registers the <code>IMediator</code> so that it can be retrieved by name, and further interrogates the <code>IMediator</code> for its <code><a class="el" href="class_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code> interests. </p>
+<p>If the <code>IMediator</code> returns any <code><a class="el" href="class_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code> names to be notified about, an <code><a class="el" href="class_observer.html" title="A base IObserver implementation.">Observer</a></code> is created encapsulating the <code>IMediator</code> instance's <code>handleNotification</code> method and registering it as an <code><a class="el" href="class_observer.html" title="A base IObserver implementation.">Observer</a></code> for all <code>INotifications</code> the <code>IMediator</code> is interested in.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>mediatorName</em>&nbsp;</td><td>the name to associate with this <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> instance </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>mediator</em>&nbsp;</td><td>a reference to the <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> instance </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>mediatorName</em>&nbsp;</td><td>the name to associate with this <code>IMediator</code> instance </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>mediator</em>&nbsp;</td><td>a reference to the <code>IMediator</code> instance </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="class_i_view.html#a1a1ef98afab294771ce749a4abcfc402">IView</a>.</p>
+<p>Implements <a class="el" href="class_i_view.html#a858a276fe001c5fe6596939da0431cc3">IView</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aa7bdcf481d14924585b4c2581a8c076a"></a><!-- doxytag: member="View::registerObserver" ref="aa7bdcf481d14924585b4c2581a8c076a" args="(std::string notificationName, IObserverFunctor *observer)" -->
+<a class="anchor" id="a003536ad9e3cc4be39cdc5343ff891cb"></a><!-- doxytag: member="View::registerObserver" ref="a003536ad9e3cc4be39cdc5343ff891cb" args="(std::string notificationName, IObserverRestricted *observer)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -272,7 +243,7 @@ Notifying the <code>IObservers</code> of a given <code><a class="el" href="class
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_i_observer_functor.html">IObserverFunctor</a> *&nbsp;</td>
+          <td class="paramtype"><a class="el" href="class_i_observer_restricted.html">IObserverRestricted</a> *&nbsp;</td>
           <td class="paramname"> <em>observer</em></td><td>&nbsp;</td>
         </tr>
         <tr>
@@ -284,25 +255,25 @@ Notifying the <code>IObservers</code> of a given <code><a class="el" href="class
 </div>
 <div class="memdoc">
 
-<p>Register an <code><a class="el" href="class_i_observer_functor.html" title="An Observer functor interface.">IObserverFunctor</a></code> to be notified of <code>INotifications</code> with a given name. </p>
+<p>Register an <code><a class="el" href="class_i_observer_restricted.html" title="An Observer functor interface.">IObserverRestricted</a></code> to be notified of <code>INotifications</code> with a given name. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>notificationName</em>&nbsp;</td><td>the name of the <code>INotifications</code> to notify this <code><a class="el" href="class_i_observer.html" title="The interface definition for a PureMVC Observer.">IObserver</a></code> of </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>observer</em>&nbsp;</td><td>the <code><a class="el" href="class_i_observer_functor.html" title="An Observer functor interface.">IObserverFunctor</a></code> to register </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>notificationName</em>&nbsp;</td><td>the name of the <code>INotifications</code> to notify this <code>IObserver</code> of </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>observer</em>&nbsp;</td><td>the <code><a class="el" href="class_i_observer_restricted.html" title="An Observer functor interface.">IObserverRestricted</a></code> to register </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="class_i_view.html#a520b90da38d5f8fb4475cbefac579e3c">IView</a>.</p>
+<p>Implements <a class="el" href="class_i_view.html#a27fa0d398ebb5ba085c98ac64b9e3487">IView</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ad76a9a22b7db131efc97b74d12f80b40"></a><!-- doxytag: member="View::removeMediator" ref="ad76a9a22b7db131efc97b74d12f80b40" args="(std::string mediatorName)" -->
+<a class="anchor" id="a015fe15ee362685fdb72584019417b5d"></a><!-- doxytag: member="View::removeMediator" ref="a015fe15ee362685fdb72584019417b5d" args="(std::string mediatorName)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_i_registerable.html">IRegisterable</a> * View::removeMediator </td>
+          <td class="memname"><a class="el" href="class_i_mediator_restricted.html">IMediatorRestricted</a> * View::removeMediator </td>
           <td>(</td>
           <td class="paramtype">std::string&nbsp;</td>
           <td class="paramname"> <em>mediatorName</em></td>
@@ -313,27 +284,27 @@ Notifying the <code>IObservers</code> of a given <code><a class="el" href="class
 </div>
 <div class="memdoc">
 
-<p>Remove an <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> from the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>. </p>
+<p>Remove an <code>IMediator</code> from the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>mediatorName</em>&nbsp;</td><td>name of the <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> instance to be removed. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>mediatorName</em>&nbsp;</td><td>name of the <code>IMediator</code> instance to be removed. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>the <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> that was removed from the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code> Remove an <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> from the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>.</dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>the <code>IMediator</code> that was removed from the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code> Remove an <code>IMediator</code> from the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>.</dd></dl>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>mediatorName</em>&nbsp;</td><td>name of the <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> instance to be removed. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>mediatorName</em>&nbsp;</td><td>name of the <code>IMediator</code> instance to be removed. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>the <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> that was removed from the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code> </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>the <code>IMediator</code> that was removed from the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code> </dd></dl>
 
-<p>Implements <a class="el" href="class_i_view.html#ac907d16e61c272d2faf15834ee69a2b6">IView</a>.</p>
+<p>Implements <a class="el" href="class_i_view.html#a242c8341b8bed7132bb95fa0ba2d7688">IView</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a4f6d60997fc983e6d1224e0a59f8be4e"></a><!-- doxytag: member="View::removeObserver" ref="a4f6d60997fc983e6d1224e0a59f8be4e" args="(std::string notificationName, IObserverFunctor *notifyContext)" -->
+<a class="anchor" id="a3220b001d12e42afec34f9758145738c"></a><!-- doxytag: member="View::removeObserver" ref="a3220b001d12e42afec34f9758145738c" args="(std::string notificationName, unsigned int contextAddress)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -346,8 +317,8 @@ Notifying the <code>IObservers</code> of a given <code><a class="el" href="class
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_i_observer_functor.html">IObserverFunctor</a> *&nbsp;</td>
-          <td class="paramname"> <em>notifyContext</em></td><td>&nbsp;</td>
+          <td class="paramtype">unsigned int&nbsp;</td>
+          <td class="paramname"> <em>contextAddress</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -362,12 +333,12 @@ Notifying the <code>IObservers</code> of a given <code><a class="el" href="class
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>notificationName</em>&nbsp;</td><td>which observer list to remove from </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>notifyContext</em>&nbsp;</td><td>remove the observer with this object as its notifyContext </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>contextAddress</em>&nbsp;</td><td>remove the observer with this memory address as its notifyContext's address </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="class_i_view.html#a62ff7ba24a3b2e2442ef9ce9d727d3c4">IView</a>.</p>
+<p>Implements <a class="el" href="class_i_view.html#a5ce7df64893779b898ff937f970d6338">IView</a>.</p>
 
 </div>
 </div>
@@ -397,12 +368,12 @@ Notifying the <code>IObservers</code> of a given <code><a class="el" href="class
 
 </div>
 </div>
-<a class="anchor" id="ab7750a470477ebc1a87d3f55ad5c9d13"></a><!-- doxytag: member="View::retrieveMediator" ref="ab7750a470477ebc1a87d3f55ad5c9d13" args="(std::string mediatorName)" -->
+<a class="anchor" id="a108934f0fe48f40f715a0f310d40a26e"></a><!-- doxytag: member="View::retrieveMediator" ref="a108934f0fe48f40f715a0f310d40a26e" args="(std::string mediatorName)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_i_registerable.html">IRegisterable</a> * View::retrieveMediator </td>
+          <td class="memname"><a class="el" href="class_i_mediator_restricted.html">IMediatorRestricted</a> * View::retrieveMediator </td>
           <td>(</td>
           <td class="paramtype">std::string&nbsp;</td>
           <td class="paramname"> <em>mediatorName</em></td>
@@ -413,16 +384,16 @@ Notifying the <code>IObservers</code> of a given <code><a class="el" href="class
 </div>
 <div class="memdoc">
 
-<p>Retrieve an <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> from the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>. </p>
+<p>Retrieve an <code>IMediator</code> from the <code><a class="el" href="class_view.html" title="A Multiton IView implementation.">View</a></code>. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>mediatorName</em>&nbsp;</td><td>the name of the <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> instance to retrieve. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>mediatorName</em>&nbsp;</td><td>the name of the <code>IMediator</code> instance to retrieve. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>the <code><a class="el" href="class_i_mediator.html" title="The interface definition for a PureMVC Mediator.">IMediator</a></code> instance previously registered with the given <code>mediatorName</code>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>the <code>IMediator</code> instance previously registered with the given <code>mediatorName</code>. </dd></dl>
 
-<p>Implements <a class="el" href="class_i_view.html#a2481a33776564d11afc08df6b0aeb645">IView</a>.</p>
+<p>Implements <a class="el" href="class_i_view.html#ac288749c1993b3ac5d08ec4f0a8c62a3">IView</a>.</p>
 
 </div>
 </div>
@@ -431,7 +402,7 @@ Notifying the <code>IObservers</code> of a given <code><a class="el" href="class
 <li>/home/clcks/Code/MVC++/trunk/mvcpp/src/pmvcpparch.cpp</li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Dec 13 17:47:40 2009 for MVC++ by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Dec 15 19:06:32 2009 for MVC++ by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

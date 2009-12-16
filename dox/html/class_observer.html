@@ -25,8 +25,8 @@
   </div>
 </div>
 <div class="contents">
-<h1>Observer&lt; T &gt; Class Template Reference</h1><!-- doxytag: class="Observer" --><!-- doxytag: inherits="IObserver" -->
-<p>A base <code><a class="el" href="class_i_observer.html" title="The interface definition for a PureMVC Observer.">IObserver</a></code> implementation.  
+<h1>Observer&lt; T &gt; Class Template Reference</h1><!-- doxytag: class="Observer" --><!-- doxytag: inherits="IObserverTemplated" -->
+<p>A base <code>IObserver</code> implementation.  
 <a href="#_details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="pmvcpparch_8h_source.html">pmvcpparch.h</a>&gt;</code></p>
@@ -35,14 +35,14 @@ Inheritance diagram for Observer&lt; T &gt;:</div>
 <div class="dynsection">
 <div class="center"><img src="class_observer__inherit__graph.png" border="0" usemap="#_observer_3_01_t_01_4_inherit__map" alt="Inheritance graph"/></div>
 <map name="_observer_3_01_t_01_4_inherit__map" id="_observer_3_01_t_01_4_inherit__map">
-<area shape="rect" id="node2" href="class_i_observer.html" title="The interface definition for a PureMVC Observer." alt="" coords="11,86,120,117"/><area shape="rect" id="node4" href="class_i_observer_functor.html" title="An Observer functor interface." alt="" coords="5,6,125,37"/></map>
+<area shape="rect" id="node2" href="class_i_observer_templated.html" title="The interface definition for a PureMVC Observer." alt="" coords="5,86,176,117"/><area shape="rect" id="node4" href="class_i_observer_restricted.html" title="An Observer functor interface." alt="" coords="23,6,159,37"/></map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for Observer&lt; T &gt;:</div>
 <div class="dynsection">
 <div class="center"><img src="class_observer__coll__graph.png" border="0" usemap="#_observer_3_01_t_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="_observer_3_01_t_01_4_coll__map" id="_observer_3_01_t_01_4_coll__map">
-<area shape="rect" id="node2" href="class_i_observer.html" title="The interface definition for a PureMVC Observer." alt="" coords="11,86,120,117"/><area shape="rect" id="node4" href="class_i_observer_functor.html" title="An Observer functor interface." alt="" coords="5,6,125,37"/></map>
+<area shape="rect" id="node2" href="class_i_observer_templated.html" title="The interface definition for a PureMVC Observer." alt="" coords="5,86,176,117"/><area shape="rect" id="node4" href="class_i_observer_restricted.html" title="An Observer functor interface." alt="" coords="23,6,159,37"/></map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 
 <p><a href="class_observer-members.html">List of all members.</a></p>
@@ -60,14 +60,14 @@ Collaboration diagram for Observer&lt; T &gt;:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the notification context.  <a href="#abb1968755df4cf8f750b85bba2f5d703"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_observer.html#ab8ece82c03fd9acd1e4cb5e3cd25dc82">notifyObserver</a> (<a class="el" href="class_i_notification.html">INotification</a> *notification)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Notify the interested object.  <a href="#ab8ece82c03fd9acd1e4cb5e3cd25dc82"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_observer.html#a942819ca5f5642e1d681a604780a6a62">compareNotifyContext</a> (<a class="el" href="class_i_observer_functor.html">IObserverFunctor</a> *compareContext)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Compare an object to the notification context.  <a href="#a942819ca5f5642e1d681a604780a6a62"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_observer.html#aae361da264e6144e31e97b1462880dc5">compareNotifyContext</a> (unsigned int compareContextMemoryAddress)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Compare the given memory address with the stored context's address.  <a href="#aae361da264e6144e31e97b1462880dc5"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <h3>template&lt;class T&gt;<br/>
  class Observer&lt; T &gt;</h3>
 
-<p>A base <code><a class="el" href="class_i_observer.html" title="The interface definition for a PureMVC Observer.">IObserver</a></code> implementation. </p>
+<p>A base <code>IObserver</code> implementation. </p>
 <p>An <code><a class="el" href="class_observer.html" title="A base IObserver implementation.">Observer</a></code> is an object that encapsulates information about an interested object with a method that should be called when a particular <code><a class="el" href="class_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code> is broadcast. </p>
 <p>In PureMVC, the <code><a class="el" href="class_observer.html" title="A base IObserver implementation.">Observer</a></code> class assumes these responsibilities: </p>
 <ul>
@@ -88,7 +88,7 @@ Provide a method for notifying the interested object. </li>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T &gt; </div>
+template&lt;class T&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="class_observer.html">Observer</a>&lt; T &gt;::<a class="el" href="class_observer.html">Observer</a> </td>
@@ -124,32 +124,34 @@ template&lt;class T &gt; </div>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a942819ca5f5642e1d681a604780a6a62"></a><!-- doxytag: member="Observer::compareNotifyContext" ref="a942819ca5f5642e1d681a604780a6a62" args="(IObserverFunctor *compareContext)" -->
+<a class="anchor" id="aae361da264e6144e31e97b1462880dc5"></a><!-- doxytag: member="Observer::compareNotifyContext" ref="aae361da264e6144e31e97b1462880dc5" args="(unsigned int compareContextMemoryAddress)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T &gt; </div>
+template&lt;class T&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">bool <a class="el" href="class_observer.html">Observer</a>&lt; T &gt;::compareNotifyContext </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_i_observer_functor.html">IObserverFunctor</a> *&nbsp;</td>
-          <td class="paramname"> <em>compareContext</em></td>
+          <td class="paramtype">unsigned int&nbsp;</td>
+          <td class="paramname"> <em>compareContextMemoryAddress</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
+          <td><code> [inline, virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Compare an object to the notification context. </p>
+<p>Compare the given memory address with the stored context's address. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>compareContext</em>&nbsp;</td><td>the object to compare </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>compareContextMemoryAddress</em>&nbsp;</td><td>the object to compare's memory address </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>boolean indicating if the object and the notification context are the same </dd></dl>
+
+<p>Implements <a class="el" href="class_i_observer_restricted.html#ae5b95837b4ee60f9d078c2f034b3564f">IObserverRestricted</a>.</p>
 
 </div>
 </div>
@@ -157,7 +159,7 @@ template&lt;class T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T &gt; </div>
+template&lt;class T&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">NotifyContext <a class="el" href="class_observer.html">Observer</a>&lt; T &gt;::getNotifyContext </td>
@@ -179,7 +181,7 @@ template&lt;class T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T &gt; </div>
+template&lt;class T&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">NotifyMethod <a class="el" href="class_observer.html">Observer</a>&lt; T &gt;::getNotifyMethod </td>
@@ -201,7 +203,7 @@ template&lt;class T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T &gt; </div>
+template&lt;class T&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void <a class="el" href="class_observer.html">Observer</a>&lt; T &gt;::notifyObserver </td>
@@ -223,7 +225,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="class_i_observer_functor.html#a908eec31e040d6afc7e4422527036504">IObserverFunctor</a>.</p>
+<p>Implements <a class="el" href="class_i_observer_restricted.html#a764d37630a901415ad130bb43c0b2f05">IObserverRestricted</a>.</p>
 
 </div>
 </div>
@@ -231,7 +233,7 @@ template&lt;class T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T &gt; </div>
+template&lt;class T&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void <a class="el" href="class_observer.html">Observer</a>&lt; T &gt;::setNotifyContext </td>
@@ -253,7 +255,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="class_i_observer.html#abaeb1789251ce51bb81dd217c7682bae">IObserver&lt; T &gt;</a>.</p>
+<p>Implements <a class="el" href="class_i_observer_templated.html#aca4d385bd5cb8fd58e61e46f22e39e21">IObserverTemplated&lt; T &gt;</a>.</p>
 
 </div>
 </div>
@@ -261,7 +263,7 @@ template&lt;class T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T &gt; </div>
+template&lt;class T&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void <a class="el" href="class_observer.html">Observer</a>&lt; T &gt;::setNotifyMethod </td>
@@ -290,7 +292,7 @@ template&lt;class T &gt; </div>
 <li>/home/clcks/Code/MVC++/trunk/mvcpp/src/<a class="el" href="pmvcpparch_8h_source.html">pmvcpparch.h</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Dec 13 17:47:40 2009 for MVC++ by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Dec 15 19:06:32 2009 for MVC++ by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

@@ -1,16 +1,17 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$class_i_controller.html" title="The interface definition for a PureMVC Controller." alt="" coords="31,86,111,117"/>
-<area shape="rect" id="node7" href="$class_i_model.html" title="The interface definition for a PureMVC Model." alt="" coords="135,86,193,117"/>
-<area shape="rect" id="node11" href="$class_i_view.html" title="The interface definition for a PureMVC View." alt="" coords="369,86,423,117"/>
-<area shape="rect" id="node15" href="$class_multiton_key_heir.html" title="Multiton key holding class." alt="" coords="217,86,329,117"/>
-<area shape="rect" id="node5" href="$class_controller.html" title="A Multiton IController implementation." alt="" coords="35,166,109,197"/>
-<area shape="rect" id="node9" href="$class_model.html" title="A Multiton IModel implementation." alt="" coords="135,166,191,197"/>
-<area shape="rect" id="node13" href="$class_view.html" title="A Multiton IView implementation." alt="" coords="388,166,436,197"/>
-<area shape="rect" id="node18" href="$class_facade.html" title="A base Multiton IFacade implementation." alt="" coords="300,166,364,197"/>
-<area shape="rect" id="node23" href="$class_notifier.html" title="A Base INotifier implementation." alt="" coords="215,166,276,197"/>
-<area shape="rect" id="node20" href="$class_application_facade.html" title="ApplicationFacade" alt="" coords="389,246,517,277"/>
-<area shape="rect" id="node25" href="$class_mediator.html" title="Mediator\&lt; T \&gt;" alt="" coords="261,246,365,277"/>
-<area shape="rect" id="node27" href="$class_proxy.html" title="Proxy\&lt; T \&gt;" alt="" coords="5,246,93,277"/>
-<area shape="rect" id="node29" href="$class_simple_command.html" title="A base ICommand implementation." alt="" coords="117,246,237,277"/>
-<area shape="rect" id="node31" href="$class_macro_command.html" title="A base ICommand implementation that executes other ICommands." alt="" coords="120,326,235,357"/>
+<area shape="rect" id="node3" href="$class_i_controller.html" title="The interface definition for a PureMVC Controller." alt="" coords="15,86,95,117"/>
+<area shape="rect" id="node7" href="$class_i_facade.html" title="The interface definition for a PureMVC Facade." alt="" coords="119,86,185,117"/>
+<area shape="rect" id="node13" href="$class_i_model.html" title="The interface definition for a PureMVC Model." alt="" coords="345,86,404,117"/>
+<area shape="rect" id="node17" href="$class_i_view.html" title="The interface definition for a PureMVC View." alt="" coords="428,86,481,117"/>
+<area shape="rect" id="node21" href="$class_multiton_key_heir.html" title="Multiton key holding class." alt="" coords="209,86,321,117"/>
+<area shape="rect" id="node5" href="$class_controller.html" title="A Multiton IController implementation." alt="" coords="19,166,93,197"/>
+<area shape="rect" id="node9" href="$class_facade.html" title="A base Multiton IFacade implementation." alt="" coords="120,166,184,197"/>
+<area shape="rect" id="node11" href="$class_application_facade.html" title="ApplicationFacade" alt="" coords="5,246,133,277"/>
+<area shape="rect" id="node15" href="$class_model.html" title="A Multiton IModel implementation." alt="" coords="337,166,393,197"/>
+<area shape="rect" id="node19" href="$class_view.html" title="A Multiton IView implementation." alt="" coords="425,166,473,197"/>
+<area shape="rect" id="node26" href="$class_notifier.html" title="A Base INotifier implementation." alt="" coords="239,166,300,197"/>
+<area shape="rect" id="node28" href="$class_mediator.html" title="Mediator\&lt; T \&gt;" alt="" coords="157,246,261,277"/>
+<area shape="rect" id="node30" href="$class_proxy.html" title="Proxy\&lt; T \&gt;" alt="" coords="285,246,373,277"/>
+<area shape="rect" id="node32" href="$class_simple_command.html" title="A base ICommand implementation." alt="" coords="397,246,517,277"/>
+<area shape="rect" id="node34" href="$class_macro_command.html" title="A base ICommand implementation that executes other ICommands." alt="" coords="400,326,515,357"/>
 </map>

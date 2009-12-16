@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <vector>
+#include <stdint.h>
 
 // cxxtest
 #include <cxxtest/TestSuite.h>
@@ -201,7 +202,6 @@ private:
 //--------------------------------------
 //  Observer
 //--------------------------------------
-// TODO - figure out compare notify contexts, IObserverRestricteds and whatever the hell else...
 class InterestedObject
 {
 public:

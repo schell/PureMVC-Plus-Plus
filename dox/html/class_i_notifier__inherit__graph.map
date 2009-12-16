@@ -1,13 +1,15 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$class_i_command.html" title="The interface definition for a PureMVC Command." alt="" coords="15,86,97,117"/>
-<area shape="rect" id="node9" href="$class_i_facade.html" title="The interface definition for a PureMVC Facade." alt="" coords="452,86,519,117"/>
-<area shape="rect" id="node15" href="$class_i_mediator.html" title="The interface definition for a PureMVC Mediator." alt="" coords="121,86,228,117"/>
-<area shape="rect" id="node19" href="$class_i_proxy.html" title="The interface definition for a PureMVC Proxy." alt="" coords="337,86,428,117"/>
-<area shape="rect" id="node23" href="$class_notifier.html" title="A Base INotifier implementation." alt="" coords="252,86,313,117"/>
-<area shape="rect" id="node5" href="$class_simple_command.html" title="A base ICommand implementation." alt="" coords="5,166,125,197"/>
-<area shape="rect" id="node7" href="$class_macro_command.html" title="A base ICommand implementation that executes other ICommands." alt="" coords="8,246,123,277"/>
-<area shape="rect" id="node11" href="$class_facade.html" title="A base Multiton IFacade implementation." alt="" coords="453,166,517,197"/>
-<area shape="rect" id="node13" href="$class_application_facade.html" title="ApplicationFacade" alt="" coords="421,246,549,277"/>
-<area shape="rect" id="node17" href="$class_mediator.html" title="Mediator\&lt; T \&gt;" alt="" coords="159,166,263,197"/>
-<area shape="rect" id="node21" href="$class_proxy.html" title="Proxy\&lt; T \&gt;" alt="" coords="304,166,392,197"/>
+<area shape="rect" id="node3" href="$class_i_command.html" title="The interface definition for a PureMVC Command." alt="" coords="147,5,229,35"/>
+<area shape="rect" id="node9" href="$class_i_facade.html" title="The interface definition for a PureMVC Facade." alt="" coords="155,254,221,285"/>
+<area shape="rect" id="node15" href="$class_i_mediator_restricted.html" title="The untemplated portion of the interface definition for a PureMVC Mediator." alt="" coords="121,58,255,89"/>
+<area shape="rect" id="node21" href="$class_i_proxy_restricted.html" title="The untemplated portion of the interface definition for a PureMVC Proxy." alt="" coords="129,189,247,219"/>
+<area shape="rect" id="node27" href="$class_notifier.html" title="A Base INotifier implementation." alt="" coords="157,111,219,142"/>
+<area shape="rect" id="node5" href="$class_simple_command.html" title="A base ICommand implementation." alt="" coords="328,5,448,35"/>
+<area shape="rect" id="node7" href="$class_macro_command.html" title="A base ICommand implementation that executes other ICommands." alt="" coords="527,5,641,35"/>
+<area shape="rect" id="node11" href="$class_facade.html" title="A base Multiton IFacade implementation." alt="" coords="356,266,420,297"/>
+<area shape="rect" id="node13" href="$class_application_facade.html" title="ApplicationFacade" alt="" coords="520,266,648,297"/>
+<area shape="rect" id="node17" href="$class_i_mediator_templated.html" title="The templated portion of IMediator." alt="" coords="304,58,472,89"/>
+<area shape="rect" id="node19" href="$class_mediator.html" title="Mediator\&lt; T \&gt;" alt="" coords="532,85,636,115"/>
+<area shape="rect" id="node23" href="$class_i_proxy_templated.html" title="The templated half of the IProxy interface definition." alt="" coords="312,213,464,243"/>
+<area shape="rect" id="node25" href="$class_proxy.html" title="Proxy\&lt; T \&gt;" alt="" coords="540,189,628,219"/>
 </map>
