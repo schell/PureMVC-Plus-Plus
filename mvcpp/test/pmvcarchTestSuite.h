@@ -31,12 +31,6 @@ public:
         Object* single_1 = Multiton<Object>::instance();
         Object* single_2 = Multiton<Object>::instance();
         Object* single_3 = Multiton<Object>::instance("instance3");
-//        TS_TRACE("Address of multiton 1:");
-//        TS_TRACE(&*single_1);
-//        TS_TRACE("Address of multiton 2:");
-//        TS_TRACE(&*single_2);
-//        TS_TRACE("Address of multiton 3 (should differ):");
-//        TS_TRACE(&*single_3);
         TS_ASSERT_EQUALS(&*single_1, &*single_2);
         TS_ASSERT_DIFFERS(&*single_1, &*single_3);
     }
@@ -159,34 +153,50 @@ private:
 //--------------------------------------
 //  Notifier
 //--------------------------------------
-class NotifierTestSuite : public CxxTest::TestSuite, public Facade
+class NotifierTestSuite : public CxxTest::TestSuite
 {
 public:
     void setUp()
     {
         this->notifier = new Notifier();
-        this->key = "testNotifierMultitonKey";
+        this->key = "NotifierTestSuiteMultitonKey";
+        this->noteName = this->key + "_noteName";
+        this->facade = Facade::getInstance(this->key);
+        this->getFacade()->registerCommand<MacroTestClass>(this->noteName);
+        SimpleTestClass::executions = 0;
+        this->notifier->initializeNotifier(this->key);
     }
-    // here are some helper methods
-    // override to intercept notification
-    void sendNotification(std::string name, IBody* body, std::string type)
+    void tearDown()
     {
-        this->notification = new Notification(name, body, type);
+        //Facade::removeCore(this->key);
     }
     void testCanInitializeNotifier()
     {
-        this->notifier->initializeNotifier(this->key);
         TS_ASSERT_EQUALS(this->notifier->getMultitonKey(), this->key);
     }
-
-    void canSendNotificationThroughFacade()
+    void testCanSendNotification()
     {
-        //TS_ASSERT_EQUALS()
+        TS_ASSERT(Multiton<View>::exists(this->key));
+        TS_ASSERT(this->facade->hasCommand(this->noteName));
+        TS_ASSERT_EQUALS(SimpleTestClass::executions, 0);
+        this->notifier->sendNotification(this->noteName);
+        TS_ASSERT_EQUALS(SimpleTestClass::executions, 3);
     }
 
+private:
     Notifier* notifier;
     Notification* notification;
+    IFacade* facade;
     std::string key;
+    std::string noteName;
+
+    Facade* getFacade()
+    {
+        if(Multiton<Facade>::exists(this->key))
+            return Multiton<Facade>::instance(this->key);
+        else
+            return 0;
+    }
 };
 //--------------------------------------
 //  Observer
@@ -465,7 +475,7 @@ public:
         this->key = "ModelTestSuiteMultitonKey";
         this->proxyName = this->key + "_proxy";
         this->model = Model::getInstance(this->key);
-        this->proxy = new ProxyTestClass(this->proxyName, 555);
+        this->proxy = new ProxyTestClass(this->proxyName, true);
     }
     void testMultitonKeyIsSet()
     {
@@ -546,7 +556,6 @@ public:
         TS_ASSERT_EQUALS(SimpleTestClass::executions, 3);
         this->getView()->notifyObservers(this->notification);
         TS_ASSERT_EQUALS(SimpleTestClass::executions, 6);
-        TS_ASSERT(this->getView()->existsObserversInterestedIn(this->noteName));
     }
     void testCanRemoveCommand()
     {
@@ -586,8 +595,100 @@ private:
 //--------------------------------------
 //  Facade
 //--------------------------------------
-class FacadeTestSuite : public CxxTest::TestSuite
+class FacadeTestClass : public Facade
 {
 
+};
+class FacadeTestSuite : public CxxTest::TestSuite
+{
+public:
+    void setUp()
+    {
+        this->key = "FacadeTestSuiteMultitonKey";
+        this->noteName = this->key + "_noteName";
+        this->noteType = this->key + "_noteType";
+        this->proxyName= this->key + "_proxy";
+        this->mediatorName = this->key + "_mediator";
+        this->proxy = new ProxyTestClass(this->proxyName, true);
+        this->mediator = new MediatorTestClass(this->mediatorName, 777);
+        this->facade = Facade::getInstance(this->key);
+        SimpleTestClass::executions = 0;
+    }
+    void testMultitonKeysAreSet()
+    {
+        TS_ASSERT_EQUALS(this->facade->getMultitonKey(), this->key);
+        TS_ASSERT_EQUALS(this->get<Model>()->getMultitonKey(), this->key);
+        TS_ASSERT_EQUALS(this->get<View>()->getMultitonKey(), this->key);
+        TS_ASSERT_EQUALS(this->get<Controller>()->getMultitonKey(), this->key);
+    }
+    void testCanRegisterAndRemoveCommand()
+    {
+        TS_ASSERT(!  this->facade->hasCommand(this->noteName));
+        this->get<Facade>()->registerCommand<MacroTestClass>(this->noteName);
+        TS_ASSERT(this->facade->hasCommand(this->noteName));
+        this->facade->removeCommand(this->noteName);
+        TS_ASSERT(! this->facade->hasCommand(this->noteName));
+    }
+    void testCanRegisterAndRetrieveAndRemoveProxy()
+    {
+        TS_ASSERT(! this->facade->hasProxy(this->proxyName));
+        this->facade->registerProxy(this->proxy);
+        TS_ASSERT(this->facade->hasProxy(this->proxyName));
+        IProxyRestricted* proxyPtr = this->facade->retrieveProxy(this->proxyName);
+        TS_ASSERT_EQUALS(&*proxyPtr, &*this->proxy);
+        this->facade->removeProxy(this->proxyName);
+        TS_ASSERT(! this->facade->hasProxy(this->proxyName));
+    }
+    void testCanRegisterAndRetrieveAndRemoveMediator()
+    {
+        TS_ASSERT(! this->facade->hasMediator(this->mediatorName));
+        this->facade->registerMediator(this->mediator);
+        TS_ASSERT(this->facade->hasMediator(this->mediatorName));
+        IMediatorRestricted* medPtr = this->facade->retrieveMediator(this->mediatorName);
+        TS_ASSERT_EQUALS(&*medPtr, &*this->mediator);
+        this->facade->removeMediator(this->mediatorName);
+        TS_ASSERT(! this->facade->hasMediator(this->mediatorName));
+    }
+    void testCanSendNotificationToCommand()
+    {
+        this->get<Facade>()->registerCommand<MacroTestClass>(this->noteName);
+        this->facade->sendNotification(this->noteName);
+        TS_ASSERT_EQUALS(SimpleTestClass::executions, 3);
+    }
+    void testCanSendNotificationToMediator()
+    {
+        this->facade->registerMediator(this->mediator);
+        this->facade->sendNotification("interest2");
+        TS_ASSERT_EQUALS(dynamic_cast<MediatorTestClass*>(this->mediator)->notifiedLastBy, 2);
+        this->facade->removeMediator(this->mediatorName);
+    }
+    void testCanRemoveCore()
+    {
+        TS_ASSERT(Facade::hasCore(this->key));
+        Facade::removeCore(this->key);
+        TS_ASSERT(! Multiton<Model>::exists(this->key));
+        TS_ASSERT(! Multiton<View>::exists(this->key));
+        TS_ASSERT(! Multiton<Controller>::exists(this->key));
+        TS_ASSERT(! Multiton<Facade>::exists(this->key));
+        TS_ASSERT(! Facade::hasCore(this->key));
+    }
+private:
+    std::string key;
+    std::string noteName;
+    std::string noteType;
+    std::string proxyName;
+    std::string mediatorName;
+    IProxyRestricted* proxy;
+    IMediatorRestricted* mediator;
+    IFacade* facade;
+
+    template<class T>
+    T* get()
+    {
+        if(Multiton<T>::exists(this->key))
+            return Multiton<T>::instance(this->key);
+        else
+            return (T*) 0;
+    };
 };
 #endif	/* _PMVCARCHTESTSUITE_H */

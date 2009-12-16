@@ -767,7 +767,7 @@ public:
  * @see ICommand
  * @see INotification
  */
-class IFacade : public INotifier
+class IFacade : public INotifier, public virtual IMultitonKeyHeir
 {
 public:
         /**

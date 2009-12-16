@@ -37,6 +37,10 @@ Notification::Notification(std::string name, std::string type)
     this->name = name;
     this->setType(type);
 }
+Notification::Notification(std::string name)
+{
+    this->name = name;
+}
 std::string Notification::getName()
 {
     return this->name;
@@ -62,19 +66,19 @@ std::string Notification::getType()
 //--------------------------------------
 void Notifier::sendNotification( std::string notificationName, IBody* body, std::string type)
 {
-
+    this->getFacade()->sendNotification(notificationName, body, type);
 }
 void Notifier::sendNotification( std::string notificationName, std::string type )
 {
-
+    this->getFacade()->sendNotification(notificationName, type);
 }
 void Notifier::sendNotification( std::string notificationName, IBody* body )
 {
-
+    this->getFacade()->sendNotification(notificationName, body);
 }
 void Notifier::sendNotification( std::string notificationName )
 {
-
+    this->getFacade()->sendNotification(notificationName);
 }
 void Notifier::initializeNotifier(std::string key)
 {
@@ -87,10 +91,7 @@ IFacade* Notifier::getFacade()
 //--------------------------------------
 //  SimpleCommand
 //--------------------------------------
-void SimpleCommand::execute(INotification* notification)
-{
-    
-}
+// nothing to define!
 //--------------------------------------
 //  MacroCommand
 //--------------------------------------
@@ -351,83 +352,122 @@ void Controller::initializeController( )
 //--------------------------------------
 //  FACADE
 //--------------------------------------
-Facade::Facade()
+Facade::Facade() : model(0), view(0), controller(0)
 {
-    // make sure our pointers are null at first
-    // for testing purposes
-    this->model = 0;
-    this->controller = 0;
-    this->view = 0;
 }
-void Facade::registerCommand( std::string notificationName, ICommand* commandClassRef )
-{}
-void Facade::removeCommand( std::string notificationName )
-{}
-bool Facade::hasCommand( std::string notificationName )
-{return true;}
-void Facade::registerProxy ( IProxyRestricted* proxy )
-{}
-IProxyRestricted* Facade::retrieveProxy ( std::string proxyName )
-{return 0;}
-IProxyRestricted* Facade::removeProxy ( std::string proxyName )
-{return 0;}
-bool Facade::hasProxy( std::string proxyName )
-{return true;}
-void Facade::registerMediator( IMediatorRestricted* mediator )
-{}
-IMediatorRestricted* Facade::retrieveMediator( std::string mediatorName )
-{return 0;}
-IMediatorRestricted* Facade::removeMediator( std::string mediatorName )
-{return 0;}
-bool Facade::hasMediator( std::string mediatorName )
-{return true;}
-void Facade::sendNotification( std::string notificationName, IBody* body, std::string type)
-{}
-void Facade::sendNotification( std::string notificationName, std::string type )
-{}
-void Facade::sendNotification( std::string notificationName, IBody* body )
-{}
-void Facade::sendNotification( std::string notificationName )
-{}
-void Facade::notifyObservers ( INotification* notification )
-{}
+IFacade* Facade::getInstance(std::string key)
+{
+    Facade* facade = Multiton<Facade>::instance(key);
+    facade->initializeNotifier(key);
+    facade->initializeFacade();
+    return facade;
+}
 void Facade::initializeNotifier(std::string key)
 {
     this->setMultitonKey(key);
 }
-bool Facade::hasCore( std::string key )
-{return true;}
-void Facade::removeCore( std::string key )
-{}
-void Facade::initializeFacade(std::string key)
+void Facade::initializeFacade()
 {
-    this->initializeNotifier(key);
     this->initializeModel();
     this->initializeController();
     this->initializeView();
 }
-
 void Facade::initializeModel()
 {
     // if it's been initialized, abort
     if(this->controller != (IController*) 0)
         return;
-    this->controller = Multiton<Controller>::instance(this->getMultitonKey());
-    this->controller->setMultitonKey(this->getMultitonKey());
+    this->controller = Controller::getInstance(this->getMultitonKey());
 }
 void Facade::initializeController()
 {
     // if it's been initialized, abort
     if(this->model != (IModel*) 0)
         return;
-    this->model = Multiton<Model>::instance(this->getMultitonKey());
-    this->model->setMultitonKey(this->getMultitonKey());
+    this->model = Model::getInstance(this->getMultitonKey());
 }
 void Facade::initializeView()
 {
     // if it's been initialized, abort
     if(this->view != (IView*) 0)
         return;
-    this->view = Multiton<View>::instance(this->getMultitonKey());
-    this->view->setMultitonKey(this->getMultitonKey());
+    this->view = View::getInstance(this->getMultitonKey());
+}
+void Facade::removeCommand( std::string notificationName )
+{
+    this->controller->removeCommand(notificationName);
+}
+bool Facade::hasCommand( std::string notificationName )
+{
+    return this->controller->hasCommand(notificationName);
+}
+void Facade::registerProxy( IProxyRestricted* proxy )
+{
+    this->model->registerProxy(proxy);
+}
+IProxyRestricted* Facade::retrieveProxy( std::string proxyName )
+{
+    return this->model->retrieveProxy(proxyName);
+}
+IProxyRestricted* Facade::removeProxy ( std::string proxyName )
+{
+    return this->model->removeProxy(proxyName);
+}
+bool Facade::hasProxy( std::string proxyName )
+{
+    return this->model->hasProxy(proxyName);
+}
+void Facade::registerMediator( IMediatorRestricted* mediator )
+{
+    if(this->view == (IView*) 0)
+        return;
+    this->view->registerMediator(mediator);
+}
+IMediatorRestricted* Facade::retrieveMediator( std::string mediatorName )
+{
+    return this->view->retrieveMediator(mediatorName);
+}
+IMediatorRestricted* Facade::removeMediator( std::string mediatorName )
+{
+    return this->view->removeMediator(mediatorName);
+}
+bool Facade::hasMediator( std::string mediatorName )
+{
+    return this->view->hasMediator(mediatorName);
+}
+void Facade::sendNotification( std::string notificationName, IBody* body, std::string type)
+{
+    this->notifyObservers(new Notification(notificationName, body, type));
+}
+void Facade::sendNotification( std::string notificationName, std::string type )
+{
+    this->notifyObservers(new Notification(notificationName, type));
+}
+void Facade::sendNotification( std::string notificationName, IBody* body )
+{
+    this->notifyObservers(new Notification(notificationName, body));
+}
+void Facade::sendNotification( std::string notificationName )
+{
+    this->notifyObservers(new Notification(notificationName));
+}
+void Facade::notifyObservers ( INotification* notification )
+{
+    if(this->view == (IView*) 0)
+        return;
+    this->view->notifyObservers(notification);
+}
+bool Facade::hasCore( std::string key )
+{
+    return Multiton<Facade>::exists(key);
+}
+void Facade::removeCore( std::string key )
+{
+    if(! Facade::hasCore(key))
+        return;
+
+    Model::removeModel(key);
+    View::removeView(key);
+    Controller::removeController(key);
+    Multiton<Facade>::erase(key);
 }

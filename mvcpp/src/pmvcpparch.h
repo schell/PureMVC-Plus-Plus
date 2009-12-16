@@ -84,6 +84,7 @@ public:
     Notification(std::string name, IBody* body, std::string type);
     Notification(std::string name, IBody* body);
     Notification(std::string name, std::string type);
+    Notification(std::string name);
     /**
      * Get the name of the <code>Notification</code> instance.
      *
@@ -207,7 +208,7 @@ protected:
 class SimpleCommand : public Notifier, public ICommand
 {
 public:
-    virtual void execute(INotification* notification);
+    virtual void execute(INotification* notification) = 0;
 };
 //--------------------------------------
 //  MacroCommand
@@ -846,7 +847,6 @@ public:
      */
     static void removeView( std::string key );
 
-    bool existsObserversInterestedIn(std::string notificationName);
 protected:
     // Mapping of Mediator names to Mediator instances
     std::map<std::string, IMediatorRestricted*> mediatorMap;
@@ -854,8 +854,8 @@ protected:
     // Mapping of Notification names to Observer lists
     std::map<std::string, std::vector<IObserverRestricted*> > observerMap;
 
-//private:
-//    bool existsObserversInterestedIn(std::string notificationName);
+private:
+    bool existsObserversInterestedIn(std::string notificationName);
 };
 
 //--------------------------------------
@@ -1040,14 +1040,23 @@ public:
      *
      */
     Facade();
-
+    /**
+     *  <code>Facade</code> multiton factory method.
+     *
+     *  @return the Multiton instance of the Facade
+     */
+    static IFacade* getInstance(std::string);
     /**
      * Register an <code>ICommand</code> with the <code>Controller</code> by Notification name.
      *
+     * @template commandClassRef a reference to the Class of the <code>ICommand</code>
      * @param notificationName the name of the <code>INotification</code> to associate the <code>ICommand</code> with
-     * @param commandClassRef a reference to the Class of the <code>ICommand</code>
      */
-    void registerCommand( std::string notificationName, ICommand* commandClassRef );
+    template<class T>
+    void registerCommand( std::string notificationName )
+    {
+        dynamic_cast<Controller*>(this->controller)->registerCommand<T>(notificationName);
+    };
 
     /**
      * Remove a previously registered <code>ICommand</code> to <code>INotification</code> mapping from the Controller.
@@ -1159,8 +1168,8 @@ public:
     /**
      * Set the Multiton key for this facade instance.
      * <P>
-     * Not called directly, but instead from the
-     * constructor when getInstance is invoked.
+     * Not called directly, but instead when getInstance
+     * is invoked.
      * It is necessary to be public in order to
      * implement INotifier.</P>
      */
@@ -1188,11 +1197,9 @@ protected:
      * Initialize the Multiton <code>Facade</code> instance.
      *
      * <P>
-     * Called automatically by the constructor. Override in your
-     * subclass to do any subclass specific initializations. Be
-     * sure to call <code>super.initializeFacade()</code>, though.</P>
+     * Called automatically by getInstance.
      */
-    void initializeFacade( std::string key );
+    void initializeFacade();
 
     /**
      * Initialize the <code>Controller</code>.
