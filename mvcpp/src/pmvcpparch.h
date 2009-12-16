@@ -452,10 +452,12 @@ public:
     }
     Proxy(std::string proxyName, T data)
     {
+        this->proxyName = proxyName;
         this->data = data;
     }
     Proxy(std::string proxyName)
     {
+        this->proxyName = proxyName;
     }
     Proxy(T data)
     {
@@ -466,6 +468,7 @@ public:
      */
     std::string getProxyName()
     {
+        return this->proxyName;
     }
 
     /**
@@ -483,16 +486,6 @@ public:
     {
         return this->data;
     }
-
-    /**
-     * Called by the Model when the Proxy is registered
-     */
-    virtual void onRegister(){}
-
-    /**
-     * Called by the Model when the Proxy is removed
-     */
-    virtual void onRemove(){}
 
     static std::string NAME;
 
@@ -664,12 +657,21 @@ public:
      * so you should not call the constructor
      * directly, but instead call the static Multiton
      * Factory method <code>Model.getInstance( multitonKey )</code>
-     *
-     * @throws Error Error if instance for this Multiton key instance has already been constructed
+     * Unlike the AS3 version of PMVC, if you are going to subclass
+     * Model, you should stick your initialization code in your subclass
+     * constructor. Keep in mind though, that the MultitonKey for this
+     * instance does not get set until after the constructor is called
+     * from <code>getInstance</code>.
      *
      */
     Model();
-    
+
+    /**
+     *  <code>Model</code> Multiton Factory method.
+     *
+     *  @return the instance for this Multiton key
+     */
+    static IModel* getInstance(std::string key);
     /**
      * Register an <code>IProxy</code> with the <code>Model</code>.
      *
@@ -705,24 +707,154 @@ public:
      *
      * @param multitonKey of IModel instance to remove
      */
-    void removeModel( std::string key );
+    static void removeModel( std::string key );
 
 protected:
-    /**
-     * Initialize the <code>Model</code> instance.
-     *
-     * <P>
-     * Called automatically by the constructor, this
-     * is your opportunity to initialize the Singleton
-     * instance in your subclass without overriding the
-     * constructor.</P>
-     *
-     * @return void
-     */
-    void initializeModel(  );
-
     // Mapping of proxyNames to IProxy instances
     std::map <std::string, IProxyRestricted*> proxyMap;
+};
+
+//--------------------------------------
+//  View
+//--------------------------------------
+/**
+ * A Multiton <code>IView</code> implementation.
+ *
+ * <P>
+ * In PureMVC, the <code>View</code> class assumes these responsibilities:
+ * <UL>
+ * <LI>Maintain a cache of <code>IMediator</code> instances.</LI>
+ * <LI>Provide methods for registering, retrieving, and removing <code>IMediators</code>.</LI>
+ * <LI>Notifiying <code>IMediators</code> when they are registered or removed.</LI>
+ * <LI>Managing the observer lists for each <code>INotification</code> in the application.</LI>
+ * <LI>Providing a method for attaching <code>IObservers</code> to an <code>INotification</code>'s observer list.</LI>
+ * <LI>Providing a method for broadcasting an <code>INotification</code>.</LI>
+ * <LI>Notifying the <code>IObservers</code> of a given <code>INotification</code> when it broadcast.</LI>
+ * </UL>
+ *
+ *  @see Mediator
+ *  @see Observer
+ *  @see Notification
+ */
+class View : public MultitonKeyHeir, public IView
+{
+public:
+    /**
+     * Constructor.
+     *
+     * <P>
+     * This <code>IView</code> implementation is a Multiton,
+     * so you should not call the constructor
+     * directly, but instead call the static Multiton
+     * Factory method <code>View.getInstance( multitonKey )</code>.
+     * Unlike the AS3 version of PMVC, if you are going to subclass
+     * View, you should stick your initialization code in your subclass
+     * constructor. Keep in mind though, that the MultitonKey for this
+     * instance does not get set until after the constructor is called
+     * from <code>getInstance</code>.
+     *
+     *
+     */
+    View( );
+    /**
+     * View Singleton Factory method.
+     *
+     * @return the Singleton instance of <code>View</code>
+     */
+    static IView* getInstance( std::string key );
+    /**
+     * Register an <code>IObserverRestricted</code> to be notified
+     * of <code>INotifications</code> with a given name.
+     *
+     * @param notificationName the name of the <code>INotifications</code> to notify this <code>IObserver</code> of
+     * @param observer the <code>IObserverRestricted</code> to register
+     */
+    void registerObserver ( std::string notificationName, IObserverRestricted* observer );
+    /**
+     * Notify the <code>IObservers</code> for a particular <code>INotification</code>.
+     *
+     * <P>
+     * All previously attached <code>IObservers</code> for this <code>INotification</code>'s
+     * list are notified and are passed a reference to the <code>INotification</code> in
+     * the order in which they were registered.</P>
+     *
+     * @param notification the <code>INotification</code> to notify <code>IObservers</code> of.
+     */
+    void notifyObservers( INotification* notification );
+
+    /**
+     * Remove the observer for a given notifyContext from an observer list for a given Notification name.
+     * <P>
+     * @param notificationName which observer list to remove from
+     * @param contextAddress remove the observer with this memory address as its notifyContext's address
+     */
+    void removeObserver( std::string notificationName, unsigned int contextAddress );
+
+    /**
+     * Register an <code>IMediator</code> instance with the <code>View</code>.
+     *
+     * <P>
+     * Registers the <code>IMediator</code> so that it can be retrieved by name,
+     * and further interrogates the <code>IMediator</code> for its
+     * <code>INotification</code> interests.</P>
+     * <P>
+     * If the <code>IMediator</code> returns any <code>INotification</code>
+     * names to be notified about, an <code>Observer</code> is created encapsulating
+     * the <code>IMediator</code> instance's <code>handleNotification</code> method
+     * and registering it as an <code>Observer</code> for all <code>INotifications</code> the
+     * <code>IMediator</code> is interested in.</p>
+     *
+     * @param mediatorName the name to associate with this <code>IMediator</code> instance
+     * @param mediator a reference to the <code>IMediator</code> instance
+     */
+    void registerMediator( IMediatorRestricted* mediator );
+
+    /**
+     * Retrieve an <code>IMediator</code> from the <code>View</code>.
+     *
+     * @param mediatorName the name of the <code>IMediator</code> instance to retrieve.
+     * @return the <code>IMediator</code> instance previously registered with the given <code>mediatorName</code>.
+     */
+    IMediatorRestricted* retrieveMediator( std::string mediatorName );
+
+    /**
+     * Remove an <code>IMediator</code> from the <code>View</code>.
+     *
+     * @param mediatorName name of the <code>IMediator</code> instance to be removed.
+     * @return the <code>IMediator</code> that was removed from the <code>View</code>
+     */
+    /**
+     * Remove an <code>IMediator</code> from the <code>View</code>.
+     *
+     * @param mediatorName name of the <code>IMediator</code> instance to be removed.
+     * @return the <code>IMediator</code> that was removed from the <code>View</code>
+     */
+    IMediatorRestricted* removeMediator( std::string mediatorName );
+
+    /**
+     * Check if a Mediator is registered or not
+     *
+     * @param mediatorName
+     * @return whether a Mediator is registered with the given <code>mediatorName</code>.
+     */
+    bool hasMediator( std::string mediatorName );
+
+    /**
+     * Remove an IView instance
+     *
+     * @param multitonKey of IView instance to remove
+     */
+    static void removeView( std::string key );
+
+protected:
+    // Mapping of Mediator names to Mediator instances
+    std::map<std::string, IMediatorRestricted*> mediatorMap;
+
+    // Mapping of Notification names to Observer lists
+    std::map<std::string, std::vector<IObserverRestricted*> > observerMap;
+
+private:
+    bool existsObserversInterestedIn(std::string notificationName);
 };
 
 //--------------------------------------
@@ -845,157 +977,6 @@ protected:
 
     // Mapping of Notification names to Command Class references
     std::map<std::string, ICommand*> commandMap;
-};
-
-//--------------------------------------
-//  View
-//--------------------------------------
-/**
- * A Multiton <code>IView</code> implementation.
- *
- * <P>
- * In PureMVC, the <code>View</code> class assumes these responsibilities:
- * <UL>
- * <LI>Maintain a cache of <code>IMediator</code> instances.</LI>
- * <LI>Provide methods for registering, retrieving, and removing <code>IMediators</code>.</LI>
- * <LI>Notifiying <code>IMediators</code> when they are registered or removed.</LI>
- * <LI>Managing the observer lists for each <code>INotification</code> in the application.</LI>
- * <LI>Providing a method for attaching <code>IObservers</code> to an <code>INotification</code>'s observer list.</LI>
- * <LI>Providing a method for broadcasting an <code>INotification</code>.</LI>
- * <LI>Notifying the <code>IObservers</code> of a given <code>INotification</code> when it broadcast.</LI>
- * </UL>
- *
- *  @see Mediator
- *  @see Observer
- *  @see Notification
- */
-class View : public MultitonKeyHeir, public IView
-{
-public:
-    /**
-     * Constructor.
-     *
-     * <P>
-     * This <code>IView</code> implementation is a Multiton,
-     * so you should not call the constructor
-     * directly, but instead call the static Multiton
-     * Factory method <code>View.getInstance( multitonKey )</code>
-     *
-     * @throws Error Error if instance for this Multiton key has already been constructed
-     *
-     */
-    View( );
-    /**
-     * View Singleton Factory method.
-     *
-     * @return the Singleton instance of <code>View</code>
-     */
-    static IView* getInstance( std::string key );
-    /**
-     * Register an <code>IObserverRestricted</code> to be notified
-     * of <code>INotifications</code> with a given name.
-     *
-     * @param notificationName the name of the <code>INotifications</code> to notify this <code>IObserver</code> of
-     * @param observer the <code>IObserverRestricted</code> to register
-     */
-    void registerObserver ( std::string notificationName, IObserverRestricted* observer );
-    /**
-     * Notify the <code>IObservers</code> for a particular <code>INotification</code>.
-     *
-     * <P>
-     * All previously attached <code>IObservers</code> for this <code>INotification</code>'s
-     * list are notified and are passed a reference to the <code>INotification</code> in
-     * the order in which they were registered.</P>
-     *
-     * @param notification the <code>INotification</code> to notify <code>IObservers</code> of.
-     */
-    void notifyObservers( INotification* notification );
-
-    /**
-     * Remove the observer for a given notifyContext from an observer list for a given Notification name.
-     * <P>
-     * @param notificationName which observer list to remove from
-     * @param contextAddress remove the observer with this memory address as its notifyContext's address
-     */
-    void removeObserver( std::string notificationName, unsigned int contextAddress );
-
-    /**
-     * Register an <code>IMediator</code> instance with the <code>View</code>.
-     *
-     * <P>
-     * Registers the <code>IMediator</code> so that it can be retrieved by name,
-     * and further interrogates the <code>IMediator</code> for its
-     * <code>INotification</code> interests.</P>
-     * <P>
-     * If the <code>IMediator</code> returns any <code>INotification</code>
-     * names to be notified about, an <code>Observer</code> is created encapsulating
-     * the <code>IMediator</code> instance's <code>handleNotification</code> method
-     * and registering it as an <code>Observer</code> for all <code>INotifications</code> the
-     * <code>IMediator</code> is interested in.</p>
-     *
-     * @param mediatorName the name to associate with this <code>IMediator</code> instance
-     * @param mediator a reference to the <code>IMediator</code> instance
-     */
-    void registerMediator( IMediatorRestricted* mediator );
-
-    /**
-     * Retrieve an <code>IMediator</code> from the <code>View</code>.
-     *
-     * @param mediatorName the name of the <code>IMediator</code> instance to retrieve.
-     * @return the <code>IMediator</code> instance previously registered with the given <code>mediatorName</code>.
-     */
-    IMediatorRestricted* retrieveMediator( std::string mediatorName );
-
-    /**
-     * Remove an <code>IMediator</code> from the <code>View</code>.
-     *
-     * @param mediatorName name of the <code>IMediator</code> instance to be removed.
-     * @return the <code>IMediator</code> that was removed from the <code>View</code>
-     */
-    /**
-     * Remove an <code>IMediator</code> from the <code>View</code>.
-     *
-     * @param mediatorName name of the <code>IMediator</code> instance to be removed.
-     * @return the <code>IMediator</code> that was removed from the <code>View</code>
-     */
-    IMediatorRestricted* removeMediator( std::string mediatorName );
-
-    /**
-     * Check if a Mediator is registered or not
-     *
-     * @param mediatorName
-     * @return whether a Mediator is registered with the given <code>mediatorName</code>.
-     */
-    bool hasMediator( std::string mediatorName );
-
-    /**
-     * Remove an IView instance
-     *
-     * @param multitonKey of IView instance to remove
-     */
-    static void removeView( std::string key );
-
-protected:
-    /**
-     * Initialize the Singleton View instance.
-     *
-     * <P>
-     * Called automatically by the constructor, this
-     * is your opportunity to initialize the Singleton
-     * instance in your subclass without overriding the
-     * constructor.</P>
-     *
-     * @return void
-     */
-    void initializeView();
-    // Mapping of Mediator names to Mediator instances
-    std::map<std::string, IMediatorRestricted*> mediatorMap;
-
-    // Mapping of Notification names to Observer lists
-    std::map<std::string, std::vector<IObserverRestricted*> > observerMap;
-
-private:
-    bool existsObserversInterestedIn(std::string notificationName);
 };
 //--------------------------------------
 //  Facade

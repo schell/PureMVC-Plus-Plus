@@ -4,7 +4,6 @@
  *	@author	Schell Scivally
  */
 #include <iostream>
-#include "patterns.h"
 #include "pmvcpparch.h"
 #include "pmvcppexp.h"
 //--------------------------------------
@@ -123,18 +122,53 @@ void MacroCommand::execute(INotification* notification)
 //--------------------------------------
 Model::Model()
 {}
+IModel* Model::getInstance(std::string key)
+{
+    // if the instance already exists, return it.
+    if(Multiton<Model>::exists(key))
+        return Multiton<Model>::instance(key);
+    // if not, create it and initialize
+    Model* modelPtr = Multiton<Model>::instance(key);
+    modelPtr->setMultitonKey(key);
+    return modelPtr;
+}
 void Model::registerProxy( IProxyRestricted* proxy )
-{}
+{
+    proxy->initializeNotifier(this->getMultitonKey());
+    if(! this->hasProxy(proxy->getProxyName()))
+    {
+        this->proxyMap[proxy->getProxyName()] = proxy;
+        proxy->onRegister();
+    }
+}
 IProxyRestricted* Model::retrieveProxy( std::string proxyName )
-{return 0;}
+{
+    return this->proxyMap[proxyName];
+}
 bool Model::hasProxy( std::string proxyName )
-{return true;}
+{
+    return ! (this->proxyMap.find(proxyName) == this->proxyMap.end());
+}
 IProxyRestricted* Model::removeProxy( std::string proxyName )
-{return 0;}
+{
+    //std::cout << "removeProxy()\n";
+    // if this proxy has not been registered, return a null pointer
+    if(! this->hasProxy(proxyName))
+        return (IProxyRestricted*) 0;
+
+    // get the proxy
+    IProxyRestricted* proxy = this->proxyMap[proxyName];
+    // remove the proxy from the map
+    this->proxyMap.erase(proxyName);
+    // alert the proxy that it's been removed
+    proxy->onRemove();
+
+    return proxy;
+}
 void Model::removeModel( std::string key )
-{}
-void Model::initializeModel(  )
-{}
+{
+    Multiton<Model>::erase(key);
+}
 //--------------------------------------
 //  View
 //--------------------------------------
@@ -150,7 +184,6 @@ IView* View::getInstance(std::string key)
     // care of some initialization
     View* viewPtr = Multiton<View>::instance(key);
     viewPtr->setMultitonKey(key);
-    viewPtr->initializeView();
     return viewPtr;
 }
 void View::registerObserver ( std::string notificationName, IObserverRestricted* observer )
@@ -268,9 +301,9 @@ bool View::hasMediator( std::string mediatorName )
     return this->mediatorMap.find(mediatorName) != this->mediatorMap.end();
 }
 void View::removeView( std::string key )
-{}
-void View::initializeView()
-{}
+{
+    Multiton<View>::erase(key);
+}
 bool View::existsObserversInterestedIn(std::string notificationName)
 {
     return this->observerMap.find(notificationName) != this->observerMap.end();

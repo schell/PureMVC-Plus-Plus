@@ -13,8 +13,6 @@
 
 // cxxtest
 #include <cxxtest/TestSuite.h>
-// our basic fpatterns
-#include <patterns.h>
 // Base classes of pmvcpp
 #include <pmvcppbase.h>
 // Main classes of pmvcpp
@@ -248,12 +246,28 @@ private:
 class ProxyTestClass : public Proxy<bool>
 {
 public:
+    bool registered;
+    bool removed;
+    
     ProxyTestClass(bool data) : Proxy<bool>(data)
     {
+        this->registered = false;
+        this->removed = false;
+    }
+    ProxyTestClass(std::string name, bool data) : Proxy<bool>(name, data)
+    {
+        this->registered = false;
+        this->removed = false;
     }
     void onRegister()
     {
         this->setData(true);
+        this->registered = true;
+    }
+    void onRemove()
+    {
+        std::cout << "onRemove\n";
+        this->removed = true;
     }
 private:
     bool calledRegister;
@@ -285,11 +299,17 @@ public:
     MediatorTestClass(std::string name, int number) : Mediator<int>(name, number)
     {
         this->notifiedLastBy = 0;
+        this->registered = false;
+        this->removed = false;
     }
     void onRegister()
-    {}
+    {
+        this->registered = true;
+    }
     void onRemove()
-    {}
+    {
+        this->removed = true;
+    }
     std::vector<std::string> listNotificationInterests()
     {
         std::vector<std::string> interests;
@@ -317,6 +337,8 @@ public:
             this->notifiedLastBy = 0;
     }
     int notifiedLastBy;
+    bool registered;
+    bool removed;
 };
 class MediatorTestSuite : public CxxTest::TestSuite
 {
@@ -383,6 +405,7 @@ public:
     {
         this->view->registerMediator(this->mediator);
         TS_ASSERT(this->view->hasMediator(this->mediatorName));
+        TS_ASSERT(this->getMediator()->registered);
         IMediatorRestricted* mediatorRet = this->view->retrieveMediator(this->mediatorName);
         TS_ASSERT_EQUALS(&*this->mediator, &*mediatorRet);
         this->view->removeMediator(this->mediatorName);
@@ -396,6 +419,19 @@ public:
         this->view->removeMediator(this->mediatorName);
         this->view->notifyObservers(new Notification("interest3", this->noteType));
         TS_ASSERT_EQUALS(this->getMediator()->notifiedLastBy, 4);
+        TS_ASSERT(this->getMediator()->removed);
+    }
+    void testCanRetrieveMediator()
+    {
+        this->view->registerMediator(this->mediator);
+        IMediatorRestricted* mediator = this->view->retrieveMediator(this->mediatorName);
+        TS_ASSERT_EQUALS(&*mediator, &*this->mediator);
+    }
+    void testCanRemoveView()
+    {
+        TS_ASSERT(Multiton<View>::exists(this->key));
+        View::removeView(this->key);
+        TS_ASSERT(! Multiton<View>::exists(this->key));
     }
 private:
     std::string key;
@@ -417,6 +453,61 @@ private:
     MediatorTestClass* getMediator()
     {
         return dynamic_cast<MediatorTestClass*>(this->mediator);
+    }
+};
+//--------------------------------------
+//  Model
+//--------------------------------------
+class ModelTestSuite : public CxxTest::TestSuite
+{
+public:
+    void setUp()
+    {
+        this->key = "ModelTestSuiteMultitonKey";
+        this->proxyName = this->key + "_proxy";
+        this->model = Model::getInstance(this->key);
+        this->proxy = new ProxyTestClass(this->proxyName, 555);
+    }
+    void testMultitonKeyIsSet()
+    {
+        TS_ASSERT_EQUALS(this->model->getMultitonKey(), this->key);
+    }
+    void testCanRegisterAndRetrieveAndRemoveProxy()
+    {
+        TS_ASSERT(! this->model->hasProxy(this->proxyName));
+        this->model->registerProxy(this->proxy);
+        TS_ASSERT(this->model->hasProxy(this->proxyName));
+        TS_ASSERT(this->getProxy()->registered);
+        
+        IProxyRestricted* proxyPtr = this->model->retrieveProxy(this->proxyName);
+        TS_ASSERT_EQUALS(&*this->proxy, &*proxyPtr);
+
+        proxyPtr = this->model->removeProxy(this->proxyName);
+        TS_ASSERT_EQUALS(&*proxyPtr, &*this->proxy);
+        TS_ASSERT(! this->model->hasProxy(this->proxyName));
+        TS_ASSERT(this->getProxy()->removed);
+    }
+    void testCanRemoveModel()
+    {
+        TS_ASSERT(Multiton<Model>::exists(this->key));
+        Model::removeModel(this->key);
+        TS_ASSERT(! Multiton<Model>::exists(this->key));
+    }
+private:
+    IModel* model;
+    std::string key;
+
+    IProxyRestricted* proxy;
+    int data;
+    std::string proxyName;
+
+    Model* getModel()
+    {
+        return dynamic_cast<Model*>(this->model);
+    }
+    ProxyTestClass* getProxy()
+    {
+        return dynamic_cast<ProxyTestClass*>(this->proxy);
     }
 };
 //--------------------------------------
