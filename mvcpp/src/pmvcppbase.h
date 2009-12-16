@@ -696,7 +696,7 @@ public:
          * @param notificationName which observer list to remove from
          * @param contextAddress remove the observer with this address as the address of their notifyContext
          */
-	virtual void removeObserver( std::string notificationName, unsigned int contextAddress ) = 0;
+	virtual void removeObserver( std::string notificationName, intptr_t contextAddress ) = 0;
         /**
          * Notify the <code>IObservers</code> for a particular <code>INotification</code>.
          *

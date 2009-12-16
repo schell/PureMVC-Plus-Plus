@@ -790,7 +790,7 @@ public:
      * @param notificationName which observer list to remove from
      * @param contextAddress remove the observer with this memory address as its notifyContext's address
      */
-    void removeObserver( std::string notificationName, unsigned int contextAddress );
+    void removeObserver( std::string notificationName, intptr_t contextAddress );
 
     /**
      * Register an <code>IMediator</code> instance with the <code>View</code>.

@@ -218,7 +218,7 @@ void View::notifyObservers( INotification* notification )
         }
     }
 }
-void View::removeObserver( std::string notificationName, unsigned int contextAddress )
+void View::removeObserver( std::string notificationName, intptr_t contextAddress )
 {
     if(this->existsObserversInterestedIn(notificationName))
     {
