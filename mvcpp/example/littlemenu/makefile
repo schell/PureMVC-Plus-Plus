@@ -1,16 +1,16 @@
 CC = g++
 CFLAGS = -Wall -I../../src
 LIBRARIES = -lm -lstdc++
-SRCS = main.cpp
-OBJS = main.o
+SRCS = main.cpp ../../src/pmvcpparch.cpp
+OBJS = main.o pmvcpparch.o
 
-all: pmvcpp.o littlemenu
+all: pmvcpparch.o littlemenu
 
-pmvcpp.o : pmvcpparch.cpp
-	$(CC) $(CFLAGS) -c $@ $^
-	
 littlemenu: $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBRARIES)
 
 $(OBJS): $(SRCS)
 	$(CC) $(CFLAGS) -c $(SRCS)
+	
+clean :
+	rm -rf *.o *.mkout littlemenu

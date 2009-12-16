@@ -123,11 +123,11 @@ public:
     {
         this->_type = type;
     }
-    void setType(std::string type)
+    virtual void setType(std::string type)
     {
         this->_type = type;
     }
-    std::string getType()
+    virtual std::string getType()
     {
         return this->_type;
     }

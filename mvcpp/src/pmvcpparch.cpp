@@ -353,10 +353,13 @@ void Controller::initializeController( )
 //--------------------------------------
 //  FACADE
 //--------------------------------------
-Facade::Facade() : model(0), view(0), controller(0)
+Facade::Facade()
 {
+	this->model = (IModel*) 0;
+	this->view = (IView*) 0;
+	this->controller = (IController*) 0;
 }
-IFacade* Facade::getInstance(std::string key)
+Facade* Facade::getInstance(std::string key)
 {
     Facade* facade = Multiton<Facade>::instance(key);
     facade->initializeNotifier(key);

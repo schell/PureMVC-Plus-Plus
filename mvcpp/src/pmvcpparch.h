@@ -2,6 +2,13 @@
  * File:   pmvcpparch.h
  * Author: Schell Scivally
  *
+ * TODO - Create a class for holding notification names, notification types and
+ * for making dynamic_cast-ing IBody classes easy.
+ *
+ * TODO - Low and behold, c++ doesn't allow switch statements on strings! It would be nice
+ * to set up a system of enumerated notification names and types for using in switch statements,
+ * instead of strings like in the other ports.
+ *
  * Created on November 23, 2009, 1:17 PM
  */
 
@@ -1046,7 +1053,7 @@ public:
      *
      *  @return the Multiton instance of the Facade
      */
-    static IFacade* getInstance(std::string);
+    static Facade* getInstance(std::string);
     /**
      * Register an <code>ICommand</code> with the <code>Controller</code> by Notification name.
      *
