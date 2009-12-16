@@ -326,14 +326,14 @@ public:
          * @param notificationName the name of the <code>INotification</code>
          * @param commandClassRef the Class of the <code>ICommand</code>
          */
-         //void registerCommand( std::string notificationName, ICommand* commandClassRef );
+        //virtual void registerCommand( std::string notificationName, ICommand* commandClassRef )
         /**
          * Execute the <code>ICommand</code> previously registered as the
          * handler for <code>INotification</code>s with the given notification name.
          *
          * @param notification the <code>INotification</code> to execute the associated <code>ICommand</code> for
          */
-	virtual void executeCommand( INotification* notification ) = 0;
+	//virtual void executeCommand( INotification* notification ) = 0;
         /**
          * Remove a previously registered <code>ICommand</code> to <code>INotification</code> mapping.
          *

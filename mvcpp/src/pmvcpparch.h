@@ -846,6 +846,7 @@ public:
      */
     static void removeView( std::string key );
 
+    bool existsObserversInterestedIn(std::string notificationName);
 protected:
     // Mapping of Mediator names to Mediator instances
     std::map<std::string, IMediatorRestricted*> mediatorMap;
@@ -853,8 +854,8 @@ protected:
     // Mapping of Notification names to Observer lists
     std::map<std::string, std::vector<IObserverRestricted*> > observerMap;
 
-private:
-    bool existsObserversInterestedIn(std::string notificationName);
+//private:
+//    bool existsObserversInterestedIn(std::string notificationName);
 };
 
 //--------------------------------------
@@ -922,7 +923,28 @@ public:
      *
      * @param note an <code>INotification</code>
      */
-    void executeCommand( INotification* note );
+    template<class T>
+    void executeCommand( INotification* note )
+    {
+        // this is a special to c++ function,
+        // i feel like we're cheating here, but
+        // it's nice, but we had to get rid of
+        // executeCommand and registerCommand
+        // from IController for it... ...if you
+        // can think of a better way to keep this
+        // commands stateless through this execution
+        // then be my guest to revise this. - Schell
+        std::string name = note->getName();
+        // if this command isn't listed, abort
+        if(! this->hasCommand(name))
+            return;
+        // make a new instance of the command
+        ICommand* command = new T();
+        command->initializeNotifier(this->getMultitonKey());
+        command->execute(note);
+        // get rid of the evidence
+        delete command;
+    };
     /**
      * Register a particular <code>ICommand</code> class as the handler
      * for a particular <code>INotification</code>.
@@ -935,11 +957,24 @@ public:
      * The Observer for the new ICommand is only created if this the
      * first time an ICommand has been regisered for this Notification name.
      *
+     * @template commandClassRef the <code>Class</code> of the <code>ICommand</code>
      * @param notificationName the name of the <code>INotification</code>
-     * @param commandClassRef the <code>Class</code> of the <code>ICommand</code>
      */
-    void registerCommand( std::string notificationName, ICommand* commandClassRef );
-
+    //void registerCommand( std::string notificationName, ICommand* commandClassRef );
+    template<class T>
+    void registerCommand(std::string notificationName)
+    {
+        // if we've already registered a command for this notification
+        // abort
+        if(this->hasCommand(notificationName))
+            return;
+        // create an observer for this command
+        Observer<Controller>* observer = new Observer<Controller>(&Controller::executeCommand<T>, this);
+        // register the observer with the view
+        this->view->registerObserver(notificationName, observer);
+        // give the commanMap something to chew on
+        commandMap[notificationName] = (T*) 0;
+    };
     /**
      * Check if a Command is registered for a given Notification
      *

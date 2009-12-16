@@ -115,110 +115,140 @@ public:
 static ProxyTestSuite suite_ProxyTestSuite;
 
 static CxxTest::List Tests_ProxyTestSuite = { 0, 0 };
-CxxTest::StaticSuiteDescription suiteDescription_ProxyTestSuite( "/home/clcks/Code/MVC++/trunk/mvcpp/test/pmvcarchTestSuite.h", 275, "ProxyTestSuite", suite_ProxyTestSuite, Tests_ProxyTestSuite );
+CxxTest::StaticSuiteDescription suiteDescription_ProxyTestSuite( "/home/clcks/Code/MVC++/trunk/mvcpp/test/pmvcarchTestSuite.h", 274, "ProxyTestSuite", suite_ProxyTestSuite, Tests_ProxyTestSuite );
 
 static class TestDescription_ProxyTestSuite_testConstructorCanInitializeTemplatedData : public CxxTest::RealTestDescription {
 public:
- TestDescription_ProxyTestSuite_testConstructorCanInitializeTemplatedData() : CxxTest::RealTestDescription( Tests_ProxyTestSuite, suiteDescription_ProxyTestSuite, 278, "testConstructorCanInitializeTemplatedData" ) {}
+ TestDescription_ProxyTestSuite_testConstructorCanInitializeTemplatedData() : CxxTest::RealTestDescription( Tests_ProxyTestSuite, suiteDescription_ProxyTestSuite, 277, "testConstructorCanInitializeTemplatedData" ) {}
  void runTest() { suite_ProxyTestSuite.testConstructorCanInitializeTemplatedData(); }
 } testDescription_ProxyTestSuite_testConstructorCanInitializeTemplatedData;
 
 static class TestDescription_ProxyTestSuite_testRegisterCallsDerivedClassMember : public CxxTest::RealTestDescription {
 public:
- TestDescription_ProxyTestSuite_testRegisterCallsDerivedClassMember() : CxxTest::RealTestDescription( Tests_ProxyTestSuite, suiteDescription_ProxyTestSuite, 283, "testRegisterCallsDerivedClassMember" ) {}
+ TestDescription_ProxyTestSuite_testRegisterCallsDerivedClassMember() : CxxTest::RealTestDescription( Tests_ProxyTestSuite, suiteDescription_ProxyTestSuite, 282, "testRegisterCallsDerivedClassMember" ) {}
  void runTest() { suite_ProxyTestSuite.testRegisterCallsDerivedClassMember(); }
 } testDescription_ProxyTestSuite_testRegisterCallsDerivedClassMember;
 
 static MediatorTestSuite suite_MediatorTestSuite;
 
 static CxxTest::List Tests_MediatorTestSuite = { 0, 0 };
-CxxTest::StaticSuiteDescription suiteDescription_MediatorTestSuite( "/home/clcks/Code/MVC++/trunk/mvcpp/test/pmvcarchTestSuite.h", 343, "MediatorTestSuite", suite_MediatorTestSuite, Tests_MediatorTestSuite );
+CxxTest::StaticSuiteDescription suiteDescription_MediatorTestSuite( "/home/clcks/Code/MVC++/trunk/mvcpp/test/pmvcarchTestSuite.h", 342, "MediatorTestSuite", suite_MediatorTestSuite, Tests_MediatorTestSuite );
 
 static class TestDescription_MediatorTestSuite_testConstructorSetsNameAndViewComponent : public CxxTest::RealTestDescription {
 public:
- TestDescription_MediatorTestSuite_testConstructorSetsNameAndViewComponent() : CxxTest::RealTestDescription( Tests_MediatorTestSuite, suiteDescription_MediatorTestSuite, 351, "testConstructorSetsNameAndViewComponent" ) {}
+ TestDescription_MediatorTestSuite_testConstructorSetsNameAndViewComponent() : CxxTest::RealTestDescription( Tests_MediatorTestSuite, suiteDescription_MediatorTestSuite, 350, "testConstructorSetsNameAndViewComponent" ) {}
  void runTest() { suite_MediatorTestSuite.testConstructorSetsNameAndViewComponent(); }
 } testDescription_MediatorTestSuite_testConstructorSetsNameAndViewComponent;
 
 static class TestDescription_MediatorTestSuite_testCanGetNotificationInterests : public CxxTest::RealTestDescription {
 public:
- TestDescription_MediatorTestSuite_testCanGetNotificationInterests() : CxxTest::RealTestDescription( Tests_MediatorTestSuite, suiteDescription_MediatorTestSuite, 357, "testCanGetNotificationInterests" ) {}
+ TestDescription_MediatorTestSuite_testCanGetNotificationInterests() : CxxTest::RealTestDescription( Tests_MediatorTestSuite, suiteDescription_MediatorTestSuite, 356, "testCanGetNotificationInterests" ) {}
  void runTest() { suite_MediatorTestSuite.testCanGetNotificationInterests(); }
 } testDescription_MediatorTestSuite_testCanGetNotificationInterests;
 
 static ViewTestSuite suite_ViewTestSuite;
 
 static CxxTest::List Tests_ViewTestSuite = { 0, 0 };
-CxxTest::StaticSuiteDescription suiteDescription_ViewTestSuite( "/home/clcks/Code/MVC++/trunk/mvcpp/test/pmvcarchTestSuite.h", 371, "ViewTestSuite", suite_ViewTestSuite, Tests_ViewTestSuite );
+CxxTest::StaticSuiteDescription suiteDescription_ViewTestSuite( "/home/clcks/Code/MVC++/trunk/mvcpp/test/pmvcarchTestSuite.h", 370, "ViewTestSuite", suite_ViewTestSuite, Tests_ViewTestSuite );
 
 static class TestDescription_ViewTestSuite_testMultitonKeyIsSet : public CxxTest::RealTestDescription {
 public:
- TestDescription_ViewTestSuite_testMultitonKeyIsSet() : CxxTest::RealTestDescription( Tests_ViewTestSuite, suiteDescription_ViewTestSuite, 389, "testMultitonKeyIsSet" ) {}
+ TestDescription_ViewTestSuite_testMultitonKeyIsSet() : CxxTest::RealTestDescription( Tests_ViewTestSuite, suiteDescription_ViewTestSuite, 388, "testMultitonKeyIsSet" ) {}
  void runTest() { suite_ViewTestSuite.testMultitonKeyIsSet(); }
 } testDescription_ViewTestSuite_testMultitonKeyIsSet;
 
 static class TestDescription_ViewTestSuite_testCanRegisterAndNotifyAndRemoveObserver : public CxxTest::RealTestDescription {
 public:
- TestDescription_ViewTestSuite_testCanRegisterAndNotifyAndRemoveObserver() : CxxTest::RealTestDescription( Tests_ViewTestSuite, suiteDescription_ViewTestSuite, 393, "testCanRegisterAndNotifyAndRemoveObserver" ) {}
+ TestDescription_ViewTestSuite_testCanRegisterAndNotifyAndRemoveObserver() : CxxTest::RealTestDescription( Tests_ViewTestSuite, suiteDescription_ViewTestSuite, 392, "testCanRegisterAndNotifyAndRemoveObserver" ) {}
  void runTest() { suite_ViewTestSuite.testCanRegisterAndNotifyAndRemoveObserver(); }
 } testDescription_ViewTestSuite_testCanRegisterAndNotifyAndRemoveObserver;
 
 static class TestDescription_ViewTestSuite_testCanRegisterAndRetrieveMediator : public CxxTest::RealTestDescription {
 public:
- TestDescription_ViewTestSuite_testCanRegisterAndRetrieveMediator() : CxxTest::RealTestDescription( Tests_ViewTestSuite, suiteDescription_ViewTestSuite, 404, "testCanRegisterAndRetrieveMediator" ) {}
+ TestDescription_ViewTestSuite_testCanRegisterAndRetrieveMediator() : CxxTest::RealTestDescription( Tests_ViewTestSuite, suiteDescription_ViewTestSuite, 403, "testCanRegisterAndRetrieveMediator" ) {}
  void runTest() { suite_ViewTestSuite.testCanRegisterAndRetrieveMediator(); }
 } testDescription_ViewTestSuite_testCanRegisterAndRetrieveMediator;
 
 static class TestDescription_ViewTestSuite_testRegisteredMediatorRecievesNotificationAndRemovingMediatorRemovesObservers : public CxxTest::RealTestDescription {
 public:
- TestDescription_ViewTestSuite_testRegisteredMediatorRecievesNotificationAndRemovingMediatorRemovesObservers() : CxxTest::RealTestDescription( Tests_ViewTestSuite, suiteDescription_ViewTestSuite, 414, "testRegisteredMediatorRecievesNotificationAndRemovingMediatorRemovesObservers" ) {}
+ TestDescription_ViewTestSuite_testRegisteredMediatorRecievesNotificationAndRemovingMediatorRemovesObservers() : CxxTest::RealTestDescription( Tests_ViewTestSuite, suiteDescription_ViewTestSuite, 413, "testRegisteredMediatorRecievesNotificationAndRemovingMediatorRemovesObservers" ) {}
  void runTest() { suite_ViewTestSuite.testRegisteredMediatorRecievesNotificationAndRemovingMediatorRemovesObservers(); }
 } testDescription_ViewTestSuite_testRegisteredMediatorRecievesNotificationAndRemovingMediatorRemovesObservers;
 
 static class TestDescription_ViewTestSuite_testCanRetrieveMediator : public CxxTest::RealTestDescription {
 public:
- TestDescription_ViewTestSuite_testCanRetrieveMediator() : CxxTest::RealTestDescription( Tests_ViewTestSuite, suiteDescription_ViewTestSuite, 424, "testCanRetrieveMediator" ) {}
+ TestDescription_ViewTestSuite_testCanRetrieveMediator() : CxxTest::RealTestDescription( Tests_ViewTestSuite, suiteDescription_ViewTestSuite, 423, "testCanRetrieveMediator" ) {}
  void runTest() { suite_ViewTestSuite.testCanRetrieveMediator(); }
 } testDescription_ViewTestSuite_testCanRetrieveMediator;
 
 static class TestDescription_ViewTestSuite_testCanRemoveView : public CxxTest::RealTestDescription {
 public:
- TestDescription_ViewTestSuite_testCanRemoveView() : CxxTest::RealTestDescription( Tests_ViewTestSuite, suiteDescription_ViewTestSuite, 430, "testCanRemoveView" ) {}
+ TestDescription_ViewTestSuite_testCanRemoveView() : CxxTest::RealTestDescription( Tests_ViewTestSuite, suiteDescription_ViewTestSuite, 429, "testCanRemoveView" ) {}
  void runTest() { suite_ViewTestSuite.testCanRemoveView(); }
 } testDescription_ViewTestSuite_testCanRemoveView;
 
 static ModelTestSuite suite_ModelTestSuite;
 
 static CxxTest::List Tests_ModelTestSuite = { 0, 0 };
-CxxTest::StaticSuiteDescription suiteDescription_ModelTestSuite( "/home/clcks/Code/MVC++/trunk/mvcpp/test/pmvcarchTestSuite.h", 461, "ModelTestSuite", suite_ModelTestSuite, Tests_ModelTestSuite );
+CxxTest::StaticSuiteDescription suiteDescription_ModelTestSuite( "/home/clcks/Code/MVC++/trunk/mvcpp/test/pmvcarchTestSuite.h", 460, "ModelTestSuite", suite_ModelTestSuite, Tests_ModelTestSuite );
 
 static class TestDescription_ModelTestSuite_testMultitonKeyIsSet : public CxxTest::RealTestDescription {
 public:
- TestDescription_ModelTestSuite_testMultitonKeyIsSet() : CxxTest::RealTestDescription( Tests_ModelTestSuite, suiteDescription_ModelTestSuite, 471, "testMultitonKeyIsSet" ) {}
+ TestDescription_ModelTestSuite_testMultitonKeyIsSet() : CxxTest::RealTestDescription( Tests_ModelTestSuite, suiteDescription_ModelTestSuite, 470, "testMultitonKeyIsSet" ) {}
  void runTest() { suite_ModelTestSuite.testMultitonKeyIsSet(); }
 } testDescription_ModelTestSuite_testMultitonKeyIsSet;
 
 static class TestDescription_ModelTestSuite_testCanRegisterAndRetrieveAndRemoveProxy : public CxxTest::RealTestDescription {
 public:
- TestDescription_ModelTestSuite_testCanRegisterAndRetrieveAndRemoveProxy() : CxxTest::RealTestDescription( Tests_ModelTestSuite, suiteDescription_ModelTestSuite, 475, "testCanRegisterAndRetrieveAndRemoveProxy" ) {}
+ TestDescription_ModelTestSuite_testCanRegisterAndRetrieveAndRemoveProxy() : CxxTest::RealTestDescription( Tests_ModelTestSuite, suiteDescription_ModelTestSuite, 474, "testCanRegisterAndRetrieveAndRemoveProxy" ) {}
  void runTest() { suite_ModelTestSuite.testCanRegisterAndRetrieveAndRemoveProxy(); }
 } testDescription_ModelTestSuite_testCanRegisterAndRetrieveAndRemoveProxy;
 
 static class TestDescription_ModelTestSuite_testCanRemoveModel : public CxxTest::RealTestDescription {
 public:
- TestDescription_ModelTestSuite_testCanRemoveModel() : CxxTest::RealTestDescription( Tests_ModelTestSuite, suiteDescription_ModelTestSuite, 490, "testCanRemoveModel" ) {}
+ TestDescription_ModelTestSuite_testCanRemoveModel() : CxxTest::RealTestDescription( Tests_ModelTestSuite, suiteDescription_ModelTestSuite, 489, "testCanRemoveModel" ) {}
  void runTest() { suite_ModelTestSuite.testCanRemoveModel(); }
 } testDescription_ModelTestSuite_testCanRemoveModel;
 
 static ControllerTestSuite suite_ControllerTestSuite;
 
 static CxxTest::List Tests_ControllerTestSuite = { 0, 0 };
-CxxTest::StaticSuiteDescription suiteDescription_ControllerTestSuite( "/home/clcks/Code/MVC++/trunk/mvcpp/test/pmvcarchTestSuite.h", 516, "ControllerTestSuite", suite_ControllerTestSuite, Tests_ControllerTestSuite );
+CxxTest::StaticSuiteDescription suiteDescription_ControllerTestSuite( "/home/clcks/Code/MVC++/trunk/mvcpp/test/pmvcarchTestSuite.h", 515, "ControllerTestSuite", suite_ControllerTestSuite, Tests_ControllerTestSuite );
 
 static class TestDescription_ControllerTestSuite_testCanGetControllerInstance : public CxxTest::RealTestDescription {
 public:
- TestDescription_ControllerTestSuite_testCanGetControllerInstance() : CxxTest::RealTestDescription( Tests_ControllerTestSuite, suiteDescription_ControllerTestSuite, 524, "testCanGetControllerInstance" ) {}
+ TestDescription_ControllerTestSuite_testCanGetControllerInstance() : CxxTest::RealTestDescription( Tests_ControllerTestSuite, suiteDescription_ControllerTestSuite, 529, "testCanGetControllerInstance" ) {}
  void runTest() { suite_ControllerTestSuite.testCanGetControllerInstance(); }
 } testDescription_ControllerTestSuite_testCanGetControllerInstance;
+
+static class TestDescription_ControllerTestSuite_testMultitonKeyIsSet : public CxxTest::RealTestDescription {
+public:
+ TestDescription_ControllerTestSuite_testMultitonKeyIsSet() : CxxTest::RealTestDescription( Tests_ControllerTestSuite, suiteDescription_ControllerTestSuite, 535, "testMultitonKeyIsSet" ) {}
+ void runTest() { suite_ControllerTestSuite.testMultitonKeyIsSet(); }
+} testDescription_ControllerTestSuite_testMultitonKeyIsSet;
+
+static class TestDescription_ControllerTestSuite_testCanRegisterCommand : public CxxTest::RealTestDescription {
+public:
+ TestDescription_ControllerTestSuite_testCanRegisterCommand() : CxxTest::RealTestDescription( Tests_ControllerTestSuite, suiteDescription_ControllerTestSuite, 539, "testCanRegisterCommand" ) {}
+ void runTest() { suite_ControllerTestSuite.testCanRegisterCommand(); }
+} testDescription_ControllerTestSuite_testCanRegisterCommand;
+
+static class TestDescription_ControllerTestSuite_testCanExecuteCommandAndExecuteThroughNotification : public CxxTest::RealTestDescription {
+public:
+ TestDescription_ControllerTestSuite_testCanExecuteCommandAndExecuteThroughNotification() : CxxTest::RealTestDescription( Tests_ControllerTestSuite, suiteDescription_ControllerTestSuite, 543, "testCanExecuteCommandAndExecuteThroughNotification" ) {}
+ void runTest() { suite_ControllerTestSuite.testCanExecuteCommandAndExecuteThroughNotification(); }
+} testDescription_ControllerTestSuite_testCanExecuteCommandAndExecuteThroughNotification;
+
+static class TestDescription_ControllerTestSuite_testCanRemoveCommand : public CxxTest::RealTestDescription {
+public:
+ TestDescription_ControllerTestSuite_testCanRemoveCommand() : CxxTest::RealTestDescription( Tests_ControllerTestSuite, suiteDescription_ControllerTestSuite, 551, "testCanRemoveCommand" ) {}
+ void runTest() { suite_ControllerTestSuite.testCanRemoveCommand(); }
+} testDescription_ControllerTestSuite_testCanRemoveCommand;
+
+static class TestDescription_ControllerTestSuite_testCanRemoveController : public CxxTest::RealTestDescription {
+public:
+ TestDescription_ControllerTestSuite_testCanRemoveController() : CxxTest::RealTestDescription( Tests_ControllerTestSuite, suiteDescription_ControllerTestSuite, 559, "testCanRemoveController" ) {}
+ void runTest() { suite_ControllerTestSuite.testCanRemoveController(); }
+} testDescription_ControllerTestSuite_testCanRemoveController;
 
 #include <cxxtest/Root.cpp>

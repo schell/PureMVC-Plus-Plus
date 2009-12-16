@@ -266,7 +266,6 @@ public:
     }
     void onRemove()
     {
-        std::cout << "onRemove\n";
         this->removed = true;
     }
 private:
@@ -520,6 +519,12 @@ public:
     {
         this->key = "ControllerTestSuiteKey";
         this->controller = Controller::getInstance(this->key);
+        this->command = new MacroTestClass();
+        this->noteName = this->key + "_noteName";
+        this->noteType = this->key + "_noteType";
+        this->notification = new Notification(this->noteName, this->noteType);
+        this->getController()->registerCommand<MacroTestClass>(this->noteName);
+        SimpleTestClass::executions = 0;
     }
     void testCanGetControllerInstance()
     {
@@ -527,14 +532,56 @@ public:
         TS_ASSERT_EQUALS(&*contPtr, &*this->controller);
         TS_ASSERT_EQUALS(contPtr->getMultitonKey(), this->key);
     }
+    void testMultitonKeyIsSet()
+    {
+        TS_ASSERT_EQUALS(this->controller->getMultitonKey(), this->key);
+    }
+    void testCanRegisterCommand()
+    {
+        TS_ASSERT(this->controller->hasCommand(this->noteName));
+    }
+    void testCanExecuteCommandAndExecuteThroughNotification()
+    {
+        this->getController()->executeCommand<MacroTestClass>(this->notification);
+        TS_ASSERT_EQUALS(SimpleTestClass::executions, 3);
+        this->getView()->notifyObservers(this->notification);
+        TS_ASSERT_EQUALS(SimpleTestClass::executions, 6);
+        TS_ASSERT(this->getView()->existsObserversInterestedIn(this->noteName));
+    }
+    void testCanRemoveCommand()
+    {
+        this->controller->removeCommand(this->noteName);
+        this->getView()->notifyObservers(this->notification);
+        TS_ASSERT_EQUALS(SimpleTestClass::executions, 0);
+        this->getController()->executeCommand<MacroTestClass>(this->notification);
+        TS_ASSERT_EQUALS(SimpleTestClass::executions, 0);
+    }
+    void testCanRemoveController()
+    {
+        TS_ASSERT(Multiton<Controller>::exists(this->key));
+        Controller::removeController(this->key);
+        TS_ASSERT(! Multiton<Controller>::exists(this->key));
+    }
 
 private:
+    std::string key;
+    std::string noteName;
+    std::string noteType;
+    IController* controller;
+    ICommand* command;
+    INotification* notification;
+
     Controller* getController()
     {
         return dynamic_cast<Controller*>( Controller::getInstance(this->key) );
     }
-    std::string key;
-    IController* controller;
+    View* getView()
+    {
+        if(Multiton<View>::exists(this->key))
+            return Multiton<View>::instance(this->key);
+        else
+            return (View*) 0;
+    }
 };
 //--------------------------------------
 //  Facade

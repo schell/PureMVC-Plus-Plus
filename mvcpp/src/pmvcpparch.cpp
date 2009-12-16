@@ -326,16 +326,24 @@ IController* Controller::getInstance(std::string key)
     contPtr->initializeController();
     return contPtr;
 }
-void Controller::executeCommand( INotification* note )
-{}
-void Controller::registerCommand( std::string notificationName, ICommand* commandClassRef )
-{}
 bool Controller::hasCommand( std::string notificationName )
-{}
+{
+    return ! (this->commandMap.find(notificationName) == this->commandMap.end());
+}
 void Controller::removeCommand( std::string notificationName )
-{}
+{
+    if(this->hasCommand(notificationName))
+    {
+        // remove observer from view
+        this->view->removeObserver(notificationName, (unsigned int) &*this);
+        // remove null command ptr from map
+        this->commandMap.erase(notificationName);
+    }
+}
 void Controller::removeController( std::string key )
-{}
+{
+    Multiton<Controller>::erase(key);
+}
 void Controller::initializeController( )
 {
     this->view = View::getInstance(this->getMultitonKey());
