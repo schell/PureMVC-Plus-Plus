@@ -13,6 +13,7 @@
 #include <map>
 #include <iostream>
 #include <cstdlib>
+#include <stdint.h>
 
 #include "pmvcppbase.h"
 //--------------------------------------
@@ -411,9 +412,9 @@ public:
      * @param compareContextMemoryAddress the object to compare's memory address
      * @return boolean indicating if the object and the notification context are the same
      */
-    bool compareNotifyContext( unsigned int compareContextMemoryAddress )
+    bool compareNotifyContext( intptr_t compareContextMemoryAddress )
     {
-        return compareContextMemoryAddress == (unsigned int) &*this->getNotifyContext();
+        return compareContextMemoryAddress == (intptr_t) &*this->getNotifyContext();
     }
 };
 //--------------------------------------

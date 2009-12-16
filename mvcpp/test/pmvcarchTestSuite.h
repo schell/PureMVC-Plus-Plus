@@ -240,8 +240,8 @@ public:
     void testCanCompareContexts()
     {
         InterestedObject* newInterestedObject = new InterestedObject();
-        TS_ASSERT(! this->observer->compareNotifyContext((unsigned int) &*newInterestedObject));
-        TS_ASSERT(this->observer->compareNotifyContext((unsigned int) &*this->contextObject));
+        TS_ASSERT(! this->observer->compareNotifyContext((intptr_t) &*newInterestedObject));
+        TS_ASSERT(this->observer->compareNotifyContext((intptr_t) &*this->contextObject));
     }
 private:
     std::string noteName;
@@ -404,7 +404,7 @@ public:
         this->getView()->registerObserver(this->noteName, this->observer);
         this->getView()->notifyObservers(this->notification);
         TS_ASSERT_EQUALS(this->contextObject->memberNotification->getName(), this->noteName);
-        this->getView()->removeObserver(this->noteName, (unsigned int) &*this->contextObject);
+        this->getView()->removeObserver(this->noteName, (intptr_t) &*this->contextObject);
         this->contextObject->memberNotification = new Notification("not_" + this->noteName, "not_" + this->noteType);
         // calling notifyObservers should not reset the name of the contextObject's memberNotification
         this->getView()->notifyObservers(this->notification);

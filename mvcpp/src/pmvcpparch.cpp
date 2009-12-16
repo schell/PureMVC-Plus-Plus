@@ -4,6 +4,7 @@
  *	@author	Schell Scivally
  */
 #include <iostream>
+#include <stdint.h>
 #include "pmvcpparch.h"
 #include "pmvcppexp.h"
 //--------------------------------------
@@ -287,7 +288,7 @@ IMediatorRestricted* View::removeMediator( std::string mediatorName )
         for (it = interests.begin(); it != interests.end(); it++) 
         {
             // remove the mediator's observer functor listed for this notification
-            this->removeObserver((*it), (unsigned int) &*mediator);
+            this->removeObserver((*it), (intptr_t) &*mediator);
         }
     }
     // remove the mediator from the map
@@ -336,7 +337,7 @@ void Controller::removeCommand( std::string notificationName )
     if(this->hasCommand(notificationName))
     {
         // remove observer from view
-        this->view->removeObserver(notificationName, (unsigned int) &*this);
+        this->view->removeObserver(notificationName, (intptr_t) &*this);
         // remove null command ptr from map
         this->commandMap.erase(notificationName);
     }

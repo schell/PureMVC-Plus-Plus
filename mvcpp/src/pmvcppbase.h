@@ -13,6 +13,7 @@
 #include<map>
 #include<iostream>
 #include<cstdlib>
+#include<stdint.h>
 
 /**
  *  A generic object class.
@@ -388,7 +389,7 @@ public:
      * @param memoryAddress the object to compare
      * @return boolean indicating if the object and the notification context are the same
      */
-    virtual bool compareNotifyContext( unsigned int memoryAddress ) = 0;
+    virtual bool compareNotifyContext( intptr_t memoryAddress ) = 0;
 };
 /**
  * The interface definition for a PureMVC Observer.
