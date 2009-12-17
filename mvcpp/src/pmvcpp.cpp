@@ -1,12 +1,15 @@
 /**
  *	Implementation file for the pmvcpp architecture.
  *
- *	@author	Schell Scivally
+ *	@author	Schell Scivally - civiliansoftware.com
+ *
+ *      Created on December 17, 2009, 12:56 PM
  */
+
 #include <iostream>
 #include <stdint.h>
-#include "pmvcpparch.h"
-#include "pmvcppexp.h"
+#include "pmvcpp.h"
+
 //--------------------------------------
 //  MultitonKeyHeir
 //--------------------------------------
@@ -285,7 +288,7 @@ IMediatorRestricted* View::removeMediator( std::string mediatorName )
     if(interests.size() > (size_t) 0)
     {
         std::vector<std::string>::iterator it;
-        for (it = interests.begin(); it != interests.end(); it++) 
+        for (it = interests.begin(); it != interests.end(); it++)
         {
             // remove the mediator's observer functor listed for this notification
             this->removeObserver((*it), (intptr_t) &*mediator);
