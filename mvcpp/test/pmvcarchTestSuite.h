@@ -15,11 +15,7 @@
 // cxxtest
 #include <cxxtest/TestSuite.h>
 // Base classes of pmvcpp
-#include <pmvcppbase.h>
-// Main classes of pmvcpp
-#include <pmvcpparch.h>
-// Exception classes of pmvcpp
-#include <pmvcppexp.h>
+#include "pmvcpp.h"
 
 //--------------------------------------
 //  Patterns
