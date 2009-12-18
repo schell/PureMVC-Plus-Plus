@@ -28,7 +28,8 @@ public:
         GET,			// makes a request to get something
         DISPLAY,		// display something
         QUIT                    // quit the app
-    }
+	};
+	vector<char*> toString;
 };
 class n_type
 {
@@ -36,8 +37,12 @@ public:
     enum type
     {
         MENU    // the menu
-    }
+	};
+	static const map<int, char*> toString;
 };
+// list string conversions for pretty debug printing
+
+n_type::toString[MENU] = "menu";
 //--------------------------------------
 //  Notification Body Definitions
 //--------------------------------------
@@ -111,9 +116,9 @@ public:
 		cout << "CLIMediator::onRemove()\n";
 	}
 	// list all of the notifications we're interested in
-	vector<string> listNotificationInterests()
+	vector<int> listNotificationInterests()
 	{
-		vector<string> interests;
+		vector<int> interests;
 		
 		interests.push_back(n_name::PATTERNS_REGISTERED);
 		interests.push_back(n_name::DISPLAY);
