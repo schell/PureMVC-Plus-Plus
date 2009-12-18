@@ -5,6 +5,10 @@
  *
  *	author Schell Scivally
  *	since 15.12.2009
+ *
+ *	PureMVC++ - Copyright(c) 2009 Schell Scivally Enterprise, some rights reserved.
+ *	Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+ *
  */
 #include <iostream>
 #include <sstream>
@@ -12,6 +16,7 @@
 #include "pmvcpp.h"
 
 using namespace std;
+using namespace PureMVC;
 
 //--------------------------------------
 //  Notification Definitions
@@ -68,10 +73,6 @@ public:
 	vector<string> data;
 	
 	MenuNotificationBody(vector<string> menu) : data(menu) {}
-	string getType()
-	{
-		return "MenuNotificationBody";
-	}
 };
 //--------------------------------------
 //  Proxies

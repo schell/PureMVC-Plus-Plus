@@ -17,6 +17,8 @@
 // Base classes of pmvcpp
 #include "pmvcpp.h"
 
+using namespace PureMVC;
+
 //--------------------------------------
 //  Patterns
 //--------------------------------------
@@ -42,31 +44,6 @@ public:
         Multiton<Object>::instance("new instance");
         TS_ASSERT_EQUALS(Multiton<Object>::size(), (size_t) 2);
     }
-};
-//--------------------------------------
-//  Object
-//--------------------------------------
-class ObjectTestSuite : public CxxTest::TestSuite
-{
-public:
-    void setUp()
-    {
-        this->type = "thebodytype";
-        this->body = new Object();
-    }
-    void testCanSetGet_type()
-    {
-        this->body->setType(type);
-        TS_ASSERT_EQUALS(this->body->getType(), type);
-    }
-    void testConstructor_Sets_type()
-    {
-        this->body = new Object(this->type);
-        TS_ASSERT_EQUALS(this->body->getType(), this->type);
-    }
-
-    Object* body;
-    std::string type;
 };
 //--------------------------------------
 //  Notification
