@@ -1,9 +1,9 @@
 /* 
  * File:   pmvcpp.h
- * Author: Schell Scivally - civiliansoftware.com
+ * Author: Schell Scivally - http://civiliansoftware.com
  *
  * Created on December 17, 2009, 12:56 PM
- * PureMVC++ - Copyright(c) 2009 Schell Scivally Enterprise, rights reserved.
+ * PureMVC++ - Copyright(c) 2009 Schell Scivally Enterprise, some rights reserved.
  * Your reuse is governed by the Creative Commons Attribution 3.0 United States License
  * 
  */
