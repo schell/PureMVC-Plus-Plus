@@ -1,9 +1,11 @@
-/**
- *	Implementation file for the pmvcpp architecture.
+/* 
+ * File:   pmvcpp.cpp - implementation for the PureMVC++ software architecture.
+ * Author: Schell Scivally - civiliansoftware.com
  *
- *	@author	Schell Scivally - civiliansoftware.com
- *
- *      Created on December 17, 2009, 12:56 PM
+ * Created on December 17, 2009, 12:56 PM
+ * PureMVC++ - Copyright(c) 2009 Schell Scivally Enterprise, rights reserved.
+ * Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+ * 
  */
 
 #include <iostream>
