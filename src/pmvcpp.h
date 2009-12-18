@@ -23,16 +23,16 @@
 
 /**
  *  A generic object class.
- *  This is mostly used in testing.
+ *  This is mostly used in passing notification bodies.
  */
 class Object
 {
 public:
-    /**
-     *  Constructor.
-     *  Creates the Object instance.
-     */
-    Object(){}
+	/**
+	 *	A function that does nothing.
+	 *	Just a virtual function to make this class polymorphic.
+	 */
+	virtual void function(){}
 };
 
 /**
@@ -115,32 +115,6 @@ private:
 template <class T>
 std::map<std::string, T*> Multiton<T>::instanceMap;
 //--------------------------------------
-//  IBody
-//--------------------------------------
-/**
- *  Notification body.
- *  The base class for a body of a notification.
- */
-class IBody
-{
-public:
-    IBody(){}
-    IBody(std::string type)
-    {
-        this->_type = type;
-    }
-    virtual void setType(std::string type)
-    {
-        this->_type = type;
-    }
-    virtual std::string getType()
-    {
-        return this->_type;
-    }
-private:
-    std::string _type;
-};
-//--------------------------------------
 //  IMultitonKeyHeir
 //--------------------------------------
 /**
@@ -203,9 +177,9 @@ public:
      * @param body the body of the notification (optional)
      * @param type the type of the notification (optional)
      */
-    virtual void sendNotification   ( int notificationName, IBody* body, int notificationType) = 0;
+    virtual void sendNotification   ( int notificationName, Object* body, int notificationType) = 0;
     virtual void sendNotification   ( int notificationName, int notificationType ) = 0;
-    virtual void sendNotification   ( int notificationName, IBody* body ) = 0;
+    virtual void sendNotification   ( int notificationName, Object* body ) = 0;
     virtual void sendNotification   ( int notificationName ) = 0;
     /**
      * Initialize this INotifier instance.
@@ -266,11 +240,11 @@ public:
         /**
          * Set the body of the <code>INotification</code> instance
          */
-	virtual void setBody( IBody* body ) = 0;
+	virtual void setBody( Object* body ) = 0;
         /**
          * Get the body of the <code>INotification</code> instance
          */
-	virtual IBody* getBody() = 0;
+	virtual Object* getBody() = 0;
         /**
          * Set the type of the <code>INotification</code> instance
          */
@@ -930,7 +904,7 @@ class Notification : public INotification
 public:
     int name;
     int type;
-    IBody* body;
+    Object* body;
     /**
      * Constructor.
      *
@@ -938,8 +912,8 @@ public:
      * @param body the <code>Notification</code> body. (optional)
      * @param type the type of the <code>Notification</code> (optional)
      */
-    Notification(int notificationName, IBody* body, int notificationType);
-    Notification(int notificationName, IBody* body);
+    Notification(int notificationName, Object* body, int notificationType);
+    Notification(int notificationName, Object* body);
     Notification(int notificationName, int notificationType);
     Notification(int notificationName);
     /**
@@ -951,13 +925,13 @@ public:
     /**
      * Set the body of the <code>Notification</code> instance.
      */
-    void setBody( IBody* body );
+    void setBody( Object* body );
     /**
      * Get the body of the <code>Notification</code> instance.
      *
      * @return the body object.
      */
-    IBody* getBody();
+    Object* getBody();
     /**
      * Set the type of the <code>Notification</code> instance.
      */
@@ -1020,9 +994,9 @@ public:
      * @param body the body of the notification (optional)
      * @param type the type of the notification (optional)
      */
-    void sendNotification   ( int notificationName, IBody* body, int notificationType);
+    void sendNotification   ( int notificationName, Object* body, int notificationType);
     void sendNotification   ( int notificationName, int notificationType );
-    void sendNotification   ( int notificationName, IBody* body );
+    void sendNotification   ( int notificationName, Object* body );
     void sendNotification   ( int notificationName );
     /**
      * Initialize this INotifier instance.
@@ -2003,8 +1977,8 @@ public:
      * @param body the body of the notification (optional)
      * @param type the type of the notification (optional)
      */
-    void sendNotification( int notificationName, IBody* body, int notificationType );
-    void sendNotification( int notificationName, IBody* body );
+    void sendNotification( int notificationName, Object* body, int notificationType );
+    void sendNotification( int notificationName, Object* body );
     void sendNotification( int notificationName, int notificationType );
     void sendNotification( int notificationName );
     /**

@@ -62,7 +62,7 @@ map<int, string> n_type::toString;
 //--------------------------------------
 //  Notification Body Definitions
 //--------------------------------------
-class MenuNotificationBody : public IBody
+class MenuNotificationBody : public Object
 {
 public:	
 	vector<string> data;
@@ -149,7 +149,7 @@ public:
 		
 		cout << "CLIMediator::handleNotification(name:" << n_name::toString[name] << " type:" << n_type::toString[type] <<")\n";
 			
-		IBody* body = note->getBody();
+		Object* body = note->getBody();
 		// handle the notification
 		// if the app is ready, ask for the menu
 		if(name == n_name::PATTERNS_REGISTERED)

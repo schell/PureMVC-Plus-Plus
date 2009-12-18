@@ -44,15 +44,15 @@ public:
     }
 };
 //--------------------------------------
-//  IBody
+//  Object
 //--------------------------------------
-class IBodyTestSuite : public CxxTest::TestSuite
+class ObjectTestSuite : public CxxTest::TestSuite
 {
 public:
     void setUp()
     {
         this->type = "thebodytype";
-        this->body = new IBody();
+        this->body = new Object();
     }
     void testCanSetGet_type()
     {
@@ -61,11 +61,11 @@ public:
     }
     void testConstructor_Sets_type()
     {
-        this->body = new IBody(this->type);
+        this->body = new Object(this->type);
         TS_ASSERT_EQUALS(this->body->getType(), this->type);
     }
 
-    IBody* body;
+    Object* body;
     std::string type;
 };
 //--------------------------------------
@@ -77,7 +77,7 @@ public:
     void setUp()
     {
         this->name = 666;
-        this->body = new IBody();
+        this->body = new Object();
         this->type = 777;
         this->notification = new Notification(this->name, body, this->type);
     }
@@ -91,7 +91,7 @@ private:
     Notification* notification;
     int name;
     int type;
-    IBody* body;
+    Object* body;
 };
 //--------------------------------------
 //  SimpleCommand
@@ -141,7 +141,7 @@ public:
     }
     void testExecuteShouldExecAllSubCommands()
     {
-        this->macroTestClass->execute(new Notification(666, new IBody(), 777));
+        this->macroTestClass->execute(new Notification(666, new Object(), 777));
         TS_ASSERT_EQUALS(SimpleTestClass::executions, 3);
     }
 private:
@@ -219,7 +219,7 @@ public:
     {
         this->noteName = 666;
         this->noteType = 777;
-        this->notification = new Notification(this->noteName, new IBody(), this->noteType);
+        this->notification = new Notification(this->noteName, new Object(), this->noteType);
         this->contextObject = new InterestedObject();
         this->observer = new Observer<InterestedObject>(&InterestedObject::callbackMethod, this->contextObject);
     }
@@ -390,7 +390,7 @@ public:
         // setup observer
         this->noteName = 666;
         this->noteType = 777;
-        this->notification = new Notification(this->noteName, new IBody(), this->noteType);
+        this->notification = new Notification(this->noteName, new Object(), this->noteType);
         this->contextObject = new InterestedObject();
         this->observer = new Observer<InterestedObject>(&InterestedObject::callbackMethod, this->contextObject);
         this->viewComponent = 888;
