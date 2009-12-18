@@ -1,0 +1,37 @@
+\hypertarget{class_pure_m_v_c_1_1_i_notification_handler}{
+\section{PureMVC::INotificationHandler Class Reference}
+\label{class_pure_m_v_c_1_1_i_notification_handler}\index{PureMVC::INotificationHandler@{PureMVC::INotificationHandler}}
+}
+
+
+An \hyperlink{class_pure_m_v_c_1_1_i_notification_handler}{INotificationHandler} base class.  
+
+
+{\ttfamily \#include $<$pmvcpp.h$>$}Inheritance diagram for PureMVC::INotificationHandler:\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_notification_handler_af31efbe0929caff0ac371bf45d3e9c50}{handleNotification} (\hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification} $\ast$notification)=0
+\begin{DoxyCompactList}\small\item\em Handle an {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+An \hyperlink{class_pure_m_v_c_1_1_i_notification_handler}{INotificationHandler} base class. An IObserver requires a context to call a notification method from, and this class supports the IObserver by providing a contract that the context will have said notification handling method. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_pure_m_v_c_1_1_i_notification_handler_af31efbe0929caff0ac371bf45d3e9c50}{
+\index{PureMVC::INotificationHandler@{PureMVC::INotificationHandler}!handleNotification@{handleNotification}}
+\index{handleNotification@{handleNotification}!PureMVC::INotificationHandler@{PureMVC::INotificationHandler}}
+\subsubsection[{handleNotification}]{\setlength{\rightskip}{0pt plus 5cm}virtual void PureMVC::INotificationHandler::handleNotification ({\bf INotification} $\ast$ {\em notification})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_notification_handler_af31efbe0929caff0ac371bf45d3e9c50}
+
+
+Handle an {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}}. 
+\begin{DoxyParams}{Parameters}
+\item[{\em notification}]the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}} to be handled \end{DoxyParams}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_mediator_a869785c4f70518e40eaae7395c5f1d48}{PureMVC::Mediator$<$ T $>$}.
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+/Users/schell/Code/PureMVC-\/Plus-\/Plus/src/pmvcpp.h\end{DoxyCompactItemize}

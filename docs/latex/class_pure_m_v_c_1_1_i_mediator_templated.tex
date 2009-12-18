@@ -1,0 +1,164 @@
+\hypertarget{class_pure_m_v_c_1_1_i_mediator_templated}{
+\section{PureMVC::IMediatorTemplated$<$ T $>$ Class Template Reference}
+\label{class_pure_m_v_c_1_1_i_mediator_templated}\index{PureMVC::IMediatorTemplated@{PureMVC::IMediatorTemplated}}
+}
+
+
+The templated portion of IMediator.  
+
+
+{\ttfamily \#include $<$pmvcpp.h$>$}Inheritance diagram for PureMVC::IMediatorTemplated$<$ T $>$:Collaboration diagram for PureMVC::IMediatorTemplated$<$ T $>$:\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual T \hyperlink{class_pure_m_v_c_1_1_i_mediator_templated_a985393a359ef8643a577b34e81374dc6}{getViewComponent} ()=0
+\begin{DoxyCompactList}\small\item\em Get the {\ttfamily IMediator}'s view component. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_mediator_templated_a0eb50a31925283b7d6cdfe5b9dc90163}{setViewComponent} (T viewComponent)=0
+\begin{DoxyCompactList}\small\item\em Set the {\ttfamily IMediator}'s view component. \item\end{DoxyCompactList}\item 
+virtual std::string \hyperlink{class_pure_m_v_c_1_1_i_mediator_restricted_a763c71cd6446cb09c2eb55ad91ca28ca}{getMediatorName} ()=0
+\begin{DoxyCompactList}\small\item\em Get the {\ttfamily IMediator} instance name. \item\end{DoxyCompactList}\item 
+virtual std::vector$<$ int $>$ \hyperlink{class_pure_m_v_c_1_1_i_mediator_restricted_a9b9d790649480769697e1b3e7377c313}{listNotificationInterests} ()=0
+\begin{DoxyCompactList}\small\item\em List {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}} interests. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_mediator_restricted_a1c9b8d32557fdf7c3b03c7b8a6c1bb05}{onRegister} ()=0
+\begin{DoxyCompactList}\small\item\em Called by the \hyperlink{class_pure_m_v_c_1_1_view}{View} when the \hyperlink{class_pure_m_v_c_1_1_mediator}{Mediator} is registered. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_mediator_restricted_ae6e471d85f08ed86fae3b1e7377f8d69}{onRemove} ()=0
+\begin{DoxyCompactList}\small\item\em Called by the \hyperlink{class_pure_m_v_c_1_1_view}{View} when the \hyperlink{class_pure_m_v_c_1_1_mediator}{Mediator} is removed. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_notifier_a65e8333ccfea74138b79f84dac96af25}{sendNotification} (int notificationName, \hyperlink{class_pure_m_v_c_1_1_object}{Object} $\ast$body, int notificationType)=0
+\begin{DoxyCompactList}\small\item\em Send a {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}}. \item\end{DoxyCompactList}\item 
+\hypertarget{class_pure_m_v_c_1_1_i_notifier_ad9421945c1e0fd6d7ebbc136f9ecfba3}{
+virtual void {\bfseries sendNotification} (int notificationName, int notificationType)=0}
+\label{class_pure_m_v_c_1_1_i_notifier_ad9421945c1e0fd6d7ebbc136f9ecfba3}
+
+\item 
+\hypertarget{class_pure_m_v_c_1_1_i_notifier_a4d6bac0719be96948e4f7417489daeaa}{
+virtual void {\bfseries sendNotification} (int notificationName, \hyperlink{class_pure_m_v_c_1_1_object}{Object} $\ast$body)=0}
+\label{class_pure_m_v_c_1_1_i_notifier_a4d6bac0719be96948e4f7417489daeaa}
+
+\item 
+\hypertarget{class_pure_m_v_c_1_1_i_notifier_aca921608a2ced017a8face049fc7c6af}{
+virtual void {\bfseries sendNotification} (int notificationName)=0}
+\label{class_pure_m_v_c_1_1_i_notifier_aca921608a2ced017a8face049fc7c6af}
+
+\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_notifier_a28d7dbbe0726d4d52080546c5d79b232}{initializeNotifier} (std::string key)=0
+\begin{DoxyCompactList}\small\item\em Initialize this \hyperlink{class_pure_m_v_c_1_1_i_notifier}{INotifier} instance. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_notification_handler_af31efbe0929caff0ac371bf45d3e9c50}{handleNotification} (\hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification} $\ast$notification)=0
+\begin{DoxyCompactList}\small\item\em Handle an {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$ class PureMVC::IMediatorTemplated$<$ T $>$}
+
+The templated portion of IMediator. \hyperlink{class_pure_m_v_c_1_1_i_mediator_templated}{IMediatorTemplated} inherits from \hyperlink{class_pure_m_v_c_1_1_i_mediator_restricted}{IMediatorRestricted} and adds some required template functions. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_pure_m_v_c_1_1_i_mediator_restricted_a763c71cd6446cb09c2eb55ad91ca28ca}{
+\index{PureMVC::IMediatorTemplated@{PureMVC::IMediatorTemplated}!getMediatorName@{getMediatorName}}
+\index{getMediatorName@{getMediatorName}!PureMVC::IMediatorTemplated@{PureMVC::IMediatorTemplated}}
+\subsubsection[{getMediatorName}]{\setlength{\rightskip}{0pt plus 5cm}virtual std::string PureMVC::IMediatorRestricted::getMediatorName ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual, inherited\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_mediator_restricted_a763c71cd6446cb09c2eb55ad91ca28ca}
+
+
+Get the {\ttfamily IMediator} instance name. \begin{DoxyReturn}{Returns}
+the {\ttfamily IMediator} instance name 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_mediator_aa199b499fc1cfae9b49b8336679787a8}{PureMVC::Mediator$<$ T $>$}.\hypertarget{class_pure_m_v_c_1_1_i_mediator_templated_a985393a359ef8643a577b34e81374dc6}{
+\index{PureMVC::IMediatorTemplated@{PureMVC::IMediatorTemplated}!getViewComponent@{getViewComponent}}
+\index{getViewComponent@{getViewComponent}!PureMVC::IMediatorTemplated@{PureMVC::IMediatorTemplated}}
+\subsubsection[{getViewComponent}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ virtual T {\bf PureMVC::IMediatorTemplated}$<$ T $>$::getViewComponent ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_mediator_templated_a985393a359ef8643a577b34e81374dc6}
+
+
+Get the {\ttfamily IMediator}'s view component. \begin{DoxyReturn}{Returns}
+\hyperlink{class_pure_m_v_c_1_1_object}{Object} the view component 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_mediator_aadd3a8ea554fb01f8fcac30592ef0275}{PureMVC::Mediator$<$ T $>$}.\hypertarget{class_pure_m_v_c_1_1_i_notification_handler_af31efbe0929caff0ac371bf45d3e9c50}{
+\index{PureMVC::IMediatorTemplated@{PureMVC::IMediatorTemplated}!handleNotification@{handleNotification}}
+\index{handleNotification@{handleNotification}!PureMVC::IMediatorTemplated@{PureMVC::IMediatorTemplated}}
+\subsubsection[{handleNotification}]{\setlength{\rightskip}{0pt plus 5cm}virtual void PureMVC::INotificationHandler::handleNotification ({\bf INotification} $\ast$ {\em notification})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual, inherited\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_notification_handler_af31efbe0929caff0ac371bf45d3e9c50}
+
+
+Handle an {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}}. 
+\begin{DoxyParams}{Parameters}
+\item[{\em notification}]the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}} to be handled \end{DoxyParams}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_mediator_a869785c4f70518e40eaae7395c5f1d48}{PureMVC::Mediator$<$ T $>$}.\hypertarget{class_pure_m_v_c_1_1_i_notifier_a28d7dbbe0726d4d52080546c5d79b232}{
+\index{PureMVC::IMediatorTemplated@{PureMVC::IMediatorTemplated}!initializeNotifier@{initializeNotifier}}
+\index{initializeNotifier@{initializeNotifier}!PureMVC::IMediatorTemplated@{PureMVC::IMediatorTemplated}}
+\subsubsection[{initializeNotifier}]{\setlength{\rightskip}{0pt plus 5cm}virtual void PureMVC::INotifier::initializeNotifier (std::string {\em key})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual, inherited\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_notifier_a28d7dbbe0726d4d52080546c5d79b232}
+
+
+Initialize this \hyperlink{class_pure_m_v_c_1_1_i_notifier}{INotifier} instance. This is how a \hyperlink{class_pure_m_v_c_1_1_notifier}{Notifier} gets its multitonKey. Calls to sendNotification or to access the facade will fail until after this method has been called.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em key}]the multitonKey for this \hyperlink{class_pure_m_v_c_1_1_i_notifier}{INotifier} to use \end{DoxyParams}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_notifier_a6910365c70415ba7973401215f57e4af}{PureMVC::Notifier}, and \hyperlink{class_pure_m_v_c_1_1_facade_a94c72ff29f9f42ff084f247b180fb4ad}{PureMVC::Facade}.\hypertarget{class_pure_m_v_c_1_1_i_mediator_restricted_a9b9d790649480769697e1b3e7377c313}{
+\index{PureMVC::IMediatorTemplated@{PureMVC::IMediatorTemplated}!listNotificationInterests@{listNotificationInterests}}
+\index{listNotificationInterests@{listNotificationInterests}!PureMVC::IMediatorTemplated@{PureMVC::IMediatorTemplated}}
+\subsubsection[{listNotificationInterests}]{\setlength{\rightskip}{0pt plus 5cm}virtual std::vector$<$int$>$ PureMVC::IMediatorRestricted::listNotificationInterests ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual, inherited\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_mediator_restricted_a9b9d790649480769697e1b3e7377c313}
+
+
+List {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}} interests. \begin{DoxyReturn}{Returns}
+an {\ttfamily Array} of the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}} names this {\ttfamily IMediator} has an interest in. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_mediator_a95473998498b3aadf4af81fa8160ead3}{PureMVC::Mediator$<$ T $>$}.\hypertarget{class_pure_m_v_c_1_1_i_mediator_restricted_a1c9b8d32557fdf7c3b03c7b8a6c1bb05}{
+\index{PureMVC::IMediatorTemplated@{PureMVC::IMediatorTemplated}!onRegister@{onRegister}}
+\index{onRegister@{onRegister}!PureMVC::IMediatorTemplated@{PureMVC::IMediatorTemplated}}
+\subsubsection[{onRegister}]{\setlength{\rightskip}{0pt plus 5cm}virtual void PureMVC::IMediatorRestricted::onRegister ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual, inherited\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_mediator_restricted_a1c9b8d32557fdf7c3b03c7b8a6c1bb05}
+
+
+Called by the \hyperlink{class_pure_m_v_c_1_1_view}{View} when the \hyperlink{class_pure_m_v_c_1_1_mediator}{Mediator} is registered. 
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_mediator_a35ee4974b074dbd94b5175968f31379e}{PureMVC::Mediator$<$ T $>$}.\hypertarget{class_pure_m_v_c_1_1_i_mediator_restricted_ae6e471d85f08ed86fae3b1e7377f8d69}{
+\index{PureMVC::IMediatorTemplated@{PureMVC::IMediatorTemplated}!onRemove@{onRemove}}
+\index{onRemove@{onRemove}!PureMVC::IMediatorTemplated@{PureMVC::IMediatorTemplated}}
+\subsubsection[{onRemove}]{\setlength{\rightskip}{0pt plus 5cm}virtual void PureMVC::IMediatorRestricted::onRemove ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual, inherited\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_mediator_restricted_ae6e471d85f08ed86fae3b1e7377f8d69}
+
+
+Called by the \hyperlink{class_pure_m_v_c_1_1_view}{View} when the \hyperlink{class_pure_m_v_c_1_1_mediator}{Mediator} is removed. 
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_mediator_a2fc2d7f514cb9a8b25d40185157c7a48}{PureMVC::Mediator$<$ T $>$}.\hypertarget{class_pure_m_v_c_1_1_i_notifier_a65e8333ccfea74138b79f84dac96af25}{
+\index{PureMVC::IMediatorTemplated@{PureMVC::IMediatorTemplated}!sendNotification@{sendNotification}}
+\index{sendNotification@{sendNotification}!PureMVC::IMediatorTemplated@{PureMVC::IMediatorTemplated}}
+\subsubsection[{sendNotification}]{\setlength{\rightskip}{0pt plus 5cm}virtual void PureMVC::INotifier::sendNotification (int {\em notificationName}, \/  {\bf Object} $\ast$ {\em body}, \/  int {\em notificationType})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual, inherited\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_notifier_a65e8333ccfea74138b79f84dac96af25}
+
+
+Send a {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}}. Convenience method to prevent having to construct new notification instances in our implementation code.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em notificationName}]the name of the notification to send \item[{\em body}]the body of the notification (optional) \item[{\em type}]the type of the notification (optional) \end{DoxyParams}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_notifier_a55a358ee2661ecc08400653016fdb497}{PureMVC::Notifier}, and \hyperlink{class_pure_m_v_c_1_1_facade_a39a61e0a65d0f979848d36fe99cfd5f5}{PureMVC::Facade}.\hypertarget{class_pure_m_v_c_1_1_i_mediator_templated_a0eb50a31925283b7d6cdfe5b9dc90163}{
+\index{PureMVC::IMediatorTemplated@{PureMVC::IMediatorTemplated}!setViewComponent@{setViewComponent}}
+\index{setViewComponent@{setViewComponent}!PureMVC::IMediatorTemplated@{PureMVC::IMediatorTemplated}}
+\subsubsection[{setViewComponent}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ virtual void {\bf PureMVC::IMediatorTemplated}$<$ T $>$::setViewComponent (T {\em viewComponent})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_mediator_templated_a0eb50a31925283b7d6cdfe5b9dc90163}
+
+
+Set the {\ttfamily IMediator}'s view component. 
+\begin{DoxyParams}{Parameters}
+\item[{\em \hyperlink{class_pure_m_v_c_1_1_object}{Object}}]the view component \end{DoxyParams}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_mediator_a4af88fe9aee0b74198d3d9b73ffe7779}{PureMVC::Mediator$<$ T $>$}.
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+/Users/schell/Code/PureMVC-\/Plus-\/Plus/src/pmvcpp.h\end{DoxyCompactItemize}

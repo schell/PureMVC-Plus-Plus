@@ -1,0 +1,81 @@
+\hypertarget{class_pure_m_v_c_1_1_i_notifier}{
+\section{PureMVC::INotifier Class Reference}
+\label{class_pure_m_v_c_1_1_i_notifier}\index{PureMVC::INotifier@{PureMVC::INotifier}}
+}
+
+
+The interface definition for a \hyperlink{namespace_pure_m_v_c}{PureMVC} \hyperlink{class_pure_m_v_c_1_1_notifier}{Notifier}.  
+
+
+{\ttfamily \#include $<$pmvcpp.h$>$}Inheritance diagram for PureMVC::INotifier:\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_notifier_a65e8333ccfea74138b79f84dac96af25}{sendNotification} (int notificationName, \hyperlink{class_pure_m_v_c_1_1_object}{Object} $\ast$body, int notificationType)=0
+\begin{DoxyCompactList}\small\item\em Send a {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}}. \item\end{DoxyCompactList}\item 
+\hypertarget{class_pure_m_v_c_1_1_i_notifier_ad9421945c1e0fd6d7ebbc136f9ecfba3}{
+virtual void {\bfseries sendNotification} (int notificationName, int notificationType)=0}
+\label{class_pure_m_v_c_1_1_i_notifier_ad9421945c1e0fd6d7ebbc136f9ecfba3}
+
+\item 
+\hypertarget{class_pure_m_v_c_1_1_i_notifier_a4d6bac0719be96948e4f7417489daeaa}{
+virtual void {\bfseries sendNotification} (int notificationName, \hyperlink{class_pure_m_v_c_1_1_object}{Object} $\ast$body)=0}
+\label{class_pure_m_v_c_1_1_i_notifier_a4d6bac0719be96948e4f7417489daeaa}
+
+\item 
+\hypertarget{class_pure_m_v_c_1_1_i_notifier_aca921608a2ced017a8face049fc7c6af}{
+virtual void {\bfseries sendNotification} (int notificationName)=0}
+\label{class_pure_m_v_c_1_1_i_notifier_aca921608a2ced017a8face049fc7c6af}
+
+\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_notifier_a28d7dbbe0726d4d52080546c5d79b232}{initializeNotifier} (std::string key)=0
+\begin{DoxyCompactList}\small\item\em Initialize this \hyperlink{class_pure_m_v_c_1_1_i_notifier}{INotifier} instance. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The interface definition for a \hyperlink{namespace_pure_m_v_c}{PureMVC} \hyperlink{class_pure_m_v_c_1_1_notifier}{Notifier}. {\ttfamily \hyperlink{class_pure_m_v_c_1_1_macro_command}{MacroCommand}, Command, \hyperlink{class_pure_m_v_c_1_1_mediator}{Mediator}} and {\ttfamily \hyperlink{class_pure_m_v_c_1_1_proxy}{Proxy}} all have a need to send {\ttfamily Notifications}. 
+
+The {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notifier}{INotifier}} interface provides a common method called {\ttfamily sendNotification} that relieves implementation code of the necessity to actually construct {\ttfamily Notifications}.
+
+The {\ttfamily \hyperlink{class_pure_m_v_c_1_1_notifier}{Notifier}} class, which all of the above mentioned classes extend, also provides an initialized reference to the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_facade}{Facade}} Singleton, which is required for the convienience method for sending {\ttfamily Notifications}, but also eases implementation as these classes have frequent {\ttfamily \hyperlink{class_pure_m_v_c_1_1_facade}{Facade}} interactions and usually require access to the facade anyway.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_pure_m_v_c_1_1_i_facade}{IFacade} \hyperlink{class_pure_m_v_c_1_1_i_facade}{IFacade} 
+
+\hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification} 
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_pure_m_v_c_1_1_i_notifier_a28d7dbbe0726d4d52080546c5d79b232}{
+\index{PureMVC::INotifier@{PureMVC::INotifier}!initializeNotifier@{initializeNotifier}}
+\index{initializeNotifier@{initializeNotifier}!PureMVC::INotifier@{PureMVC::INotifier}}
+\subsubsection[{initializeNotifier}]{\setlength{\rightskip}{0pt plus 5cm}virtual void PureMVC::INotifier::initializeNotifier (std::string {\em key})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_notifier_a28d7dbbe0726d4d52080546c5d79b232}
+
+
+Initialize this \hyperlink{class_pure_m_v_c_1_1_i_notifier}{INotifier} instance. This is how a \hyperlink{class_pure_m_v_c_1_1_notifier}{Notifier} gets its multitonKey. Calls to sendNotification or to access the facade will fail until after this method has been called.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em key}]the multitonKey for this \hyperlink{class_pure_m_v_c_1_1_i_notifier}{INotifier} to use \end{DoxyParams}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_notifier_a6910365c70415ba7973401215f57e4af}{PureMVC::Notifier}, and \hyperlink{class_pure_m_v_c_1_1_facade_a94c72ff29f9f42ff084f247b180fb4ad}{PureMVC::Facade}.\hypertarget{class_pure_m_v_c_1_1_i_notifier_a65e8333ccfea74138b79f84dac96af25}{
+\index{PureMVC::INotifier@{PureMVC::INotifier}!sendNotification@{sendNotification}}
+\index{sendNotification@{sendNotification}!PureMVC::INotifier@{PureMVC::INotifier}}
+\subsubsection[{sendNotification}]{\setlength{\rightskip}{0pt plus 5cm}virtual void PureMVC::INotifier::sendNotification (int {\em notificationName}, \/  {\bf Object} $\ast$ {\em body}, \/  int {\em notificationType})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_notifier_a65e8333ccfea74138b79f84dac96af25}
+
+
+Send a {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}}. Convenience method to prevent having to construct new notification instances in our implementation code.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em notificationName}]the name of the notification to send \item[{\em body}]the body of the notification (optional) \item[{\em type}]the type of the notification (optional) \end{DoxyParams}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_notifier_a55a358ee2661ecc08400653016fdb497}{PureMVC::Notifier}, and \hyperlink{class_pure_m_v_c_1_1_facade_a39a61e0a65d0f979848d36fe99cfd5f5}{PureMVC::Facade}.
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+/Users/schell/Code/PureMVC-\/Plus-\/Plus/src/pmvcpp.h\end{DoxyCompactItemize}

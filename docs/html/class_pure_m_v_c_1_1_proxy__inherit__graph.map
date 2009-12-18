@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" href="$class_pure_m_v_c_1_1_i_proxy_templated.html" title="The templated half of the IProxy interface definition." alt="" coords="5,161,261,188"/>
+<area shape="rect" href="$class_pure_m_v_c_1_1_i_proxy_restricted.html" title="The untemplated portion of the interface definition for a PureMVC Proxy." alt="" coords="29,84,237,111"/>
+<area shape="rect" href="$class_pure_m_v_c_1_1_i_notifier.html" title="The interface definition for a PureMVC Notifier." alt="" coords="97,7,247,33"/>
+<area shape="rect" href="$class_pure_m_v_c_1_1_notifier.html" title="A Base INotifier implementation." alt="" coords="285,161,432,188"/>
+<area shape="rect" href="$class_pure_m_v_c_1_1_multiton_key_heir.html" title="Multiton key holding class." alt="" coords="312,84,520,111"/>
+<area shape="rect" href="$class_pure_m_v_c_1_1_i_multiton_key_heir.html" title="Contains a multiton key." alt="" coords="311,7,521,33"/>
+</map>

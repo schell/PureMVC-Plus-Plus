@@ -1,0 +1,10 @@
+digraph G
+{
+  edge [fontname="FreeSans",fontsize="10",labelfontname="FreeSans",labelfontsize="10"];
+  node [fontname="FreeSans",fontsize="10",shape=record];
+  Node1 [label="PureMVC::Notification",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir=back,color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="PureMVC::INotification",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pure_m_v_c_1_1_i_notification.html",tooltip="The interface definition for a PureMVC Notification."];
+  Node3 -> Node1 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="body"];
+  Node3 [label="PureMVC::Object",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pure_m_v_c_1_1_object.html",tooltip="A generic object class."];
+}

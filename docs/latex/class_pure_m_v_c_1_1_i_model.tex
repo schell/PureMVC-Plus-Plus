@@ -1,0 +1,124 @@
+\hypertarget{class_pure_m_v_c_1_1_i_model}{
+\section{PureMVC::IModel Class Reference}
+\label{class_pure_m_v_c_1_1_i_model}\index{PureMVC::IModel@{PureMVC::IModel}}
+}
+
+
+The interface definition for a \hyperlink{namespace_pure_m_v_c}{PureMVC} \hyperlink{class_pure_m_v_c_1_1_model}{Model}.  
+
+
+{\ttfamily \#include $<$pmvcpp.h$>$}Inheritance diagram for PureMVC::IModel:Collaboration diagram for PureMVC::IModel:\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_model_a538f7de97ba62dcce4d0144e88055d0b}{registerProxy} (\hyperlink{class_pure_m_v_c_1_1_i_proxy_restricted}{IProxyRestricted} $\ast$proxy)=0
+\begin{DoxyCompactList}\small\item\em Register an {\ttfamily IProxy} instance with the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_model}{Model}}. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{class_pure_m_v_c_1_1_i_proxy_restricted}{IProxyRestricted} $\ast$ \hyperlink{class_pure_m_v_c_1_1_i_model_a646757239d2d3e4f711f3738a68bfb06}{retrieveProxy} (std::string proxyName)=0
+\begin{DoxyCompactList}\small\item\em Retrieve an {\ttfamily IProxy} instance from the \hyperlink{class_pure_m_v_c_1_1_model}{Model}. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{class_pure_m_v_c_1_1_i_proxy_restricted}{IProxyRestricted} $\ast$ \hyperlink{class_pure_m_v_c_1_1_i_model_a40caa7c04f887dda157125d94267fff9}{removeProxy} (std::string proxyName)=0
+\begin{DoxyCompactList}\small\item\em Remove an {\ttfamily IProxy} instance from the \hyperlink{class_pure_m_v_c_1_1_model}{Model}. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_pure_m_v_c_1_1_i_model_acb4d2a8493d547e597a3a3cfbbb7903b}{hasProxy} (std::string proxyName)=0
+\begin{DoxyCompactList}\small\item\em Check if a \hyperlink{class_pure_m_v_c_1_1_proxy}{Proxy} is registered. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_multiton_key_heir_a03acb75ab79defba2c28b8de1bbe1ca6}{setMultitonKey} (std::string key)=0
+\begin{DoxyCompactList}\small\item\em Set multiton key. \item\end{DoxyCompactList}\item 
+virtual std::string \hyperlink{class_pure_m_v_c_1_1_i_multiton_key_heir_aecccfb9898368c6377550ceae5730934}{getMultitonKey} ()=0
+\begin{DoxyCompactList}\small\item\em Get multiton key. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The interface definition for a \hyperlink{namespace_pure_m_v_c}{PureMVC} \hyperlink{class_pure_m_v_c_1_1_model}{Model}. In \hyperlink{namespace_pure_m_v_c}{PureMVC}, {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_model}{IModel}} implementors provide access to {\ttfamily IProxy} objects by named lookup. 
+
+An {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_model}{IModel}} assumes these responsibilities:
+
+
+\begin{DoxyItemize}
+\item Maintain a cache of {\ttfamily IProxy} instances 
+\item Provide methods for registering, retrieving, and removing {\ttfamily IProxy} instances 
+\end{DoxyItemize}
+
+\subsection{Member Function Documentation}
+\hypertarget{class_pure_m_v_c_1_1_i_multiton_key_heir_aecccfb9898368c6377550ceae5730934}{
+\index{PureMVC::IModel@{PureMVC::IModel}!getMultitonKey@{getMultitonKey}}
+\index{getMultitonKey@{getMultitonKey}!PureMVC::IModel@{PureMVC::IModel}}
+\subsubsection[{getMultitonKey}]{\setlength{\rightskip}{0pt plus 5cm}virtual std::string PureMVC::IMultitonKeyHeir::getMultitonKey ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual, inherited\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_multiton_key_heir_aecccfb9898368c6377550ceae5730934}
+
+
+Get multiton key. Returns the multiton key. \begin{DoxyReturn}{Returns}
+The string key name 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_multiton_key_heir_aa5622459d33380deb08dc3cab8b991c7}{PureMVC::MultitonKeyHeir}.\hypertarget{class_pure_m_v_c_1_1_i_model_acb4d2a8493d547e597a3a3cfbbb7903b}{
+\index{PureMVC::IModel@{PureMVC::IModel}!hasProxy@{hasProxy}}
+\index{hasProxy@{hasProxy}!PureMVC::IModel@{PureMVC::IModel}}
+\subsubsection[{hasProxy}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool PureMVC::IModel::hasProxy (std::string {\em proxyName})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_model_acb4d2a8493d547e597a3a3cfbbb7903b}
+
+
+Check if a \hyperlink{class_pure_m_v_c_1_1_proxy}{Proxy} is registered. 
+\begin{DoxyParams}{Parameters}
+\item[{\em proxyName}]\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether a \hyperlink{class_pure_m_v_c_1_1_proxy}{Proxy} is currently registered with the given {\ttfamily proxyName}. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_model_ae25df8e28fb2d4be29b8217211c7d965}{PureMVC::Model}.\hypertarget{class_pure_m_v_c_1_1_i_model_a538f7de97ba62dcce4d0144e88055d0b}{
+\index{PureMVC::IModel@{PureMVC::IModel}!registerProxy@{registerProxy}}
+\index{registerProxy@{registerProxy}!PureMVC::IModel@{PureMVC::IModel}}
+\subsubsection[{registerProxy}]{\setlength{\rightskip}{0pt plus 5cm}virtual void PureMVC::IModel::registerProxy ({\bf IProxyRestricted} $\ast$ {\em proxy})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_model_a538f7de97ba62dcce4d0144e88055d0b}
+
+
+Register an {\ttfamily IProxy} instance with the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_model}{Model}}. 
+\begin{DoxyParams}{Parameters}
+\item[{\em proxyName}]the name to associate with this {\ttfamily IProxy} instance. \item[{\em proxy}]an object reference to be held by the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_model}{Model}}. \end{DoxyParams}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_model_a12d22c0faf6aa8c69d7b0e3d3cfdd13b}{PureMVC::Model}.\hypertarget{class_pure_m_v_c_1_1_i_model_a40caa7c04f887dda157125d94267fff9}{
+\index{PureMVC::IModel@{PureMVC::IModel}!removeProxy@{removeProxy}}
+\index{removeProxy@{removeProxy}!PureMVC::IModel@{PureMVC::IModel}}
+\subsubsection[{removeProxy}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf IProxyRestricted}$\ast$ PureMVC::IModel::removeProxy (std::string {\em proxyName})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_model_a40caa7c04f887dda157125d94267fff9}
+
+
+Remove an {\ttfamily IProxy} instance from the \hyperlink{class_pure_m_v_c_1_1_model}{Model}. 
+\begin{DoxyParams}{Parameters}
+\item[{\em proxyName}]name of the {\ttfamily IProxy} instance to be removed. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the {\ttfamily IProxy} that was removed from the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_model}{Model}} 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_model_a453947b6a8f925304515ac58078f5e57}{PureMVC::Model}.\hypertarget{class_pure_m_v_c_1_1_i_model_a646757239d2d3e4f711f3738a68bfb06}{
+\index{PureMVC::IModel@{PureMVC::IModel}!retrieveProxy@{retrieveProxy}}
+\index{retrieveProxy@{retrieveProxy}!PureMVC::IModel@{PureMVC::IModel}}
+\subsubsection[{retrieveProxy}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf IProxyRestricted}$\ast$ PureMVC::IModel::retrieveProxy (std::string {\em proxyName})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_model_a646757239d2d3e4f711f3738a68bfb06}
+
+
+Retrieve an {\ttfamily IProxy} instance from the \hyperlink{class_pure_m_v_c_1_1_model}{Model}. 
+\begin{DoxyParams}{Parameters}
+\item[{\em proxyName}]\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the {\ttfamily IProxy} instance previously registered with the given {\ttfamily proxyName}. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_model_acba552053974de59cf6bdac940265634}{PureMVC::Model}.\hypertarget{class_pure_m_v_c_1_1_i_multiton_key_heir_a03acb75ab79defba2c28b8de1bbe1ca6}{
+\index{PureMVC::IModel@{PureMVC::IModel}!setMultitonKey@{setMultitonKey}}
+\index{setMultitonKey@{setMultitonKey}!PureMVC::IModel@{PureMVC::IModel}}
+\subsubsection[{setMultitonKey}]{\setlength{\rightskip}{0pt plus 5cm}virtual void PureMVC::IMultitonKeyHeir::setMultitonKey (std::string {\em key})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual, inherited\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_multiton_key_heir_a03acb75ab79defba2c28b8de1bbe1ca6}
+
+
+Set multiton key. Sets the multiton key. 
+\begin{DoxyParams}{Parameters}
+\item[{\em key}]The name of the key \end{DoxyParams}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_multiton_key_heir_abc70ef7c066bc8d7bf0196ec727599bb}{PureMVC::MultitonKeyHeir}.
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+/Users/schell/Code/PureMVC-\/Plus-\/Plus/src/pmvcpp.h\end{DoxyCompactItemize}

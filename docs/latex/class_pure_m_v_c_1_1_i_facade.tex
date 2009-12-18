@@ -1,0 +1,292 @@
+\hypertarget{class_pure_m_v_c_1_1_i_facade}{
+\section{PureMVC::IFacade Class Reference}
+\label{class_pure_m_v_c_1_1_i_facade}\index{PureMVC::IFacade@{PureMVC::IFacade}}
+}
+
+
+The interface definition for a \hyperlink{namespace_pure_m_v_c}{PureMVC} \hyperlink{class_pure_m_v_c_1_1_facade}{Facade}.  
+
+
+{\ttfamily \#include $<$pmvcpp.h$>$}Inheritance diagram for PureMVC::IFacade:Collaboration diagram for PureMVC::IFacade:\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_facade_a510b704a75bb052bbccd816ac30a5df0}{registerProxy} (\hyperlink{class_pure_m_v_c_1_1_i_proxy_restricted}{IProxyRestricted} $\ast$proxy)=0
+\begin{DoxyCompactList}\small\item\em Register an {\ttfamily IProxy} with the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_model}{Model}} by name. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{class_pure_m_v_c_1_1_i_proxy_restricted}{IProxyRestricted} $\ast$ \hyperlink{class_pure_m_v_c_1_1_i_facade_a0af423a85df80b52acd106c5adf07318}{retrieveProxy} (std::string proxyName)=0
+\begin{DoxyCompactList}\small\item\em Retrieve a {\ttfamily IProxy} from the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_model}{Model}} by name. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{class_pure_m_v_c_1_1_i_proxy_restricted}{IProxyRestricted} $\ast$ \hyperlink{class_pure_m_v_c_1_1_i_facade_ad4bab4e894ac4acd0b0f790dda21e8fe}{removeProxy} (std::string proxyName)=0
+\begin{DoxyCompactList}\small\item\em Remove an {\ttfamily IProxy} instance from the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_model}{Model}} by name. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_pure_m_v_c_1_1_i_facade_a61b5a6f7c6d25c791b274093235f5c52}{hasProxy} (std::string proxyName)=0
+\begin{DoxyCompactList}\small\item\em Check if a \hyperlink{class_pure_m_v_c_1_1_proxy}{Proxy} is registered. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_facade_ab102e77651cb2340c3f7387b04dc38dd}{removeCommand} (int notificationName)=0
+\begin{DoxyCompactList}\small\item\em Register an {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_command}{ICommand}} with the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_controller}{Controller}}. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_pure_m_v_c_1_1_i_facade_abeb340386026eaa9218e8581cda6a12d}{hasCommand} (int notificationName)=0
+\begin{DoxyCompactList}\small\item\em Check if a Command is registered for a given \hyperlink{class_pure_m_v_c_1_1_notification}{Notification}. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_facade_af6849105c64d8841afce1cf7bb2b4d84}{registerMediator} (\hyperlink{class_pure_m_v_c_1_1_i_mediator_restricted}{IMediatorRestricted} $\ast$mediator)=0
+\begin{DoxyCompactList}\small\item\em Register an {\ttfamily IMediator} instance with the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_view}{View}}. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{class_pure_m_v_c_1_1_i_mediator_restricted}{IMediatorRestricted} $\ast$ \hyperlink{class_pure_m_v_c_1_1_i_facade_aa253e28220cf0f077ac212d0acf7652d}{retrieveMediator} (std::string mediatorName)=0
+\begin{DoxyCompactList}\small\item\em Retrieve an {\ttfamily IMediator} instance from the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_view}{View}}. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{class_pure_m_v_c_1_1_i_mediator_restricted}{IMediatorRestricted} $\ast$ \hyperlink{class_pure_m_v_c_1_1_i_facade_a216510b6052c29a37b810c3cbdeeca7c}{removeMediator} (std::string mediatorName)=0
+\begin{DoxyCompactList}\small\item\em Remove a {\ttfamily IMediator} instance from the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_view}{View}}. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_pure_m_v_c_1_1_i_facade_ab41b21fd725b18863d9ac8ada92984ce}{hasMediator} (std::string mediatorName)=0
+\begin{DoxyCompactList}\small\item\em Check if a \hyperlink{class_pure_m_v_c_1_1_mediator}{Mediator} is registered or not. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_facade_acd9023ead1da9b309b3e85406cbc428b}{notifyObservers} (\hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification} $\ast$notification)=0
+\begin{DoxyCompactList}\small\item\em Notify {\ttfamily \hyperlink{class_pure_m_v_c_1_1_observer}{Observer}}s. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_notifier_a65e8333ccfea74138b79f84dac96af25}{sendNotification} (int notificationName, \hyperlink{class_pure_m_v_c_1_1_object}{Object} $\ast$body, int notificationType)=0
+\begin{DoxyCompactList}\small\item\em Send a {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}}. \item\end{DoxyCompactList}\item 
+\hypertarget{class_pure_m_v_c_1_1_i_notifier_ad9421945c1e0fd6d7ebbc136f9ecfba3}{
+virtual void {\bfseries sendNotification} (int notificationName, int notificationType)=0}
+\label{class_pure_m_v_c_1_1_i_notifier_ad9421945c1e0fd6d7ebbc136f9ecfba3}
+
+\item 
+\hypertarget{class_pure_m_v_c_1_1_i_notifier_a4d6bac0719be96948e4f7417489daeaa}{
+virtual void {\bfseries sendNotification} (int notificationName, \hyperlink{class_pure_m_v_c_1_1_object}{Object} $\ast$body)=0}
+\label{class_pure_m_v_c_1_1_i_notifier_a4d6bac0719be96948e4f7417489daeaa}
+
+\item 
+\hypertarget{class_pure_m_v_c_1_1_i_notifier_aca921608a2ced017a8face049fc7c6af}{
+virtual void {\bfseries sendNotification} (int notificationName)=0}
+\label{class_pure_m_v_c_1_1_i_notifier_aca921608a2ced017a8face049fc7c6af}
+
+\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_notifier_a28d7dbbe0726d4d52080546c5d79b232}{initializeNotifier} (std::string key)=0
+\begin{DoxyCompactList}\small\item\em Initialize this \hyperlink{class_pure_m_v_c_1_1_i_notifier}{INotifier} instance. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_multiton_key_heir_a03acb75ab79defba2c28b8de1bbe1ca6}{setMultitonKey} (std::string key)=0
+\begin{DoxyCompactList}\small\item\em Set multiton key. \item\end{DoxyCompactList}\item 
+virtual std::string \hyperlink{class_pure_m_v_c_1_1_i_multiton_key_heir_aecccfb9898368c6377550ceae5730934}{getMultitonKey} ()=0
+\begin{DoxyCompactList}\small\item\em Get multiton key. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The interface definition for a \hyperlink{namespace_pure_m_v_c}{PureMVC} \hyperlink{class_pure_m_v_c_1_1_facade}{Facade}. The \hyperlink{class_pure_m_v_c_1_1_facade}{Facade} Pattern suggests providing a single class to act as a central point of communication for a subsystem. 
+
+In \hyperlink{namespace_pure_m_v_c}{PureMVC}, the \hyperlink{class_pure_m_v_c_1_1_facade}{Facade} acts as an interface between the core MVC actors (\hyperlink{class_pure_m_v_c_1_1_model}{Model}, \hyperlink{class_pure_m_v_c_1_1_view}{View}, \hyperlink{class_pure_m_v_c_1_1_controller}{Controller}) and the rest of your application.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_pure_m_v_c_1_1_i_model}{IModel} 
+
+\hyperlink{class_pure_m_v_c_1_1_i_view}{IView} 
+
+\hyperlink{class_pure_m_v_c_1_1_i_controller}{IController} 
+
+\hyperlink{class_pure_m_v_c_1_1_i_command}{ICommand} 
+
+\hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification} 
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_pure_m_v_c_1_1_i_multiton_key_heir_aecccfb9898368c6377550ceae5730934}{
+\index{PureMVC::IFacade@{PureMVC::IFacade}!getMultitonKey@{getMultitonKey}}
+\index{getMultitonKey@{getMultitonKey}!PureMVC::IFacade@{PureMVC::IFacade}}
+\subsubsection[{getMultitonKey}]{\setlength{\rightskip}{0pt plus 5cm}virtual std::string PureMVC::IMultitonKeyHeir::getMultitonKey ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual, inherited\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_multiton_key_heir_aecccfb9898368c6377550ceae5730934}
+
+
+Get multiton key. Returns the multiton key. \begin{DoxyReturn}{Returns}
+The string key name 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_multiton_key_heir_aa5622459d33380deb08dc3cab8b991c7}{PureMVC::MultitonKeyHeir}.\hypertarget{class_pure_m_v_c_1_1_i_facade_abeb340386026eaa9218e8581cda6a12d}{
+\index{PureMVC::IFacade@{PureMVC::IFacade}!hasCommand@{hasCommand}}
+\index{hasCommand@{hasCommand}!PureMVC::IFacade@{PureMVC::IFacade}}
+\subsubsection[{hasCommand}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool PureMVC::IFacade::hasCommand (int {\em notificationName})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_facade_abeb340386026eaa9218e8581cda6a12d}
+
+
+Check if a Command is registered for a given \hyperlink{class_pure_m_v_c_1_1_notification}{Notification}. 
+\begin{DoxyParams}{Parameters}
+\item[{\em notificationName}]\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether a Command is currently registered for the given {\ttfamily notificationName}. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_facade_aee8eb006e9e5b894226558938ba807ae}{PureMVC::Facade}.\hypertarget{class_pure_m_v_c_1_1_i_facade_ab41b21fd725b18863d9ac8ada92984ce}{
+\index{PureMVC::IFacade@{PureMVC::IFacade}!hasMediator@{hasMediator}}
+\index{hasMediator@{hasMediator}!PureMVC::IFacade@{PureMVC::IFacade}}
+\subsubsection[{hasMediator}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool PureMVC::IFacade::hasMediator (std::string {\em mediatorName})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_facade_ab41b21fd725b18863d9ac8ada92984ce}
+
+
+Check if a \hyperlink{class_pure_m_v_c_1_1_mediator}{Mediator} is registered or not. 
+\begin{DoxyParams}{Parameters}
+\item[{\em mediatorName}]\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether a \hyperlink{class_pure_m_v_c_1_1_mediator}{Mediator} is registered with the given {\ttfamily mediatorName}. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_facade_a214c067f65fabe53634541f531b41609}{PureMVC::Facade}.\hypertarget{class_pure_m_v_c_1_1_i_facade_a61b5a6f7c6d25c791b274093235f5c52}{
+\index{PureMVC::IFacade@{PureMVC::IFacade}!hasProxy@{hasProxy}}
+\index{hasProxy@{hasProxy}!PureMVC::IFacade@{PureMVC::IFacade}}
+\subsubsection[{hasProxy}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool PureMVC::IFacade::hasProxy (std::string {\em proxyName})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_facade_a61b5a6f7c6d25c791b274093235f5c52}
+
+
+Check if a \hyperlink{class_pure_m_v_c_1_1_proxy}{Proxy} is registered. 
+\begin{DoxyParams}{Parameters}
+\item[{\em proxyName}]\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether a \hyperlink{class_pure_m_v_c_1_1_proxy}{Proxy} is currently registered with the given {\ttfamily proxyName}. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_facade_aaeac78a5ffe3d7da658761287bdccb1e}{PureMVC::Facade}.\hypertarget{class_pure_m_v_c_1_1_i_notifier_a28d7dbbe0726d4d52080546c5d79b232}{
+\index{PureMVC::IFacade@{PureMVC::IFacade}!initializeNotifier@{initializeNotifier}}
+\index{initializeNotifier@{initializeNotifier}!PureMVC::IFacade@{PureMVC::IFacade}}
+\subsubsection[{initializeNotifier}]{\setlength{\rightskip}{0pt plus 5cm}virtual void PureMVC::INotifier::initializeNotifier (std::string {\em key})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual, inherited\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_notifier_a28d7dbbe0726d4d52080546c5d79b232}
+
+
+Initialize this \hyperlink{class_pure_m_v_c_1_1_i_notifier}{INotifier} instance. This is how a \hyperlink{class_pure_m_v_c_1_1_notifier}{Notifier} gets its multitonKey. Calls to sendNotification or to access the facade will fail until after this method has been called.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em key}]the multitonKey for this \hyperlink{class_pure_m_v_c_1_1_i_notifier}{INotifier} to use \end{DoxyParams}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_notifier_a6910365c70415ba7973401215f57e4af}{PureMVC::Notifier}, and \hyperlink{class_pure_m_v_c_1_1_facade_a94c72ff29f9f42ff084f247b180fb4ad}{PureMVC::Facade}.\hypertarget{class_pure_m_v_c_1_1_i_facade_acd9023ead1da9b309b3e85406cbc428b}{
+\index{PureMVC::IFacade@{PureMVC::IFacade}!notifyObservers@{notifyObservers}}
+\index{notifyObservers@{notifyObservers}!PureMVC::IFacade@{PureMVC::IFacade}}
+\subsubsection[{notifyObservers}]{\setlength{\rightskip}{0pt plus 5cm}virtual void PureMVC::IFacade::notifyObservers ({\bf INotification} $\ast$ {\em notification})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_facade_acd9023ead1da9b309b3e85406cbc428b}
+
+
+Notify {\ttfamily \hyperlink{class_pure_m_v_c_1_1_observer}{Observer}}s. This method is left public mostly for backward compatibility, and to allow you to send custom notification classes using the facade. 
+
+Usually you should just call sendNotification and pass the parameters, never having to construct the notification yourself.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em notification}]the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}} to have the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_view}{View}} notify {\ttfamily Observers} of. \end{DoxyParams}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_facade_a605e0e774d8d4d9b31fcb040a14fec77}{PureMVC::Facade}.\hypertarget{class_pure_m_v_c_1_1_i_facade_af6849105c64d8841afce1cf7bb2b4d84}{
+\index{PureMVC::IFacade@{PureMVC::IFacade}!registerMediator@{registerMediator}}
+\index{registerMediator@{registerMediator}!PureMVC::IFacade@{PureMVC::IFacade}}
+\subsubsection[{registerMediator}]{\setlength{\rightskip}{0pt plus 5cm}virtual void PureMVC::IFacade::registerMediator ({\bf IMediatorRestricted} $\ast$ {\em mediator})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_facade_af6849105c64d8841afce1cf7bb2b4d84}
+
+
+Register an {\ttfamily IMediator} instance with the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_view}{View}}. 
+\begin{DoxyParams}{Parameters}
+\item[{\em mediator}]a reference to the {\ttfamily IMediator} instance \end{DoxyParams}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_facade_a3c0ead374ba222146a7fe5a59eb0fcb4}{PureMVC::Facade}.\hypertarget{class_pure_m_v_c_1_1_i_facade_a510b704a75bb052bbccd816ac30a5df0}{
+\index{PureMVC::IFacade@{PureMVC::IFacade}!registerProxy@{registerProxy}}
+\index{registerProxy@{registerProxy}!PureMVC::IFacade@{PureMVC::IFacade}}
+\subsubsection[{registerProxy}]{\setlength{\rightskip}{0pt plus 5cm}virtual void PureMVC::IFacade::registerProxy ({\bf IProxyRestricted} $\ast$ {\em proxy})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_facade_a510b704a75bb052bbccd816ac30a5df0}
+
+
+Register an {\ttfamily IProxy} with the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_model}{Model}} by name. 
+\begin{DoxyParams}{Parameters}
+\item[{\em proxy}]the {\ttfamily IProxy} to be registered with the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_model}{Model}}. \end{DoxyParams}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_facade_ab075d59d3da686f0262900f4e19f22cd}{PureMVC::Facade}.\hypertarget{class_pure_m_v_c_1_1_i_facade_ab102e77651cb2340c3f7387b04dc38dd}{
+\index{PureMVC::IFacade@{PureMVC::IFacade}!removeCommand@{removeCommand}}
+\index{removeCommand@{removeCommand}!PureMVC::IFacade@{PureMVC::IFacade}}
+\subsubsection[{removeCommand}]{\setlength{\rightskip}{0pt plus 5cm}virtual void PureMVC::IFacade::removeCommand (int {\em notificationName})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_facade_ab102e77651cb2340c3f7387b04dc38dd}
+
+
+Register an {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_command}{ICommand}} with the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_controller}{Controller}}. 
+\begin{DoxyParams}{Parameters}
+\item[{\em noteName}]the name of the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}} to associate the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_command}{ICommand}} with. \item[{\em commandClassRef}]a reference to the {\ttfamily Class} of the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_command}{ICommand}}. Remove a previously registered {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_command}{ICommand}} to {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}} mapping from the \hyperlink{class_pure_m_v_c_1_1_controller}{Controller}.\item[{\em notificationName}]the name of the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}} to remove the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_command}{ICommand}} mapping for \end{DoxyParams}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_facade_aa99976fe908bef0b08642906b02e2af3}{PureMVC::Facade}.\hypertarget{class_pure_m_v_c_1_1_i_facade_a216510b6052c29a37b810c3cbdeeca7c}{
+\index{PureMVC::IFacade@{PureMVC::IFacade}!removeMediator@{removeMediator}}
+\index{removeMediator@{removeMediator}!PureMVC::IFacade@{PureMVC::IFacade}}
+\subsubsection[{removeMediator}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf IMediatorRestricted}$\ast$ PureMVC::IFacade::removeMediator (std::string {\em mediatorName})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_facade_a216510b6052c29a37b810c3cbdeeca7c}
+
+
+Remove a {\ttfamily IMediator} instance from the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_view}{View}}. 
+\begin{DoxyParams}{Parameters}
+\item[{\em mediatorName}]name of the {\ttfamily IMediator} instance to be removed. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the {\ttfamily IMediator} instance previously registered with the given {\ttfamily mediatorName}. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_facade_a0ddae3c399fc7cb393596f8b13792790}{PureMVC::Facade}.\hypertarget{class_pure_m_v_c_1_1_i_facade_ad4bab4e894ac4acd0b0f790dda21e8fe}{
+\index{PureMVC::IFacade@{PureMVC::IFacade}!removeProxy@{removeProxy}}
+\index{removeProxy@{removeProxy}!PureMVC::IFacade@{PureMVC::IFacade}}
+\subsubsection[{removeProxy}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf IProxyRestricted}$\ast$ PureMVC::IFacade::removeProxy (std::string {\em proxyName})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_facade_ad4bab4e894ac4acd0b0f790dda21e8fe}
+
+
+Remove an {\ttfamily IProxy} instance from the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_model}{Model}} by name. 
+\begin{DoxyParams}{Parameters}
+\item[{\em proxyName}]the {\ttfamily IProxy} to remove from the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_model}{Model}}. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the {\ttfamily IProxy} that was removed from the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_model}{Model}} 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_facade_a2cca0e7a4b11e905c2d4f5d7e0a545c1}{PureMVC::Facade}.\hypertarget{class_pure_m_v_c_1_1_i_facade_aa253e28220cf0f077ac212d0acf7652d}{
+\index{PureMVC::IFacade@{PureMVC::IFacade}!retrieveMediator@{retrieveMediator}}
+\index{retrieveMediator@{retrieveMediator}!PureMVC::IFacade@{PureMVC::IFacade}}
+\subsubsection[{retrieveMediator}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf IMediatorRestricted}$\ast$ PureMVC::IFacade::retrieveMediator (std::string {\em mediatorName})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_facade_aa253e28220cf0f077ac212d0acf7652d}
+
+
+Retrieve an {\ttfamily IMediator} instance from the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_view}{View}}. 
+\begin{DoxyParams}{Parameters}
+\item[{\em mediatorName}]the name of the {\ttfamily IMediator} instance to retrievve \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the {\ttfamily IMediator} previously registered with the given {\ttfamily mediatorName}. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_facade_a4e821a5fcc6c2fa509742e88ca43dd2d}{PureMVC::Facade}.\hypertarget{class_pure_m_v_c_1_1_i_facade_a0af423a85df80b52acd106c5adf07318}{
+\index{PureMVC::IFacade@{PureMVC::IFacade}!retrieveProxy@{retrieveProxy}}
+\index{retrieveProxy@{retrieveProxy}!PureMVC::IFacade@{PureMVC::IFacade}}
+\subsubsection[{retrieveProxy}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf IProxyRestricted}$\ast$ PureMVC::IFacade::retrieveProxy (std::string {\em proxyName})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_facade_a0af423a85df80b52acd106c5adf07318}
+
+
+Retrieve a {\ttfamily IProxy} from the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_model}{Model}} by name. 
+\begin{DoxyParams}{Parameters}
+\item[{\em proxyName}]the name of the {\ttfamily IProxy} instance to be retrieved. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the {\ttfamily IProxy} previously regisetered by {\ttfamily proxyName} with the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_model}{Model}}. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_facade_a6cba094fce77dac303714372a8bb3fc5}{PureMVC::Facade}.\hypertarget{class_pure_m_v_c_1_1_i_notifier_a65e8333ccfea74138b79f84dac96af25}{
+\index{PureMVC::IFacade@{PureMVC::IFacade}!sendNotification@{sendNotification}}
+\index{sendNotification@{sendNotification}!PureMVC::IFacade@{PureMVC::IFacade}}
+\subsubsection[{sendNotification}]{\setlength{\rightskip}{0pt plus 5cm}virtual void PureMVC::INotifier::sendNotification (int {\em notificationName}, \/  {\bf Object} $\ast$ {\em body}, \/  int {\em notificationType})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual, inherited\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_notifier_a65e8333ccfea74138b79f84dac96af25}
+
+
+Send a {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}}. Convenience method to prevent having to construct new notification instances in our implementation code.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em notificationName}]the name of the notification to send \item[{\em body}]the body of the notification (optional) \item[{\em type}]the type of the notification (optional) \end{DoxyParams}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_notifier_a55a358ee2661ecc08400653016fdb497}{PureMVC::Notifier}, and \hyperlink{class_pure_m_v_c_1_1_facade_a39a61e0a65d0f979848d36fe99cfd5f5}{PureMVC::Facade}.\hypertarget{class_pure_m_v_c_1_1_i_multiton_key_heir_a03acb75ab79defba2c28b8de1bbe1ca6}{
+\index{PureMVC::IFacade@{PureMVC::IFacade}!setMultitonKey@{setMultitonKey}}
+\index{setMultitonKey@{setMultitonKey}!PureMVC::IFacade@{PureMVC::IFacade}}
+\subsubsection[{setMultitonKey}]{\setlength{\rightskip}{0pt plus 5cm}virtual void PureMVC::IMultitonKeyHeir::setMultitonKey (std::string {\em key})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual, inherited\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_multiton_key_heir_a03acb75ab79defba2c28b8de1bbe1ca6}
+
+
+Set multiton key. Sets the multiton key. 
+\begin{DoxyParams}{Parameters}
+\item[{\em key}]The name of the key \end{DoxyParams}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_multiton_key_heir_abc70ef7c066bc8d7bf0196ec727599bb}{PureMVC::MultitonKeyHeir}.
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+/Users/schell/Code/PureMVC-\/Plus-\/Plus/src/pmvcpp.h\end{DoxyCompactItemize}

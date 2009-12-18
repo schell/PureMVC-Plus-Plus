@@ -1,0 +1,255 @@
+\hypertarget{class_pure_m_v_c_1_1_proxy}{
+\section{PureMVC::Proxy$<$ T $>$ Class Template Reference}
+\label{class_pure_m_v_c_1_1_proxy}\index{PureMVC::Proxy@{PureMVC::Proxy}}
+}
+Inheritance diagram for PureMVC::Proxy$<$ T $>$:Collaboration diagram for PureMVC::Proxy$<$ T $>$:\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_pure_m_v_c_1_1_proxy_ab9b9198b6a4aeec5fa06f8a73c1d96f8}{Proxy} ()
+\begin{DoxyCompactList}\small\item\em A base {\ttfamily IProxy} implementation. \item\end{DoxyCompactList}\item 
+\hypertarget{class_pure_m_v_c_1_1_proxy_a4842dcd3159302e97d318067c32c58bc}{
+{\bfseries Proxy} (std::string proxyName, T data)}
+\label{class_pure_m_v_c_1_1_proxy_a4842dcd3159302e97d318067c32c58bc}
+
+\item 
+\hypertarget{class_pure_m_v_c_1_1_proxy_a66b3b9152f8bb7e35d4b243200a8a0aa}{
+{\bfseries Proxy} (std::string proxyName)}
+\label{class_pure_m_v_c_1_1_proxy_a66b3b9152f8bb7e35d4b243200a8a0aa}
+
+\item 
+\hypertarget{class_pure_m_v_c_1_1_proxy_a568ac6e7061f879725fbc193f1f9a7ef}{
+{\bfseries Proxy} (T data)}
+\label{class_pure_m_v_c_1_1_proxy_a568ac6e7061f879725fbc193f1f9a7ef}
+
+\item 
+std::string \hyperlink{class_pure_m_v_c_1_1_proxy_a1aad6dd9244cd07361afb0bb5829b09d}{getProxyName} ()
+\begin{DoxyCompactList}\small\item\em Get the proxy name. \item\end{DoxyCompactList}\item 
+void \hyperlink{class_pure_m_v_c_1_1_proxy_ae14f7e555987a8e25584067a0e96c32a}{setData} (T data)
+\begin{DoxyCompactList}\small\item\em Set the data object. \item\end{DoxyCompactList}\item 
+T \hyperlink{class_pure_m_v_c_1_1_proxy_a717242b7e7053d768d08ac5972ab8688}{getData} ()
+\begin{DoxyCompactList}\small\item\em Get the data object. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_proxy_restricted_a450f14bba0bde7c94e5868e844f1fdf2}{onRegister} ()=0
+\begin{DoxyCompactList}\small\item\em Called by the \hyperlink{class_pure_m_v_c_1_1_model}{Model} when the \hyperlink{class_pure_m_v_c_1_1_proxy}{Proxy} is registered. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_proxy_restricted_a6d883fcf5a5e241321f5b5d9521ba158}{onRemove} ()=0
+\begin{DoxyCompactList}\small\item\em Called by the \hyperlink{class_pure_m_v_c_1_1_model}{Model} when the \hyperlink{class_pure_m_v_c_1_1_proxy}{Proxy} is removed. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_notifier_a65e8333ccfea74138b79f84dac96af25}{sendNotification} (int notificationName, \hyperlink{class_pure_m_v_c_1_1_object}{Object} $\ast$body, int notificationType)=0
+\begin{DoxyCompactList}\small\item\em Send a {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}}. \item\end{DoxyCompactList}\item 
+\hypertarget{class_pure_m_v_c_1_1_i_notifier_ad9421945c1e0fd6d7ebbc136f9ecfba3}{
+virtual void {\bfseries sendNotification} (int notificationName, int notificationType)=0}
+\label{class_pure_m_v_c_1_1_i_notifier_ad9421945c1e0fd6d7ebbc136f9ecfba3}
+
+\item 
+\hypertarget{class_pure_m_v_c_1_1_i_notifier_a4d6bac0719be96948e4f7417489daeaa}{
+virtual void {\bfseries sendNotification} (int notificationName, \hyperlink{class_pure_m_v_c_1_1_object}{Object} $\ast$body)=0}
+\label{class_pure_m_v_c_1_1_i_notifier_a4d6bac0719be96948e4f7417489daeaa}
+
+\item 
+\hypertarget{class_pure_m_v_c_1_1_i_notifier_aca921608a2ced017a8face049fc7c6af}{
+virtual void {\bfseries sendNotification} (int notificationName)=0}
+\label{class_pure_m_v_c_1_1_i_notifier_aca921608a2ced017a8face049fc7c6af}
+
+\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_notifier_a28d7dbbe0726d4d52080546c5d79b232}{initializeNotifier} (std::string key)=0
+\begin{DoxyCompactList}\small\item\em Initialize this \hyperlink{class_pure_m_v_c_1_1_i_notifier}{INotifier} instance. \item\end{DoxyCompactList}\item 
+void \hyperlink{class_pure_m_v_c_1_1_notifier_a55a358ee2661ecc08400653016fdb497}{sendNotification} (int notificationName, \hyperlink{class_pure_m_v_c_1_1_object}{Object} $\ast$body, int notificationType)
+\begin{DoxyCompactList}\small\item\em Create and send an {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}}. \item\end{DoxyCompactList}\item 
+\hypertarget{class_pure_m_v_c_1_1_notifier_a6fa2ef42750287b410dcdd867479450b}{
+void {\bfseries sendNotification} (int notificationName, int notificationType)}
+\label{class_pure_m_v_c_1_1_notifier_a6fa2ef42750287b410dcdd867479450b}
+
+\item 
+\hypertarget{class_pure_m_v_c_1_1_notifier_a79a17268f222d42c1cc1f41a13da3b62}{
+void {\bfseries sendNotification} (int notificationName, \hyperlink{class_pure_m_v_c_1_1_object}{Object} $\ast$body)}
+\label{class_pure_m_v_c_1_1_notifier_a79a17268f222d42c1cc1f41a13da3b62}
+
+\item 
+\hypertarget{class_pure_m_v_c_1_1_notifier_a012642026e913c8e30d006e2e8f869c6}{
+void {\bfseries sendNotification} (int notificationName)}
+\label{class_pure_m_v_c_1_1_notifier_a012642026e913c8e30d006e2e8f869c6}
+
+\item 
+void \hyperlink{class_pure_m_v_c_1_1_notifier_a6910365c70415ba7973401215f57e4af}{initializeNotifier} (std::string key)
+\begin{DoxyCompactList}\small\item\em Initialize this \hyperlink{class_pure_m_v_c_1_1_i_notifier}{INotifier} instance. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_multiton_key_heir_abc70ef7c066bc8d7bf0196ec727599bb}{setMultitonKey} (std::string key)
+\begin{DoxyCompactList}\small\item\em Set multiton key. \item\end{DoxyCompactList}\item 
+virtual std::string \hyperlink{class_pure_m_v_c_1_1_multiton_key_heir_aa5622459d33380deb08dc3cab8b991c7}{getMultitonKey} ()
+\begin{DoxyCompactList}\small\item\em Get multiton key. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_pure_m_v_c_1_1_proxy_a285cd604ba2b533b8e8ca1ba4b3a0c36}{
+static std::string {\bfseries NAME}}
+\label{class_pure_m_v_c_1_1_proxy_a285cd604ba2b533b8e8ca1ba4b3a0c36}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_pure_m_v_c_1_1_notifier_a3eeda7190c0c0a2af8d34074df332bbe}{
+\hyperlink{class_pure_m_v_c_1_1_i_facade}{IFacade} $\ast$ {\bfseries getFacade} ()}
+\label{class_pure_m_v_c_1_1_notifier_a3eeda7190c0c0a2af8d34074df332bbe}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_pure_m_v_c_1_1_proxy_a6bf46aa704777b196fc1bd0747ca766e}{
+std::string {\bfseries proxyName}}
+\label{class_pure_m_v_c_1_1_proxy_a6bf46aa704777b196fc1bd0747ca766e}
+
+\item 
+\hypertarget{class_pure_m_v_c_1_1_proxy_ada26175282e6a9607e07c40de63872b8}{
+T {\bfseries data}}
+\label{class_pure_m_v_c_1_1_proxy_ada26175282e6a9607e07c40de63872b8}
+
+\end{DoxyCompactItemize}
+\subsubsection*{template$<$class T$>$ class PureMVC::Proxy$<$ T $>$}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_pure_m_v_c_1_1_proxy_ab9b9198b6a4aeec5fa06f8a73c1d96f8}{
+\index{PureMVC::Proxy@{PureMVC::Proxy}!Proxy@{Proxy}}
+\index{Proxy@{Proxy}!PureMVC::Proxy@{PureMVC::Proxy}}
+\subsubsection[{Proxy}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ {\bf PureMVC::Proxy}$<$ T $>$::{\bf Proxy} ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_proxy_ab9b9198b6a4aeec5fa06f8a73c1d96f8}
+
+
+A base {\ttfamily IProxy} implementation. In \hyperlink{namespace_pure_m_v_c}{PureMVC}, {\ttfamily \hyperlink{class_pure_m_v_c_1_1_proxy}{Proxy}} classes are used to manage parts of the application's data model. 
+
+A {\ttfamily \hyperlink{class_pure_m_v_c_1_1_proxy}{Proxy}} might simply manage a reference to a local data object, in which case interacting with it might involve setting and getting of its data in synchronous fashion.
+
+{\ttfamily \hyperlink{class_pure_m_v_c_1_1_proxy}{Proxy}} classes are also used to encapsulate the application's interaction with remote services to save or retrieve data, in which case, we adopt an asyncronous idiom; setting data (or calling a method) on the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_proxy}{Proxy}} and listening for a {\ttfamily \hyperlink{class_pure_m_v_c_1_1_notification}{Notification}} to be sent when the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_proxy}{Proxy}} has retrieved the data from the service. 
+
+\begin{DoxySeeAlso}{See also}
+org.puremvc.as3.multicore.core.Model \hyperlink{class_pure_m_v_c_1_1_model}{Model} Constructor 
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_pure_m_v_c_1_1_proxy_a717242b7e7053d768d08ac5972ab8688}{
+\index{PureMVC::Proxy@{PureMVC::Proxy}!getData@{getData}}
+\index{getData@{getData}!PureMVC::Proxy@{PureMVC::Proxy}}
+\subsubsection[{getData}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ T {\bf PureMVC::Proxy}$<$ T $>$::getData ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_proxy_a717242b7e7053d768d08ac5972ab8688}
+
+
+Get the data object. 
+
+Implements \hyperlink{class_pure_m_v_c_1_1_i_proxy_templated_ab6cf7f1c41002c84a7f48d65b0d2e388}{PureMVC::IProxyTemplated$<$ T $>$}.\hypertarget{class_pure_m_v_c_1_1_multiton_key_heir_aa5622459d33380deb08dc3cab8b991c7}{
+\index{PureMVC::Proxy@{PureMVC::Proxy}!getMultitonKey@{getMultitonKey}}
+\index{getMultitonKey@{getMultitonKey}!PureMVC::Proxy@{PureMVC::Proxy}}
+\subsubsection[{getMultitonKey}]{\setlength{\rightskip}{0pt plus 5cm}std::string MultitonKeyHeir::getMultitonKey ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual, inherited\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_multiton_key_heir_aa5622459d33380deb08dc3cab8b991c7}
+
+
+Get multiton key. Returns the multiton key. \begin{DoxyReturn}{Returns}
+The string key name 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_pure_m_v_c_1_1_i_multiton_key_heir_aecccfb9898368c6377550ceae5730934}{PureMVC::IMultitonKeyHeir}.\hypertarget{class_pure_m_v_c_1_1_proxy_a1aad6dd9244cd07361afb0bb5829b09d}{
+\index{PureMVC::Proxy@{PureMVC::Proxy}!getProxyName@{getProxyName}}
+\index{getProxyName@{getProxyName}!PureMVC::Proxy@{PureMVC::Proxy}}
+\subsubsection[{getProxyName}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ std::string {\bf PureMVC::Proxy}$<$ T $>$::getProxyName ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_proxy_a1aad6dd9244cd07361afb0bb5829b09d}
+
+
+Get the proxy name. 
+
+Implements \hyperlink{class_pure_m_v_c_1_1_i_proxy_restricted_ae52c8f9de4c2f4a4b90e97006e0b08f9}{PureMVC::IProxyRestricted}.\hypertarget{class_pure_m_v_c_1_1_notifier_a6910365c70415ba7973401215f57e4af}{
+\index{PureMVC::Proxy@{PureMVC::Proxy}!initializeNotifier@{initializeNotifier}}
+\index{initializeNotifier@{initializeNotifier}!PureMVC::Proxy@{PureMVC::Proxy}}
+\subsubsection[{initializeNotifier}]{\setlength{\rightskip}{0pt plus 5cm}void Notifier::initializeNotifier (std::string {\em key})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual, inherited\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_notifier_a6910365c70415ba7973401215f57e4af}
+
+
+Initialize this \hyperlink{class_pure_m_v_c_1_1_i_notifier}{INotifier} instance. This is how a \hyperlink{class_pure_m_v_c_1_1_notifier}{Notifier} gets its multitonKey. Calls to sendNotification or to access the facade will fail until after this method has been called.
+
+Mediators, Commands or Proxies may override this method in order to send notifications or access the \hyperlink{class_pure_m_v_c_1_1_multiton}{Multiton} \hyperlink{class_pure_m_v_c_1_1_facade}{Facade} instance as soon as possible. They CANNOT access the facade in their constructors, since this method will not yet have been called.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em key}]the multitonKey for this \hyperlink{class_pure_m_v_c_1_1_i_notifier}{INotifier} to use \end{DoxyParams}
+
+
+Implements \hyperlink{class_pure_m_v_c_1_1_i_notifier_a28d7dbbe0726d4d52080546c5d79b232}{PureMVC::INotifier}.\hypertarget{class_pure_m_v_c_1_1_i_notifier_a28d7dbbe0726d4d52080546c5d79b232}{
+\index{PureMVC::Proxy@{PureMVC::Proxy}!initializeNotifier@{initializeNotifier}}
+\index{initializeNotifier@{initializeNotifier}!PureMVC::Proxy@{PureMVC::Proxy}}
+\subsubsection[{initializeNotifier}]{\setlength{\rightskip}{0pt plus 5cm}virtual void PureMVC::INotifier::initializeNotifier (std::string {\em key})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual, inherited\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_notifier_a28d7dbbe0726d4d52080546c5d79b232}
+
+
+Initialize this \hyperlink{class_pure_m_v_c_1_1_i_notifier}{INotifier} instance. This is how a \hyperlink{class_pure_m_v_c_1_1_notifier}{Notifier} gets its multitonKey. Calls to sendNotification or to access the facade will fail until after this method has been called.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em key}]the multitonKey for this \hyperlink{class_pure_m_v_c_1_1_i_notifier}{INotifier} to use \end{DoxyParams}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_notifier_a6910365c70415ba7973401215f57e4af}{PureMVC::Notifier}, and \hyperlink{class_pure_m_v_c_1_1_facade_a94c72ff29f9f42ff084f247b180fb4ad}{PureMVC::Facade}.\hypertarget{class_pure_m_v_c_1_1_i_proxy_restricted_a450f14bba0bde7c94e5868e844f1fdf2}{
+\index{PureMVC::Proxy@{PureMVC::Proxy}!onRegister@{onRegister}}
+\index{onRegister@{onRegister}!PureMVC::Proxy@{PureMVC::Proxy}}
+\subsubsection[{onRegister}]{\setlength{\rightskip}{0pt plus 5cm}virtual void PureMVC::IProxyRestricted::onRegister ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual, inherited\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_proxy_restricted_a450f14bba0bde7c94e5868e844f1fdf2}
+
+
+Called by the \hyperlink{class_pure_m_v_c_1_1_model}{Model} when the \hyperlink{class_pure_m_v_c_1_1_proxy}{Proxy} is registered. \hypertarget{class_pure_m_v_c_1_1_i_proxy_restricted_a6d883fcf5a5e241321f5b5d9521ba158}{
+\index{PureMVC::Proxy@{PureMVC::Proxy}!onRemove@{onRemove}}
+\index{onRemove@{onRemove}!PureMVC::Proxy@{PureMVC::Proxy}}
+\subsubsection[{onRemove}]{\setlength{\rightskip}{0pt plus 5cm}virtual void PureMVC::IProxyRestricted::onRemove ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual, inherited\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_proxy_restricted_a6d883fcf5a5e241321f5b5d9521ba158}
+
+
+Called by the \hyperlink{class_pure_m_v_c_1_1_model}{Model} when the \hyperlink{class_pure_m_v_c_1_1_proxy}{Proxy} is removed. \hypertarget{class_pure_m_v_c_1_1_notifier_a55a358ee2661ecc08400653016fdb497}{
+\index{PureMVC::Proxy@{PureMVC::Proxy}!sendNotification@{sendNotification}}
+\index{sendNotification@{sendNotification}!PureMVC::Proxy@{PureMVC::Proxy}}
+\subsubsection[{sendNotification}]{\setlength{\rightskip}{0pt plus 5cm}void Notifier::sendNotification (int {\em notificationName}, \/  {\bf Object} $\ast$ {\em body}, \/  int {\em notificationType})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual, inherited\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_notifier_a55a358ee2661ecc08400653016fdb497}
+
+
+Create and send an {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}}. Keeps us from having to construct new \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification} instances in our implementation code. 
+\begin{DoxyParams}{Parameters}
+\item[{\em notificationName}]the name of the notiification to send \item[{\em body}]the body of the notification (optional) \item[{\em type}]the type of the notification (optional) \end{DoxyParams}
+
+
+Implements \hyperlink{class_pure_m_v_c_1_1_i_notifier_a65e8333ccfea74138b79f84dac96af25}{PureMVC::INotifier}.\hypertarget{class_pure_m_v_c_1_1_i_notifier_a65e8333ccfea74138b79f84dac96af25}{
+\index{PureMVC::Proxy@{PureMVC::Proxy}!sendNotification@{sendNotification}}
+\index{sendNotification@{sendNotification}!PureMVC::Proxy@{PureMVC::Proxy}}
+\subsubsection[{sendNotification}]{\setlength{\rightskip}{0pt plus 5cm}virtual void PureMVC::INotifier::sendNotification (int {\em notificationName}, \/  {\bf Object} $\ast$ {\em body}, \/  int {\em notificationType})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual, inherited\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_notifier_a65e8333ccfea74138b79f84dac96af25}
+
+
+Send a {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}}. Convenience method to prevent having to construct new notification instances in our implementation code.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em notificationName}]the name of the notification to send \item[{\em body}]the body of the notification (optional) \item[{\em type}]the type of the notification (optional) \end{DoxyParams}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_notifier_a55a358ee2661ecc08400653016fdb497}{PureMVC::Notifier}, and \hyperlink{class_pure_m_v_c_1_1_facade_a39a61e0a65d0f979848d36fe99cfd5f5}{PureMVC::Facade}.\hypertarget{class_pure_m_v_c_1_1_proxy_ae14f7e555987a8e25584067a0e96c32a}{
+\index{PureMVC::Proxy@{PureMVC::Proxy}!setData@{setData}}
+\index{setData@{setData}!PureMVC::Proxy@{PureMVC::Proxy}}
+\subsubsection[{setData}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void {\bf PureMVC::Proxy}$<$ T $>$::setData (T {\em data})\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_proxy_ae14f7e555987a8e25584067a0e96c32a}
+
+
+Set the data object. 
+
+Implements \hyperlink{class_pure_m_v_c_1_1_i_proxy_templated_aef201c3df1efc6c2652f5de3ba0fff74}{PureMVC::IProxyTemplated$<$ T $>$}.\hypertarget{class_pure_m_v_c_1_1_multiton_key_heir_abc70ef7c066bc8d7bf0196ec727599bb}{
+\index{PureMVC::Proxy@{PureMVC::Proxy}!setMultitonKey@{setMultitonKey}}
+\index{setMultitonKey@{setMultitonKey}!PureMVC::Proxy@{PureMVC::Proxy}}
+\subsubsection[{setMultitonKey}]{\setlength{\rightskip}{0pt plus 5cm}void MultitonKeyHeir::setMultitonKey (std::string {\em key})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual, inherited\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_multiton_key_heir_abc70ef7c066bc8d7bf0196ec727599bb}
+
+
+Set multiton key. Sets the multiton key. 
+\begin{DoxyParams}{Parameters}
+\item[{\em key}]The name of the key \end{DoxyParams}
+
+
+Implements \hyperlink{class_pure_m_v_c_1_1_i_multiton_key_heir_a03acb75ab79defba2c28b8de1bbe1ca6}{PureMVC::IMultitonKeyHeir}.
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+/Users/schell/Code/PureMVC-\/Plus-\/Plus/src/pmvcpp.h\end{DoxyCompactItemize}

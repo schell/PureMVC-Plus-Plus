@@ -1,0 +1,102 @@
+\hypertarget{class_pure_m_v_c_1_1_i_observer_templated}{
+\section{PureMVC::IObserverTemplated$<$ T $>$ Class Template Reference}
+\label{class_pure_m_v_c_1_1_i_observer_templated}\index{PureMVC::IObserverTemplated@{PureMVC::IObserverTemplated}}
+}
+
+
+The interface definition for a \hyperlink{namespace_pure_m_v_c}{PureMVC} \hyperlink{class_pure_m_v_c_1_1_observer}{Observer}.  
+
+
+{\ttfamily \#include $<$pmvcpp.h$>$}Inheritance diagram for PureMVC::IObserverTemplated$<$ T $>$:Collaboration diagram for PureMVC::IObserverTemplated$<$ T $>$:\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_observer_templated_a6d8b0b888b2d1efd0801b75451e7c8df}{setNotifyMethod} (void(T::$\ast$fptr)(\hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification} $\ast$))=0
+\begin{DoxyCompactList}\small\item\em Set the notification method. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_observer_templated_ad2f9264afea485375876ef3a976b0ba5}{setNotifyContext} (T $\ast$notifyContext)=0
+\begin{DoxyCompactList}\small\item\em Set the notification context. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_observer_restricted_a808a9378a31b068f285fe0b4446048e1}{notifyObserver} (\hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification} $\ast$notification)=0
+\begin{DoxyCompactList}\small\item\em A callback. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_pure_m_v_c_1_1_i_observer_restricted_a773762b441d4944e77b5b53789a4c52b}{compareNotifyContext} (intptr\_\-t memoryAddress)=0
+\begin{DoxyCompactList}\small\item\em Compare an object's memory address to the notification context's memory address. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$ class PureMVC::IObserverTemplated$<$ T $>$}
+
+The interface definition for a \hyperlink{namespace_pure_m_v_c}{PureMVC} \hyperlink{class_pure_m_v_c_1_1_observer}{Observer}. In \hyperlink{namespace_pure_m_v_c}{PureMVC}, {\ttfamily IObserver} implementors assume these responsibilities: 
+\begin{DoxyItemize}
+\item Encapsulate the notification (callback) method of the interested object. 
+\item Encapsulate the notification context (this) of the interested object. 
+\item Provide methods for setting the interested object' notification method and context. 
+\item Provide a method for notifying the interested object. 
+\end{DoxyItemize}
+
+\hyperlink{namespace_pure_m_v_c}{PureMVC} does not rely upon underlying event models such as the one provided with Flash, and ActionScript 3 does not have an inherent event model.
+
+The \hyperlink{class_pure_m_v_c_1_1_observer}{Observer} Pattern as implemented within \hyperlink{namespace_pure_m_v_c}{PureMVC} exists to support event driven communication between the application and the actors of the MVC triad.
+
+An \hyperlink{class_pure_m_v_c_1_1_observer}{Observer} is an object that encapsulates information about an interested object with a notification method that should be called when an \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification} is broadcast. The \hyperlink{class_pure_m_v_c_1_1_observer}{Observer} then acts as a proxy for notifying the interested object.
+
+Observers can receive {\ttfamily \hyperlink{class_pure_m_v_c_1_1_notification}{Notification}}s by having their {\ttfamily notifyObserver} method invoked, passing in an object implementing the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}} interface, such as a subclass of {\ttfamily \hyperlink{class_pure_m_v_c_1_1_notification}{Notification}}.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_pure_m_v_c_1_1_i_view}{IView} 
+
+\hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification} 
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_pure_m_v_c_1_1_i_observer_restricted_a773762b441d4944e77b5b53789a4c52b}{
+\index{PureMVC::IObserverTemplated@{PureMVC::IObserverTemplated}!compareNotifyContext@{compareNotifyContext}}
+\index{compareNotifyContext@{compareNotifyContext}!PureMVC::IObserverTemplated@{PureMVC::IObserverTemplated}}
+\subsubsection[{compareNotifyContext}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool PureMVC::IObserverRestricted::compareNotifyContext (intptr\_\-t {\em memoryAddress})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual, inherited\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_observer_restricted_a773762b441d4944e77b5b53789a4c52b}
+
+
+Compare an object's memory address to the notification context's memory address. 
+\begin{DoxyParams}{Parameters}
+\item[{\em memoryAddress}]the object to compare \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean indicating if the object and the notification context are the same 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_observer_a1b8be3d83deabe4c0c820af7821459a1}{PureMVC::Observer$<$ T $>$}.\hypertarget{class_pure_m_v_c_1_1_i_observer_restricted_a808a9378a31b068f285fe0b4446048e1}{
+\index{PureMVC::IObserverTemplated@{PureMVC::IObserverTemplated}!notifyObserver@{notifyObserver}}
+\index{notifyObserver@{notifyObserver}!PureMVC::IObserverTemplated@{PureMVC::IObserverTemplated}}
+\subsubsection[{notifyObserver}]{\setlength{\rightskip}{0pt plus 5cm}virtual void PureMVC::IObserverRestricted::notifyObserver ({\bf INotification} $\ast$ {\em notification})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual, inherited\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_observer_restricted_a808a9378a31b068f285fe0b4446048e1}
+
+
+A callback. Call the Observer's callback function in the context of the \hyperlink{class_pure_m_v_c_1_1_observer}{Observer}. 
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_observer_a79996aa1a9b0d7e03c333ec177df74f1}{PureMVC::Observer$<$ T $>$}.\hypertarget{class_pure_m_v_c_1_1_i_observer_templated_ad2f9264afea485375876ef3a976b0ba5}{
+\index{PureMVC::IObserverTemplated@{PureMVC::IObserverTemplated}!setNotifyContext@{setNotifyContext}}
+\index{setNotifyContext@{setNotifyContext}!PureMVC::IObserverTemplated@{PureMVC::IObserverTemplated}}
+\subsubsection[{setNotifyContext}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ virtual void {\bf PureMVC::IObserverTemplated}$<$ T $>$::setNotifyContext (T $\ast$ {\em notifyContext})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_observer_templated_ad2f9264afea485375876ef3a976b0ba5}
+
+
+Set the notification context. 
+\begin{DoxyParams}{Parameters}
+\item[{\em notifyContext}]the notification context (this) of the interested object \end{DoxyParams}
+
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_observer_a832268c15c727dd0ba0b31fc5bf91308}{PureMVC::Observer$<$ T $>$}.\hypertarget{class_pure_m_v_c_1_1_i_observer_templated_a6d8b0b888b2d1efd0801b75451e7c8df}{
+\index{PureMVC::IObserverTemplated@{PureMVC::IObserverTemplated}!setNotifyMethod@{setNotifyMethod}}
+\index{setNotifyMethod@{setNotifyMethod}!PureMVC::IObserverTemplated@{PureMVC::IObserverTemplated}}
+\subsubsection[{setNotifyMethod}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ virtual void {\bf PureMVC::IObserverTemplated}$<$ T $>$::setNotifyMethod (void(T::$\ast$)({\bf INotification} $\ast$) {\em fptr})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_observer_templated_a6d8b0b888b2d1efd0801b75451e7c8df}
+
+
+Set the notification method. The notification method should take one parameter of type {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}}
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em notifyMethod}]the notification (callback) method of the interested object \end{DoxyParams}
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+/Users/schell/Code/PureMVC-\/Plus-\/Plus/src/pmvcpp.h\end{DoxyCompactItemize}

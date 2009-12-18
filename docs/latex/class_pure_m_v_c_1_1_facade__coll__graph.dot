@@ -1,0 +1,25 @@
+digraph G
+{
+  edge [fontname="FreeSans",fontsize="10",labelfontname="FreeSans",labelfontsize="10"];
+  node [fontname="FreeSans",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="PureMVC::Facade",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir=back,color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="PureMVC::IFacade",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pure_m_v_c_1_1_i_facade.html",tooltip="The interface definition for a PureMVC Facade."];
+  Node3 -> Node2 [dir=back,color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="PureMVC::INotifier",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pure_m_v_c_1_1_i_notifier.html",tooltip="The interface definition for a PureMVC Notifier."];
+  Node4 -> Node2 [dir=back,color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="PureMVC::IMultitonKeyHeir",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pure_m_v_c_1_1_i_multiton_key_heir.html",tooltip="Contains a multiton key."];
+  Node5 -> Node1 [dir=back,color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="PureMVC::MultitonKeyHeir",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pure_m_v_c_1_1_multiton_key_heir.html",tooltip="Multiton key holding class."];
+  Node4 -> Node5 [dir=back,color="midnightblue",fontsize="10",style="solid"];
+  Node6 -> Node1 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="model"];
+  Node6 [label="PureMVC::IModel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pure_m_v_c_1_1_i_model.html",tooltip="The interface definition for a PureMVC Model."];
+  Node4 -> Node6 [dir=back,color="midnightblue",fontsize="10",style="solid"];
+  Node7 -> Node1 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="controller"];
+  Node7 [label="PureMVC::IController",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pure_m_v_c_1_1_i_controller.html",tooltip="The interface definition for a PureMVC Controller."];
+  Node4 -> Node7 [dir=back,color="midnightblue",fontsize="10",style="solid"];
+  Node8 -> Node1 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="view"];
+  Node8 [label="PureMVC::IView",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pure_m_v_c_1_1_i_view.html",tooltip="The interface definition for a PureMVC View."];
+  Node4 -> Node8 [dir=back,color="midnightblue",fontsize="10",style="solid"];
+}

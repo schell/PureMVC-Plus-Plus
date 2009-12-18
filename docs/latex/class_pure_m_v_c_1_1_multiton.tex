@@ -1,0 +1,88 @@
+\hypertarget{class_pure_m_v_c_1_1_multiton}{
+\section{PureMVC::Multiton$<$ T $>$ Class Template Reference}
+\label{class_pure_m_v_c_1_1_multiton}\index{PureMVC::Multiton@{PureMVC::Multiton}}
+}
+
+
+A templated \hyperlink{class_pure_m_v_c_1_1_multiton}{Multiton} class.  
+
+
+{\ttfamily \#include $<$pmvcpp.h$>$}\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static T $\ast$ \hyperlink{class_pure_m_v_c_1_1_multiton_aea411a3852c095542ec025b14f536f12}{instance} ()
+\begin{DoxyCompactList}\small\item\em Retrieve a default instance of T. \item\end{DoxyCompactList}\item 
+static T $\ast$ \hyperlink{class_pure_m_v_c_1_1_multiton_a88e3c54b909fee66fef39ccf524377df}{instance} (std::string key)
+\begin{DoxyCompactList}\small\item\em Retrieve a named instance of T. \item\end{DoxyCompactList}\item 
+static bool \hyperlink{class_pure_m_v_c_1_1_multiton_a3233f3621b8aa564d8da435de122426b}{exists} (std::string key)
+\begin{DoxyCompactList}\small\item\em Check existance. \item\end{DoxyCompactList}\item 
+static size\_\-t \hyperlink{class_pure_m_v_c_1_1_multiton_a8e6b1a6f3c6bf4751c234d3854a6bf93}{size} ()
+\begin{DoxyCompactList}\small\item\em Total instances. \item\end{DoxyCompactList}\item 
+static void \hyperlink{class_pure_m_v_c_1_1_multiton_a0e50d82ec223f628312fbf6693fa1477}{erase} (std::string key)
+\begin{DoxyCompactList}\small\item\em Deletes an instance. \item\end{DoxyCompactList}\item 
+static void \hyperlink{class_pure_m_v_c_1_1_multiton_ac583e3bba8cd9b409f4d78acca48e4c6}{clear} ()
+\begin{DoxyCompactList}\small\item\em Deletes instances. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$ class PureMVC::Multiton$<$ T $>$}
+
+A templated \hyperlink{class_pure_m_v_c_1_1_multiton}{Multiton} class. \hyperlink{class_pure_m_v_c_1_1_multiton}{Multiton} takes care of creating multitons of other classes. We use this instead implementing multiton code in \hyperlink{class_pure_m_v_c_1_1_facade}{Facade}, \hyperlink{class_pure_m_v_c_1_1_model}{Model}, \hyperlink{class_pure_m_v_c_1_1_controller}{Controller}, etc. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_pure_m_v_c_1_1_multiton_ac583e3bba8cd9b409f4d78acca48e4c6}{
+\index{PureMVC::Multiton@{PureMVC::Multiton}!clear@{clear}}
+\index{clear@{clear}!PureMVC::Multiton@{PureMVC::Multiton}}
+\subsubsection[{clear}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ static void {\bf PureMVC::Multiton}$<$ T $>$::clear ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline, static\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_multiton_ac583e3bba8cd9b409f4d78acca48e4c6}
+
+
+Deletes instances. Deletes all instances, calls destructors. \hypertarget{class_pure_m_v_c_1_1_multiton_a0e50d82ec223f628312fbf6693fa1477}{
+\index{PureMVC::Multiton@{PureMVC::Multiton}!erase@{erase}}
+\index{erase@{erase}!PureMVC::Multiton@{PureMVC::Multiton}}
+\subsubsection[{erase}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ static void {\bf PureMVC::Multiton}$<$ T $>$::erase (std::string {\em key})\hspace{0.3cm}{\ttfamily  \mbox{[}inline, static\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_multiton_a0e50d82ec223f628312fbf6693fa1477}
+
+
+Deletes an instance. Deletes one instance of key {\ttfamily key}. \hypertarget{class_pure_m_v_c_1_1_multiton_a3233f3621b8aa564d8da435de122426b}{
+\index{PureMVC::Multiton@{PureMVC::Multiton}!exists@{exists}}
+\index{exists@{exists}!PureMVC::Multiton@{PureMVC::Multiton}}
+\subsubsection[{exists}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ static bool {\bf PureMVC::Multiton}$<$ T $>$::exists (std::string {\em key})\hspace{0.3cm}{\ttfamily  \mbox{[}inline, static\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_multiton_a3233f3621b8aa564d8da435de122426b}
+
+
+Check existance. Check whether or not an instance of name key exists. 
+\begin{DoxyParams}{Parameters}
+\item[{\em key}]A string key \end{DoxyParams}
+\hypertarget{class_pure_m_v_c_1_1_multiton_a88e3c54b909fee66fef39ccf524377df}{
+\index{PureMVC::Multiton@{PureMVC::Multiton}!instance@{instance}}
+\index{instance@{instance}!PureMVC::Multiton@{PureMVC::Multiton}}
+\subsubsection[{instance}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ static T$\ast$ {\bf PureMVC::Multiton}$<$ T $>$::instance (std::string {\em key})\hspace{0.3cm}{\ttfamily  \mbox{[}inline, static\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_multiton_a88e3c54b909fee66fef39ccf524377df}
+
+
+Retrieve a named instance of T. Create a new named instance of T or return one pointed to by key. 
+\begin{DoxyParams}{Parameters}
+\item[{\em key}]A string key \end{DoxyParams}
+\hypertarget{class_pure_m_v_c_1_1_multiton_aea411a3852c095542ec025b14f536f12}{
+\index{PureMVC::Multiton@{PureMVC::Multiton}!instance@{instance}}
+\index{instance@{instance}!PureMVC::Multiton@{PureMVC::Multiton}}
+\subsubsection[{instance}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ static T$\ast$ {\bf PureMVC::Multiton}$<$ T $>$::instance ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline, static\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_multiton_aea411a3852c095542ec025b14f536f12}
+
+
+Retrieve a default instance of T. Create a new default instance or return existing. \begin{DoxySeeAlso}{See also}
+\hyperlink{class_pure_m_v_c_1_1_multiton_a88e3c54b909fee66fef39ccf524377df}{instance(std::string key)} 
+\end{DoxySeeAlso}
+\hypertarget{class_pure_m_v_c_1_1_multiton_a8e6b1a6f3c6bf4751c234d3854a6bf93}{
+\index{PureMVC::Multiton@{PureMVC::Multiton}!size@{size}}
+\index{size@{size}!PureMVC::Multiton@{PureMVC::Multiton}}
+\subsubsection[{size}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ static size\_\-t {\bf PureMVC::Multiton}$<$ T $>$::size ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline, static\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_multiton_a8e6b1a6f3c6bf4751c234d3854a6bf93}
+
+
+Total instances. The total number of instances instantiated. 
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+/Users/schell/Code/PureMVC-\/Plus-\/Plus/src/pmvcpp.h\end{DoxyCompactItemize}

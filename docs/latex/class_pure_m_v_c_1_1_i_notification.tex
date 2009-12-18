@@ -1,0 +1,103 @@
+\hypertarget{class_pure_m_v_c_1_1_i_notification}{
+\section{PureMVC::INotification Class Reference}
+\label{class_pure_m_v_c_1_1_i_notification}\index{PureMVC::INotification@{PureMVC::INotification}}
+}
+
+
+The interface definition for a \hyperlink{namespace_pure_m_v_c}{PureMVC} \hyperlink{class_pure_m_v_c_1_1_notification}{Notification}.  
+
+
+{\ttfamily \#include $<$pmvcpp.h$>$}Inheritance diagram for PureMVC::INotification:\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual int \hyperlink{class_pure_m_v_c_1_1_i_notification_a47236c554cb055f0d422270abc65778b}{getName} ()=0
+\begin{DoxyCompactList}\small\item\em Get the name of the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}} instance. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_notification_a3f5eab942b48a0a8d8045701ed98de83}{setBody} (\hyperlink{class_pure_m_v_c_1_1_object}{Object} $\ast$body)=0
+\begin{DoxyCompactList}\small\item\em Set the body of the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}} instance. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{class_pure_m_v_c_1_1_object}{Object} $\ast$ \hyperlink{class_pure_m_v_c_1_1_i_notification_a175f91568692855cdeb2642156d34e05}{getBody} ()=0
+\begin{DoxyCompactList}\small\item\em Get the body of the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}} instance. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_pure_m_v_c_1_1_i_notification_a2e9d5946b96b759c2f3799377ea4acdc}{setType} (int notificationType)=0
+\begin{DoxyCompactList}\small\item\em Set the type of the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}} instance. \item\end{DoxyCompactList}\item 
+virtual int \hyperlink{class_pure_m_v_c_1_1_i_notification_a40c8210a691d342cedcb558beef3ef52}{getType} ()=0
+\begin{DoxyCompactList}\small\item\em Get the type of the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}} instance. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{class_pure_m_v_c_1_1_i_notification_ac0b60e01d714dc0f765cedd530631173}{$\sim$INotification} ()
+\begin{DoxyCompactList}\small\item\em Get the string representation of the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}} instance. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The interface definition for a \hyperlink{namespace_pure_m_v_c}{PureMVC} \hyperlink{class_pure_m_v_c_1_1_notification}{Notification}. \hyperlink{namespace_pure_m_v_c}{PureMVC} does not rely upon underlying event models such as the one provided with Flash, and ActionScript 3 does not have an inherent event model.
+
+The \hyperlink{class_pure_m_v_c_1_1_observer}{Observer} Pattern as implemented within \hyperlink{namespace_pure_m_v_c}{PureMVC} exists to support event-\/driven communication between the application and the actors of the MVC triad.
+
+Notifications are not meant to be a replacement for Events in Flex/Flash/AIR. Generally, {\ttfamily IMediator} implementors place event listeners on their view components, which they then handle in the usual way. This may lead to the broadcast of {\ttfamily \hyperlink{class_pure_m_v_c_1_1_notification}{Notification}}s to trigger {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_command}{ICommand}}s or to communicate with other {\ttfamily IMediators}. {\ttfamily IProxy} and {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_command}{ICommand}} instances communicate with each other and {\ttfamily IMediator}s by broadcasting {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}}s.
+
+A key difference between Flash {\ttfamily Event}s and \hyperlink{namespace_pure_m_v_c}{PureMVC} {\ttfamily \hyperlink{class_pure_m_v_c_1_1_notification}{Notification}}s is that {\ttfamily Event}s follow the 'Chain of Responsibility' pattern, 'bubbling' up the display hierarchy until some parent component handles the {\ttfamily Event}, while \hyperlink{namespace_pure_m_v_c}{PureMVC} {\ttfamily \hyperlink{class_pure_m_v_c_1_1_notification}{Notification}}s follow a 'Publish/Subscribe' pattern. \hyperlink{namespace_pure_m_v_c}{PureMVC} classes need not be related to each other in a parent/child relationship in order to communicate with one another using {\ttfamily \hyperlink{class_pure_m_v_c_1_1_notification}{Notification}}s.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_pure_m_v_c_1_1_i_view}{IView} 
+
+IObserver 
+\end{DoxySeeAlso}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_pure_m_v_c_1_1_i_notification_ac0b60e01d714dc0f765cedd530631173}{
+\index{PureMVC::INotification@{PureMVC::INotification}!$\sim$INotification@{$\sim$INotification}}
+\index{$\sim$INotification@{$\sim$INotification}!PureMVC::INotification@{PureMVC::INotification}}
+\subsubsection[{$\sim$INotification}]{\setlength{\rightskip}{0pt plus 5cm}virtual PureMVC::INotification::$\sim$INotification ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_notification_ac0b60e01d714dc0f765cedd530631173}
+
+
+Get the string representation of the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}} instance. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_pure_m_v_c_1_1_i_notification_a175f91568692855cdeb2642156d34e05}{
+\index{PureMVC::INotification@{PureMVC::INotification}!getBody@{getBody}}
+\index{getBody@{getBody}!PureMVC::INotification@{PureMVC::INotification}}
+\subsubsection[{getBody}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Object}$\ast$ PureMVC::INotification::getBody ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_notification_a175f91568692855cdeb2642156d34e05}
+
+
+Get the body of the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}} instance. 
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_notification_a57b45067ffdee2037305396e190f83b9}{PureMVC::Notification}.\hypertarget{class_pure_m_v_c_1_1_i_notification_a47236c554cb055f0d422270abc65778b}{
+\index{PureMVC::INotification@{PureMVC::INotification}!getName@{getName}}
+\index{getName@{getName}!PureMVC::INotification@{PureMVC::INotification}}
+\subsubsection[{getName}]{\setlength{\rightskip}{0pt plus 5cm}virtual int PureMVC::INotification::getName ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_notification_a47236c554cb055f0d422270abc65778b}
+
+
+Get the name of the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}} instance. No setter, should be set by constructor only 
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_notification_aed76b38c526e916005fb55fc3d9f714f}{PureMVC::Notification}.\hypertarget{class_pure_m_v_c_1_1_i_notification_a40c8210a691d342cedcb558beef3ef52}{
+\index{PureMVC::INotification@{PureMVC::INotification}!getType@{getType}}
+\index{getType@{getType}!PureMVC::INotification@{PureMVC::INotification}}
+\subsubsection[{getType}]{\setlength{\rightskip}{0pt plus 5cm}virtual int PureMVC::INotification::getType ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_notification_a40c8210a691d342cedcb558beef3ef52}
+
+
+Get the type of the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}} instance. 
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_notification_a05e70c01afdee0dbaff570789ee761b1}{PureMVC::Notification}.\hypertarget{class_pure_m_v_c_1_1_i_notification_a3f5eab942b48a0a8d8045701ed98de83}{
+\index{PureMVC::INotification@{PureMVC::INotification}!setBody@{setBody}}
+\index{setBody@{setBody}!PureMVC::INotification@{PureMVC::INotification}}
+\subsubsection[{setBody}]{\setlength{\rightskip}{0pt plus 5cm}virtual void PureMVC::INotification::setBody ({\bf Object} $\ast$ {\em body})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_notification_a3f5eab942b48a0a8d8045701ed98de83}
+
+
+Set the body of the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}} instance. 
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_notification_a9cae1ba418db7451e7afd6ddd40b2cbf}{PureMVC::Notification}.\hypertarget{class_pure_m_v_c_1_1_i_notification_a2e9d5946b96b759c2f3799377ea4acdc}{
+\index{PureMVC::INotification@{PureMVC::INotification}!setType@{setType}}
+\index{setType@{setType}!PureMVC::INotification@{PureMVC::INotification}}
+\subsubsection[{setType}]{\setlength{\rightskip}{0pt plus 5cm}virtual void PureMVC::INotification::setType (int {\em notificationType})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_pure_m_v_c_1_1_i_notification_a2e9d5946b96b759c2f3799377ea4acdc}
+
+
+Set the type of the {\ttfamily \hyperlink{class_pure_m_v_c_1_1_i_notification}{INotification}} instance. 
+
+Implemented in \hyperlink{class_pure_m_v_c_1_1_notification_aeec90bbe612bca8631ac92c13727feef}{PureMVC::Notification}.
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+/Users/schell/Code/PureMVC-\/Plus-\/Plus/src/pmvcpp.h\end{DoxyCompactItemize}
