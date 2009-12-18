@@ -263,7 +263,7 @@ void View::registerMediator( IMediatorRestricted* mediator )
         // create an observer functor for the mediator
         Observer<IMediatorRestricted>* observer = new Observer<IMediatorRestricted>(&IMediatorRestricted::handleNotification, mediator);
         // register this observer for every notification the mediator is interested in
-        for (int i = 0; i < interests.size(); i++)
+        for (int i = 0; i < (int) interests.size(); i++)
         {
             this->registerObserver(interests[i], observer);
         }
@@ -289,7 +289,7 @@ IMediatorRestricted* View::removeMediator( std::string mediatorName )
     if(interests.size() > (size_t) 0)
     {
         std::vector<std::string>::iterator it;
-        for (int i = 0; i < interests.size(); i++)
+        for (int i = 0; i < (int) interests.size(); i++)
         {
             // remove the mediator's observer functor listed for this notification
             this->removeObserver(interests[i], (intptr_t) &*mediator);

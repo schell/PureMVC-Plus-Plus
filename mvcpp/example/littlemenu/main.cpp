@@ -22,27 +22,43 @@ class n_name
 public:
     enum name
     {
+		NIL,
         STARTUP,                // triggers the app startup sequence
         PATTERNS_REGISTERED,	// alerts the app that proxies and mediators have been registered
-        SET,			// sets something
-        GET,			// makes a request to get something
-        DISPLAY,		// display something
+        SET,					// sets something
+        GET,					// makes a request to get something
+        DISPLAY,				// display something
         QUIT                    // quit the app
 	};
-	vector<char*> toString;
+	static map<int, string> toString;
+	static void init()
+	{
+		n_name::toString[NIL]					= "null";
+		n_name::toString[STARTUP] 				= "startup";
+        n_name::toString[PATTERNS_REGISTERED] 	= "patterns registered";
+        n_name::toString[SET] 					= "set";
+        n_name::toString[GET] 					= "get";				    
+        n_name::toString[DISPLAY] 				= "display";			    
+		n_name::toString[QUIT] 					= "quit";                       
+	}
 };
+map<int, string> n_name::toString;
 class n_type
 {
 public:
     enum type
     {
+		NIL,	// nothing
         MENU    // the menu
 	};
-	static const map<int, char*> toString;
+	static map<int, string> toString;
+	static void init()
+	{
+		n_type::toString[NIL] = "null";
+		n_type::toString[MENU] = "menu";
+	}
 };
-// list string conversions for pretty debug printing
-
-n_type::toString[MENU] = "menu";
+map<int, string> n_type::toString;
 //--------------------------------------
 //  Notification Body Definitions
 //--------------------------------------
@@ -127,11 +143,12 @@ public:
 	}
 	// deal with interesting notifications
 	void handleNotification(INotification* note)
-	{
-		cout << "CLIMediator::handleNotification(name:" << note->getName() << " type:" << note->getType() <<")\n";
+	{	
+		int name = note->getName();
+		int type = note->getType();
 		
-		string name = note->getName();
-		string type = note->getType();
+		cout << "CLIMediator::handleNotification(name:" << n_name::toString[name] << " type:" << n_type::toString[type] <<")\n";
+			
 		IBody* body = note->getBody();
 		// handle the notification
 		// if the app is ready, ask for the menu
@@ -139,7 +156,7 @@ public:
 			this->sendNotification(n_name::GET, n_type::MENU);
 		else if(name == n_name::DISPLAY)
 		{
-			if(type == n_name::MENU)
+			if(type == n_type::MENU)
 			{
 				cout << "	menu received...\n";
 				this->promptUser(dynamic_cast<MenuNotificationBody*>(body)->data);
@@ -223,13 +240,14 @@ class Set : public SimpleCommand
 {
 public:
 	void execute(INotification* note)
-	{
-		cout << "Set::execute(type:" << note->getType() << ")\n";
-		
+	{	
 		IFacade* facade = this->getFacade();
-		string type = note->getType();
+		int type = note->getType();
+		
+		cout << "Set::execute(type:" << n_type::toString[type] << ")\n";
+			
 		// handle the request
-		if(type == n_name::MENU)
+		if(type == n_type::MENU)
 		{
 			MenuNotificationBody* menuBody = dynamic_cast<MenuNotificationBody*>(note->getBody());
 			vector<string> menu = menuBody->data;
@@ -250,20 +268,21 @@ class Get : public SimpleCommand
 {
 public:
 	void execute(INotification* note)
-	{
-		cout << "Get::execute(type:" << note->getType() << ")\n";
-		
+	{	
 		IFacade* facade = this->getFacade();
-		string type = note->getType();
+		int type = note->getType();
+		
+		cout << "Get::execute(type:" << n_type::toString[type] << ")\n";
+		
 		// handle the request
-		if(type == n_name::MENU)
+		if(type == n_type::MENU)
 		{
 			cout << "	requested the menu...\n";
 			// get the menu proxy
 			MenuProxy* menuProxy = dynamic_cast<MenuProxy*>(facade->retrieveProxy(MenuProxy::NAME));
 			vector<string> menu = menuProxy->getData();
 			// send the menu out to who needs it...
-			facade->sendNotification(n_name::DISPLAY, new MenuNotificationBody(menu), n_name::MENU);
+			facade->sendNotification(n_name::DISPLAY, new MenuNotificationBody(menu), n_type::MENU);
 		}
 	}
 };
@@ -283,6 +302,9 @@ void registerCommands(Facade* facade)
 int main(int argc, char** argv)
 {
 	cout << "\n-- littlemenu v0.1 by Schell Scivally --\n\n";
+	// initialize our note names and types
+	n_name::init();
+	n_type::init();
 	// set some key for the app, preferably one that won't collide
 	// with some other one down the road
 	string applicationKey = "littlemenuApplicationKey123456";
