@@ -25,27 +25,27 @@ std::string MultitonKeyHeir::getMultitonKey()
 //--------------------------------------
 //  Notification
 //--------------------------------------
-Notification::Notification(std::string name, IBody* body, std::string type)
+Notification::Notification(int name, IBody* body, int notificationType)
 {
     this->name = name;
     this->setBody(body);
-    this->setType(type);
+    this->setType(notificationType);
 }
-Notification::Notification(std::string name, IBody* body)
+Notification::Notification(int name, IBody* body)
 {
     this->name = name;
     this->setBody(body);
 }
-Notification::Notification(std::string name, std::string type)
+Notification::Notification(int name, int notificationType)
 {
     this->name = name;
-    this->setType(type);
+    this->setType(notificationType);
 }
-Notification::Notification(std::string name)
+Notification::Notification(int name)
 {
     this->name = name;
 }
-std::string Notification::getName()
+int Notification::getName()
 {
     return this->name;
 }
@@ -57,30 +57,30 @@ IBody* Notification::getBody()
 {
     return this->body;
 }
-void Notification::setType( std::string type )
+void Notification::setType( int notificationType )
 {
-    this->type = type;
+    this->type = notificationType;
 }
-std::string Notification::getType()
+int Notification::getType()
 {
     return this->type;
 }
 //--------------------------------------
 //  Notifier
 //--------------------------------------
-void Notifier::sendNotification( std::string notificationName, IBody* body, std::string type)
+void Notifier::sendNotification( int notificationName, IBody* body, int notificationType)
 {
-    this->getFacade()->sendNotification(notificationName, body, type);
+    this->getFacade()->sendNotification(notificationName, body, notificationType);
 }
-void Notifier::sendNotification( std::string notificationName, std::string type )
+void Notifier::sendNotification( int notificationName, int notificationType )
 {
-    this->getFacade()->sendNotification(notificationName, type);
+    this->getFacade()->sendNotification(notificationName, notificationType);
 }
-void Notifier::sendNotification( std::string notificationName, IBody* body )
+void Notifier::sendNotification( int notificationName, IBody* body )
 {
     this->getFacade()->sendNotification(notificationName, body);
 }
-void Notifier::sendNotification( std::string notificationName )
+void Notifier::sendNotification( int notificationName )
 {
     this->getFacade()->sendNotification(notificationName);
 }
@@ -191,7 +191,7 @@ IView* View::getInstance(std::string key)
     viewPtr->setMultitonKey(key);
     return viewPtr;
 }
-void View::registerObserver ( std::string notificationName, IObserverRestricted* observer )
+void View::registerObserver ( int notificationName, IObserverRestricted* observer )
 {
     if(! this->existsObserversInterestedIn(notificationName))
     {
@@ -206,7 +206,7 @@ void View::registerObserver ( std::string notificationName, IObserverRestricted*
 }
 void View::notifyObservers( INotification* notification )
 {
-    std::string noteName = notification->getName();
+    int noteName = notification->getName();
     if(this->existsObserversInterestedIn(noteName))
     {
         // there was some stuff about the reference array changing while
@@ -221,7 +221,7 @@ void View::notifyObservers( INotification* notification )
         }
     }
 }
-void View::removeObserver( std::string notificationName, intptr_t contextAddress )
+void View::removeObserver( int notificationName, intptr_t contextAddress )
 {
     if(this->existsObserversInterestedIn(notificationName))
     {
@@ -257,17 +257,18 @@ void View::registerMediator( IMediatorRestricted* mediator )
     // register the mediator by name
     this->mediatorMap[mediator->getMediatorName()] = mediator;
     // get the mediator's notification interests
-    std::vector<std::string> interests = mediator->listNotificationInterests();
+    std::vector<int> interests = mediator->listNotificationInterests();
     if(interests.size() > (size_t) 0)
     {
         // create an observer functor for the mediator
         Observer<IMediatorRestricted>* observer = new Observer<IMediatorRestricted>(&IMediatorRestricted::handleNotification, mediator);
         // register this observer for every notification the mediator is interested in
-        std::vector<std::string>::iterator it;
-        for(it = interests.begin(); it != interests.end(); it++)
+        for (int i = 0; i < interests.size(); i++)
         {
-            this->registerObserver((*it), observer);
+            this->registerObserver(interests[i], observer);
         }
+
+
     }
     // alert the mediator that it has been registered
     mediator->onRegister();
@@ -284,14 +285,14 @@ IMediatorRestricted* View::removeMediator( std::string mediatorName )
     // get the mediator
     IMediatorRestricted* mediator = this->mediatorMap[mediatorName];
     // get the mediators interests
-    std::vector<std::string> interests = mediator->listNotificationInterests();
+    std::vector<int> interests = mediator->listNotificationInterests();
     if(interests.size() > (size_t) 0)
     {
         std::vector<std::string>::iterator it;
-        for (it = interests.begin(); it != interests.end(); it++)
+        for (int i = 0; i < interests.size(); i++)
         {
             // remove the mediator's observer functor listed for this notification
-            this->removeObserver((*it), (intptr_t) &*mediator);
+            this->removeObserver(interests[i], (intptr_t) &*mediator);
         }
     }
     // remove the mediator from the map
@@ -309,7 +310,7 @@ void View::removeView( std::string key )
 {
     Multiton<View>::erase(key);
 }
-bool View::existsObserversInterestedIn(std::string notificationName)
+bool View::existsObserversInterestedIn(int notificationName)
 {
     return this->observerMap.find(notificationName) != this->observerMap.end();
 }
@@ -331,11 +332,11 @@ IController* Controller::getInstance(std::string key)
     contPtr->initializeController();
     return contPtr;
 }
-bool Controller::hasCommand( std::string notificationName )
+bool Controller::hasCommand( int notificationName )
 {
     return ! (this->commandMap.find(notificationName) == this->commandMap.end());
 }
-void Controller::removeCommand( std::string notificationName )
+void Controller::removeCommand( int notificationName )
 {
     if(this->hasCommand(notificationName))
     {
@@ -400,11 +401,11 @@ void Facade::initializeView()
         return;
     this->view = View::getInstance(this->getMultitonKey());
 }
-void Facade::removeCommand( std::string notificationName )
+void Facade::removeCommand( int notificationName )
 {
     this->controller->removeCommand(notificationName);
 }
-bool Facade::hasCommand( std::string notificationName )
+bool Facade::hasCommand( int notificationName )
 {
     return this->controller->hasCommand(notificationName);
 }
@@ -442,19 +443,19 @@ bool Facade::hasMediator( std::string mediatorName )
 {
     return this->view->hasMediator(mediatorName);
 }
-void Facade::sendNotification( std::string notificationName, IBody* body, std::string type)
+void Facade::sendNotification( int notificationName, IBody* body, int notificationType)
 {
-    this->notifyObservers(new Notification(notificationName, body, type));
+    this->notifyObservers(new Notification(notificationName, body, notificationType));
 }
-void Facade::sendNotification( std::string notificationName, std::string type )
+void Facade::sendNotification( int notificationName, int notificationType )
 {
-    this->notifyObservers(new Notification(notificationName, type));
+    this->notifyObservers(new Notification(notificationName, notificationType));
 }
-void Facade::sendNotification( std::string notificationName, IBody* body )
+void Facade::sendNotification( int notificationName, IBody* body )
 {
     this->notifyObservers(new Notification(notificationName, body));
 }
-void Facade::sendNotification( std::string notificationName )
+void Facade::sendNotification( int notificationName )
 {
     this->notifyObservers(new Notification(notificationName));
 }

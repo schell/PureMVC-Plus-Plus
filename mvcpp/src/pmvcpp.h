@@ -204,10 +204,10 @@ public:
      * @param body the body of the notification (optional)
      * @param type the type of the notification (optional)
      */
-    virtual void sendNotification   ( std::string notificationName, IBody* body, std::string type) = 0;
-    virtual void sendNotification   ( std::string notificationName, std::string type ) = 0;
-    virtual void sendNotification   ( std::string notificationName, IBody* body ) = 0;
-    virtual void sendNotification   ( std::string notificationName ) = 0;
+    virtual void sendNotification   ( int notificationName, IBody* body, int notificationType) = 0;
+    virtual void sendNotification   ( int notificationName, int notificationType ) = 0;
+    virtual void sendNotification   ( int notificationName, IBody* body ) = 0;
+    virtual void sendNotification   ( int notificationName ) = 0;
     /**
      * Initialize this INotifier instance.
      * <p>
@@ -263,7 +263,7 @@ public:
          * Get the name of the <code>INotification</code> instance.
          * No setter, should be set by constructor only
          */
-	virtual std::string getName () = 0;
+	virtual int getName () = 0;
         /**
          * Set the body of the <code>INotification</code> instance
          */
@@ -275,11 +275,11 @@ public:
         /**
          * Set the type of the <code>INotification</code> instance
          */
-	virtual void setType( std::string type ) = 0;
+	virtual void setType( int notificationType ) = 0;
         /**
          * Get the type of the <code>INotification</code> instance
          */
-	virtual std::string getType() = 0;
+	virtual int getType() = 0;
         /**
          * Get the string representation of the <code>INotification</code> instance
          */
@@ -334,7 +334,7 @@ public:
          * @param notificationName the name of the <code>INotification</code>
          * @param commandClassRef the Class of the <code>ICommand</code>
          */
-        //virtual void registerCommand( std::string notificationName, ICommand* commandClassRef )
+        //virtual void registerCommand( int notificationName, ICommand* commandClassRef )
         /**
          * Execute the <code>ICommand</code> previously registered as the
          * handler for <code>INotification</code>s with the given notification name.
@@ -347,14 +347,14 @@ public:
          *
          * @param notificationName the name of the <code>INotification</code> to remove the <code>ICommand</code> mapping for
          */
-	virtual void removeCommand( std::string notificationName ) = 0;
+	virtual void removeCommand( int notificationName ) = 0;
         /**
          * Check if a Command is registered for a given Notification
          *
          * @param notificationName
          * @return whether a Command is currently registered for the given <code>notificationName</code>.
          */
-	virtual bool hasCommand( std::string notificationName ) = 0;
+	virtual bool hasCommand( int notificationName ) = 0;
 	virtual ~IController(){};
 };
 /**
@@ -625,7 +625,7 @@ public:
          *
          * @return an <code>Array</code> of the <code>INotification</code> names this <code>IMediator</code> has an interest in.
          */
-	virtual std::vector<std::string> listNotificationInterests() = 0;
+	virtual std::vector<int> listNotificationInterests() = 0;
         /**
          * Called by the View when the Mediator is registered
          */
@@ -695,7 +695,7 @@ public:
          * @param notificationName the name of the <code>INotifications</code> to notify this <code>IObserver</code> of
          * @param observer the <code>IObserver</code> to register
          */
-	virtual void registerObserver( std::string notificationName, IObserverRestricted* observer ) = 0;
+	virtual void registerObserver( int notificationName, IObserverRestricted* observer ) = 0;
         /**
          * Remove an observer from the observer list for a given Notification name that has a context
          * object stored at <code>contextAddress</code>.
@@ -703,7 +703,7 @@ public:
          * @param notificationName which observer list to remove from
          * @param contextAddress remove the observer with this address as the address of their notifyContext
          */
-	virtual void removeObserver( std::string notificationName, intptr_t contextAddress ) = 0;
+	virtual void removeObserver( int notificationName, intptr_t contextAddress ) = 0;
         /**
          * Notify the <code>IObservers</code> for a particular <code>INotification</code>.
          *
@@ -817,14 +817,14 @@ public:
          *
          * @param notificationName the name of the <code>INotification</code> to remove the <code>ICommand</code> mapping for
          */
-	virtual void removeCommand( std::string notificationName ) = 0;
+	virtual void removeCommand( int notificationName ) = 0;
         /**
          * Check if a Command is registered for a given Notification
          *
          * @param notificationName
          * @return whether a Command is currently registered for the given <code>notificationName</code>.
          */
-	virtual bool hasCommand( std::string notificationName ) = 0;
+	virtual bool hasCommand( int notificationName ) = 0;
         /**
          * Register an <code>IMediator</code> instance with the <code>View</code>.
          *
@@ -933,8 +933,8 @@ private:
 class Notification : public INotification
 {
 public:
-    std::string name;
-    std::string type;
+    int name;
+    int type;
     IBody* body;
     /**
      * Constructor.
@@ -943,16 +943,16 @@ public:
      * @param body the <code>Notification</code> body. (optional)
      * @param type the type of the <code>Notification</code> (optional)
      */
-    Notification(std::string name, IBody* body, std::string type);
-    Notification(std::string name, IBody* body);
-    Notification(std::string name, std::string type);
-    Notification(std::string name);
+    Notification(int notificationName, IBody* body, int notificationType);
+    Notification(int notificationName, IBody* body);
+    Notification(int notificationName, int notificationType);
+    Notification(int notificationName);
     /**
      * Get the name of the <code>Notification</code> instance.
      *
      * @return the name of the <code>Notification</code> instance.
      */
-    std::string getName();
+    int getName();
     /**
      * Set the body of the <code>Notification</code> instance.
      */
@@ -966,13 +966,13 @@ public:
     /**
      * Set the type of the <code>Notification</code> instance.
      */
-    void setType( std::string type );
+    void setType( int notificationType );
     /**
      * Get the type of the <code>Notification</code> instance.
      *
      * @return the type
      */
-    std::string getType();
+    int getType();
 };
 //--------------------------------------
 //  Notifier
@@ -1025,10 +1025,10 @@ public:
      * @param body the body of the notification (optional)
      * @param type the type of the notification (optional)
      */
-    void sendNotification   ( std::string notificationName, IBody* body, std::string type);
-    void sendNotification   ( std::string notificationName, std::string type );
-    void sendNotification   ( std::string notificationName, IBody* body );
-    void sendNotification   ( std::string notificationName );
+    void sendNotification   ( int notificationName, IBody* body, int notificationType);
+    void sendNotification   ( int notificationName, int notificationType );
+    void sendNotification   ( int notificationName, IBody* body );
+    void sendNotification   ( int notificationName );
     /**
      * Initialize this INotifier instance.
      * <P>
@@ -1429,7 +1429,7 @@ public:
      *
      * @return Array the list of <code>INotification</code> names
      */
-    virtual std::vector<std::string> listNotificationInterests() = 0;
+    virtual std::vector<int> listNotificationInterests() = 0;
 
     /**
      * Handle <code>INotification</code>s.
@@ -1632,7 +1632,7 @@ public:
      * @param notificationName the name of the <code>INotifications</code> to notify this <code>IObserver</code> of
      * @param observer the <code>IObserverRestricted</code> to register
      */
-    void registerObserver ( std::string notificationName, IObserverRestricted* observer );
+    void registerObserver ( int notificationName, IObserverRestricted* observer );
     /**
      * Notify the <code>IObservers</code> for a particular <code>INotification</code>.
      *
@@ -1651,7 +1651,7 @@ public:
      * @param notificationName which observer list to remove from
      * @param contextAddress remove the observer with this memory address as its notifyContext's address
      */
-    void removeObserver( std::string notificationName, intptr_t contextAddress );
+    void removeObserver( int notificationName, intptr_t contextAddress );
 
     /**
      * Register an <code>IMediator</code> instance with the <code>View</code>.
@@ -1714,10 +1714,10 @@ protected:
     std::map<std::string, IMediatorRestricted*> mediatorMap;
 
     // Mapping of Notification names to Observer lists
-    std::map<std::string, std::vector<IObserverRestricted*> > observerMap;
+    std::map<int, std::vector<IObserverRestricted*> > observerMap;
 
 private:
-    bool existsObserversInterestedIn(std::string notificationName);
+    bool existsObserversInterestedIn(int notificationName);
 };
 
 //--------------------------------------
@@ -1796,7 +1796,7 @@ public:
         // can think of a better way to keep this
         // commands stateless through this execution
         // then be my guest to revise this. - Schell
-        std::string name = note->getName();
+        int name = note->getName();
         // if this command isn't listed, abort
         if(! this->hasCommand(name))
             return;
@@ -1822,9 +1822,9 @@ public:
      * @template commandClassRef the <code>Class</code> of the <code>ICommand</code>
      * @param notificationName the name of the <code>INotification</code>
      */
-    //void registerCommand( std::string notificationName, ICommand* commandClassRef );
+    //void registerCommand( int notificationName, ICommand* commandClassRef );
     template<class T>
-    void registerCommand(std::string notificationName)
+    void registerCommand(int notificationName)
     {
         // if we've already registered a command for this notification
         // abort
@@ -1843,14 +1843,14 @@ public:
      * @param notificationName
      * @return whether a Command is currently registered for the given <code>notificationName</code>.
      */
-    bool hasCommand( std::string notificationName );
+    bool hasCommand( int notificationName );
 
     /**
      * Remove a previously registered <code>ICommand</code> to <code>INotification</code> mapping.
      *
      * @param notificationName the name of the <code>INotification</code> to remove the <code>ICommand</code> mapping for
      */
-    void removeCommand( std::string notificationName );
+    void removeCommand( int notificationName );
 
     /**
      * Remove an IController instance
@@ -1873,7 +1873,7 @@ protected:
     IView* view;
 
     // Mapping of Notification names to Command Class references
-    std::map<std::string, ICommand*> commandMap;
+    std::map<int, ICommand*> commandMap;
 };
 //--------------------------------------
 //  Facade
@@ -1915,7 +1915,7 @@ public:
      * @param notificationName the name of the <code>INotification</code> to associate the <code>ICommand</code> with
      */
     template<class T>
-    void registerCommand( std::string notificationName )
+    void registerCommand( int notificationName )
     {
         dynamic_cast<Controller*>(this->controller)->registerCommand<T>(notificationName);
     };
@@ -1925,7 +1925,7 @@ public:
      *
      * @param notificationName the name of the <code>INotification</code> to remove the <code>ICommand</code> mapping for
      */
-    void removeCommand( std::string notificationName );
+    void removeCommand( int notificationName );
 
     /**
      * Check if a Command is registered for a given Notification
@@ -1933,7 +1933,7 @@ public:
      * @param notificationName
      * @return whether a Command is currently registered for the given <code>notificationName</code>.
      */
-    bool hasCommand( std::string notificationName );
+    bool hasCommand( int notificationName );
 
     /**
      * Register an <code>IProxy</code> with the <code>Model</code> by name.
@@ -2008,10 +2008,10 @@ public:
      * @param body the body of the notification (optional)
      * @param type the type of the notification (optional)
      */
-    void sendNotification( std::string notificationName, IBody* body, std::string type );
-    void sendNotification( std::string notificationName, IBody* body );
-    void sendNotification( std::string notificationName, std::string type );
-    void sendNotification( std::string notificationName );
+    void sendNotification( int notificationName, IBody* body, int notificationType );
+    void sendNotification( int notificationName, IBody* body );
+    void sendNotification( int notificationName, int notificationType );
+    void sendNotification( int notificationName );
     /**
      * Notify <code>Observer</code>s.
      * <P>

@@ -76,10 +76,10 @@ class NotificationTestSuite : public CxxTest::TestSuite
 public:
     void setUp()
     {
-        this->name = "notificationName";
+        this->name = 666;
         this->body = new IBody();
-        this->type = "notificationType";
-        this->notification = new Notification(name, body, type);
+        this->type = 777;
+        this->notification = new Notification(this->name, body, this->type);
     }
     void testConstructorSets_name_type()
     {
@@ -89,8 +89,8 @@ public:
     }
 private:
     Notification* notification;
-    std::string name;
-    std::string type;
+    int name;
+    int type;
     IBody* body;
 };
 //--------------------------------------
@@ -141,7 +141,7 @@ public:
     }
     void testExecuteShouldExecAllSubCommands()
     {
-        this->macroTestClass->execute(new Notification("macroCommandTestClassNotificationName", new IBody(), "macroCommandTestClassNoteType"));
+        this->macroTestClass->execute(new Notification(666, new IBody(), 777));
         TS_ASSERT_EQUALS(SimpleTestClass::executions, 3);
     }
 private:
@@ -157,7 +157,7 @@ public:
     {
         this->notifier = new Notifier();
         this->key = "NotifierTestSuiteMultitonKey";
-        this->noteName = this->key + "_noteName";
+        this->noteName = 666;
         this->facade = Facade::getInstance(this->key);
         this->getFacade()->registerCommand<MacroTestClass>(this->noteName);
         SimpleTestClass::executions = 0;
@@ -185,7 +185,7 @@ private:
     Notification* notification;
     IFacade* facade;
     std::string key;
-    std::string noteName;
+    int noteName;
 
     Facade* getFacade()
     {
@@ -203,7 +203,7 @@ class InterestedObject
 public:
     InterestedObject()
     {
-        this->memberNotification = new Notification("","");
+        this->memberNotification = new Notification(999,101010);
     }
     void callbackMethod(INotification* notification)
     {
@@ -217,8 +217,8 @@ class ObserverTestSuite : public CxxTest::TestSuite
 public:
     void setUp()
     {
-        this->noteName = "notificationName";
-        this->noteType = "notificationType";
+        this->noteName = 666;
+        this->noteType = 777;
         this->notification = new Notification(this->noteName, new IBody(), this->noteType);
         this->contextObject = new InterestedObject();
         this->observer = new Observer<InterestedObject>(&InterestedObject::callbackMethod, this->contextObject);
@@ -240,8 +240,8 @@ public:
         TS_ASSERT(this->observer->compareNotifyContext((intptr_t) &*this->contextObject));
     }
 private:
-    std::string noteName;
-    std::string noteType;
+    int noteName;
+    int noteType;
     INotification* notification;
     InterestedObject* contextObject;
     Observer<InterestedObject>* observer;
@@ -315,31 +315,37 @@ public:
     {
         this->removed = true;
     }
-    std::vector<std::string> listNotificationInterests()
+    std::vector<int> listNotificationInterests()
     {
-        std::vector<std::string> interests;
-        interests.push_back("interest1");
-        interests.push_back("interest2");
-        interests.push_back("interest3");
-        interests.push_back("interest4");
+        std::vector<int> interests;
+        interests.push_back(1);
+        interests.push_back(2);
+        interests.push_back(3);
+        interests.push_back(4);
         return interests;
     }
     void handleNotification(INotification* notification)
     {
-        std::string name = notification->getName();
-        std::string type = notification->getType();
-        // unfortunately a switch statement only works
-        // on ints in c++, wtf? - Schell
-        if(name == "interest1")
-            this->notifiedLastBy = 1;
-        else if(name == "interest2")
-            this->notifiedLastBy = 2;
-        else if(name == "interest3")
-            this->notifiedLastBy = 3;
-        else if(name == "interest4")
-            this->notifiedLastBy = 4;
-        else
-            this->notifiedLastBy = 0;
+        int name = notification->getName();
+        int type = notification->getType();
+
+        switch(name)
+        {
+            case 1:
+                this->notifiedLastBy = 1;
+                break;
+            case 2:
+                this->notifiedLastBy = 2;
+                break;
+            case 3:
+                this->notifiedLastBy = 3;
+                break;
+            case 4:
+                this->notifiedLastBy = 4;
+                break;
+            default:
+                this->notifiedLastBy = 0;
+        }
     }
     int notifiedLastBy;
     bool registered;
@@ -350,7 +356,7 @@ class MediatorTestSuite : public CxxTest::TestSuite
 public:
     void setUp()
     {
-        this->name = "IBodyMediator";
+        this->name = "MediatorTestSuite";
         this->number = 5;
     }
     void testConstructorSetsNameAndViewComponent()
@@ -362,7 +368,7 @@ public:
     void testCanGetNotificationInterests()
     {
         IMediatorRestricted* medPtr = this->mediator;
-        std::vector<std::string> interests = medPtr->listNotificationInterests();
+        std::vector<int> interests = medPtr->listNotificationInterests();
         TS_ASSERT_EQUALS(interests.size(), (size_t) 4);
     }
 private:
@@ -382,12 +388,12 @@ public:
         this->key = "ViewTestSuiteKey";
         this->view = View::getInstance(this->key);
         // setup observer
-        this->noteName = this->key + "_notificationName";
-        this->noteType = this->key + "_notificationType";
+        this->noteName = 666;
+        this->noteType = 777;
         this->notification = new Notification(this->noteName, new IBody(), this->noteType);
         this->contextObject = new InterestedObject();
         this->observer = new Observer<InterestedObject>(&InterestedObject::callbackMethod, this->contextObject);
-        this->viewComponent = 666;
+        this->viewComponent = 888;
         this->mediatorName = this->key + "_mediator";
         this->mediator = new MediatorTestClass(this->mediatorName, this->viewComponent);
     }
@@ -401,7 +407,7 @@ public:
         this->getView()->notifyObservers(this->notification);
         TS_ASSERT_EQUALS(this->contextObject->memberNotification->getName(), this->noteName);
         this->getView()->removeObserver(this->noteName, (intptr_t) &*this->contextObject);
-        this->contextObject->memberNotification = new Notification("not_" + this->noteName, "not_" + this->noteType);
+        this->contextObject->memberNotification = new Notification(1 + this->noteName, 1 + this->noteType);
         // calling notifyObservers should not reset the name of the contextObject's memberNotification
         this->getView()->notifyObservers(this->notification);
         TS_ASSERT_DIFFERS(this->contextObject->memberNotification->getName(), this->noteName);
@@ -419,10 +425,10 @@ public:
     void testRegisteredMediatorRecievesNotificationAndRemovingMediatorRemovesObservers()
     {
         this->view->registerMediator(this->mediator);
-        this->view->notifyObservers(new Notification("interest4", this->noteType));
+        this->view->notifyObservers(new Notification(4, this->noteType));
         TS_ASSERT_EQUALS(this->getMediator()->notifiedLastBy, 4);
         this->view->removeMediator(this->mediatorName);
-        this->view->notifyObservers(new Notification("interest3", this->noteType));
+        this->view->notifyObservers(new Notification(3, this->noteType));
         TS_ASSERT_EQUALS(this->getMediator()->notifiedLastBy, 4);
         TS_ASSERT(this->getMediator()->removed);
     }
@@ -442,8 +448,8 @@ private:
     std::string key;
     IView* view;
 
-    std::string noteName;
-    std::string noteType;
+    int noteName;
+    int noteType;
     INotification* notification;
     InterestedObject* contextObject;
     IObserverRestricted* observer;
@@ -526,8 +532,8 @@ public:
         this->key = "ControllerTestSuiteKey";
         this->controller = Controller::getInstance(this->key);
         this->command = new MacroTestClass();
-        this->noteName = this->key + "_noteName";
-        this->noteType = this->key + "_noteType";
+        this->noteName = 666;
+        this->noteType = 777;
         this->notification = new Notification(this->noteName, this->noteType);
         this->getController()->registerCommand<MacroTestClass>(this->noteName);
         SimpleTestClass::executions = 0;
@@ -570,8 +576,8 @@ public:
 
 private:
     std::string key;
-    std::string noteName;
-    std::string noteType;
+    int noteName;
+    int noteType;
     IController* controller;
     ICommand* command;
     INotification* notification;
@@ -601,8 +607,8 @@ public:
     void setUp()
     {
         this->key = "FacadeTestSuiteMultitonKey";
-        this->noteName = this->key + "_noteName";
-        this->noteType = this->key + "_noteType";
+        this->noteName = 444;
+        this->noteType = 555;
         this->proxyName= this->key + "_proxy";
         this->mediatorName = this->key + "_mediator";
         this->proxy = new ProxyTestClass(this->proxyName, true);
@@ -654,7 +660,7 @@ public:
     void testCanSendNotificationToMediator()
     {
         this->facade->registerMediator(this->mediator);
-        this->facade->sendNotification("interest2");
+        this->facade->sendNotification(2);
         TS_ASSERT_EQUALS(dynamic_cast<MediatorTestClass*>(this->mediator)->notifiedLastBy, 2);
         this->facade->removeMediator(this->mediatorName);
     }
@@ -670,8 +676,8 @@ public:
     }
 private:
     std::string key;
-    std::string noteName;
-    std::string noteType;
+    int noteName;
+    int noteType;
     std::string proxyName;
     std::string mediatorName;
     IProxyRestricted* proxy;

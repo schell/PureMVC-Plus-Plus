@@ -9,38 +9,35 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include "pmvcpparch.h"
+#include "pmvcpp.h"
 
 using namespace std;
 
 //--------------------------------------
 //  Notification Definitions
 //--------------------------------------
-class NoteDefs
+// let's enumerate our notification names and types
+class n_name
 {
 public:
-	/**
-	 *	Notification names.
-	 */
-	static const string STARTUP;				// triggers the app startup sequence
-	static const string PATTERNS_REGISTERED;	// alerts the app that proxies and mediators have been registered
-	static const string SET;					// sets something
-	static const string GET;					// makes a request to get something
-	static const string DISPLAY;				// display something
-	static const string QUIT;					// quit the app
-	/**
-	 *	Notification types
-	 */
-	static const string MENU;					// the menu
+    enum name
+    {
+        STARTUP,                // triggers the app startup sequence
+        PATTERNS_REGISTERED,	// alerts the app that proxies and mediators have been registered
+        SET,			// sets something
+        GET,			// makes a request to get something
+        DISPLAY,		// display something
+        QUIT                    // quit the app
+    }
 };
-// definitions for note names
-const string NoteDefs::STARTUP = "startUp";
-const string NoteDefs::PATTERNS_REGISTERED = "patternsRegistered";
-const string NoteDefs::SET = "set";
-const string NoteDefs::GET = "get";
-const string NoteDefs::DISPLAY = "display";
-// definitions for note types
-const string NoteDefs::MENU = "menu";
+class n_type
+{
+public:
+    enum type
+    {
+        MENU    // the menu
+    }
+};
 //--------------------------------------
 //  Notification Body Definitions
 //--------------------------------------
@@ -118,8 +115,8 @@ public:
 	{
 		vector<string> interests;
 		
-		interests.push_back(NoteDefs::PATTERNS_REGISTERED);
-		interests.push_back(NoteDefs::DISPLAY);
+		interests.push_back(n_name::PATTERNS_REGISTERED);
+		interests.push_back(n_name::DISPLAY);
 		
 		return interests;
 	}
@@ -133,11 +130,11 @@ public:
 		IBody* body = note->getBody();
 		// handle the notification
 		// if the app is ready, ask for the menu
-		if(name == NoteDefs::PATTERNS_REGISTERED)
-			this->sendNotification(NoteDefs::GET, NoteDefs::MENU);
-		else if(name == NoteDefs::DISPLAY)
+		if(name == n_name::PATTERNS_REGISTERED)
+			this->sendNotification(n_name::GET, n_type::MENU);
+		else if(name == n_name::DISPLAY)
 		{
-			if(type == NoteDefs::MENU)
+			if(type == n_name::MENU)
 			{
 				cout << "	menu received...\n";
 				this->promptUser(dynamic_cast<MenuNotificationBody*>(body)->data);
@@ -183,7 +180,7 @@ public:
 		menu.push_back(other);
 		MenuNotificationBody* newMenu = new MenuNotificationBody(menu);
 		// send it off to someone who needs it...
-		this->sendNotification(NoteDefs::SET, newMenu, NoteDefs::MENU);
+		this->sendNotification(n_name::SET, newMenu, n_type::MENU);
 	}
 	void quit()
 	{
@@ -211,7 +208,7 @@ public:
 		facade->registerProxy(new MenuProxy(MenuProxy::NAME));
 		
 		// now let the app know we're done registering things...
-		facade->sendNotification(NoteDefs::PATTERNS_REGISTERED);
+		facade->sendNotification(n_name::PATTERNS_REGISTERED);
 	}
 };
 /**
@@ -227,7 +224,7 @@ public:
 		IFacade* facade = this->getFacade();
 		string type = note->getType();
 		// handle the request
-		if(type == NoteDefs::MENU)
+		if(type == n_name::MENU)
 		{
 			MenuNotificationBody* menuBody = dynamic_cast<MenuNotificationBody*>(note->getBody());
 			vector<string> menu = menuBody->data;
@@ -237,7 +234,7 @@ public:
 			menuProxy->setData(menu);
 			menuBody->data = menuProxy->getData();
 			// send the menu back out to be displayed
-			facade->sendNotification(NoteDefs::DISPLAY, menuBody, NoteDefs::MENU);
+			facade->sendNotification(n_name::DISPLAY, menuBody, n_type::MENU);
 		}
 	}
 };
@@ -254,14 +251,14 @@ public:
 		IFacade* facade = this->getFacade();
 		string type = note->getType();
 		// handle the request
-		if(type == NoteDefs::MENU)
+		if(type == n_name::MENU)
 		{
 			cout << "	requested the menu...\n";
 			// get the menu proxy
 			MenuProxy* menuProxy = dynamic_cast<MenuProxy*>(facade->retrieveProxy(MenuProxy::NAME));
 			vector<string> menu = menuProxy->getData();
 			// send the menu out to who needs it...
-			facade->sendNotification(NoteDefs::DISPLAY, new MenuNotificationBody(menu), NoteDefs::MENU);
+			facade->sendNotification(n_name::DISPLAY, new MenuNotificationBody(menu), n_name::MENU);
 		}
 	}
 };
@@ -271,9 +268,9 @@ public:
 void registerCommands(Facade* facade)
 {
 	// register the command to respond to notification definitions
-	facade->registerCommand<Startup>(NoteDefs::STARTUP);
-	facade->registerCommand<Set>(NoteDefs::SET);
-	facade->registerCommand<Get>(NoteDefs::GET);
+	facade->registerCommand<Startup>(n_name::STARTUP);
+	facade->registerCommand<Set>(n_name::SET);
+	facade->registerCommand<Get>(n_name::GET);
 }
 //--------------------------------------
 //  MAIN
@@ -289,7 +286,7 @@ int main(int argc, char** argv)
 	// register our commands through the facade
 	registerCommands(facade);
 	// startup the app by calling the startup command
-	facade->sendNotification(NoteDefs::STARTUP);
+	facade->sendNotification(n_name::STARTUP);
 	
 	// cleanup the app for quitting
 	Facade::removeCore(applicationKey);
