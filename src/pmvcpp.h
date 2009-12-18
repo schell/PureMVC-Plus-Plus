@@ -8,10 +8,6 @@
 #ifndef _PMVCPP_H
 #define	_PMVCPP_H
 
-/**
- *  BASE CLASSES
- **/
-
 #ifndef _PMVCPPBASE_H
 #define	_PMVCPPBASE_H
 
@@ -869,10 +865,6 @@ public:
 };
 
 #endif	/* _PMVCPPBASE_H */
-
-/**
- *  ARCH CLASSES
- **/
 
 #ifndef _PMVCPPARCH_H
 #define	_PMVCPPARCH_H

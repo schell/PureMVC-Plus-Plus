@@ -1,2 +1,0 @@
-g++ -Wall -I../../src -c main.cpp ../../src/pmvcpp.cpp
-g++ -Wall -I../../src -o littlemenu main.o pmvcpp.o -lm -lstdc++
