@@ -276,10 +276,10 @@ private:
 //--------------------------------------
 //  Mediator
 //--------------------------------------
-class MediatorTestClass : public Mediator<int>
+class MediatorTestClass : public Mediator
 {
 public:
-    MediatorTestClass(std::string name, int number) : Mediator<int>(name, number)
+    MediatorTestClass(std::string name, void* number) : Mediator(name, number)
     {
         this->notifiedLastBy = 0;
         this->registered = false;
@@ -325,6 +325,11 @@ public:
                 this->notifiedLastBy = 0;
         }
     }
+    // converts our void* viewComponent to the number it is storing
+    int getNumber()
+    {
+        return *((int*) this->getViewComponent());
+    }
     int notifiedLastBy;
     bool registered;
     bool removed;
@@ -339,20 +344,45 @@ public:
     }
     void testConstructorSetsNameAndViewComponent()
     {
-        this->mediator = new MediatorTestClass(this->name, this->number);
+        this->mediator = new MediatorTestClass(this->name, &this->number);
         TS_ASSERT_EQUALS(this->mediator->getName(), this->name);
-        TS_ASSERT_EQUALS(this->mediator->getViewComponent(), this->number);
+        TS_ASSERT_EQUALS(this->mediator->getNumber(), this->number);
     }
     void testCanGetNotificationInterests()
     {
-        IMediatorRestricted* medPtr = this->mediator;
+        IMediator* medPtr = this->mediator;
         std::vector<int> interests = medPtr->listNotificationInterests();
         TS_ASSERT_EQUALS(interests.size(), (size_t) 4);
+    }
+    void testViewComponentPointsToOriginalMemoryAddress()
+    {
+        // make a number
+        int number = 98765168;
+        // copy the number
+        int originalNumber = number;
+        // store the number
+        this->mediator->setViewComponent(&number);
+        // change the number
+        number = 5;
+        // retrieve the stored number
+        int storedNumber = *(int*)this->mediator->getViewComponent();
+        // did the stored number change with the first?
+        TS_ASSERT_DIFFERS(originalNumber, storedNumber);
+        TS_ASSERT_EQUALS(number, storedNumber);
+        // store the mediator for the next test
+        this->storedMediator = this->mediator;
+    }
+    void testViewComponentPersistsAfterScope()
+    {
+        int number = 5;
+        int storedNumber = *(int*)this->storedMediator->getViewComponent();
+        TS_ASSERT_EQUALS(number, storedNumber);
     }
 private:
     std::string name;
     int number;
     MediatorTestClass* mediator;
+    MediatorTestClass* storedMediator;
 };
 //--------------------------------------
 //  View
@@ -373,7 +403,7 @@ public:
         this->observer = new Observer<InterestedObject>(&InterestedObject::callbackMethod, this->contextObject);
         this->viewComponent = 888;
         this->mediatorName = this->key + "_mediator";
-        this->mediator = new MediatorTestClass(this->mediatorName, this->viewComponent);
+        this->mediator = new MediatorTestClass(this->mediatorName, &this->viewComponent);
     }
     void testMultitonKeyIsSet()
     {
@@ -395,7 +425,7 @@ public:
         this->view->registerMediator(this->mediator);
         TS_ASSERT(this->view->hasMediator(this->mediatorName));
         TS_ASSERT(this->getMediator()->registered);
-        IMediatorRestricted* mediatorRet = this->view->retrieveMediator(this->mediatorName);
+        IMediator* mediatorRet = this->view->retrieveMediator(this->mediatorName);
         TS_ASSERT_EQUALS(&*this->mediator, &*mediatorRet);
         this->view->removeMediator(this->mediatorName);
         TS_ASSERT(this->view->hasMediator(this->mediatorName) == false);
@@ -413,7 +443,7 @@ public:
     void testCanRetrieveMediator()
     {
         this->view->registerMediator(this->mediator);
-        IMediatorRestricted* mediator = this->view->retrieveMediator(this->mediatorName);
+        IMediator* mediator = this->view->retrieveMediator(this->mediatorName);
         TS_ASSERT_EQUALS(&*mediator, &*this->mediator);
     }
     void testCanRemoveView()
@@ -433,7 +463,7 @@ private:
     IObserverRestricted* observer;
     int viewComponent;
     std::string mediatorName;
-    IMediatorRestricted* mediator;
+    IMediator* mediator;
 
     View* getView()
     {
@@ -586,11 +616,12 @@ public:
     {
         this->key = "FacadeTestSuiteMultitonKey";
         this->noteName = 444;
+        this->noteBody = 777;
         this->noteType = 555;
         this->proxyName= this->key + "_proxy";
         this->mediatorName = this->key + "_mediator";
         this->proxy = new ProxyTestClass(this->proxyName, true);
-        this->mediator = new MediatorTestClass(this->mediatorName, 777);
+        this->mediator = new MediatorTestClass(this->mediatorName, &this->noteBody);
         this->facade = Facade::getInstance(this->key);
         SimpleTestClass::executions = 0;
     }
@@ -624,7 +655,7 @@ public:
         TS_ASSERT(! this->facade->hasMediator(this->mediatorName));
         this->facade->registerMediator(this->mediator);
         TS_ASSERT(this->facade->hasMediator(this->mediatorName));
-        IMediatorRestricted* medPtr = this->facade->retrieveMediator(this->mediatorName);
+        IMediator* medPtr = this->facade->retrieveMediator(this->mediatorName);
         TS_ASSERT_EQUALS(&*medPtr, &*this->mediator);
         this->facade->removeMediator(this->mediatorName);
         TS_ASSERT(! this->facade->hasMediator(this->mediatorName));
@@ -656,10 +687,11 @@ private:
     std::string key;
     int noteName;
     int noteType;
+    int noteBody;
     std::string proxyName;
     std::string mediatorName;
     IProxyRestricted* proxy;
-    IMediatorRestricted* mediator;
+    IMediator* mediator;
     IFacade* facade;
 
     template<class T>

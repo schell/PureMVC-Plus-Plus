@@ -144,12 +144,12 @@ const string ThreadProxy::NAME = "ThreadProxy";
 /**
  *	CLIMediator - mediates interaction between the terminal and the user.
  */
-class CLIMediator : public Mediator<bool>
+class CLIMediator : public Mediator
 {
 public:
 	static const string NAME;
 	
-	CLIMediator(string mediatorName, bool viewComponent) : Mediator<bool>(mediatorName, viewComponent) {}
+	CLIMediator(string mediatorName) : Mediator(mediatorName) {}
 	void onRegister()
 	{
 		cout << "CLIMediator::onRegister()\n";
@@ -256,7 +256,7 @@ public:
 		cout << "Startup::execute()\n";
 		IFacade* facade = this->getFacade();
 		// register mediators
-		facade->registerMediator(new CLIMediator(CLIMediator::NAME, false));
+		facade->registerMediator(new CLIMediator(CLIMediator::NAME));
 		// register proxies
 		facade->registerProxy(new ThreadProxy(ThreadProxy::NAME));
 		

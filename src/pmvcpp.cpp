@@ -250,7 +250,7 @@ void View::removeObserver( int notificationName, intptr_t contextAddress )
            this->observerMap.erase(notificationName);
     }
 }
-void View::registerMediator( IMediatorRestricted* mediator )
+void View::registerMediator( IMediator* mediator )
 {
     // if this mediator has already been registered, abort
     if(this->hasMediator(mediator->getMediatorName()))
@@ -264,7 +264,7 @@ void View::registerMediator( IMediatorRestricted* mediator )
     if(interests.size() > (size_t) 0)
     {
         // create an observer functor for the mediator
-        Observer<IMediatorRestricted>* observer = new Observer<IMediatorRestricted>(&IMediatorRestricted::handleNotification, mediator);
+        Observer<IMediator>* observer = new Observer<IMediator>(&IMediator::handleNotification, mediator);
         // register this observer for every notification the mediator is interested in
         for (int i = 0; i < (int) interests.size(); i++)
         {
@@ -276,17 +276,17 @@ void View::registerMediator( IMediatorRestricted* mediator )
     // alert the mediator that it has been registered
     mediator->onRegister();
 }
-IMediatorRestricted* View::retrieveMediator( std::string mediatorName )
+IMediator* View::retrieveMediator( std::string mediatorName )
 {
     return this->mediatorMap[mediatorName];
 }
-IMediatorRestricted* View::removeMediator( std::string mediatorName )
+IMediator* View::removeMediator( std::string mediatorName )
 {
     // if the requested mediator has not been registered, return a null pointer
     if(! this->hasMediator(mediatorName))
-        return (IMediatorRestricted*) 0;
+        return (IMediator*) 0;
     // get the mediator
-    IMediatorRestricted* mediator = this->mediatorMap[mediatorName];
+    IMediator* mediator = this->mediatorMap[mediatorName];
     // get the mediators interests
     std::vector<int> interests = mediator->listNotificationInterests();
     if(interests.size() > (size_t) 0)
@@ -428,17 +428,17 @@ bool Facade::hasProxy( std::string proxyName )
 {
     return this->model->hasProxy(proxyName);
 }
-void Facade::registerMediator( IMediatorRestricted* mediator )
+void Facade::registerMediator( IMediator* mediator )
 {
     if(this->view == (IView*) 0)
         return;
     this->view->registerMediator(mediator);
 }
-IMediatorRestricted* Facade::retrieveMediator( std::string mediatorName )
+IMediator* Facade::retrieveMediator( std::string mediatorName )
 {
     return this->view->retrieveMediator(mediatorName);
 }
-IMediatorRestricted* Facade::removeMediator( std::string mediatorName )
+IMediator* Facade::removeMediator( std::string mediatorName )
 {
     return this->view->removeMediator(mediatorName);
 }

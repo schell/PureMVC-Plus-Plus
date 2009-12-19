@@ -600,7 +600,7 @@ namespace PureMVC {
      *
      * @see INotification
      */
-    class IMediatorRestricted : public virtual INotifier, public INotificationHandler
+    class IMediator : public virtual INotifier, public INotificationHandler
     {
     public:
             /**
@@ -616,6 +616,18 @@ namespace PureMVC {
              */
             virtual std::vector<int> listNotificationInterests() = 0;
             /**
+             * Get the <code>IMediator</code>'s view component.
+             *
+             * @return Object the view component
+             */
+            virtual void* getViewComponent() = 0;
+            /**
+             * Set the <code>IMediator</code>'s view component.
+             *
+             * @param Object the view component
+             */
+            virtual void setViewComponent( void* viewComponent ) = 0;
+            /**
              * Called by the View when the Mediator is registered
              */
             virtual void onRegister() = 0;
@@ -624,34 +636,7 @@ namespace PureMVC {
              */
             virtual void onRemove() = 0;
 
-            virtual ~IMediatorRestricted(){};
-    };
-    /**
-     *  The templated portion of IMediator.
-     *
-     *  IMediatorTemplated inherits from IMediatorRestricted and adds some
-     *  required template functions.
-     *
-     */
-    template<class T>
-    class IMediatorTemplated : public IMediatorRestricted
-    {
-    public:
-            /**
-             * Get the <code>IMediator</code>'s view component.
-             *
-             * @return Object the view component
-             */
-            virtual T getViewComponent() = 0;
-            /**
-             * Set the <code>IMediator</code>'s view component.
-             *
-             * @param Object the view component
-             */
-            virtual void setViewComponent( T viewComponent ) = 0;
-
-            virtual ~IMediatorTemplated(){};
-
+            virtual ~IMediator(){};
     };
     /**
      * The interface definition for a PureMVC View.
@@ -721,21 +706,21 @@ namespace PureMVC {
              * @param mediatorName the name to associate with this <code>IMediator</code> instance
              * @param mediator a reference to the <code>IMediator</code> instance
              */
-            virtual void registerMediator( IMediatorRestricted* mediator ) = 0;
+            virtual void registerMediator( IMediator* mediator ) = 0;
             /**
              * Retrieve an <code>IMediator</code> from the <code>View</code>.
              *
              * @param mediatorName the name of the <code>IMediator</code> instance to retrieve.
              * @return the <code>IMediator</code> instance previously registered with the given <code>mediatorName</code>.
              */
-            virtual IMediatorRestricted* retrieveMediator( std::string mediatorName ) = 0;
+            virtual IMediator* retrieveMediator( std::string mediatorName ) = 0;
             /**
              * Remove an <code>IMediator</code> from the <code>View</code>.
              *
              * @param mediatorName name of the <code>IMediator</code> instance to be removed.
              * @return the <code>IMediator</code> that was removed from the <code>View</code>
              */
-            virtual IMediatorRestricted* removeMediator( std::string mediatorName ) = 0;
+            virtual IMediator* removeMediator( std::string mediatorName ) = 0;
             /**
              * Check if a Mediator is registered or not
              *
@@ -819,21 +804,21 @@ namespace PureMVC {
              *
              * @param mediator a reference to the <code>IMediator</code> instance
              */
-            virtual void registerMediator( IMediatorRestricted* mediator ) = 0;
+            virtual void registerMediator( IMediator* mediator ) = 0;
             /**
              * Retrieve an <code>IMediator</code> instance from the <code>View</code>.
              *
              * @param mediatorName the name of the <code>IMediator</code> instance to retrievve
              * @return the <code>IMediator</code> previously registered with the given <code>mediatorName</code>.
              */
-            virtual IMediatorRestricted* retrieveMediator( std::string mediatorName ) = 0;
+            virtual IMediator* retrieveMediator( std::string mediatorName ) = 0;
             /**
              * Remove a <code>IMediator</code> instance from the <code>View</code>.
              *
              * @param mediatorName name of the <code>IMediator</code> instance to be removed.
              * @return the <code>IMediator</code> instance previously registered with the given <code>mediatorName</code>.
              */
-            virtual IMediatorRestricted* removeMediator( std::string mediatorName ) = 0;
+            virtual IMediator* removeMediator( std::string mediatorName ) = 0;
             /**
              * Check if a Mediator is registered or not
              *
@@ -1342,14 +1327,13 @@ namespace PureMVC {
     //--------------------------------------
     //  Mediator
     //--------------------------------------
-    template<class T>
-    class Mediator : public IMediatorTemplated<T>, public Notifier
+    class Mediator : public IMediator, public Notifier
     {
     public:
         /**
          * Constructor.
          */
-        Mediator( std::string mediatorName, T viewComponent )
+        Mediator( std::string mediatorName, void* viewComponent )
         {
             this->mediatorName = mediatorName;
             this->setViewComponent(viewComponent);
@@ -1358,7 +1342,7 @@ namespace PureMVC {
         {
             this->mediatorName = mediatorName;
         }
-        Mediator( T viewComponent )
+        Mediator( void* viewComponent )
         {
             this->setViewComponent(viewComponent);
         }
@@ -1376,7 +1360,7 @@ namespace PureMVC {
          *
          * @param Object the view component
          */
-        void setViewComponent( T viewComponent )
+        void setViewComponent( void* viewComponent )
         {
             this->viewComponent = viewComponent;
         }
@@ -1398,7 +1382,7 @@ namespace PureMVC {
          *
          * @return the view component
          */
-        T getViewComponent()
+        void* getViewComponent()
         {
             return this->viewComponent;
         }
@@ -1441,25 +1425,13 @@ namespace PureMVC {
             return this->mediatorName;
         }
 
-        /**
-         * The name of the <code>Mediator</code>.
-         *
-         * <P>
-         * Typically, a <code>Mediator</code> will be written to serve
-         * one specific control or group controls and so,
-         * will not have a need to be dynamically named.</P>
-         */
-        static const std::string NAME;
-
     protected:
         // the mediator name
         std::string mediatorName;
 
-        // The view component
-        T viewComponent;
+        // The pointer to the view component
+        void* viewComponent;
     };
-    template<class T>
-    const typename std::string Mediator<T>::NAME = "Mediator";
     //--------------------------------------
     //  Model
     //--------------------------------------
@@ -1650,7 +1622,7 @@ namespace PureMVC {
          * @param mediatorName the name to associate with this <code>IMediator</code> instance
          * @param mediator a reference to the <code>IMediator</code> instance
          */
-        void registerMediator( IMediatorRestricted* mediator );
+        void registerMediator( IMediator* mediator );
 
         /**
          * Retrieve an <code>IMediator</code> from the <code>View</code>.
@@ -1658,7 +1630,7 @@ namespace PureMVC {
          * @param mediatorName the name of the <code>IMediator</code> instance to retrieve.
          * @return the <code>IMediator</code> instance previously registered with the given <code>mediatorName</code>.
          */
-        IMediatorRestricted* retrieveMediator( std::string mediatorName );
+        IMediator* retrieveMediator( std::string mediatorName );
 
         /**
          * Remove an <code>IMediator</code> from the <code>View</code>.
@@ -1672,7 +1644,7 @@ namespace PureMVC {
          * @param mediatorName name of the <code>IMediator</code> instance to be removed.
          * @return the <code>IMediator</code> that was removed from the <code>View</code>
          */
-        IMediatorRestricted* removeMediator( std::string mediatorName );
+        IMediator* removeMediator( std::string mediatorName );
 
         /**
          * Check if a Mediator is registered or not
@@ -1691,7 +1663,7 @@ namespace PureMVC {
 
     protected:
         // Mapping of Mediator names to Mediator instances
-        std::map<std::string, IMediatorRestricted*> mediatorMap;
+        std::map<std::string, IMediator*> mediatorMap;
 
         // Mapping of Notification names to Observer lists
         std::map<int, std::vector<IObserverRestricted*> > observerMap;
@@ -1952,7 +1924,7 @@ namespace PureMVC {
          * @param mediatorName the name to associate with this <code>IMediator</code>
          * @param mediator a reference to the <code>IMediator</code>
          */
-        void registerMediator( IMediatorRestricted* mediator );
+        void registerMediator( IMediator* mediator );
 
         /**
          * Retrieve an <code>IMediator</code> from the <code>View</code>.
@@ -1960,7 +1932,7 @@ namespace PureMVC {
          * @param mediatorName
          * @return the <code>IMediator</code> previously registered with the given <code>mediatorName</code>.
          */
-        IMediatorRestricted* retrieveMediator( std::string mediatorName );
+        IMediator* retrieveMediator( std::string mediatorName );
 
         /**
          * Remove an <code>IMediator</code> from the <code>View</code>.
@@ -1968,7 +1940,7 @@ namespace PureMVC {
          * @param mediatorName name of the <code>IMediator</code> to be removed.
          * @return the <code>IMediator</code> that was removed from the <code>View</code>
          */
-        IMediatorRestricted* removeMediator( std::string mediatorName );
+        IMediator* removeMediator( std::string mediatorName );
 
         /**
          * Check if a Mediator is registered or not
