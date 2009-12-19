@@ -449,13 +449,8 @@ namespace PureMVC {
             virtual ~IObserverTemplated(){};
     };
     /**
-     * The untemplated portion of the interface definition for a PureMVC Proxy.
-     *
-     * <p>
-     * Like IObserver and IMediator, IProxy has been split into two sections, the
-     * untemplated base and the templated derived class.
-     *
-     * In PureMVC, <code>IProxy</code> implementors assume these responsibilities:</p>
+     * 
+     * <p>In PureMVC, <code>IProxy</code> implementors assume these responsibilities:</p>
      * <UL>
      * <LI>Implement a common method which returns the name of the Proxy.</LI>
      * <LI>Provide methods for setting and getting the data object.</LI>
@@ -470,7 +465,7 @@ namespace PureMVC {
      * <LI>Encapsulate interaction with local or remote services used to fetch and persist model data.</LI>
      * </UL>
      */
-    class IProxyRestricted : public virtual INotifier
+    class IProxy : public virtual INotifier
     {
     public:
             /**
@@ -487,27 +482,18 @@ namespace PureMVC {
              * Called by the Model when the Proxy is removed
              */
             virtual void onRemove() = 0;
-    };
-    /**
-     *	The templated half of the <code>IProxy</code> interface definition.
-     *
-     */
-    template<class T>
-    class IProxyTemplated : public IProxyRestricted
-    {
-    public:
             /**
              * Set the data object
              *
              * @param data the data object
              */
-            virtual void setData( T data ) = 0;
+            virtual void setData( void* data ) = 0;
             /**
              * Get the data object
              *
              * @return the data as type Object
              */
-            virtual T getData() = 0;
+            virtual void* getData() = 0;
     };
     /**
      * The interface definition for a PureMVC Model.
@@ -533,21 +519,21 @@ namespace PureMVC {
              * @param proxyName the name to associate with this <code>IProxy</code> instance.
              * @param proxy an object reference to be held by the <code>Model</code>.
              */
-            virtual void registerProxy( IProxyRestricted* proxy ) = 0;
+            virtual void registerProxy( IProxy* proxy ) = 0;
             /**
              * Retrieve an <code>IProxy</code> instance from the Model.
              *
              * @param proxyName
              * @return the <code>IProxy</code> instance previously registered with the given <code>proxyName</code>.
              */
-            virtual IProxyRestricted* retrieveProxy( std::string proxyName ) = 0;
+            virtual IProxy* retrieveProxy( std::string proxyName ) = 0;
             /**
              * Remove an <code>IProxy</code> instance from the Model.
              *
              * @param proxyName name of the <code>IProxy</code> instance to be removed.
              * @return the <code>IProxy</code> that was removed from the <code>Model</code>
              */
-            virtual IProxyRestricted* removeProxy( std::string proxyName ) = 0;
+            virtual IProxy* removeProxy( std::string proxyName ) = 0;
             /**
              * Check if a Proxy is registered
              *
@@ -559,9 +545,7 @@ namespace PureMVC {
     };
 
     /**
-     * The untemplated portion of the interface definition for a PureMVC Mediator.
-     *
-     * IMediator has been split into two pieces to deal with C++'s template system.
+     * 
      * <p>
      * In PureMVC, <code>IMediator</code> implementors assume these responsibilities:</p>
      * <UL>
@@ -757,21 +741,21 @@ namespace PureMVC {
              *
              * @param proxy the <code>IProxy</code> to be registered with the <code>Model</code>.
              */
-            virtual void registerProxy( IProxyRestricted* proxy ) = 0;
+            virtual void registerProxy( IProxy* proxy ) = 0;
             /**
              * Retrieve a <code>IProxy</code> from the <code>Model</code> by name.
              *
              * @param proxyName the name of the <code>IProxy</code> instance to be retrieved.
              * @return the <code>IProxy</code> previously regisetered by <code>proxyName</code> with the <code>Model</code>.
              */
-            virtual IProxyRestricted* retrieveProxy( std::string proxyName ) = 0;
+            virtual IProxy* retrieveProxy( std::string proxyName ) = 0;
             /**
              * Remove an <code>IProxy</code> instance from the <code>Model</code> by name.
              *
              * @param proxyName the <code>IProxy</code> to remove from the <code>Model</code>.
              * @return the <code>IProxy</code> that was removed from the <code>Model</code>
              */
-            virtual IProxyRestricted* removeProxy( std::string proxyName ) = 0;
+            virtual IProxy* removeProxy( std::string proxyName ) = 0;
             /**
              * Check if a Proxy is registered
              *
@@ -1246,8 +1230,7 @@ namespace PureMVC {
     //--------------------------------------
     //  Proxy
     //--------------------------------------
-    template<class T>
-    class Proxy : public IProxyTemplated<T>, public Notifier
+    class Proxy : public IProxy, public Notifier
     {
     public:
         /**
@@ -1278,7 +1261,7 @@ namespace PureMVC {
         Proxy()
         {
         }
-        Proxy(std::string proxyName, T data)
+        Proxy(std::string proxyName, void* data)
         {
             this->proxyName = proxyName;
             this->data = data;
@@ -1287,7 +1270,7 @@ namespace PureMVC {
         {
             this->proxyName = proxyName;
         }
-        Proxy(T data)
+        Proxy(void* data)
         {
             this->data = data;
         }
@@ -1302,7 +1285,7 @@ namespace PureMVC {
         /**
          * Set the data object
          */
-        void setData( T data )
+        void setData( void* data )
         {
             this->data = data;
         }
@@ -1310,7 +1293,7 @@ namespace PureMVC {
         /**
          * Get the data object
          */
-        T getData()
+        void* getData()
         {
             return this->data;
         }
@@ -1322,7 +1305,7 @@ namespace PureMVC {
         std::string proxyName;
 
         // the data object
-        T data;
+        void* data;
     };
     //--------------------------------------
     //  Mediator
@@ -1492,14 +1475,14 @@ namespace PureMVC {
          *
          * @param proxy an <code>IProxy</code> to be held by the <code>Model</code>.
          */
-        void registerProxy( IProxyRestricted* proxy );
+        void registerProxy( IProxy* proxy );
         /**
          * Retrieve an <code>IProxy</code> from the <code>Model</code>.
          *
          * @param proxyName
          * @return the <code>IProxy</code> instance previously registered with the given <code>proxyName</code>.
          */
-        IProxyRestricted* retrieveProxy( std::string proxyName );
+        IProxy* retrieveProxy( std::string proxyName );
 
         /**
          * Check if a Proxy is registered
@@ -1515,7 +1498,7 @@ namespace PureMVC {
          * @param proxyName name of the <code>IProxy</code> instance to be removed.
          * @return the <code>IProxy</code> that was removed from the <code>Model</code>
          */
-        IProxyRestricted* removeProxy( std::string proxyName );
+        IProxy* removeProxy( std::string proxyName );
 
         /**
          * Remove an IModel instance
@@ -1526,7 +1509,7 @@ namespace PureMVC {
 
     protected:
         // Mapping of proxyNames to IProxy instances
-        std::map <std::string, IProxyRestricted*> proxyMap;
+        std::map <std::string, IProxy*> proxyMap;
     };
 
     //--------------------------------------
@@ -1893,14 +1876,14 @@ namespace PureMVC {
          * @param proxyName the name of the <code>IProxy</code>.
          * @param proxy the <code>IProxy</code> instance to be registered with the <code>Model</code>.
          */
-        void registerProxy ( IProxyRestricted* proxy );
+        void registerProxy ( IProxy* proxy );
         /**
          * Retrieve an <code>IProxy</code> from the <code>Model</code> by name.
          *
          * @param proxyName the name of the proxy to be retrieved.
          * @return the <code>IProxy</code> instance previously registered with the given <code>proxyName</code>.
          */
-        IProxyRestricted* retrieveProxy ( std::string proxyName );
+        IProxy* retrieveProxy ( std::string proxyName );
 
         /**
          * Remove an <code>IProxy</code> from the <code>Model</code> by name.
@@ -1908,7 +1891,7 @@ namespace PureMVC {
          * @param proxyName the <code>IProxy</code> to remove from the <code>Model</code>.
          * @return the <code>IProxy</code> that was removed from the <code>Model</code>
          */
-        IProxyRestricted* removeProxy ( std::string proxyName );
+        IProxy* removeProxy ( std::string proxyName );
 
         /**
          * Check if a Proxy is registered

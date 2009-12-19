@@ -73,12 +73,12 @@ map<int, string> n_type::toString;
 /**
  *	ThreadProxy - holds references to our threads
  */
-class ThreadProxy : public Proxy<int>
+class ThreadProxy : public Proxy
 {
 public:
 	static const string NAME;
 	
-	ThreadProxy(string proxyName) : Proxy<int>(proxyName) {}
+	ThreadProxy(string proxyName) : Proxy(proxyName) {}
 	void onRegister()
 	{
 		cout << "ThreadProxy::onRegister()\n";

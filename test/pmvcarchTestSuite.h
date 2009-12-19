@@ -227,25 +227,31 @@ private:
 //--------------------------------------
 //  Proxy
 //--------------------------------------
-class ProxyTestClass : public Proxy<bool>
+class ProxyTestClass : public Proxy
 {
 public:
     bool registered;
     bool removed;
     
-    ProxyTestClass(bool data) : Proxy<bool>(data)
+    ProxyTestClass(void* data) : Proxy(data)
     {
         this->registered = false;
         this->removed = false;
     }
-    ProxyTestClass(std::string name, bool data) : Proxy<bool>(name, data)
+    ProxyTestClass(std::string name) : Proxy(name)
+    {
+        this->registered = false;
+        this->removed = false;
+    }
+    ProxyTestClass(std::string name, void* data) : Proxy(name, data)
     {
         this->registered = false;
         this->removed = false;
     }
     void onRegister()
     {
-        this->setData(true);
+        bool truth = true;
+        this->setData(&truth);
         this->registered = true;
     }
     void onRemove()
@@ -258,20 +264,22 @@ private:
 class ProxyTestSuite : public CxxTest::TestSuite
 {
 public:
-    void testConstructorCanInitializeTemplatedData()
+    void testConstructorCanInitializeData()
     {
-        this->proxy = new ProxyTestClass(true);
-        TS_ASSERT(this->proxy->getData());
+        bool truth = true;
+        this->proxy = new ProxyTestClass(&truth);
+        TS_ASSERT(*(bool*) this->proxy->getData());
     }
     void testRegisterCallsDerivedClassMember()
     {
-        this->proxy = new ProxyTestClass(false);
-        TS_ASSERT(! this->proxy->getData());
+        bool falsehood = false;
+        this->proxy = new ProxyTestClass(&falsehood);
+        TS_ASSERT(! *(bool*) this->proxy->getData());
         this->proxy->onRegister();
-        TS_ASSERT(this->proxy->getData());
+        TS_ASSERT(*(bool*) this->proxy->getData());
     }
 private:
-    Proxy<bool>* proxy;
+    Proxy* proxy;
 };
 //--------------------------------------
 //  Mediator
@@ -485,7 +493,8 @@ public:
         this->key = "ModelTestSuiteMultitonKey";
         this->proxyName = this->key + "_proxy";
         this->model = Model::getInstance(this->key);
-        this->proxy = new ProxyTestClass(this->proxyName, true);
+        bool truth = true;
+        this->proxy = new ProxyTestClass(this->proxyName, &truth);
     }
     void testMultitonKeyIsSet()
     {
@@ -498,7 +507,7 @@ public:
         TS_ASSERT(this->model->hasProxy(this->proxyName));
         TS_ASSERT(this->getProxy()->registered);
         
-        IProxyRestricted* proxyPtr = this->model->retrieveProxy(this->proxyName);
+        IProxy* proxyPtr = this->model->retrieveProxy(this->proxyName);
         TS_ASSERT_EQUALS(&*this->proxy, &*proxyPtr);
 
         proxyPtr = this->model->removeProxy(this->proxyName);
@@ -516,7 +525,7 @@ private:
     IModel* model;
     std::string key;
 
-    IProxyRestricted* proxy;
+    IProxy* proxy;
     int data;
     std::string proxyName;
 
@@ -620,7 +629,7 @@ public:
         this->noteType = 555;
         this->proxyName= this->key + "_proxy";
         this->mediatorName = this->key + "_mediator";
-        this->proxy = new ProxyTestClass(this->proxyName, true);
+        this->proxy = new ProxyTestClass(this->proxyName);
         this->mediator = new MediatorTestClass(this->mediatorName, &this->noteBody);
         this->facade = Facade::getInstance(this->key);
         SimpleTestClass::executions = 0;
@@ -645,7 +654,7 @@ public:
         TS_ASSERT(! this->facade->hasProxy(this->proxyName));
         this->facade->registerProxy(this->proxy);
         TS_ASSERT(this->facade->hasProxy(this->proxyName));
-        IProxyRestricted* proxyPtr = this->facade->retrieveProxy(this->proxyName);
+        IProxy* proxyPtr = this->facade->retrieveProxy(this->proxyName);
         TS_ASSERT_EQUALS(&*proxyPtr, &*this->proxy);
         this->facade->removeProxy(this->proxyName);
         TS_ASSERT(! this->facade->hasProxy(this->proxyName));
@@ -690,7 +699,7 @@ private:
     int noteBody;
     std::string proxyName;
     std::string mediatorName;
-    IProxyRestricted* proxy;
+    IProxy* proxy;
     IMediator* mediator;
     IFacade* facade;
 

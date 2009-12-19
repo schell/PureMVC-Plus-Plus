@@ -27,25 +27,25 @@ class n_name
 public:
     enum name
     {
-		NIL,
+	NIL,
         STARTUP,                // triggers the app startup sequence
         PATTERNS_REGISTERED,	// alerts the app that proxies and mediators have been registered
-        SET,					// sets something
-        GET,					// makes a request to get something
-        DISPLAY,				// display something
+        SET,			// sets something
+        GET,			// makes a request to get something
+        DISPLAY,                // display something
         QUIT                    // quit the app
-	};
-	static map<int, string> toString;
-	static void init()
-	{
-		n_name::toString[NIL]					= "null";
-		n_name::toString[STARTUP] 				= "startup";
-        n_name::toString[PATTERNS_REGISTERED] 	= "patterns registered";
-        n_name::toString[SET] 					= "set";
-        n_name::toString[GET] 					= "get";				    
-        n_name::toString[DISPLAY] 				= "display";			    
-		n_name::toString[QUIT] 					= "quit";                       
-	}
+    };
+    static map<int, string> toString;
+    static void init()
+    {
+        n_name::toString[NIL] = "null";
+        n_name::toString[STARTUP] = "startup";
+        n_name::toString[PATTERNS_REGISTERED] = "patterns registered";
+        n_name::toString[SET] = "set";
+        n_name::toString[GET] = "get";
+        n_name::toString[DISPLAY] = "display";
+        n_name::toString[QUIT] = "quit";
+    }
 };
 map<int, string> n_name::toString;
 class n_type
@@ -53,15 +53,15 @@ class n_type
 public:
     enum type
     {
-		NIL,	// nothing
+	NIL,	// nothing
         MENU    // the menu
-	};
-	static map<int, string> toString;
-	static void init()
-	{
-		n_type::toString[NIL] = "null";
-		n_type::toString[MENU] = "menu";
-	}
+    };
+    static map<int, string> toString;
+    static void init()
+    {
+            n_type::toString[NIL] = "null";
+            n_type::toString[MENU] = "menu";
+    }
 };
 map<int, string> n_type::toString;
 //--------------------------------------
@@ -70,34 +70,34 @@ map<int, string> n_type::toString;
 /**
  *	MenuProxy - holds the choices for our menu.
  */
-class MenuProxy : public Proxy<vector<string> >
+class MenuProxy : public Proxy
 {
 public:
 	static const string NAME;
+        vector<string> menu;
 	
-	MenuProxy(string proxyName) : Proxy<vector<string> >(proxyName) {}
+	MenuProxy(string proxyName) : Proxy(proxyName) {}
 	void onRegister()
 	{
 		cout << "MenuProxy::onRegister()\n";
-		this->setData(this->getMenu());
+                this->init();
+		this->setData(&this->menu);
 	}
 	void onRemove()
 	{
 		cout << "MenuProxy::onRemove()\n";
 	}
-	vector<string> getMenu()
+	void init()
 	{
-		cout << "MenuProxy::getMenu()\n";
-		vector<string> menu;
-		menu.push_back("Fox");
-		menu.push_back("Bear");
-		menu.push_back("Mountain Lion");
-		menu.push_back("Lynx");
-		menu.push_back("Bobcat");
-		menu.push_back("Terradactyl");
-		menu.push_back("Wolf");
-		menu.push_back("Other...");
-		return menu;
+		cout << "MenuProxy::init()\n";
+		this->menu.push_back("Fox");
+		this->menu.push_back("Bear");
+		this->menu.push_back("Mountain Lion");
+		this->menu.push_back("Lynx");
+		this->menu.push_back("Bobcat");
+		this->menu.push_back("Terradactyl");
+		this->menu.push_back("Wolf");
+		this->menu.push_back("Other...");
 	}
 };
 // define the proxy's name
@@ -243,10 +243,10 @@ public:
 			vector<string> menu = *((vector<string>*) note->getBody());
 			cout << "	adding " << menu.at(menu.size() - 1) << " to the menu...\n";
 			// get the menu proxy
-			MenuProxy* menuProxy = dynamic_cast<MenuProxy*>(facade->retrieveProxy(MenuProxy::NAME));
-			menuProxy->setData(menu);
+			IProxy* menuProxy = facade->retrieveProxy(MenuProxy::NAME);
+			menuProxy->setData(&menu);
 			// send the menu back out to be displayed
-			facade->sendNotification(n_name::DISPLAY, (void*) &menu, n_type::MENU);
+			facade->sendNotification(n_name::DISPLAY, &menu, n_type::MENU);
 		}
 	}
 };
@@ -268,10 +268,9 @@ public:
 		{
 			cout << "	requested the menu...\n";
 			// get the menu proxy
-			MenuProxy* menuProxy = dynamic_cast<MenuProxy*>(facade->retrieveProxy(MenuProxy::NAME));
-			vector<string> menu = menuProxy->getData();
+			IProxy* menuProxy = facade->retrieveProxy(MenuProxy::NAME);
 			// send the menu out to who needs it...
-			facade->sendNotification(n_name::DISPLAY, (void*) &menu, n_type::MENU);
+			facade->sendNotification(n_name::DISPLAY, menuProxy->getData(), n_type::MENU);
 		}
 	}
 };

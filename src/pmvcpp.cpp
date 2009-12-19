@@ -140,7 +140,7 @@ IModel* Model::getInstance(std::string key)
     modelPtr->setMultitonKey(key);
     return modelPtr;
 }
-void Model::registerProxy( IProxyRestricted* proxy )
+void Model::registerProxy( IProxy* proxy )
 {
     proxy->initializeNotifier(this->getMultitonKey());
     if(! this->hasProxy(proxy->getProxyName()))
@@ -149,7 +149,7 @@ void Model::registerProxy( IProxyRestricted* proxy )
         proxy->onRegister();
     }
 }
-IProxyRestricted* Model::retrieveProxy( std::string proxyName )
+IProxy* Model::retrieveProxy( std::string proxyName )
 {
     return this->proxyMap[proxyName];
 }
@@ -157,15 +157,15 @@ bool Model::hasProxy( std::string proxyName )
 {
     return ! (this->proxyMap.find(proxyName) == this->proxyMap.end());
 }
-IProxyRestricted* Model::removeProxy( std::string proxyName )
+IProxy* Model::removeProxy( std::string proxyName )
 {
     //std::cout << "removeProxy()\n";
     // if this proxy has not been registered, return a null pointer
     if(! this->hasProxy(proxyName))
-        return (IProxyRestricted*) 0;
+        return (IProxy*) 0;
 
     // get the proxy
-    IProxyRestricted* proxy = this->proxyMap[proxyName];
+    IProxy* proxy = this->proxyMap[proxyName];
     // remove the proxy from the map
     this->proxyMap.erase(proxyName);
     // alert the proxy that it's been removed
@@ -412,15 +412,15 @@ bool Facade::hasCommand( int notificationName )
 {
     return this->controller->hasCommand(notificationName);
 }
-void Facade::registerProxy( IProxyRestricted* proxy )
+void Facade::registerProxy( IProxy* proxy )
 {
     this->model->registerProxy(proxy);
 }
-IProxyRestricted* Facade::retrieveProxy( std::string proxyName )
+IProxy* Facade::retrieveProxy( std::string proxyName )
 {
     return this->model->retrieveProxy(proxyName);
 }
-IProxyRestricted* Facade::removeProxy ( std::string proxyName )
+IProxy* Facade::removeProxy ( std::string proxyName )
 {
     return this->model->removeProxy(proxyName);
 }
