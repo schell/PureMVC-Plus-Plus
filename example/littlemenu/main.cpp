@@ -150,7 +150,7 @@ public:
 		
 		cout << "CLIMediator::handleNotification(name:" << n_name::toString[name] << " type:" << n_type::toString[type] <<")\n";
 			
-		Object* body = note->getBody();
+		void* body = note->getBody();
 		// handle the notification
 		// if the app is ready, ask for the menu
 		if(name == n_name::PATTERNS_REGISTERED)

@@ -22,22 +22,6 @@
  *  The PureMVC namespace.
  **/
 namespace PureMVC {
-
-
-    /**
-     *  A generic object class.
-     *  This is mostly used in passing notification bodies.
-     */
-    class Object
-    {
-    public:
-            /**
-             *	A function that does nothing.
-             *	Just a virtual function to make this class polymorphic.
-             */
-            virtual void function(){}
-    };
-
     /**
      *  A templated Multiton class.
      *  Multiton takes care of creating multitons of other classes.
@@ -180,9 +164,38 @@ namespace PureMVC {
          * @param body the body of the notification (optional)
          * @param type the type of the notification (optional)
          */
-        virtual void sendNotification   ( int notificationName, Object* body, int notificationType) = 0;
+        virtual void sendNotification   ( int notificationName, void* body, int notificationType) = 0;
+		/**
+		 * Send a <code>INotification</code>.
+		 *
+		 * <p>
+		 * Convenience method to prevent having to construct new
+		 * notification instances in our implementation code.</p>
+		 *
+		 * @param notificationName the name of the notification to send
+		 * @param type the type of the notification (optional)
+		 */
         virtual void sendNotification   ( int notificationName, int notificationType ) = 0;
-        virtual void sendNotification   ( int notificationName, Object* body ) = 0;
+		/**
+         * Send a <code>INotification</code>.
+         *
+         * <p>
+         * Convenience method to prevent having to construct new
+         * notification instances in our implementation code.</p>
+         *
+         * @param notificationName the name of the notification to send
+         * @param body the body of the notification (optional)
+         */
+        virtual void sendNotification   ( int notificationName, void* body ) = 0;
+		/**
+         * Send a <code>INotification</code>.
+         *
+         * <p>
+         * Convenience method to prevent having to construct new
+         * notification instances in our implementation code.</p>
+         *
+         * @param notificationName the name of the notification to send
+         */
         virtual void sendNotification   ( int notificationName ) = 0;
         /**
          * Initialize this INotifier instance.
@@ -243,11 +256,11 @@ namespace PureMVC {
             /**
              * Set the body of the <code>INotification</code> instance
              */
-            virtual void setBody( Object* body ) = 0;
+            virtual void setBody( void* body ) = 0;
             /**
              * Get the body of the <code>INotification</code> instance
              */
-            virtual Object* getBody() = 0;
+            virtual void* getBody() = 0;
             /**
              * Set the type of the <code>INotification</code> instance
              */
@@ -902,7 +915,7 @@ namespace PureMVC {
     public:
         int name;
         int type;
-        Object* body;
+        void* body;
         /**
          * Constructor.
          *
@@ -910,8 +923,8 @@ namespace PureMVC {
          * @param body the <code>Notification</code> body. (optional)
          * @param type the type of the <code>Notification</code> (optional)
          */
-        Notification(int notificationName, Object* body, int notificationType);
-        Notification(int notificationName, Object* body);
+        Notification(int notificationName, void* body, int notificationType);
+        Notification(int notificationName, void* body);
         Notification(int notificationName, int notificationType);
         Notification(int notificationName);
         /**
@@ -923,13 +936,13 @@ namespace PureMVC {
         /**
          * Set the body of the <code>Notification</code> instance.
          */
-        void setBody( Object* body );
+        void setBody( void* body );
         /**
          * Get the body of the <code>Notification</code> instance.
          *
          * @return the body object.
          */
-        Object* getBody();
+        void* getBody();
         /**
          * Set the type of the <code>Notification</code> instance.
          */
@@ -992,9 +1005,9 @@ namespace PureMVC {
          * @param body the body of the notification (optional)
          * @param type the type of the notification (optional)
          */
-        void sendNotification   ( int notificationName, Object* body, int notificationType);
+        void sendNotification   ( int notificationName, void* body, int notificationType);
         void sendNotification   ( int notificationName, int notificationType );
-        void sendNotification   ( int notificationName, Object* body );
+        void sendNotification   ( int notificationName, void* body );
         void sendNotification   ( int notificationName );
         /**
          * Initialize this INotifier instance.
@@ -1975,8 +1988,8 @@ namespace PureMVC {
          * @param body the body of the notification (optional)
          * @param type the type of the notification (optional)
          */
-        void sendNotification( int notificationName, Object* body, int notificationType );
-        void sendNotification( int notificationName, Object* body );
+        void sendNotification( int notificationName, void* body, int notificationType );
+        void sendNotification( int notificationName, void* body );
         void sendNotification( int notificationName, int notificationType );
         void sendNotification( int notificationName );
         /**

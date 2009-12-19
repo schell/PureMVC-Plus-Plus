@@ -28,13 +28,13 @@ std::string MultitonKeyHeir::getMultitonKey()
 //--------------------------------------
 //  Notification
 //--------------------------------------
-Notification::Notification(int name, Object* body, int notificationType)
+Notification::Notification(int name, void* body, int notificationType)
 {
     this->name = name;
     this->setBody(body);
     this->setType(notificationType);
 }
-Notification::Notification(int name, Object* body)
+Notification::Notification(int name, void* body)
 {
     this->name = name;
     this->setBody(body);
@@ -52,11 +52,11 @@ int Notification::getName()
 {
     return this->name;
 }
-void Notification::setBody( Object* body )
+void Notification::setBody( void* body )
 {
     this->body = body;
 }
-Object* Notification::getBody()
+void* Notification::getBody()
 {
     return this->body;
 }
@@ -71,7 +71,7 @@ int Notification::getType()
 //--------------------------------------
 //  Notifier
 //--------------------------------------
-void Notifier::sendNotification( int notificationName, Object* body, int notificationType)
+void Notifier::sendNotification( int notificationName, void* body, int notificationType)
 {
     this->getFacade()->sendNotification(notificationName, body, notificationType);
 }
@@ -79,7 +79,7 @@ void Notifier::sendNotification( int notificationName, int notificationType )
 {
     this->getFacade()->sendNotification(notificationName, notificationType);
 }
-void Notifier::sendNotification( int notificationName, Object* body )
+void Notifier::sendNotification( int notificationName, void* body )
 {
     this->getFacade()->sendNotification(notificationName, body);
 }
@@ -446,7 +446,7 @@ bool Facade::hasMediator( std::string mediatorName )
 {
     return this->view->hasMediator(mediatorName);
 }
-void Facade::sendNotification( int notificationName, Object* body, int notificationType)
+void Facade::sendNotification( int notificationName, void* body, int notificationType)
 {
     this->notifyObservers(new Notification(notificationName, body, notificationType));
 }
@@ -454,7 +454,7 @@ void Facade::sendNotification( int notificationName, int notificationType )
 {
     this->notifyObservers(new Notification(notificationName, notificationType));
 }
-void Facade::sendNotification( int notificationName, Object* body )
+void Facade::sendNotification( int notificationName, void* body )
 {
     this->notifyObservers(new Notification(notificationName, body));
 }

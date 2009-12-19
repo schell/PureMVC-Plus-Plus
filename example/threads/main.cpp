@@ -327,6 +327,7 @@ int main(int argc, char** argv)
 {
 	cout << "\n-- threads v0.1 by Schell Scivally --\n";
 	cout << "	entering 'q' quits the program\n\n";
+	
 	// initialize our note names and types
 	n_name::init();
 	n_type::init();

@@ -27,9 +27,9 @@ class MultitonTestSuite : public CxxTest::TestSuite
 public:
     void testCreateInstances()
     {
-        Object* single_1 = Multiton<Object>::instance();
-        Object* single_2 = Multiton<Object>::instance();
-        Object* single_3 = Multiton<Object>::instance("instance3");
+        void* single_1 = Multiton<Object>::instance();
+        void* single_2 = Multiton<Object>::instance();
+        void* single_3 = Multiton<Object>::instance("instance3");
         TS_ASSERT_EQUALS(&*single_1, &*single_2);
         TS_ASSERT_DIFFERS(&*single_1, &*single_3);
     }
@@ -68,7 +68,7 @@ private:
     Notification* notification;
     int name;
     int type;
-    Object* body;
+    void* body;
 };
 //--------------------------------------
 //  SimpleCommand
