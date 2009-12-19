@@ -27,22 +27,22 @@ class MultitonTestSuite : public CxxTest::TestSuite
 public:
     void testCreateInstances()
     {
-        void* single_1 = Multiton<Object>::instance();
-        void* single_2 = Multiton<Object>::instance();
-        void* single_3 = Multiton<Object>::instance("instance3");
+        int* single_1 = Multiton<int>::instance();
+        int* single_2 = Multiton<int>::instance();
+        int* single_3 = Multiton<int>::instance("instance3");
         TS_ASSERT_EQUALS(&*single_1, &*single_2);
         TS_ASSERT_DIFFERS(&*single_1, &*single_3);
     }
     void testNumberInstances()
     {
-        Multiton<Object>::clear();
-        TS_ASSERT_EQUALS(Multiton<Object>::size(), (size_t) 0);
-        Multiton<Object>::instance();
-        TS_ASSERT_EQUALS(Multiton<Object>::size(), (size_t) 1);
-        Multiton<Object>::instance();
-        TS_ASSERT_EQUALS(Multiton<Object>::size(), (size_t) 1);
-        Multiton<Object>::instance("new instance");
-        TS_ASSERT_EQUALS(Multiton<Object>::size(), (size_t) 2);
+        Multiton<int>::clear();
+        TS_ASSERT_EQUALS(Multiton<int>::size(), (size_t) 0);
+        Multiton<int>::instance();
+        TS_ASSERT_EQUALS(Multiton<int>::size(), (size_t) 1);
+        Multiton<int>::instance();
+        TS_ASSERT_EQUALS(Multiton<int>::size(), (size_t) 1);
+        Multiton<int>::instance("new instance");
+        TS_ASSERT_EQUALS(Multiton<int>::size(), (size_t) 2);
     }
 };
 //--------------------------------------
@@ -54,21 +54,22 @@ public:
     void setUp()
     {
         this->name = 666;
-        this->body = new Object();
+        this->body = 93737645;
         this->type = 777;
-        this->notification = new Notification(this->name, body, this->type);
+        this->notification = new Notification(this->name, (void*) &this->body, this->type);
     }
     void testConstructorSets_name_type()
     {
         TS_ASSERT_EQUALS(this->notification->getName(), this->name);
         TS_ASSERT_EQUALS(this->notification->getType(), this->type);
-        //TS_ASSERT_EQUALS(this->notification->getBody(), this->body);
+        int castBody = *((int*) this->notification->getBody());
+        TS_ASSERT_EQUALS(castBody, this->body);
     }
 private:
     Notification* notification;
     int name;
     int type;
-    void* body;
+    int body;
 };
 //--------------------------------------
 //  SimpleCommand
@@ -118,7 +119,7 @@ public:
     }
     void testExecuteShouldExecAllSubCommands()
     {
-        this->macroTestClass->execute(new Notification(666, new Object(), 777));
+        this->macroTestClass->execute(new Notification(666, 777));
         TS_ASSERT_EQUALS(SimpleTestClass::executions, 3);
     }
 private:
@@ -196,7 +197,7 @@ public:
     {
         this->noteName = 666;
         this->noteType = 777;
-        this->notification = new Notification(this->noteName, new Object(), this->noteType);
+        this->notification = new Notification(this->noteName, this->noteType);
         this->contextObject = new InterestedObject();
         this->observer = new Observer<InterestedObject>(&InterestedObject::callbackMethod, this->contextObject);
     }
@@ -367,7 +368,7 @@ public:
         // setup observer
         this->noteName = 666;
         this->noteType = 777;
-        this->notification = new Notification(this->noteName, new Object(), this->noteType);
+        this->notification = new Notification(this->noteName, this->noteType);
         this->contextObject = new InterestedObject();
         this->observer = new Observer<InterestedObject>(&InterestedObject::callbackMethod, this->contextObject);
         this->viewComponent = 888;

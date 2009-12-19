@@ -65,16 +65,6 @@ public:
 };
 map<int, string> n_type::toString;
 //--------------------------------------
-//  Notification Body Definitions
-//--------------------------------------
-class MenuNotificationBody : public Object
-{
-public:	
-	vector<string> data;
-	
-	MenuNotificationBody(vector<string> menu) : data(menu) {}
-};
-//--------------------------------------
 //  Proxies
 //--------------------------------------
 /**
@@ -160,7 +150,8 @@ public:
 			if(type == n_type::MENU)
 			{
 				cout << "	menu received...\n";
-				this->promptUser(dynamic_cast<MenuNotificationBody*>(body)->data);
+                                vector<string> menu = *((vector<string>*) body);
+				this->promptUser(menu);
 			}
 		}
 	}
@@ -201,9 +192,8 @@ public:
 		// swap so "Other.." stays last
 		menu.at(choices - 1) = input;
 		menu.push_back(other);
-		MenuNotificationBody* newMenu = new MenuNotificationBody(menu);
 		// send it off to someone who needs it...
-		this->sendNotification(n_name::SET, newMenu, n_type::MENU);
+		this->sendNotification(n_name::SET, (void*) &menu, n_type::MENU);
 	}
 	void quit()
 	{
@@ -250,15 +240,13 @@ public:
 		// handle the request
 		if(type == n_type::MENU)
 		{
-			MenuNotificationBody* menuBody = dynamic_cast<MenuNotificationBody*>(note->getBody());
-			vector<string> menu = menuBody->data;
+			vector<string> menu = *((vector<string>*) note->getBody());
 			cout << "	adding " << menu.at(menu.size() - 1) << " to the menu...\n";
 			// get the menu proxy
 			MenuProxy* menuProxy = dynamic_cast<MenuProxy*>(facade->retrieveProxy(MenuProxy::NAME));
 			menuProxy->setData(menu);
-			menuBody->data = menuProxy->getData();
 			// send the menu back out to be displayed
-			facade->sendNotification(n_name::DISPLAY, menuBody, n_type::MENU);
+			facade->sendNotification(n_name::DISPLAY, (void*) &menu, n_type::MENU);
 		}
 	}
 };
@@ -283,7 +271,7 @@ public:
 			MenuProxy* menuProxy = dynamic_cast<MenuProxy*>(facade->retrieveProxy(MenuProxy::NAME));
 			vector<string> menu = menuProxy->getData();
 			// send the menu out to who needs it...
-			facade->sendNotification(n_name::DISPLAY, new MenuNotificationBody(menu), n_type::MENU);
+			facade->sendNotification(n_name::DISPLAY, (void*) &menu, n_type::MENU);
 		}
 	}
 };

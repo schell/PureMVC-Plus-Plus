@@ -68,29 +68,6 @@ public:
 };
 map<int, string> n_type::toString;
 //--------------------------------------
-//  Notification Body Definitions
-//--------------------------------------
-/**
- *	A string notification body.
- */
-class StringObject : public Object
-{
-public:
-	string data;
-	
-	StringObject(string s) : data(s) {}
-};
-/**
- *	A list of threads notification body.
- */
-class ThreadList : public Object
-{
-public:
-	vector<int> data;
-	
-	ThreadList(vector<int> list) : data(list) {}
-};
-//--------------------------------------
 //  Proxies
 //--------------------------------------
 /**
@@ -223,10 +200,8 @@ public:
 		}
 		cout << "\n";
 		
-		// create our thread list body
-		ThreadList* threadList = new ThreadList(secondList);
 		if(numThreads != 0)
-			this->sendNotification(n_name::CREATE, threadList, n_type::THREAD);
+			this->sendNotification(n_name::CREATE, (void*) &secondList, n_type::THREAD);
 	}
 	int getNumThreads()
 	{
@@ -306,8 +281,8 @@ public:
 		if(type == n_type::THREAD)
 		{
 			ThreadProxy* threadProxy = static_cast<ThreadProxy*>(facade->retrieveProxy(ThreadProxy::NAME));
-			ThreadList* threadList = static_cast<ThreadList*>(note->getBody());
-			threadProxy->createThreads(threadList->data);
+			vector<int> threadList = *((vector<int>*) note->getBody());
+			threadProxy->createThreads(threadList);
 		}
 	}
 };

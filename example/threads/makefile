@@ -1,6 +1,6 @@
 CC = g++
 CFLAGS = -Wall -I../../src
-LIBRARIES = -lm -lstdc++
+LIBRARIES = -lm -lstdc++ -lpthread
 SRCS = main.cpp ../../src/pmvcpp.cpp
 OBJS = main.o pmvcpp.o
 
