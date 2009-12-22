@@ -85,8 +85,6 @@ void SocketProxy::setup()
     if (_sockfd < 0)
         error("ERROR opening socket");
 
-    bzero((char *) &_serverAddy, sizeof(_serverAddy));
-
     _serverAddy.sin_family = AF_INET;
     _serverAddy.sin_addr.s_addr = INADDR_ANY;
     _serverAddy.sin_port = htons(_port);
@@ -109,7 +107,6 @@ void SocketProxy::beginListen()
     _readSockfd = accept(_sockfd, (struct sockaddr *) &_clientAddy, (socklen_t*) &clilen);
     if (_readSockfd < 0)
       error("ERROR on accept");
-    bzero(buffer, SocketProxy::BUFFER_SIZE);
 
     n = read(_readSockfd, buffer, SocketProxy::BUFFER_SIZE-1);
 
