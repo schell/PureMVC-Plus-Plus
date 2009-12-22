@@ -1,0 +1,9 @@
+httpserver can take two arguments:
+	-p [port]	some int for the port number.
+	-t [title]	some title for the response page.
+
+example:
+	make
+	sudo ./httpserver -p 80 -t 'Welcome to httpserver! Here was your request...'
+
+- Schell
