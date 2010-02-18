@@ -124,7 +124,66 @@ void MacroCommand::execute(INotification* notification)
 //--------------------------------------
 //  Proxy
 //--------------------------------------
-// defined in header
+Proxy::Proxy()
+{
+}
+Proxy::Proxy(std::string proxyName, void* data)
+{
+    this->proxyName = proxyName;
+    this->setData(&data);
+}
+Proxy::Proxy(std::string proxyName)
+{
+    this->proxyName = proxyName;
+}
+Proxy::Proxy(void* data)
+{
+    this->data = data;
+}
+std::string Proxy::getProxyName()
+{
+    return this->proxyName;
+}
+void Proxy::setData( void* data )
+{
+    this->data = data;
+}
+void* Proxy::getData()
+{
+    return this->data;
+}
+//--------------------------------------
+//  Mediator
+//--------------------------------------
+Mediator::Mediator( std::string mediatorName, void* viewComponent )
+{
+    this->mediatorName = mediatorName;
+    this->setViewComponent(viewComponent);
+}
+Mediator::Mediator( std::string mediatorName )
+{
+    this->mediatorName = mediatorName;
+}
+Mediator::Mediator( void* viewComponent )
+{
+    this->setViewComponent(viewComponent);
+}
+std::string Mediator::getMediatorName()
+{
+    return this->mediatorName;
+}
+void Mediator::setViewComponent( void* viewComponent )
+{
+    this->viewComponent = viewComponent;
+}
+void* Mediator::getViewComponent()
+{
+    return this->viewComponent;
+}
+std::string Mediator::getName()
+{
+    return this->mediatorName;
+}
 //--------------------------------------
 //  Model
 //--------------------------------------
@@ -478,7 +537,6 @@ void Facade::sendNotification( int notificationName, void* body )
 }
 void Facade::sendNotification( int notificationName )
 {
-    std::printf("Facade::sendNotification(int)");
     // store the notification in our threaded notification queue
     this->notificationQueue.push(new Notification(notificationName));
     // create a thread
@@ -494,7 +552,6 @@ void* Facade::sendThreadedNotification(void* ptr)
     Facade* currentFacade = static_cast<Facade*>(ptr);
     // get the first notification in the queue
     Notification* note = currentFacade->notificationQueue.front();
-    std::printf("Facade[%s]::sendThreadedNotification() name:%i type:%i", currentFacade->getMultitonKey().c_str(), note->getName(), note->getType());
     // remove the note from the queue
     currentFacade->notificationQueue.pop();
     currentFacade->notifyObservers(note);

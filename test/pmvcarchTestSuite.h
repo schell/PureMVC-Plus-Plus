@@ -250,8 +250,8 @@ public:
     }
     void onRegister()
     {
-        bool truth = true;
-        this->setData(&truth);
+        this->ones = 111;
+        this->setData(&this->ones);
         this->registered = true;
     }
     void onRemove()
@@ -260,23 +260,45 @@ public:
     }
 private:
     bool calledRegister;
+    int ones;
 };
 class ProxyTestSuite : public CxxTest::TestSuite
 {
 public:
     void testConstructorCanInitializeData()
     {
-        bool truth = true;
-        this->proxy = new ProxyTestClass(&truth);
-        TS_ASSERT(*(bool*) this->proxy->getData());
+        int twos = 222;
+        this->proxy = new ProxyTestClass(&twos);
+        TS_ASSERT_EQUALS(twos, *(int*) this->proxy->getData());
+    }
+    void testCanSetAndGetData()
+    {
+        struct data
+        {
+            std::string name;
+            int id;
+        };
+        struct data xyz;
+        xyz.name = "xyz has a name";
+        xyz.id = 666;
+
+        this->proxy->setData(&xyz);
+        struct data pyt = *(data*) this->proxy->getData();
+        TS_ASSERT_EQUALS(xyz.name, pyt.name);
+        struct data sss;
+        sss.name = "blah";
+        sss.id  = 86;
+        this->proxy->setData(&sss);
+        pyt = *(data*) this->proxy->getData();
+        TS_ASSERT_EQUALS(sss.name, pyt.name);
     }
     void testRegisterCallsDerivedClassMember()
     {
-        bool falsehood = false;
-        this->proxy = new ProxyTestClass(&falsehood);
-        TS_ASSERT(! *(bool*) this->proxy->getData());
+        int threes = 333;
+        this->proxy = new ProxyTestClass(&threes);
+        TS_ASSERT_EQUALS(*(int*) this->proxy->getData(), threes);
         this->proxy->onRegister();
-        TS_ASSERT(*(bool*) this->proxy->getData());
+        TS_ASSERT_DIFFERS(*(int*) this->proxy->getData(), threes); // should be 111
     }
 private:
     Proxy* proxy;

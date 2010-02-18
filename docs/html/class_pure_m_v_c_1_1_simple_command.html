@@ -72,14 +72,14 @@ Collaboration diagram for PureMVC::SimpleCommand:</div>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_simple_command.html#af3f75f1ff33ba4afabec5ee2a8a83d20">execute</a> (<a class="el" href="class_pure_m_v_c_1_1_i_notification.html">INotification</a> *notification)=0</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Execute the <code><a class="el" href="class_pure_m_v_c_1_1_i_command.html" title="The interface definition for a PureMVC Command.">ICommand</a></code>'s logic to handle a given <code><a class="el" href="class_pure_m_v_c_1_1_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code>.  <a href="#af3f75f1ff33ba4afabec5ee2a8a83d20"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_notifier.html#a55a358ee2661ecc08400653016fdb497">sendNotification</a> (int notificationName, <a class="el" href="class_pure_m_v_c_1_1_object.html">Object</a> *body, int notificationType)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Create and send an <code><a class="el" href="class_pure_m_v_c_1_1_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code>.  <a href="#a55a358ee2661ecc08400653016fdb497"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6fa2ef42750287b410dcdd867479450b"></a><!-- doxytag: member="PureMVC::SimpleCommand::sendNotification" ref="a6fa2ef42750287b410dcdd867479450b" args="(int notificationName, int notificationType)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>sendNotification</b> (int notificationName, int notificationType)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79a17268f222d42c1cc1f41a13da3b62"></a><!-- doxytag: member="PureMVC::SimpleCommand::sendNotification" ref="a79a17268f222d42c1cc1f41a13da3b62" args="(int notificationName, Object *body)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>sendNotification</b> (int notificationName, <a class="el" href="class_pure_m_v_c_1_1_object.html">Object</a> *body)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a012642026e913c8e30d006e2e8f869c6"></a><!-- doxytag: member="PureMVC::SimpleCommand::sendNotification" ref="a012642026e913c8e30d006e2e8f869c6" args="(int notificationName)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>sendNotification</b> (int notificationName)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_notifier.html#aeab514702a162612307c5d4c7d41c8ca">sendNotification</a> (int notificationName, void *body, int notificationType)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Create and send an <code><a class="el" href="class_pure_m_v_c_1_1_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code>.  <a href="#aeab514702a162612307c5d4c7d41c8ca"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_notifier.html#a6fa2ef42750287b410dcdd867479450b">sendNotification</a> (int notificationName, int notificationType)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Send a <code><a class="el" href="class_pure_m_v_c_1_1_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code>.  <a href="#a6fa2ef42750287b410dcdd867479450b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_notifier.html#a04a080f90092e075e81d5b32123cf217">sendNotification</a> (int notificationName, void *body)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Send a <code><a class="el" href="class_pure_m_v_c_1_1_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code>.  <a href="#a04a080f90092e075e81d5b32123cf217"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_notifier.html#a012642026e913c8e30d006e2e8f869c6">sendNotification</a> (int notificationName)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Send a <code><a class="el" href="class_pure_m_v_c_1_1_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code>.  <a href="#a012642026e913c8e30d006e2e8f869c6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_notifier.html#a6910365c70415ba7973401215f57e4af">initializeNotifier</a> (std::string key)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialize this <a class="el" href="class_pure_m_v_c_1_1_i_notifier.html" title="The interface definition for a PureMVC Notifier.">INotifier</a> instance.  <a href="#a6910365c70415ba7973401215f57e4af"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_multiton_key_heir.html#abc70ef7c066bc8d7bf0196ec727599bb">setMultitonKey</a> (std::string key)</td></tr>
@@ -95,7 +95,7 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>sendNotification</b> 
 <p>Your subclass should override the <code>execute</code> method where your business logic will handle the <code><a class="el" href="class_pure_m_v_c_1_1_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code>. </p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_pure_m_v_c_1_1_controller.html#a95c56822d667e94b031451729ce069a9" title="Constructor.">Controller::Controller</a> </dd>
 <dd>
-<a class="el" href="class_pure_m_v_c_1_1_notification.html#a6c2e3395ec9cc6f7b6f974ed15107067" title="Constructor.">Notification::Notification</a> </dd>
+<a class="el" href="class_pure_m_v_c_1_1_notification.html#aea20257199ec0dedecf454d013a8648a" title="Constructor.">Notification::Notification</a> </dd>
 <dd>
 <a class="el" href="class_pure_m_v_c_1_1_macro_command.html#abf91c7c1114f20b006cf95bf8c4614e7" title="Constructor.">MacroCommand::MacroCommand</a> </dd></dl>
 <hr/><h2>Member Function Documentation</h2>
@@ -182,7 +182,36 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>sendNotification</b> 
 
 </div>
 </div>
-<a class="anchor" id="a55a358ee2661ecc08400653016fdb497"></a><!-- doxytag: member="PureMVC::SimpleCommand::sendNotification" ref="a55a358ee2661ecc08400653016fdb497" args="(int notificationName, Object *body, int notificationType)" -->
+<a class="anchor" id="a012642026e913c8e30d006e2e8f869c6"></a><!-- doxytag: member="PureMVC::SimpleCommand::sendNotification" ref="a012642026e913c8e30d006e2e8f869c6" args="(int notificationName)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Notifier::sendNotification </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>notificationName</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Send a <code><a class="el" href="class_pure_m_v_c_1_1_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code>. </p>
+<p>Convenience method to prevent having to construct new notification instances in our implementation code.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>notificationName</em>&nbsp;</td><td>the name of the notification to send </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="class_pure_m_v_c_1_1_i_notifier.html#aca921608a2ced017a8face049fc7c6af">PureMVC::INotifier</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a04a080f90092e075e81d5b32123cf217"></a><!-- doxytag: member="PureMVC::SimpleCommand::sendNotification" ref="a04a080f90092e075e81d5b32123cf217" args="(int notificationName, void *body)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -195,7 +224,85 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>sendNotification</b> 
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_pure_m_v_c_1_1_object.html">Object</a> *&nbsp;</td>
+          <td class="paramtype">void *&nbsp;</td>
+          <td class="paramname"> <em>body</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [virtual, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Send a <code><a class="el" href="class_pure_m_v_c_1_1_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code>. </p>
+<p>Convenience method to prevent having to construct new notification instances in our implementation code.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>notificationName</em>&nbsp;</td><td>the name of the notification to send </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>body</em>&nbsp;</td><td>the body of the notification (optional) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="class_pure_m_v_c_1_1_i_notifier.html#a30f45abeee81eb4384e8cf1f92ca5c2a">PureMVC::INotifier</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6fa2ef42750287b410dcdd867479450b"></a><!-- doxytag: member="PureMVC::SimpleCommand::sendNotification" ref="a6fa2ef42750287b410dcdd867479450b" args="(int notificationName, int notificationType)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Notifier::sendNotification </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>notificationName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>notificationType</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [virtual, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Send a <code><a class="el" href="class_pure_m_v_c_1_1_i_notification.html" title="The interface definition for a PureMVC Notification.">INotification</a></code>. </p>
+<p>Convenience method to prevent having to construct new notification instances in our implementation code.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>notificationName</em>&nbsp;</td><td>the name of the notification to send </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>type</em>&nbsp;</td><td>the type of the notification (optional) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="class_pure_m_v_c_1_1_i_notifier.html#ad9421945c1e0fd6d7ebbc136f9ecfba3">PureMVC::INotifier</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aeab514702a162612307c5d4c7d41c8ca"></a><!-- doxytag: member="PureMVC::SimpleCommand::sendNotification" ref="aeab514702a162612307c5d4c7d41c8ca" args="(int notificationName, void *body, int notificationType)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Notifier::sendNotification </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>notificationName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&nbsp;</td>
           <td class="paramname"> <em>body</em>, </td>
         </tr>
         <tr>
@@ -224,7 +331,7 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>sendNotification</b> 
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="class_pure_m_v_c_1_1_i_notifier.html#a65e8333ccfea74138b79f84dac96af25">PureMVC::INotifier</a>.</p>
+<p>Implements <a class="el" href="class_pure_m_v_c_1_1_i_notifier.html#a9722ac70126aed83f4c5435f2a3ece0a">PureMVC::INotifier</a>.</p>
 
 </div>
 </div>
@@ -275,7 +382,7 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>sendNotification</b> 
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on Fri Dec 18 13:25:50 2009 for PureMVC++ by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Wed Feb 17 17:11:31 2010 for PureMVC++ by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

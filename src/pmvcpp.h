@@ -1260,45 +1260,28 @@ namespace PureMVC {
         /**
          * Constructor
          */
-        Proxy()
-        {
-        }
-        Proxy(std::string proxyName, void* data)
-        {
-            this->proxyName = proxyName;
-            this->data = data;
-        }
-        Proxy(std::string proxyName)
-        {
-            this->proxyName = proxyName;
-        }
-        Proxy(void* data)
-        {
-            this->data = data;
-        }
+        Proxy();
+        Proxy(std::string proxyName, void* data);
+        Proxy(std::string proxyName);
+        Proxy(void* data);
         /**
          * Get the proxy name
          */
-        std::string getProxyName()
-        {
-            return this->proxyName;
-        }
+        std::string getProxyName();
 
         /**
-         * Set the data object
+         * Set the data object. Keep in mind that this sets
+         * a pointer to your data object. If your object's
+         * life is shorter than the life of this pointer,
+         * this pointer will point to garbage. Make sure
+         * the data object is stored somewhere safe.
          */
-        void setData( void* data )
-        {
-            this->data = data;
-        }
+        void setData( void* data );
 
         /**
          * Get the data object
          */
-        void* getData()
-        {
-            return this->data;
-        }
+        void* getData();
 
         static std::string NAME;
 
@@ -1318,37 +1301,22 @@ namespace PureMVC {
         /**
          * Constructor.
          */
-        Mediator( std::string mediatorName, void* viewComponent )
-        {
-            this->mediatorName = mediatorName;
-            this->setViewComponent(viewComponent);
-        }
-        Mediator( std::string mediatorName )
-        {
-            this->mediatorName = mediatorName;
-        }
-        Mediator( void* viewComponent )
-        {
-            this->setViewComponent(viewComponent);
-        }
+        Mediator( std::string mediatorName, void* viewComponent );
+        Mediator( std::string mediatorName );
+        Mediator( void* viewComponent );
+        
         /**
          * Get the name of the <code>Mediator</code>.
          * @return the Mediator name
          */
-        std::string getMediatorName()
-        {
-            return this->mediatorName;
-        }
+        std::string getMediatorName();
 
         /**
          * Set the <code>IMediator</code>'s view component.
          *
          * @param Object the view component
          */
-        void setViewComponent( void* viewComponent )
-        {
-            this->viewComponent = viewComponent;
-        }
+        void setViewComponent( void* viewComponent );
 
         /**
          * Get the <code>Mediator</code>'s view component.
@@ -1367,10 +1335,7 @@ namespace PureMVC {
          *
          * @return the view component
          */
-        void* getViewComponent()
-        {
-            return this->viewComponent;
-        }
+        void* getViewComponent();
 
         /**
          * List the <code>INotification</code> names this
@@ -1405,10 +1370,7 @@ namespace PureMVC {
          *
          *  @return string the name
          */
-        std::string getName()
-        {
-            return this->mediatorName;
-        }
+        std::string getName();
 
     protected:
         // the mediator name

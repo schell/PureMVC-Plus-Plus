@@ -9,8 +9,8 @@
 <area shape="rect" href="$class_pure_m_v_c_1_1_model.html" title="A Multiton IModel implementation." alt="" coords="537,157,673,184"/>
 <area shape="rect" href="$class_pure_m_v_c_1_1_view.html" title="A Multiton IView implementation." alt="" coords="543,208,668,235"/>
 <area shape="rect" href="$class_pure_m_v_c_1_1_notifier.html" title="A Base INotifier implementation." alt="" coords="532,107,679,133"/>
-<area shape="rect" href="$class_pure_m_v_c_1_1_mediator.html" title="PureMVC::Mediator\&lt; T \&gt;" alt="" coords="748,56,945,83"/>
-<area shape="rect" href="$class_pure_m_v_c_1_1_proxy.html" title="PureMVC::Proxy\&lt; T \&gt;" alt="" coords="760,107,933,133"/>
+<area shape="rect" href="$class_pure_m_v_c_1_1_mediator.html" title="PureMVC::Mediator" alt="" coords="768,56,925,83"/>
+<area shape="rect" href="$class_pure_m_v_c_1_1_proxy.html" title="PureMVC::Proxy" alt="" coords="781,107,912,133"/>
 <area shape="rect" href="$class_pure_m_v_c_1_1_simple_command.html" title="A base ICommand implementation." alt="" coords="736,157,957,184"/>
 <area shape="rect" href="$class_pure_m_v_c_1_1_macro_command.html" title="A base ICommand implementation that executes other ICommands." alt="" coords="1007,157,1220,184"/>
 </map>
