@@ -124,7 +124,66 @@ void MacroCommand::execute(INotification* notification)
 //--------------------------------------
 //  Proxy
 //--------------------------------------
-// defined in header
+Proxy::Proxy()
+{
+}
+Proxy::Proxy(std::string proxyName, void* data)
+{
+    this->proxyName = proxyName;
+    this->setData(&data);
+}
+Proxy::Proxy(std::string proxyName)
+{
+    this->proxyName = proxyName;
+}
+Proxy::Proxy(void* data)
+{
+    this->data = data;
+}
+std::string Proxy::getProxyName()
+{
+    return this->proxyName;
+}
+void Proxy::setData( void* data )
+{
+    this->data = data;
+}
+void* Proxy::getData()
+{
+    return this->data;
+}
+//--------------------------------------
+//  Mediator
+//--------------------------------------
+Mediator::Mediator( std::string mediatorName, void* viewComponent )
+{
+    this->mediatorName = mediatorName;
+    this->setViewComponent(viewComponent);
+}
+Mediator::Mediator( std::string mediatorName )
+{
+    this->mediatorName = mediatorName;
+}
+Mediator::Mediator( void* viewComponent )
+{
+    this->setViewComponent(viewComponent);
+}
+std::string Mediator::getMediatorName()
+{
+    return this->mediatorName;
+}
+void Mediator::setViewComponent( void* viewComponent )
+{
+    this->viewComponent = viewComponent;
+}
+void* Mediator::getViewComponent()
+{
+    return this->viewComponent;
+}
+std::string Mediator::getName()
+{
+    return this->mediatorName;
+}
 //--------------------------------------
 //  Model
 //--------------------------------------
