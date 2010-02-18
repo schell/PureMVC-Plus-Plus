@@ -87,6 +87,22 @@ void Notifier::sendNotification( int notificationName )
 {
     this->getFacade()->sendNotification(notificationName);
 }
+pthread_t Notifier::sendThreadedNotification( int notificationName, void* body, int notificationType)
+{
+    return this->getFacade()->sendThreadedNotification(notificationName, body, notificationType);
+}
+pthread_t Notifier::sendThreadedNotification( int notificationName, int notificationType )
+{
+    return this->getFacade()->sendThreadedNotification(notificationName, notificationType);
+}
+pthread_t Notifier::sendThreadedNotification( int notificationName, void* body )
+{
+    return this->getFacade()->sendThreadedNotification(notificationName, body);
+}
+pthread_t Notifier::sendThreadedNotification( int notificationName )
+{
+    return this->getFacade()->sendThreadedNotification(notificationName);
+}
 void Notifier::initializeNotifier(std::string key)
 {
     this->setMultitonKey(key);
@@ -505,18 +521,36 @@ bool Facade::hasMediator( std::string mediatorName )
 {
     return this->view->hasMediator(mediatorName);
 }
+void Facade::sendNotification( int notificationName, void* body, int notificationType)
+{
+    this->notifyObservers(new Notification(notificationName, body, notificationType));
+}
+void Facade::sendNotification( int notificationName, int notificationType )
+{
+    this->notifyObservers(new Notification(notificationName, notificationType));
+}
+void Facade::sendNotification( int notificationName, void* body )
+{
+    this->notifyObservers(new Notification(notificationName, body));
+}
+void Facade::sendNotification( int notificationName )
+{
+    this->notifyObservers(new Notification(notificationName));
+}
 //--------------------------------------
 //  Threaded sendNotification methods
 //--------------------------------------
-void Facade::sendThreadedNotification( int notificationName, void* body, int notificationType)
+pthread_t Facade::sendThreadedNotification( int notificationName, void* body, int notificationType)
 {
     // store the notification in our threaded notification queue
     this->notificationQueue.push(new Notification(notificationName, body, notificationType));
     // create a thread
     pthread_t thread;
+    std::printf("\nFacade::sendThreadedNotification() thread created...\n");
     pthread_create(&thread, NULL, Facade::sendThreadedNotification, (void*) this);
+    return thread;
 }
-void Facade::sendThreadedNotification( int notificationName, int notificationType )
+pthread_t Facade::sendThreadedNotification( int notificationName, int notificationType )
 {
     // store the notification in our threaded notification queue
     this->notificationQueue.push(new Notification(notificationName, notificationType));
@@ -524,8 +558,9 @@ void Facade::sendThreadedNotification( int notificationName, int notificationTyp
     pthread_t thread;
     std::printf("\nFacade::sendThreadedNotification() thread created...\n");
     pthread_create(&thread, NULL, Facade::sendThreadedNotification, (void*) this);
+    return thread;
 }
-void Facade::sendThreadedNotification( int notificationName, void* body )
+pthread_t Facade::sendThreadedNotification( int notificationName, void* body )
 {
     // store the notification in our threaded notification queue
     this->notificationQueue.push(new Notification(notificationName, body));
@@ -533,8 +568,9 @@ void Facade::sendThreadedNotification( int notificationName, void* body )
     pthread_t thread;
     std::printf("\nFacade::sendThreadedNotification() thread created...\n");
     pthread_create(&thread, NULL, Facade::sendThreadedNotification, (void*) this);
+    return thread;
 }
-void Facade::sendThreadedNotification( int notificationName )
+pthread_t Facade::sendThreadedNotification( int notificationName )
 {
     // store the notification in our threaded notification queue
     this->notificationQueue.push(new Notification(notificationName));
@@ -542,6 +578,7 @@ void Facade::sendThreadedNotification( int notificationName )
     pthread_t thread;
     std::printf("\nFacade::sendThreadedNotification() thread created...\n");
     pthread_create(&thread, NULL, Facade::sendThreadedNotification, (void*) this);
+    return thread;
 }
 // this is the function that sends threaded notifications
 void* Facade::sendThreadedNotification(void* ptr)

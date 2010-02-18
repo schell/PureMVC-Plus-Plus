@@ -121,7 +121,7 @@ void SocketProxy::beginListen()
 	_requestMap[_totalRequests].context = _totalRequests;
 	_requestMap[_totalRequests].data = buffer;
 	printf("request accepted, creating response thread...\n");
-    sendNotification(n_name::SET, &_requestMap[_totalRequests], n_type::REQUEST);
+    sendThreadedNotification(n_name::SET, &_requestMap[_totalRequests], n_type::REQUEST);
 	printf("continuing to listen on port %i", _port);
 	// increment total requests
 	_totalRequests++;

@@ -167,16 +167,16 @@ namespace PureMVC {
          * @param type the type of the notification (optional)
          */
         virtual void sendNotification   ( int notificationName, void* body, int notificationType) = 0;
-		/**
-		 * Send a <code>INotification</code>.
-		 *
-		 * <p>
-		 * Convenience method to prevent having to construct new
-		 * notification instances in our implementation code.</p>
-		 *
-		 * @param notificationName the name of the notification to send
-		 * @param type the type of the notification (optional)
-		 */
+        /**
+         * Send a <code>INotification</code>.
+         *
+         * <p>
+         * Convenience method to prevent having to construct new
+         * notification instances in our implementation code.</p>
+         *
+         * @param notificationName the name of the notification to send
+         * @param type the type of the notification (optional)
+         */
         virtual void sendNotification   ( int notificationName, int notificationType ) = 0;
 		/**
          * Send a <code>INotification</code>.
@@ -200,6 +200,16 @@ namespace PureMVC {
          */
         virtual void sendNotification   ( int notificationName ) = 0;
         /**
+         *  Sends theaded notifications and returns the thread id.
+         *
+         *
+         *  @return pthread_t
+         */
+        virtual pthread_t sendThreadedNotification(int name, void* body, int type) = 0;
+        virtual pthread_t sendThreadedNotification(int name, void* body) = 0;
+        virtual pthread_t sendThreadedNotification(int name, int type) = 0;
+        virtual pthread_t sendThreadedNotification(int name) = 0;
+        /**
          * Initialize this INotifier instance.
          * <p>
          * This is how a Notifier gets its multitonKey.
@@ -210,7 +220,7 @@ namespace PureMVC {
          * @param key the multitonKey for this INotifier to use
          */
         virtual void initializeNotifier ( std::string key ) = 0;
-        virtual 	 ~INotifier         (){};
+        virtual ~INotifier(){};
     };
     /**
      * The interface definition for a PureMVC Notification.
@@ -980,6 +990,20 @@ namespace PureMVC {
         void sendNotification   ( int notificationName, int notificationType );
         void sendNotification   ( int notificationName, void* body );
         void sendNotification   ( int notificationName );
+        /**
+         * Create and send a threaded <code>INotification</code>.
+         *
+         * <P>
+         * Keeps us from having to construct new INotification
+         * instances in our implementation code.
+         * @param notificationName the name of the notiification to send
+         * @param body the body of the notification (optional)
+         * @param type the type of the notification (optional)
+         */
+        pthread_t sendThreadedNotification   ( int notificationName, void* body, int notificationType);
+        pthread_t sendThreadedNotification   ( int notificationName, int notificationType );
+        pthread_t sendThreadedNotification   ( int notificationName, void* body );
+        pthread_t sendThreadedNotification   ( int notificationName );
         /**
          * Initialize this INotifier instance.
          * <P>
@@ -1913,6 +1937,20 @@ namespace PureMVC {
         void sendNotification( int notificationName, void* body );
         void sendNotification( int notificationName, int notificationType );
         void sendNotification( int notificationName );
+        /**
+         * Create and send an <code>INotification</code> in a threaded way.
+         *
+         * <P>
+         * Keeps us from having to construct new notification
+         * instances in our implementation code.
+         * @param notificationName the name of the notiification to send
+         * @param body the body of the notification (optional)
+         * @param type the type of the notification (optional)
+         */
+        pthread_t sendThreadedNotification( int notificationName, void* body, int notificationType );
+        pthread_t sendThreadedNotification( int notificationName, void* body );
+        pthread_t sendThreadedNotification( int notificationName, int notificationType );
+        pthread_t sendThreadedNotification( int notificationName );
         /**
          *  Send a notification in a threaded way.
          *  Sends a notification stored in the notificationStack. This
