@@ -13,10 +13,12 @@
 
 #include<string>
 #include<vector>
+#include<queue>
 #include<map>
 #include<iostream>
 #include<cstdlib>
 #include<stdint.h>
+#include<pthread.h>
 
 /**
  *  The PureMVC namespace.
@@ -1815,6 +1817,8 @@ namespace PureMVC {
     //--------------------------------------
     /**
      * A base Multiton <code>IFacade</code> implementation.
+     * In this threadednotes branch, Facade's sendNotification
+     * method is threaded...
      *
      * @see Model
      * @see View
@@ -1948,6 +1952,15 @@ namespace PureMVC {
         void sendNotification( int notificationName, int notificationType );
         void sendNotification( int notificationName );
         /**
+         *  Send a notification in a threaded way.
+         *  Sends a notification stored in the notificationStack. This
+         *  function is called from a newly created thread via
+         *  sendNotification.
+         *
+         *  @return int 0
+         */
+        static void* sendThreadedNotification(void* ptr);
+        /**
          * Notify <code>Observer</code>s.
          * <P>
          * This method is left public mostly for backward
@@ -2071,6 +2084,8 @@ namespace PureMVC {
         IController* controller;
         IModel* model;
         IView* view;
+        // our threaded notification stack
+        std::queue<Notification*> notificationQueue;
     };
 
 }
