@@ -57,9 +57,10 @@ void HttpMediator::handleNotification(INotification* note)
 				
                 case n_type::REQUEST:
                 {
-                    cout << "   request:\n";
-
-                    string headerString = *(string*) body;
+                    cout << "   request header:\n";
+					
+					ContextualStringData requestBody = *(ContextualStringData*) body;
+                    string headerString = requestBody.data;
 
                     cout << headerString << "\n";
 
@@ -69,17 +70,17 @@ void HttpMediator::handleNotification(INotification* note)
                     // and formulate a response, but instead we're just going
                     // to send their info back to them...
 
-                    string responseBody = "<html><title>Welcome to the PureMVC example http server!</title><body>";
-                    responseBody += "<h1>" + _title + "</h1><br />";
-                    responseBody += " <b>request method:</b> " + request.getRequestMethod() + "<br />";
-                    responseBody += " <b>requested resource:</b> " + request.getRequestResource() + "<br />";
-                    responseBody += " <b>other headers:</b><br /><ul>";
+                    string responseData = "<html><title>Welcome to the PureMVC example http server!</title><body>";
+                    responseData += "<h1>" + _title + "</h1><br />";
+                    responseData += " <b>request method:</b> " + request.getRequestMethod() + "<br />";
+                    responseData += " <b>requested resource:</b> " + request.getRequestResource() + "<br />";
+                    responseData += " <b>other headers:</b><br /><ul>";
 
                     vector<string> headers = request.getHeaders();
                     for(size_t i = 1; i < headers.size() - 1; i++)
-                        responseBody += "  <li>" + headers.at(i) + "</li>";
+                        responseData += "  <li>" + headers.at(i) + "</li>";
 
-                    responseBody += "</ul></body>";
+                    responseData += "</ul></body>";
 
                     // create the headers for the response
                     string responseHeaders = "HTTP/1.x 200 OK\n";
@@ -87,9 +88,11 @@ void HttpMediator::handleNotification(INotification* note)
                     responseHeaders += "Accept-Ranges: bytes\n";
                     responseHeaders += "Content-Type: text/html\n\n"; // add one more blank line
                     
-                    string response = responseHeaders + responseBody;
+					ContextualStringData responseBody;
+					responseBody.context = requestBody.context;
+					responseBody.data = responseHeaders + responseData;
                     
-                    sendNotification(n_name::SET, &response, n_type::RESPONSE);
+                    sendNotification(n_name::SET, &responseBody, n_type::RESPONSE);
                 }
                 break;
             }

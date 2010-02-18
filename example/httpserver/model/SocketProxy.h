@@ -15,8 +15,6 @@
 #ifndef _SOCKETPROXY_
 #define _SOCKETPROXY_
 
-#include <netinet/in.h>
-
 #include "common.h"
 
 class SocketProxy : public PureMVC::Proxy
@@ -51,10 +49,10 @@ public:
      */
     void beginListen();
     /**
-     *  Makes a reply.
+     *  Makes a reply to a given request context.
      *
      */
-    void reply(std::string response);
+    void replyTo(int requestContext, std::string response);
 private:
     /// holds our args
     CliArgs _args;
@@ -62,16 +60,20 @@ private:
     int _port;
     /// the socket file descriptor
     int _sockfd;
-    /// the incoming socket file descriptor
-    int _readSockfd;
-    /// the total number of requests
+    /// the total number of requests (used as a request id)
     int _totalRequests;
     /// ther server address
     struct sockaddr_in _serverAddy;
+    /// the incoming socket file descriptor
+    std::map<int, int> _readSockfdMap;
     /// the client address
-    struct sockaddr_in _clientAddy;
+    std::map<int, SockAddr_in> _clientAddyClassMap;
     /// a string to hold a request
-    std::string _request;
+    std::map<int, ContextualStringData> _requestMap;
+	/**
+	 *	Cleans up a context.
+	 */
+		void cleanupContext(int context);
     /**
      *  Sends an error.
      *  Displays a certain error message.

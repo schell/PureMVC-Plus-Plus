@@ -36,7 +36,7 @@ void registerCommands(Facade* facade)
 //--------------------------------------
 int main(int argc, char** argv)
 {
-	std::cout << "\n-- littlemenu v0.1 by Schell Scivally --\n\n";
+	std::cout << "\n-- httpserver[threaded] v0.1 by Schell Scivally --\n\n";
 	// initialize our note names and types
 	n_name::init();
 	n_type::init();

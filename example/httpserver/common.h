@@ -9,6 +9,7 @@
 #define	_HTTPCOMMON_H
 
 #include <string>
+#include <netinet/in.h>
 #include "pmvcpp.h"
 
 //--------------------------------------
@@ -80,6 +81,45 @@ public:
 private:
     int argc;
     char** argv;
+};
+//--------------------------------------
+//  C++ class wrapper for sockaddr_in
+//--------------------------------------
+class SockAddr_in
+{
+public:
+	SockAddr_in()
+	{
+		
+	}
+	SockAddr_in(struct sockaddr_in sockIn)
+	{
+		this->sin = sockIn;
+	}
+	struct sockaddr_in sin;
+	bool operator< (SockAddr_in &rhs)
+	{
+		struct sockaddr_in right = rhs.sin;
+		struct sockaddr_in left = this->sin;
+		unsigned long leftNum = left.sin_port + left.sin_addr.s_addr;
+		unsigned long rightNum = right.sin_port + right.sin_addr.s_addr;
+		return leftNum < rightNum;
+	}
+};
+//--------------------------------------
+//  Some string data that is contextual
+//	(like requests and responses)
+//--------------------------------------
+class ContextualStringData
+{
+public:
+	ContextualStringData(){}
+	int context;
+	std::string data;
+	bool operator< (ContextualStringData &rhs)
+	{
+		return this->context < rhs.context;
+	}
 };
 #endif	/* _HTTPCOMMON_H */
 

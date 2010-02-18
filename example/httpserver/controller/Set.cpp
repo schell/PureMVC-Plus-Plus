@@ -32,8 +32,8 @@ void Set::execute(INotification* note)
 
         case n_type::RESPONSE:
         {
-            string reply = *(string*) body;
-            socketP->reply(reply);
+			ContextualStringData response = *(ContextualStringData*) body;
+            socketP->replyTo(response.context, response.data);
         }
         break;
     }

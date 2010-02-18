@@ -1,6 +1,6 @@
 CC = g++
 CFLAGS = -Wall -I../../src -I.
-LIBRARIES = -lm -lstdc++
+LIBRARIES = -lm -lstdc++ -lpthread
 SRCS = main.cpp \
 controller/Listen.cpp controller/Set.cpp controller/Startup.cpp \
 model/SocketProxy.cpp \
