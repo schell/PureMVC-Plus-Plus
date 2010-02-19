@@ -4,6 +4,9 @@
 // 
 ////////////////////////////////////////////////////////////////////////////////
 
+#include <cstring>
+#include <fstream>
+
 #include "HttpMediator.h"
 #include "model/SocketProxy.h"
 #include "view/components/Http.h"
@@ -21,6 +24,7 @@ HttpMediator::HttpMediator(string name) : Mediator(name)
 void HttpMediator::onRegister()
 {
     cout << "HttpMediator::onRegister()\n";
+	_documentRoot = "./document_root";
 }
 /*                                                                            */
 void HttpMediator::onRemove()
@@ -50,15 +54,15 @@ void HttpMediator::handleNotification(INotification* note)
         {
             switch(type)
             {
-                case n_type::TITLE:
-                    _title = *(string*) body;
-                    cout << "   setting title to: " << _title << "\n";
-                break;
+				case n_type::CLI_ARGS:
+				{
+					CliArgs* cliargs = (CliArgs*) body;
+					this->setArgs(cliargs);
+				}
+				break;
 				
                 case n_type::REQUEST:
                 {
-                    cout << "   request header:\n";
-					
 					Request requestBody = *(Request*) body;
                     string headerString = requestBody.data;
 
@@ -70,36 +74,34 @@ void HttpMediator::handleNotification(INotification* note)
 					response.context = requestBody.context;
 					
 					// get the file
-					string resource = "." + headers.getRequestResource();
+					string resource = _documentRoot + headers.getRequestResource();
+					string excludeRoot = _documentRoot + "/";
 					printf("	looking for resource '%s'...\n", resource.c_str());
-					int bufferLen;
-					char* buffer;
+					ifstream::pos_type bufferLen;
 					ifstream file;
-					file.open(resource.c_str(), ios::binary);
-					if(resource != "./" && ! file.fail())
+					file.open(resource.c_str(), ios::binary | ios::in | ios::ate);
+					if(resource != excludeRoot && ! file.fail())
 					{
 						printf("	opened file...\n");
-						file.seekg(0, ios::end);
 						bufferLen = file.tellg();
 						file.seekg(0, ios::beg);
 						// allocate the memory
-						buffer = new char[bufferLen];
-						file.read(buffer, bufferLen);
+						response.data = new char[bufferLen];
+						file.read(response.data, bufferLen);
+						file.close();
 						
-						cout << "	file contents (" << bufferLen << " chars)\n\n" << buffer << "\n";
+						cout << "	file contents (" << bufferLen << " chars)\n\n" << response.data << "\n";
 						
 						// create the headers for the response
 	                    responseHeaders = "HTTP/1.x 200 OK\n";
 	                    responseHeaders += "Server: Schell Scivally's httpserver v0.1\n";
-	                    responseHeaders += "Accept-Ranges: bytes\n";
-	                    responseHeaders += "Content-Type: text/html\n\n"; // add one more blank line
+	                    responseHeaders += "Accept-Ranges: bytes";
+						responseHeaders += "\n\n";
 						
-						response.headers = new char[responseHeaders.size()];
+						response.headers = new char[responseHeaders.size() + 1];
 						strcpy(response.headers, responseHeaders.c_str());
 						printf("	wrote headers to response\n");
 						response.headerSize = responseHeaders.size();
-						response.data = new char[bufferLen];
-						strcpy(response.data, buffer);
 						printf("	wrote data to response\n");
 						response.dataSize = bufferLen;
 					}
@@ -124,10 +126,10 @@ void HttpMediator::handleNotification(INotification* note)
 	                    responseHeaders += "Accept-Ranges: bytes\n";
 	                    responseHeaders += "Content-Type: text/html\n\n"; // add one more blank line
 						
-						response.headers = new char[responseHeaders.size()];
+						response.headers = new char[responseHeaders.size()+1];
 						strcpy(response.headers, responseHeaders.c_str());
 						response.headerSize = responseHeaders.size();
-						response.data = new char[responseData.size()];
+						response.data = new char[responseData.size()+1];
 						strcpy(response.data, responseData.c_str());
 						response.dataSize = responseData.size();
 					}
@@ -140,4 +142,28 @@ void HttpMediator::handleNotification(INotification* note)
         }
         break;
     }
+}
+
+void HttpMediator::setArgs(CliArgs* args)
+{
+	cout << "HttpMediator::setArgs()\n";
+	char** argv = args->get_argv();
+	for (int i = 0; i < args->get_argc(); i++)
+	{
+	    string arg(*(argv + i));
+	    cout << "   " << arg << "\n";
+		// get the title to display...
+		if(arg == "-t")
+		{
+			string title(*(argv + ++i));
+			_title = title;
+            printf("   setting title to: %s\n", _title.c_str());
+		}
+		else if(arg == "-r")
+		{
+			string root(*(argv + ++i));
+			_documentRoot = root;
+			printf("	setting document root to: %s\n", _documentRoot.c_str());
+		}
+	}
 }

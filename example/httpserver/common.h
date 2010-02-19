@@ -23,8 +23,9 @@ public:
 		NIL,
         STARTUP,                // triggers the app startup sequence
         PATTERNS_REGISTERED,	// alerts the app that proxies and mediators have been registered
-        SET,			// sets something
-        GET,			// makes a request to get something
+		CLEAR, 					// clears something
+        SET,					// sets something
+        GET,					// makes a request to get something
         LISTEN,                 // start listening for connections
         DISPLAY,                // display something
         QUIT                    // quit the app
@@ -35,6 +36,7 @@ public:
         n_name::toString[NIL] = "null";
         n_name::toString[STARTUP] = "startup";
         n_name::toString[PATTERNS_REGISTERED] = "patterns registered";
+		n_name::toString[CLEAR] = "clear";
         n_name::toString[SET] = "set";
         n_name::toString[GET] = "get";
         n_name::toString[LISTEN] = "listen";
@@ -42,6 +44,7 @@ public:
         n_name::toString[QUIT] = "quit";
     }
 };
+
 class n_type
 {
 public:
@@ -49,7 +52,6 @@ public:
     {
 		NIL,        // nothing
         CLI_ARGS,   // the command line options
-		TITLE,		// the mediator's response title
         REQUEST,    // a request
         RESPONSE    // a response
     };

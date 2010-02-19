@@ -60,12 +60,6 @@ void SocketProxy::setArgs(CliArgs* args)
             }
             portSet = true;
         }
-		// get the title to display...
-		else if(arg == "-t")
-		{
-			string title(*(argv + ++i));
-			sendNotification(n_name::SET, &title, n_type::TITLE);
-		}
     }
 
     if(! portSet)
@@ -118,14 +112,14 @@ void SocketProxy::beginListen()
     if (_readSockfdMap[_totalRequests] < 0)
       error("ERROR on accept");
 
-    n = recv(_readSockfdMap[_totalRequests], buffer, SocketProxy::BUFFER_SIZE-1, 0);
+    n = read(_readSockfdMap[_totalRequests], buffer, SocketProxy::BUFFER_SIZE-1);
 	printf("	request received...\n");
     if (n < 0)
         error("ERROR reading from socket");
 	
 	// creates a new thread to handle the request
 	_requestMap[_totalRequests].context = _totalRequests;
-	_requestMap[_totalRequests].data = new char[n];
+	_requestMap[_totalRequests].data = new char[n+1];
 	strcpy(_requestMap[_totalRequests].data, buffer);
 	printf("request accepted, creating response thread...\n");
     sendThreadedNotification(n_name::SET, &_requestMap[_totalRequests], n_type::REQUEST);

@@ -16,9 +16,8 @@
 #define _HTTPMEDIATOR_
 
 #include "common.h"
-#include <fstream>
 #include <vector>
-#include <cstring>
+#include <map>
 
 class HttpMediator : public PureMVC::Mediator
 {
@@ -30,8 +29,11 @@ public:
     void onRemove();
     std::vector<int> listNotificationInterests();
     void handleNotification(PureMVC::INotification* note);
+	void setArgs(CliArgs* args);
 private:
     std::string _title;
+	std::string _documentRoot;
+	std::map<int, Response> _responseMap;
 };
 
 #endif
