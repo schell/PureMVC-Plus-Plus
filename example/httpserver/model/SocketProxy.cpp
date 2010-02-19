@@ -94,12 +94,13 @@ void SocketProxy::setup()
     if ( bind(_sockfd, (struct sockaddr *) &_serverAddy, sizeof(_serverAddy)) < 0)
           error("ERROR on binding");
 
-    listen(_sockfd, 5);
+    listen(_sockfd, 100);
     cout << "   listening on port " << _port << "...\n";
 }
 /*                                                                            */
 void SocketProxy::beginListen()
 {
+	printf("SocketProxy::beginListen()\n");
     int clilen, n;
     char buffer[SocketProxy::BUFFER_SIZE];
 	
@@ -109,50 +110,62 @@ void SocketProxy::beginListen()
 	// client stuff // testing
     clilen = sizeof(_clientAddyClassMap[_totalRequests]);
     _readSockfdMap[_totalRequests] = accept(_sockfd, (struct sockaddr *) &_clientAddyClassMap[_totalRequests], (socklen_t*) &clilen);
+	printf("	created socket file descriptor...\n");
     if (_readSockfdMap[_totalRequests] < 0)
       error("ERROR on accept");
 
     n = read(_readSockfdMap[_totalRequests], buffer, SocketProxy::BUFFER_SIZE-1);
-
+	printf("	request received...\n");
     if (n < 0)
         error("ERROR reading from socket");
 	
 	// creates a new thread to handle the request
 	_requestMap[_totalRequests].context = _totalRequests;
-	_requestMap[_totalRequests].data = buffer;
+	_requestMap[_totalRequests].data = new char[n];
+	strcpy(_requestMap[_totalRequests].data, buffer);
 	printf("request accepted, creating response thread...\n");
     sendThreadedNotification(n_name::SET, &_requestMap[_totalRequests], n_type::REQUEST);
-	printf("continuing to listen on port %i", _port);
+	printf("continuing to listen on port %i\n", _port);
 	// increment total requests
 	_totalRequests++;
     // start listening again
 	beginListen();
 }
 /*                                                                            */
-void SocketProxy::replyTo(int requestContext, string response)
+void SocketProxy::reply(Response response)
 {
-	cout << "	replying to request #" << requestContext << "...\n";
+	printf("SocketProxy::reply()\n");
+	cout << "	replying to request #" << response.context << "...\n";
     cout << "   writing to socket...\n";
-    int n = write(_readSockfdMap[requestContext], response.c_str(), response.size());
-    cout << "   wrote " << n << " chars to socket...\n";
-    if (n < 0)
+    int headerBytes = write(_readSockfdMap[response.context], response.headers, response.headerSize);
+	int dataBytes = write(_readSockfdMap[response.context], response.data, response.dataSize);
+	printf("   wrote %i chars to socket (headers:%i + data:%i)...\n", (headerBytes + dataBytes), headerBytes, dataBytes);
+    if (headerBytes < 0 || dataBytes < 0)
         error("ERROR writing to socket");
 
     cout << "   shutting down socket...\n";
     // close the socket
-    shutdown(_readSockfdMap[requestContext], 2);
+    if(shutdown(_readSockfdMap[response.context], 2) < 0)
+	{
+		error("ERROR could not shutdown");
+	}
+	
 	// destroy the context
-	cleanupContext(requestContext);
+	cleanupContext(response.context);
 }
 /**
  *
  */
 void SocketProxy::cleanupContext(int context)
 {
+	printf("SocketProxy::cleanupContext() cleaning up #%i\n", context);
 	// erase the context from our maps
 	_readSockfdMap.erase(context);
+	printf("	cleaned up _readSockfdMap\n");
 	_clientAddyClassMap.erase(context);
+	printf("	cleaned up _clientAddyClassMap\n");
 	_requestMap.erase(context);
+	printf("	cleaned up _requestMap\n");
 }
 /*                                                                            */
 void SocketProxy::error(string msg)

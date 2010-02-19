@@ -107,16 +107,29 @@ public:
 	}
 };
 //--------------------------------------
-//  Some string data that is contextual
-//	(like requests and responses)
+//  Request and Response
 //--------------------------------------
-class ContextualStringData
+class Request
 {
 public:
-	ContextualStringData(){}
+	Request(){}
 	int context;
-	std::string data;
-	bool operator< (ContextualStringData &rhs)
+	char* data;
+	bool operator< (Request &rhs)
+	{
+		return this->context < rhs.context;
+	}
+};
+class Response
+{
+public:
+	Response(){}
+	int context;
+	char* headers;
+	char* data;
+	int headerSize;
+	int dataSize;
+	bool operator< (Response &rhs)
 	{
 		return this->context < rhs.context;
 	}

@@ -18,15 +18,10 @@ Http::Http(){ }
 /*                                                                            */
 void Http::splitLines(string s)
 {
-    cout << "Http::splitLines()\n";
     stringstream request(s);
     string line;
     while(getline(request, line))
-    {
-        cout << "   extracted: " << line << "\n";
         _lines.push_back(line);
-    }
-    cout << "   split " << _lines.size() << " lines...\n";
 }
 /*                                                                            */
 string Http::getRequestMethod()

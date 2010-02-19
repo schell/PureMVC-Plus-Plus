@@ -52,7 +52,7 @@ public:
      *  Makes a reply to a given request context.
      *
      */
-    void replyTo(int requestContext, std::string response);
+    void reply(Response response);
 private:
     /// holds our args
     CliArgs _args;
@@ -69,7 +69,7 @@ private:
     /// the client address
     std::map<int, SockAddr_in> _clientAddyClassMap;
     /// a string to hold a request
-    std::map<int, ContextualStringData> _requestMap;
+    std::map<int, Request> _requestMap;
 	/**
 	 *	Cleans up a context.
 	 */

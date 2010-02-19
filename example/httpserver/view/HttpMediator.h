@@ -16,7 +16,9 @@
 #define _HTTPMEDIATOR_
 
 #include "common.h"
+#include <fstream>
 #include <vector>
+#include <cstring>
 
 class HttpMediator : public PureMVC::Mediator
 {
