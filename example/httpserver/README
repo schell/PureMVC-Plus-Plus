@@ -1,6 +1,7 @@
-httpserver can take two arguments:
+httpserver can take three arguments:
 	-p [port]	some int for the port number.
-	-t [title]	some title for the response page.
+	-r [root]	some folder to serve files out of. default=document_root
+	-t [title]	some title for the default (404) response page.
 
 example:
 	make
