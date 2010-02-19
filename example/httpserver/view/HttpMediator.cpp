@@ -85,7 +85,6 @@ void HttpMediator::handleNotification(INotification* note)
 						// allocate the memory
 						buffer = new char[bufferLen];
 						file.read(buffer, bufferLen);
-						file.close();
 						
 						cout << "	file contents (" << bufferLen << " chars)\n\n" << buffer << "\n";
 						
@@ -97,14 +96,15 @@ void HttpMediator::handleNotification(INotification* note)
 						
 						response.headers = new char[responseHeaders.size()];
 						strcpy(response.headers, responseHeaders.c_str());
+						printf("	wrote headers to response\n");
 						response.headerSize = responseHeaders.size();
 						response.data = new char[bufferLen];
 						strcpy(response.data, buffer);
+						printf("	wrote data to response\n");
 						response.dataSize = bufferLen;
 					}
 					else
 					{
-						file.close();
 						printf("	could not find resource...\n");
 						responseData = "<html><title>Welcome to the PureMVC example http server!</title><body>";
 	                    responseData += "<h1>" + _title + "</h1><br />";
@@ -132,6 +132,7 @@ void HttpMediator::handleNotification(INotification* note)
 						response.dataSize = responseData.size();
 					}
 					
+					file.close();
                     sendNotification(n_name::SET, &response, n_type::RESPONSE);
                 }
                 break;

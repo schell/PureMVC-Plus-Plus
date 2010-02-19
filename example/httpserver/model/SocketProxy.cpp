@@ -86,15 +86,19 @@ void SocketProxy::setup()
     if (_sockfd < 0)
         error("ERROR opening socket");
 
+	memset(&_serverAddy, 0, sizeof _serverAddy);
+
     _serverAddy.sin_family = AF_INET;
     _serverAddy.sin_addr.s_addr = INADDR_ANY;
     _serverAddy.sin_port = htons(_port);
 
     cout << "   binding socket...\n";
-    if ( bind(_sockfd, (struct sockaddr *) &_serverAddy, sizeof(_serverAddy)) < 0)
+    if ( bind(_sockfd, (const struct sockaddr *) &_serverAddy, sizeof(struct sockaddr_in)) < 0)
           error("ERROR on binding");
 
-    listen(_sockfd, 100);
+    if(listen(_sockfd, 10) < 0)
+		error("ERROR on listen");
+		
     cout << "   listening on port " << _port << "...\n";
 }
 /*                                                                            */
@@ -114,7 +118,7 @@ void SocketProxy::beginListen()
     if (_readSockfdMap[_totalRequests] < 0)
       error("ERROR on accept");
 
-    n = read(_readSockfdMap[_totalRequests], buffer, SocketProxy::BUFFER_SIZE-1);
+    n = recv(_readSockfdMap[_totalRequests], buffer, SocketProxy::BUFFER_SIZE-1, 0);
 	printf("	request received...\n");
     if (n < 0)
         error("ERROR reading from socket");
@@ -149,7 +153,7 @@ void SocketProxy::reply(Response response)
 	{
 		error("ERROR could not shutdown");
 	}
-	
+	close(_readSockfdMap[response.context]);
 	// destroy the context
 	cleanupContext(response.context);
 }
