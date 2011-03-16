@@ -1,6 +1,6 @@
 PureMVC++
 =========
-Hi, and thanks for your interest my the C++ version of the PureMVC architecture. 
+Hi, and thanks for your interest my C++ version of the PureMVC architecture. 
 
 Source
 ------
