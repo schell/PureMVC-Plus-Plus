@@ -304,6 +304,8 @@ void View::removeObserver( int notificationName, intptr_t contextAddress )
                 break;
             }
         }
+        
+        this->observerMap[notificationName] = observers;
 
         if(observers.size() == (size_t) 0)
            this->observerMap.erase(notificationName);
