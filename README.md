@@ -8,7 +8,7 @@ Source
 
 Documentation
 -------------
-[The documentation is here.](http://civiliansoftware.com/pmvcpp/)
+[The documentation is here.](http://schell.github.io/PureMVC-Plus-Plus/)
 
 Other
 -----
