@@ -283,8 +283,9 @@ void View::notifyObservers( INotification* notification )
         }
     }
 }
-void View::removeObserver( int notificationName, intptr_t contextAddress )
+IObserverRestricted* View::removeObserver( int notificationName, intptr_t contextAddress )
 {
+    IObserverRestricted* observer = nullptr;
     if(this->existsObserversInterestedIn(notificationName))
     {
         std::vector<IObserverRestricted*> observers = this->observerMap[notificationName];
@@ -300,9 +301,8 @@ void View::removeObserver( int notificationName, intptr_t contextAddress )
             // involve refactoring the base classes
             if((*it)->compareNotifyContext(contextAddress) == true)
             {
-                IObserverRestricted* observer = *it;
+                observer = *it;
                 observers.erase(it);
-                delete observer;
                 break;
             }
         }
@@ -312,6 +312,7 @@ void View::removeObserver( int notificationName, intptr_t contextAddress )
         if(observers.size() == (size_t) 0)
            this->observerMap.erase(notificationName);
     }
+    return observer;
 }
 void View::registerMediator( IMediator* mediator )
 {
@@ -356,7 +357,7 @@ IMediator* View::removeMediator( std::string mediatorName )
         for (int i = 0; i < (int) interests.size(); i++)
         {
             // remove the mediator's observer functor listed for this notification
-            this->removeObserver(interests[i], (intptr_t) &*mediator);
+            delete this->removeObserver(interests[i], (intptr_t) &*mediator);
         }
     }
     // remove the mediator from the map
@@ -405,7 +406,7 @@ void Controller::removeCommand( int notificationName )
     if(this->hasCommand(notificationName))
     {
         // remove observer from view
-        this->view->removeObserver(notificationName, (intptr_t) &*this);
+        delete this->view->removeObserver(notificationName, (intptr_t) &*this);
         // remove null command ptr from map
         this->commandMap.erase(notificationName);
     }
