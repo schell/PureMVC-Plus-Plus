@@ -283,8 +283,9 @@ void View::notifyObservers( INotification* notification )
         }
     }
 }
-void View::removeObserver( int notificationName, intptr_t contextAddress )
+IObserverRestricted* View::removeObserver( int notificationName, intptr_t contextAddress )
 {
+    IObserverRestricted* observer = nullptr;
     if(this->existsObserversInterestedIn(notificationName))
     {
         std::vector<IObserverRestricted*> observers = this->observerMap[notificationName];
@@ -300,6 +301,7 @@ void View::removeObserver( int notificationName, intptr_t contextAddress )
             // involve refactoring the base classes
             if((*it)->compareNotifyContext(contextAddress) == true)
             {
+                observer = *it;
                 observers.erase(it);
                 break;
             }
@@ -310,6 +312,7 @@ void View::removeObserver( int notificationName, intptr_t contextAddress )
         if(observers.size() == (size_t) 0)
            this->observerMap.erase(notificationName);
     }
+    return observer;
 }
 void View::registerMediator( IMediator* mediator )
 {
@@ -331,8 +334,6 @@ void View::registerMediator( IMediator* mediator )
         {
             this->registerObserver(interests[i], observer);
         }
-
-
     }
     // alert the mediator that it has been registered
     mediator->onRegister();
@@ -356,7 +357,7 @@ IMediator* View::removeMediator( std::string mediatorName )
         for (int i = 0; i < (int) interests.size(); i++)
         {
             // remove the mediator's observer functor listed for this notification
-            this->removeObserver(interests[i], (intptr_t) &*mediator);
+            delete this->removeObserver(interests[i], (intptr_t) &*mediator);
         }
     }
     // remove the mediator from the map
@@ -405,7 +406,7 @@ void Controller::removeCommand( int notificationName )
     if(this->hasCommand(notificationName))
     {
         // remove observer from view
-        this->view->removeObserver(notificationName, (intptr_t) &*this);
+        delete this->view->removeObserver(notificationName, (intptr_t) &*this);
         // remove null command ptr from map
         this->commandMap.erase(notificationName);
     }
@@ -447,16 +448,16 @@ void Facade::initializeFacade()
 void Facade::initializeModel()
 {
     // if it's been initialized, abort
-    if(this->controller != (IController*) 0)
+    if(this->model != (IModel*) 0)
         return;
-    this->controller = Controller::getInstance(this->getMultitonKey());
+    this->model = Model::getInstance(this->getMultitonKey());
 }
 void Facade::initializeController()
 {
     // if it's been initialized, abort
-    if(this->model != (IModel*) 0)
+    if(this->controller != (IController*) 0)
         return;
-    this->model = Model::getInstance(this->getMultitonKey());
+    this->controller = Controller::getInstance(this->getMultitonKey());
 }
 void Facade::initializeView()
 {

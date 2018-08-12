@@ -386,6 +386,10 @@ namespace PureMVC {
          * @return boolean indicating if the object and the notification context are the same
          */
         virtual bool compareNotifyContext( intptr_t memoryAddress ) = 0;
+        /**
+         * for release
+         */
+        virtual ~IObserverRestricted() {}
     };
     /**
      * The interface definition for a PureMVC Observer.
@@ -661,7 +665,7 @@ namespace PureMVC {
              * @param notificationName which observer list to remove from
              * @param contextAddress remove the observer with this address as the address of their notifyContext
              */
-            virtual void removeObserver( int notificationName, intptr_t contextAddress ) = 0;
+            virtual IObserverRestricted* removeObserver( int notificationName, intptr_t contextAddress ) = 0;
             /**
              * Notify the <code>IObservers</code> for a particular <code>INotification</code>.
              *
@@ -1548,7 +1552,7 @@ namespace PureMVC {
          * @param notificationName which observer list to remove from
          * @param contextAddress remove the observer with this memory address as its notifyContext's address
          */
-        void removeObserver( int notificationName, intptr_t contextAddress );
+        IObserverRestricted* removeObserver( int notificationName, intptr_t contextAddress );
 
         /**
          * Register an <code>IMediator</code> instance with the <code>View</code>.
