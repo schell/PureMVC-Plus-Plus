@@ -300,7 +300,9 @@ void View::removeObserver( int notificationName, intptr_t contextAddress )
             // involve refactoring the base classes
             if((*it)->compareNotifyContext(contextAddress) == true)
             {
+                IObserverRestricted* observer = *it;
                 observers.erase(it);
+                delete observer;
                 break;
             }
         }
@@ -331,8 +333,6 @@ void View::registerMediator( IMediator* mediator )
         {
             this->registerObserver(interests[i], observer);
         }
-
-
     }
     // alert the mediator that it has been registered
     mediator->onRegister();
@@ -447,16 +447,16 @@ void Facade::initializeFacade()
 void Facade::initializeModel()
 {
     // if it's been initialized, abort
-    if(this->controller != (IController*) 0)
+    if(this->model != (IModel*) 0)
         return;
-    this->controller = Controller::getInstance(this->getMultitonKey());
+    this->model = Model::getInstance(this->getMultitonKey());
 }
 void Facade::initializeController()
 {
     // if it's been initialized, abort
-    if(this->model != (IModel*) 0)
+    if(this->controller != (IController*) 0)
         return;
-    this->model = Model::getInstance(this->getMultitonKey());
+    this->controller = Controller::getInstance(this->getMultitonKey());
 }
 void Facade::initializeView()
 {

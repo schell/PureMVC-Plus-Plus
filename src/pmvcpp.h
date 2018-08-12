@@ -386,6 +386,10 @@ namespace PureMVC {
          * @return boolean indicating if the object and the notification context are the same
          */
         virtual bool compareNotifyContext( intptr_t memoryAddress ) = 0;
+        /**
+         * for release
+         */
+        virtual ~IObserverRestricted() {}
     };
     /**
      * The interface definition for a PureMVC Observer.
